@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsqmq87vlwhld"
-path.s3tc="res://.godot/imported/texture_12.png-130a8585796b94d6cd1f200b99859a3a.s3tc.ctex"
+uid="uid://c7ja4woxol8yc"
+path.bptc="res://.godot/imported/CheckerPatternDark.png-fdb2fea143d8c120db563be7371308e4.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,13 +11,13 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/PNG/Light/texture_12.png"
-dest_files=["res://.godot/imported/texture_12.png-130a8585796b94d6cd1f200b99859a3a.s3tc.ctex"]
+source_file="res://addons/phantom_camera/examples/textures/3D/CheckerPatternDark.png"
+dest_files=["res://.godot/imported/CheckerPatternDark.png-fdb2fea143d8c120db563be7371308e4.bptc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0

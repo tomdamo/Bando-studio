@@ -22,6 +22,10 @@ config/icon="res://icon.svg"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
+
 [input]
 
 move_forward={
@@ -61,3 +65,8 @@ jump={
 3d_render/layer_2="Ground"
 3d_render/layer_3="Walls"
 3d_render/layer_4="Camera_ignore"
+
+[rendering]
+
+anti_aliasing/quality/msaa_3d=2
+anti_aliasing/quality/screen_space_aa=1
