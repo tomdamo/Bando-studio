@@ -31,7 +31,9 @@ func handle_input(delta):
 	if Input.is_action_just_pressed("dash") and not is_dashing:
 		start_dash()
 		print("dashing")
-		
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
+	
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
 		$Pivot.basis = Basis.looking_at(direction)
