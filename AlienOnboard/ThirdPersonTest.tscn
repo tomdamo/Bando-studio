@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://crp6gtqj7p4wx"]
+
+[ext_resource type="Script" path="res://Player3rdPerson.gd" id="1_0o4vy"]
+[ext_resource type="Texture2D" uid="uid://dbe1rrtc6aowd" path="res://Textures/PNG/Orange/texture_03.png" id="1_bfd8a"]
+[ext_resource type="Texture2D" uid="uid://cxyimdq1faw34" path="res://Textures/PNG/Dark/texture_01.png" id="1_xqvkm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_11c20"]
+albedo_texture = ExtResource("1_xqvkm")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e07n3"]
+radius = 0.564954
+height = 2.14327
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ov05a"]
+albedo_texture = ExtResource("1_bfd8a")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_thpsq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_kdq6r"]
+
+[node name="ThirdPersonTest" type="Node3D"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(33.6935, 0, 0, 0, 1, 0, 0, 0, 24.8882, 2.08165e-12, -1, 2.08165e-12)
+material = SubResource("StandardMaterial3D_11c20")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 0.355792, 0.934565, 0, -0.934565, 0.355792, 0.00196767, 5.87079, 0.00508773)
+
+[node name="Player3rdPerson" type="CharacterBody3D" parent="."]
+script = ExtResource("1_0o4vy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player3rdPerson"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0035429, 0.664149, -0.00916004)
+shape = SubResource("CapsuleShape3D_e07n3")
+
+[node name="CamOrigin" type="Node3D" parent="Player3rdPerson"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23549, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Player3rdPerson/CamOrigin"]
+spring_length = 3.0
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="Player3rdPerson/CamOrigin/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.19611)
+
+[node name="Body" type="MeshInstance3D" parent="Player3rdPerson"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.689716, 0)
+material_override = SubResource("StandardMaterial3D_ov05a")
+mesh = SubResource("CapsuleMesh_thpsq")
+
+[node name="Head" type="MeshInstance3D" parent="Player3rdPerson/Body"]
+transform = Transform3D(0.701393, 0, 0, 0, 0.326527, 0, 0, 0, 0.536412, 0, 0.429185, -0.263868)
+mesh = SubResource("BoxMesh_kdq6r")
+skeleton = NodePath("../..")
