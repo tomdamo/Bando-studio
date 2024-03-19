@@ -86,7 +86,17 @@ material_override = SubResource("StandardMaterial3D_ov05a")
 mesh = SubResource("CapsuleMesh_thpsq")
 
 [node name="Body8" type="MeshInstance3D" parent="Player3rdPerson"]
-transform = Transform3D(0.0128129, 0.19107, 0.192309, 2.55085e-12, -0.304379, 0.117507, 0.165725, -0.0147725, -0.0148683, 0.540542, 0.422181, -0.512355)
+transform = Transform3D(0.0128129, 0.15321, 0.216523, 2.55085e-12, -0.244067, 0.132302, 0.165725, -0.0118453, -0.0167404, 0.540542, 0.422181, -0.512355)
+material_override = SubResource("StandardMaterial3D_ov05a")
+mesh = SubResource("CapsuleMesh_thpsq")
+
+[node name="Body12" type="MeshInstance3D" parent="Player3rdPerson"]
+transform = Transform3D(0.109293, 0.175774, 0.0889145, -0.0834098, -0.0196431, 0.129801, 0.0440906, -0.472876, 0.0251512, 0.422885, 0.602314, -0.92385)
+material_override = SubResource("StandardMaterial3D_ov05a")
+mesh = SubResource("CapsuleMesh_thpsq")
+
+[node name="Body13" type="MeshInstance3D" parent="Player3rdPerson"]
+transform = Transform3D(0.114315, -0.136101, 0.0866934, -0.0834098, -0.0196431, 0.129801, -0.0286547, -0.485783, -0.0319784, -0.458576, 0.627186, -1.0353)
 material_override = SubResource("StandardMaterial3D_ov05a")
 mesh = SubResource("CapsuleMesh_thpsq")
 
