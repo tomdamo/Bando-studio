@@ -1,9 +1,9 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
+const SPEED = 10.0
 const JUMP_VELOCITY = 4.5
-const DASH_SPEED = 17.0
+const DASH_SPEED = 30.0
 const DASH_TIME = 0.2
 
 var dashing = false
@@ -11,7 +11,7 @@ var dash_direction = Vector3.ZERO
 var dash_timer = 0.0
 
 @onready var pivot = $CamOrigin
-@export var sens = 0.5
+@export var mouseSens = 0.5
 @onready var dash_cooldown_timer = $DashCooldownTimer
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -21,8 +21,8 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 func _input(event):
 	if event is InputEventMouseMotion:
-		rotate_y(deg_to_rad(-event.relative.x * sens))
-		pivot.rotate_x(deg_to_rad(-event.relative.y * sens))
+		rotate_y(deg_to_rad(-event.relative.x * mouseSens))
+		pivot.rotate_x(deg_to_rad(-event.relative.y * mouseSens))
 		pivot.rotation.x = clamp(pivot.rotation.x, deg_to_rad(-90), deg_to_rad(45))
 
 func _physics_process(delta):
