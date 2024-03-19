@@ -1,10 +1,10 @@
 extends CharacterBody3D
 
 
-const SPEED = 10.0
+const SPEED = 6.0
 const JUMP_VELOCITY = 4.5
 const DASH_SPEED = 30.0
-const DASH_TIME = 0.2
+const DASH_TIME = 0.05
 
 var dashing = false
 var dash_direction = Vector3.ZERO

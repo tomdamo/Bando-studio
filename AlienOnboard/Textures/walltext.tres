@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bsqmq87vlwhld" path="res://Textures/PNG/Light/texture_12.png" id="1_yoacs"]
 
 [resource]
-albedo_color = Color(1, 0.764706, 1, 1)
+albedo_color = Color(0.85098, 0.847059, 0.941176, 1)
 albedo_texture = ExtResource("1_yoacs")
 uv1_triplanar = true
 uv1_world_triplanar = true
