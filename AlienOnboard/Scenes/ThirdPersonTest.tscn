@@ -52,6 +52,14 @@ script = ExtResource("1_hs7xj")
 wait_time = 0.6
 one_shot = true
 
+[node name="SenseCooldownTimer" type="Timer" parent="PlayerHatchling"]
+wait_time = 5.0
+one_shot = true
+
+[node name="ActiveSenseTime" type="Timer" parent="PlayerHatchling"]
+wait_time = 10.0
+one_shot = true
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerHatchling"]
 transform = Transform3D(1, 0, 0, 0, 0.0281485, 0.999604, 0, -0.999604, 0.0281485, -0.0035429, 0.664149, -0.00916004)
 shape = SubResource("CapsuleShape3D_e07n3")
@@ -334,6 +342,7 @@ shadow_enabled = true
 
 [node name="Humans" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.243787, -1.65576, -2.24008)
+layers = 16
 material_override = SubResource("StandardMaterial3D_r0kx0")
 mesh = SubResource("CapsuleMesh_ntqti")
 skeleton = NodePath("")
@@ -358,6 +367,7 @@ transform = Transform3D(-1.74846e-08, 9.62174e-17, 0.4, 1.39515e-16, 0.275863, -
 
 [node name="cucaracha" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, -1.5246e-23, -1.5246e-23, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.51196, -2.43167, -2.07388)
+layers = 16
 mesh = SubResource("CapsuleMesh_nvfvi")
 surface_material_override/0 = SubResource("StandardMaterial3D_5y7th")
 

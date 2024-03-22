@@ -18,7 +18,9 @@ var dash_timer = 0.0
 var health = 3 
 var damage = 1 
 
+var senseActive = false
 
+# pierce range and bite range???
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
