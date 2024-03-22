@@ -1,5 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://crp6gtqj7p4wx"]
+[gd_scene load_steps=23 format=3 uid="uid://crp6gtqj7p4wx"]
 
+[ext_resource type="Texture2D" uid="uid://dwnp3387tfw5x" path="res://Textures/Skybox/SpacePanoramas/panorama6.jpg" id="1_bi5js"]
 [ext_resource type="Script" path="res://Scripts/Player3rdPerson.gd" id="1_hs7xj"]
 [ext_resource type="Texture2D" uid="uid://c6t5uouul4cf7" path="res://Textures/Crosshair/Crosshair 2.png" id="2_c57u8"]
 [ext_resource type="Texture2D" uid="uid://dbe1rrtc6aowd" path="res://Textures/PNG/Orange/texture_03.png" id="3_4go0e"]
@@ -9,7 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://dh3iobrlaj6u4" path="res://3DModels/incubator2.glb" id="7_l2ycx"]
 [ext_resource type="PackedScene" uid="uid://dxkboqoqwnvxt" path="res://3DModels/GateV1.glb" id="8_yseo2"]
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ivoyt"]
+panorama = ExtResource("1_bi5js")
+
+[sub_resource type="Sky" id="Sky_jl18b"]
+sky_material = SubResource("PanoramaSkyMaterial_ivoyt")
+
 [sub_resource type="Environment" id="Environment_1gnt6"]
+background_mode = 2
+sky = SubResource("Sky_jl18b")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e07n3"]
 radius = 0.151044
