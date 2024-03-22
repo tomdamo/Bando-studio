@@ -1,18 +1,27 @@
 extends CharacterBody3D
 
-
+#Movement
 const SPEED = 6.0
-const JUMP_VELOCITY = 4.5
 const DASH_SPEED = 30.0
 const DASH_TIME = 0.05
 
 var dashing = false
 var dash_direction = Vector3.ZERO
 var dash_timer = 0.0
+@onready var dash_cooldown_timer = $DashCooldownTimer
 
+#Camera stuff
 @onready var pivot = $CamOrigin
 @export var mouseSens = 0.5
-@onready var dash_cooldown_timer = $DashCooldownTimer
+
+#Health, damage and ranges of player attacks
+var health = 3 
+var damage = 1 
+var biteRange = 1.5 
+var pierceRange = 2.5
+
+#Ability to see enemies through walls
+var senseAbilityActive = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
