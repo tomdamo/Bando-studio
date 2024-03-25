@@ -18,7 +18,17 @@ var dash_timer = 0.0
 var health = 3 
 var damage = 1 
 
+#Sense Ability, see enemies through walls
 var senseActive = false
+const Sense_duration = 10.0
+const Sense_Cooldown = 20.0
+var sense_timer = 0.0
+@onready var sense_cooldown_timer = $SenseCooldownTimer
+@onready var active_sense_timer = $ActiveSenseTime
+
+# Enemy material
+var enemyNormalMaterial = load("res://Textures/EnemyNormal.tres")
+var enemyVisibleMaterial = load("res://Textures/EnemyVisible.tres")
 
 # pierce range and bite range???
 
@@ -47,10 +57,9 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 
-	if Input.is_action_just_pressed("SenseAbility"):
-		#See enemies layer through the walls
-
-		return
+	#See enemies layer through the walls
+	if Input.is_action_just_pressed("SenseAbility") and not senseActive and sense_cooldown_timer.is_stopped():
+		_activateSenseAbility()
 
 	# Space to dash
 	if Input.is_action_just_pressed("dash") and not dashing and dash_cooldown_timer.is_stopped():
@@ -74,3 +83,32 @@ func _physics_process(delta):
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	# Update sense timer
+	if senseActive:
+		sense_timer -= delta
+		if sense_timer <= 0:
+			_deactivateSenseAbility()
+	
+func _activateSenseAbility():
+	senseActive = true
+	sense_timer = Sense_duration
+	active_sense_timer.start()
+	print("Sense activated")
+	# Iterate through all enemies and change their material
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		if enemy.has_node("MeshInstance3D"):
+			var meshInstance = enemy.get_node("MeshInstance3D")
+			meshInstance.material_override = enemyVisibleMaterial
+
+
+
+func _deactivateSenseAbility():
+	senseActive = false
+	sense_cooldown_timer.start()
+# Revert the material of enemies
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		if enemy.has_node("MeshInstance3D"):
+			var meshInstance = enemy.get_node("MeshInstance3D")
+			meshInstance.material_override = enemyNormalMaterial
+
+
