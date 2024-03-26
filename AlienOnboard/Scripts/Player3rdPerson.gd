@@ -25,7 +25,7 @@ const Sense_Cooldown = 20.0
 var sense_timer = 0.0
 @onready var sense_cooldown_timer = $SenseCooldownTimer
 @onready var active_sense_timer = $ActiveSenseTime
-
+@onready var senseRange = $SenseArea
 # Enemy material
 var enemyNormalMaterial = load("res://Textures/EnemyNormal.tres")
 var enemyVisibleMaterial = load("res://Textures/EnemyVisible.tres")
@@ -59,6 +59,7 @@ func _physics_process(delta):
 
 	#See enemies layer through the walls
 	if Input.is_action_just_pressed("SenseAbility") and not senseActive and sense_cooldown_timer.is_stopped():
+		print("if for senseability passed")
 		_activateSenseAbility()
 
 	# Space to dash
@@ -94,7 +95,14 @@ func _activateSenseAbility():
 	sense_timer = Sense_duration
 	active_sense_timer.start()
 	print("Sense activated")
-	# Iterate through all enemies and change their material
+	# Get all enemies within the SenseRange collision shape
+	#if senseRange:
+		#var bodies = senseRange.get_overlapping_areas()
+		#for area in areas:
+			#if body.has_node("MeshInstance3D"):
+				#var meshInstance = body.get_node("MeshInstance3D")
+				#meshInstance.material_override = enemyVisibleMaterial
+	#
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		if enemy.has_node("MeshInstance3D"):
 			var meshInstance = enemy.get_node("MeshInstance3D")

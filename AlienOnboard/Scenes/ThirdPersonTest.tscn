@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://crp6gtqj7p4wx"]
+[gd_scene load_steps=27 format=3 uid="uid://crp6gtqj7p4wx"]
 
 [ext_resource type="Texture2D" uid="uid://dwnp3387tfw5x" path="res://Textures/Skybox/SpacePanoramas/panorama6.jpg" id="1_bi5js"]
 [ext_resource type="Script" path="res://Scripts/Player3rdPerson.gd" id="1_hs7xj"]
@@ -9,6 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://dh3iobrlaj6u4" path="res://3DModels/incubator2.glb" id="7_l2ycx"]
 [ext_resource type="PackedScene" uid="uid://dxkboqoqwnvxt" path="res://3DModels/GateV1.glb" id="8_yseo2"]
 [ext_resource type="Material" uid="uid://csc8vjufq5kxi" path="res://Textures/EnemyNormal.tres" id="9_rwtq7"]
+[ext_resource type="Script" path="res://Scripts/Pathfinding.gd" id="9_u5mom"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_2xicp"]
+agent_height = 1.8
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_48nfy"]
 
@@ -28,6 +32,9 @@ sky = SubResource("Sky_jl18b")
 radius = 0.151044
 height = 0.678931
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6lj6r"]
+radius = 9.04352
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ov05a"]
 albedo_texture = ExtResource("3_4go0e")
 
@@ -44,226 +51,322 @@ height = 0.4
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5y7th"]
 albedo_color = Color(0.827451, 0.392157, 0, 1)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fwkqn"]
+height = 1.82329
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hj25j"]
 material = ExtResource("9_rwtq7")
 height = 1.8
 
 [node name="World" type="Node3D"]
 
-[node name="Prototype" type="CSGCombiner3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(0.999997, -0.0020334, 0.00141364, 0.0020311, 0.999997, 0.00161359, -0.00141695, -0.00161069, 0.999998, 0.0571911, -2.78961, 0.292431)
+navigation_mesh = SubResource("NavigationMesh_2xicp")
+
+[node name="Prototype" type="CSGCombiner3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.999997, 0.00203112, -0.00141692, -0.00203339, 0.999997, -0.00161071, 0.00141367, 0.00161357, 0.999998, -0.0511105, 2.79019, -0.28801)
 use_collision = true
 
-[node name="GroundHall1" type="CSGBox3D" parent="Prototype"]
-transform = Transform3D(1, 0, 0, 0, 0.999995, 0.00324631, 0, -0.00324631, 0.999995, 2.03791, -3.04864, -0.618693)
+[node name="GroundHall1" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
+transform = Transform3D(1, 2.98486e-19, -8.58379e-19, -1.50483e-21, 0.999995, 0.00324631, 0, -0.00324631, 0.999995, 2.03791, -3.04864, -0.618693)
 layers = 2
 size = Vector3(15, 1, 15)
 material = ExtResource("4_1n2p5")
 
-[node name="GroundHall2" type="CSGBox3D" parent="Prototype"]
+[node name="GroundHall2" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(1.02907, 0, 0, 0, 1.02907, 0, 0, 0, 1.02907, -13.242, -3.04864, -0.317025)
 layers = 2
 size = Vector3(15.4736, 1, 4.74316)
 material = ExtResource("4_1n2p5")
 
-[node name="GroundHall3" type="CSGBox3D" parent="Prototype"]
+[node name="GroundHall3" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0052, -3.04864, -4.93987)
 layers = 2
 size = Vector3(15, 1, 1.12128)
 material = ExtResource("4_1n2p5")
 
-[node name="GroundHall4" type="CSGBox3D" parent="Prototype"]
+[node name="GroundHall4" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6582, -3.07382, -3.54745)
 layers = 2
 size = Vector3(1.25391, 1, 1.69041)
 material = ExtResource("4_1n2p5")
 
-[node name="GroundHall5" type="CSGBox3D" parent="Prototype"]
-transform = Transform3D(1, 0, 0, 0, 0.999995, 0.00324631, 0, -0.00324631, 0.999995, -28.0606, -3.06045, -4.25493)
+[node name="GroundHall5" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
+transform = Transform3D(1, 0, 0, 0, 0.999995, 0.00324631, 0, -0.00324631, 0.999995, -43.0909, -3.11115, -19.8719)
 layers = 2
-size = Vector3(15, 1, 22.2751)
+size = Vector3(45.0605, 1, 53.5092)
 material = ExtResource("4_1n2p5")
 
-[node name="Wall1" type="CSGBox3D" parent="Prototype"]
+[node name="Wall1" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, 9.06206, -0.572517, -0.653283)
 layers = 4
 size = Vector3(14.9172, 4, 1)
 material = ExtResource("5_p2eom")
 
-[node name="Wall2" type="CSGBox3D" parent="Prototype"]
+[node name="Wall2" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, -4.9809, -0.561724, 4.35954)
 layers = 4
 size = Vector3(4.99457, 4, 1)
 material = ExtResource("5_p2eom")
 
-[node name="Wall18" type="CSGBox3D" parent="Prototype"]
+[node name="Wall18" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, -35.3395, -0.780006, -4.25919)
 layers = 4
 size = Vector3(22.129, 4, 1)
 material = ExtResource("5_p2eom")
 
-[node name="Wall19" type="CSGBox3D" parent="Prototype"]
+[node name="Wall29" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
+transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, -44.0187, -0.780006, -4.25919)
+layers = 4
+size = Vector3(22.129, 4, 1)
+material = ExtResource("5_p2eom")
+
+[node name="Wall19" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, -21.229, -0.561724, 4.26498)
 layers = 4
 size = Vector3(5.18368, 4, 1)
 material = ExtResource("5_p2eom")
 
-[node name="Wall21" type="CSGBox3D" parent="Prototype"]
+[node name="Wall21" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, -21.229, -0.561724, -3.72833)
 layers = 4
 size = Vector3(1.70805, 4, 1)
 material = ExtResource("5_p2eom")
 
-[node name="Wall22" type="CSGBox3D" parent="Prototype"]
+[node name="Wall22" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(0.000227091, -0.000188698, 1, 2.8969e-05, 1, 0.000188689, -1, 2.8911e-05, 0.000227098, -21.229, -0.0105585, -4.96334)
 layers = 4
 size = Vector3(0.908224, 2.87585, 1)
 material = ExtResource("5_p2eom")
 
-[node name="Wall20" type="CSGBox3D" parent="Prototype"]
+[node name="Wall20" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, -21.229, -0.561724, -10.428)
 layers = 4
 size = Vector3(9.98589, 4, 1)
 material = ExtResource("5_p2eom")
 
-[node name="Wall5" type="CSGBox3D" parent="Prototype"]
+[node name="Wall5" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, -4.9809, -0.0678275, -5.36688)
 layers = 4
 size = Vector3(5.41205, 3.01221, 1)
 material = ExtResource("5_p2eom")
 
-[node name="Wall8" type="CSGBox3D" parent="Prototype"]
+[node name="Wall8" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, -4.97999, -2.05016, -3.58059)
 layers = 4
 size = Vector3(1.77673, 0.999268, 1)
 material = ExtResource("5_p2eom")
 
-[node name="Wall9" type="CSGBox3D" parent="Prototype"]
+[node name="Wall9" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, -4.97999, -2.05016, -6.75108)
 layers = 4
 size = Vector3(2.68625, 0.999268, 1)
 material = ExtResource("5_p2eom")
 
-[node name="Wall3" type="CSGBox3D" parent="Prototype"]
+[node name="Wall3" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(0.999994, 0.00343829, 3.47586e-16, -0.00343829, 0.999994, -3.49984e-16, -3.48787e-16, 3.48787e-16, 1, 1.93051, -0.540244, -7.56507)
 layers = 4
 size = Vector3(13.3929, 4, 1)
 material = ExtResource("5_p2eom")
 
-[node name="Wall6" type="CSGBox3D" parent="Prototype"]
+[node name="Wall6" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -9.86899, -0.580899, -2.42463)
 layers = 4
 size = Vector3(8.56868, 4, 1)
 material = ExtResource("5_p2eom")
 
-[node name="Wall12" type="CSGBox3D" parent="Prototype"]
+[node name="Wall12" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -9.86899, -2.53507, -3.68906)
 layers = 4
 size = Vector3(8.56868, 2.07812, 1.61035)
 material = ExtResource("5_p2eom")
 
-[node name="Wall13" type="CSGBox3D" parent="Prototype"]
+[node name="Wall13" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -13.2305, -2.54407, -6.00555)
 layers = 4
 size = Vector3(15.6653, 2.07812, 1.01965)
 material = ExtResource("5_p2eom")
 
-[node name="Wall14" type="CSGBox3D" parent="Prototype"]
+[node name="Wall14" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -13.0368, -1.37066, -4.99485)
 layers = 4
 size = Vector3(14.5381, 0.287598, 1.01965)
 material = ExtResource("5_p2eom")
 
-[node name="Wall16" type="CSGBox3D" parent="Prototype"]
+[node name="Wall16" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -14.6466, -1.37066, -3.7352)
 layers = 4
 size = Vector3(1.33327, 0.287598, 1.56937)
 material = ExtResource("5_p2eom")
 
-[node name="Wall10" type="CSGBox3D" parent="Prototype"]
+[node name="Wall10" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -17.9021, -0.580899, -2.42463)
 layers = 4
 size = Vector3(5.22574, 4, 1)
 material = ExtResource("5_p2eom")
 
-[node name="Wall15" type="CSGBox3D" parent="Prototype"]
+[node name="Wall15" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -17.8217, -2.02188, -3.7541)
 layers = 4
 size = Vector3(5.00728, 1.11804, 1.71045)
 material = ExtResource("5_p2eom")
 
-[node name="Wall11" type="CSGBox3D" parent="Prototype"]
+[node name="Wall11" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -14.6945, -0.127286, -2.42463)
 layers = 4
 size = Vector3(1.14341, 3.09277, 1)
 material = ExtResource("5_p2eom")
 
-[node name="Wall7" type="CSGBox3D" parent="Prototype"]
+[node name="Wall7" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -17.5552, -0.556189, 1.53585)
 layers = 4
 size = Vector3(5.77891, 4.10254, 1)
 material = ExtResource("5_p2eom")
 
-[node name="Wall24" type="CSGBox3D" parent="Prototype"]
+[node name="Wall24" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -8.46468, -0.556189, 1.53585)
 layers = 4
 size = Vector3(5.77891, 4.10254, 1)
 material = ExtResource("5_p2eom")
 
-[node name="Wall25" type="CSGBox3D" parent="Prototype"]
+[node name="Wall25" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -12.9944, 1.08825, 1.53585)
 layers = 4
 size = Vector3(3.38363, 0.81366, 1)
 material = ExtResource("5_p2eom")
 
-[node name="Wall26" type="CSGBox3D" parent="Prototype"]
+[node name="Wall26" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -12.9944, -2.14138, 1.53585)
 layers = 4
 size = Vector3(3.38363, 0.81366, 1)
 material = ExtResource("5_p2eom")
 
-[node name="Wall4" type="CSGBox3D" parent="Prototype"]
+[node name="Wall4" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 1.90367, -0.549502, 6.4533)
 layers = 4
 size = Vector3(13.3929, 4, 1)
 material = ExtResource("5_p2eom")
 
-[node name="Wall17" type="CSGBox3D" parent="Prototype"]
+[node name="Wall17" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -28.0559, -0.603896, 6.47721)
 layers = 4
 size = Vector3(13.3929, 4, 1)
 material = ExtResource("5_p2eom")
 
-[node name="Wall23" type="CSGBox3D" parent="Prototype"]
-transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -28.0559, -0.603896, -14.9316)
+[node name="Wall31" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -51.2663, -0.733832, -14.8836)
 layers = 4
 size = Vector3(13.3929, 4, 1)
 material = ExtResource("5_p2eom")
 
-[node name="CEILING" type="CSGMesh3D" parent="Prototype"]
+[node name="Wall30" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -50.196, -0.603896, 6.47721)
+layers = 4
+size = Vector3(30.611, 4, 1)
+material = ExtResource("5_p2eom")
+
+[node name="Wall28" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -36.8797, -0.603896, -22.3132)
+layers = 4
+size = Vector3(32.2515, 4, 1)
+material = ExtResource("5_p2eom")
+
+[node name="Wall32" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -61.5784, -0.603896, -22.3132)
+layers = 4
+size = Vector3(8.47158, 4, 1)
+material = ExtResource("5_p2eom")
+
+[node name="Wall33" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -63.9559, -0.603896, -14.796)
+layers = 4
+size = Vector3(3.71669, 4, 1)
+material = ExtResource("5_p2eom")
+
+[node name="Wall23" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
+transform = Transform3D(1, 0.000494981, -0.00078364, -0.000494855, 1, 0.000170967, 0.000783719, -0.000170602, 1, -25.2658, -0.651259, -14.9316)
+layers = 4
+size = Vector3(7.81266, 3.90527, 1)
+material = ExtResource("5_p2eom")
+
+[node name="Wall27" type="CSGBox3D" parent="NavigationRegion3D/Prototype"]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -33.9383, -0.678359, -14.9316)
+layers = 4
+size = Vector3(1.82332, 3.85107, 1)
+material = ExtResource("5_p2eom")
+
+[node name="CEILING" type="CSGMesh3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(-7.6414, 7.78827e-08, 2.59757e-15, -6.68032e-07, -0.890875, -2.59757e-15, 2.66522e-15, -3.10725e-16, 7.44745, 2.19647, 1.37726, -0.442291)
 mesh = SubResource("PlaneMesh_48nfy")
 material = SubResource("StandardMaterial3D_m3pch")
 
-[node name="CEILING3" type="CSGMesh3D" parent="Prototype"]
+[node name="CEILING3" type="CSGMesh3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(-7.96343, 7.78827e-08, 8.42872e-16, -6.96185e-07, -0.890875, -8.42872e-16, 2.77754e-15, -3.10725e-16, 2.41658, -13.3823, 1.37726, -0.431913)
 mesh = SubResource("PlaneMesh_48nfy")
 material = SubResource("StandardMaterial3D_m3pch")
 
-[node name="CEILING2" type="CSGMesh3D" parent="Prototype"]
+[node name="CEILING2" type="CSGMesh3D" parent="NavigationRegion3D/Prototype"]
 transform = Transform3D(-7.6414, 7.78827e-08, 5.05985e-15, -6.68032e-07, -0.890875, -5.05985e-15, 2.66522e-15, -3.10725e-16, 14.507, -28.2041, 1.37726, -7.95507)
 mesh = SubResource("PlaneMesh_48nfy")
 material = SubResource("StandardMaterial3D_m3pch")
+
+[node name="incubator2" parent="NavigationRegion3D/Prototype" instance=ExtResource("7_l2ycx")]
+transform = Transform3D(0.2, 5.26794e-12, 5.3007e-12, -6.1976e-12, 0.2, 5.12603e-12, 1.17426e-11, 3.24477e-11, 0.2, -3.80592, -2.48097, -6.50447)
+
+[node name="incubator3" parent="NavigationRegion3D/Prototype" instance=ExtResource("7_l2ycx")]
+transform = Transform3D(0.2, 5.26794e-12, 5.3007e-12, -6.1976e-12, 0.2, 5.12603e-12, 1.17426e-11, 3.24477e-11, 0.2, -2.2166, -2.48097, -6.50447)
+
+[node name="incubator4" parent="NavigationRegion3D/Prototype" instance=ExtResource("7_l2ycx")]
+transform = Transform3D(0.2, 5.26794e-12, 5.3007e-12, -6.1976e-12, 0.2, 5.12603e-12, 1.17426e-11, 3.24477e-11, 0.2, -0.624664, -2.48097, -6.50447)
+
+[node name="incubator5" parent="NavigationRegion3D/Prototype" instance=ExtResource("7_l2ycx")]
+transform = Transform3D(0.2, 5.26794e-12, 5.3007e-12, -6.1976e-12, 0.2, 5.12603e-12, 1.17426e-11, 3.24477e-11, 0.2, 0.890371, -2.48097, -6.50447)
+
+[node name="incubator6" parent="NavigationRegion3D/Prototype" instance=ExtResource("7_l2ycx")]
+transform = Transform3D(-0.0964571, 1.05359e-11, -0.388196, 1.29385e-11, 0.4, 9.5572e-12, 0.388196, 6.48953e-11, -0.0964571, 2.26822, -4.03658, -0.957276)
+
+[node name="GateV1" parent="NavigationRegion3D/Prototype" instance=ExtResource("8_yseo2")]
+transform = Transform3D(-1.74952e-08, 7.26624e-12, 0.4, -1.02519e-11, 0.275863, -1.23953e-11, -0.4, 4.47556e-11, -1.74611e-08, -5.03295, -0.524885, -0.387772)
+
+[node name="GateV2" parent="NavigationRegion3D/Prototype" instance=ExtResource("8_yseo2")]
+transform = Transform3D(-1.74952e-08, 7.26624e-12, 0.4, -1.02519e-11, 0.275863, -1.23953e-11, -0.4, 4.47556e-11, -1.74611e-08, -21.2517, -0.540478, -0.538463)
+
+[node name="GateV3" parent="NavigationRegion3D/Prototype" instance=ExtResource("8_yseo2")]
+transform = Transform3D(-1.74952e-08, 7.26624e-12, 0.4, -1.02519e-11, 0.275863, -1.23953e-11, -0.4, 4.47556e-11, -1.74611e-08, -35.1857, -0.540478, 3.04928)
+
+[node name="GateV4" parent="NavigationRegion3D/Prototype" instance=ExtResource("8_yseo2")]
+transform = Transform3D(-1.74952e-08, 7.26624e-12, 0.4, -1.02519e-11, 0.275863, -1.23953e-11, -0.4, 4.47556e-11, -1.74611e-08, -35.1857, -0.540478, -4.06233)
+
+[node name="GateV5" parent="NavigationRegion3D/Prototype" instance=ExtResource("8_yseo2")]
+transform = Transform3D(-1.74952e-08, 7.26624e-12, 0.4, -1.02519e-11, 0.275863, -1.23953e-11, -0.4, 4.47556e-11, -1.74611e-08, -35.1857, -0.540478, -10.9995)
+
+[node name="GateV6" parent="NavigationRegion3D/Prototype" instance=ExtResource("8_yseo2")]
+transform = Transform3D(0.4, 7.26605e-12, 1.06015e-11, -1.23951e-11, 0.275863, 1.02519e-11, 2.34851e-11, 4.47556e-11, 0.4, -31.0785, -0.540478, -14.8394)
+
+[node name="GateV8" parent="NavigationRegion3D/Prototype" instance=ExtResource("8_yseo2")]
+transform = Transform3D(0.4, 7.26605e-12, 1.06015e-11, -1.23951e-11, 0.275863, 1.02519e-11, 2.34851e-11, 4.47556e-11, 0.4, -60.4467, -0.540478, -14.8394)
+
+[node name="GateV9" parent="NavigationRegion3D/Prototype" instance=ExtResource("8_yseo2")]
+transform = Transform3D(0.4, 7.26605e-12, 1.06015e-11, -1.23951e-11, 0.275863, 1.02519e-11, 2.34851e-11, 4.47556e-11, 0.4, -55.275, -0.540478, -22.2573)
+
+[node name="GateV7" parent="NavigationRegion3D/Prototype" instance=ExtResource("8_yseo2")]
+transform = Transform3D(0.4, 7.26605e-12, 1.06015e-11, -1.23951e-11, 0.275863, 1.02519e-11, 2.34851e-11, 4.47556e-11, 0.4, -24.6305, -0.486222, -14.8995)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.937446, 0.249748, 0.242532, 0.266665, 0.0672883, 0.961437, 0.223797, 0.96597, -0.129678, -2.96414, 16.2628, -1.97801)
+light_energy = 0.15
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1gnt6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 0.0367309, 0.999325, 0, -0.999325, 0.0367309, -12.9848, 41.0897, 0)
-light_energy = 0.486
+transform = Transform3D(1, 0, 0, 0, 0.0367309, 0.999325, 0, -0.999325, 0.0367309, -12.9989, 41.1086, 0.0148697)
+light_energy = 0.0
 light_bake_mode = 1
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(0.999997, -0.0020334, 0.00141364, 0.0020311, 0.999997, 0.00161359, -0.00141695, -0.00161069, 0.999998, 0.0571911, -2.78961, 0.292431)
+transform = Transform3D(0.999997, -0.0020334, 0.00141364, 0.0020311, 0.999997, 0.00161359, -0.00141695, -0.00161069, 0.999998, 0.048876, -2.78621, 0.352115)
 script = ExtResource("1_hs7xj")
 
 [node name="DashCooldownTimer" type="Timer" parent="Player"]
@@ -278,9 +381,18 @@ one_shot = true
 wait_time = 6.0
 one_shot = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+[node name="BodyCollision" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.0281485, 0.999604, 0, -0.999604, 0.0281485, -0.0035429, 0.664149, -0.00916004)
 shape = SubResource("CapsuleShape3D_e07n3")
+
+[node name="SenseArea" type="Area3D" parent="Player"]
+transform = Transform3D(1, 3.59941e-11, 6.60794e-11, 9.3301e-11, 1, 3.93534e-11, 3.41752e-11, 1.8898e-11, 1, 0, 0, 0)
+visible = false
+collision_layer = 16
+
+[node name="SenseRange" type="CollisionShape3D" parent="Player/SenseArea"]
+transform = Transform3D(1, 3.61816e-11, 2.9891e-10, 9.3301e-11, 1, 3.93534e-11, 3.41752e-11, 1.8898e-11, 1, 0, 0, 0)
+shape = SubResource("CylinderShape3D_6lj6r")
 
 [node name="CamOrigin" type="Node3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23549, 0)
@@ -306,6 +418,31 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_c57u8")
+
+[node name="MarginContainer" type="MarginContainer" parent="Player/CamOrigin/SpringArm3D/Camera3D"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -89.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Player/CamOrigin/SpringArm3D/Camera3D/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="DashLabel" type="Label" parent="Player/CamOrigin/SpringArm3D/Camera3D/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Dash"
+
+[node name="SenseLabel" type="Label" parent="Player/CamOrigin/SpringArm3D/Camera3D/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Sense"
 
 [node name="Body" type="MeshInstance3D" parent="Player"]
 transform = Transform3D(0.219336, -1.48921e-31, 4.15796e-39, 0, -9.7679e-09, -0.142737, 1.46171e-31, 0.223464, -6.23922e-09, 0.000579361, 0.70383, -0.00462651)
@@ -390,57 +527,6 @@ transform = Transform3D(0.843431, 1.14625e-11, -1.80836e-09, 1.50806e-09, -0.008
 mesh = SubResource("SphereMesh_0bjgs")
 skeleton = NodePath("../..")
 
-[node name="SpotLightOnVents" type="SpotLight3D" parent="."]
-transform = Transform3D(0.180524, 0.0881427, 0.979613, -0.214829, 0.975462, -0.0481803, -0.959823, -0.201752, 0.19503, -0.593904, -2.22189, -4.12342)
-light_energy = 1.462
-light_size = 1.0
-distance_fade_enabled = true
-spot_angle = 12.34
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="."]
-transform = Transform3D(0.0155698, 0.983133, -0.182226, -0.0415233, 0.182727, 0.982287, 0.999016, -0.00772732, 0.043668, 0.89822, 7.53238, -0.405678)
-light_energy = 11.262
-light_size = 1.0
-distance_fade_enabled = true
-spot_range = 111.056
-spot_angle = 16.74
-
-[node name="incubator2" parent="." instance=ExtResource("7_l2ycx")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -3.80592, -2.48097, -6.50447)
-
-[node name="incubator3" parent="." instance=ExtResource("7_l2ycx")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2.2166, -2.48097, -6.50447)
-
-[node name="incubator4" parent="." instance=ExtResource("7_l2ycx")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.624664, -2.48097, -6.50447)
-
-[node name="incubator5" parent="." instance=ExtResource("7_l2ycx")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.890371, -2.48097, -6.50447)
-
-[node name="incubator6" parent="." instance=ExtResource("7_l2ycx")]
-transform = Transform3D(-0.0964571, 0, -0.388196, 0, 0.4, 0, 0.388196, 0, -0.0964571, 2.26822, -4.03658, -0.957276)
-
-[node name="GateV1" parent="." instance=ExtResource("8_yseo2")]
-transform = Transform3D(-1.74846e-08, 9.62174e-17, 0.4, 1.39515e-16, 0.275863, -1.39515e-16, -0.4, 9.62174e-17, -1.74846e-08, -5.03295, -0.524885, -0.387772)
-
-[node name="GateV2" parent="." instance=ExtResource("8_yseo2")]
-transform = Transform3D(-1.74846e-08, 9.62174e-17, 0.4, 1.39515e-16, 0.275863, -1.39515e-16, -0.4, 9.62174e-17, -1.74846e-08, -21.2517, -0.540478, -0.538463)
-
-[node name="GateV3" parent="." instance=ExtResource("8_yseo2")]
-transform = Transform3D(-1.74846e-08, 9.62174e-17, 0.4, 1.39515e-16, 0.275863, -1.39515e-16, -0.4, 9.62174e-17, -1.74846e-08, -35.1857, -0.540478, 3.04928)
-
-[node name="GateV4" parent="." instance=ExtResource("8_yseo2")]
-transform = Transform3D(-1.74846e-08, 9.62174e-17, 0.4, 1.39515e-16, 0.275863, -1.39515e-16, -0.4, 9.62174e-17, -1.74846e-08, -35.1857, -0.540478, -4.06233)
-
-[node name="GateV5" parent="." instance=ExtResource("8_yseo2")]
-transform = Transform3D(-1.74846e-08, 9.62174e-17, 0.4, 1.39515e-16, 0.275863, -1.39515e-16, -0.4, 9.62174e-17, -1.74846e-08, -35.1857, -0.540478, -10.9995)
-
-[node name="GateV6" parent="." instance=ExtResource("8_yseo2")]
-transform = Transform3D(0.4, -9.62174e-17, 1.39515e-16, 1.39515e-16, 0.275863, -1.39515e-16, -1.39515e-16, 9.62174e-17, 0.4, -31.0785, -0.540478, -14.8394)
-
-[node name="GateV7" parent="." instance=ExtResource("8_yseo2")]
-transform = Transform3D(0.4, -9.62174e-17, 1.39515e-16, 1.39515e-16, 0.275863, -1.39515e-16, -1.39515e-16, 9.62174e-17, 0.4, -24.6305, -0.486222, -14.8995)
-
 [node name="cucaracha" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, -1.5246e-23, -1.5246e-23, -4.37114e-08, -1, 0, 1, -4.37114e-08, -27.6924, -2.43167, -11.5039)
 layers = 16
@@ -484,9 +570,140 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_5y7th")
 
 [node name="Enemy" type="Node3D" parent="." groups=["enemies"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7475, -1.32812, -0.801058)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7475, -1.61697, -0.801058)
+
+[node name="Enemy" type="CharacterBody3D" parent="Enemy"]
+script = ExtResource("9_u5mom")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy/Enemy"]
+shape = SubResource("CapsuleShape3D_fwkqn")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Enemy/Enemy"]
+debug_enabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy" groups=["enemies"]]
 layers = 16
 mesh = SubResource("CapsuleMesh_hj25j")
 skeleton = NodePath("../..")
+
+[node name="Enemy2" type="Node3D" parent="." groups=["enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.9577, -1.61697, -0.801058)
+
+[node name="Enemy" type="CharacterBody3D" parent="Enemy2"]
+script = ExtResource("9_u5mom")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy2/Enemy"]
+shape = SubResource("CapsuleShape3D_fwkqn")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Enemy2/Enemy"]
+debug_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy2" groups=["enemies"]]
+layers = 16
+mesh = SubResource("CapsuleMesh_hj25j")
+skeleton = NodePath("../..")
+
+[node name="Enemy3" type="Node3D" parent="." groups=["enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.9577, -1.61697, -31.6075)
+
+[node name="Enemy" type="CharacterBody3D" parent="Enemy3"]
+script = ExtResource("9_u5mom")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy3/Enemy"]
+shape = SubResource("CapsuleShape3D_fwkqn")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Enemy3/Enemy"]
+debug_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy3" groups=["enemies"]]
+layers = 16
+mesh = SubResource("CapsuleMesh_hj25j")
+skeleton = NodePath("../..")
+
+[node name="Enemy4" type="Node3D" parent="." groups=["enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.1589, -1.61697, -31.6075)
+
+[node name="Enemy" type="CharacterBody3D" parent="Enemy4"]
+script = ExtResource("9_u5mom")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy4/Enemy"]
+shape = SubResource("CapsuleShape3D_fwkqn")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Enemy4/Enemy"]
+debug_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy4" groups=["enemies"]]
+layers = 16
+mesh = SubResource("CapsuleMesh_hj25j")
+skeleton = NodePath("../..")
+
+[node name="Enemy5" type="Node3D" parent="." groups=["enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.5603, -1.61697, -31.6075)
+
+[node name="Enemy" type="CharacterBody3D" parent="Enemy5"]
+script = ExtResource("9_u5mom")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy5/Enemy"]
+shape = SubResource("CapsuleShape3D_fwkqn")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Enemy5/Enemy"]
+debug_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy5" groups=["enemies"]]
+layers = 16
+mesh = SubResource("CapsuleMesh_hj25j")
+skeleton = NodePath("../..")
+
+[node name="Enemy6" type="Node3D" parent="." groups=["enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.859, -1.61697, -31.6075)
+
+[node name="Enemy" type="CharacterBody3D" parent="Enemy6"]
+script = ExtResource("9_u5mom")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy6/Enemy"]
+shape = SubResource("CapsuleShape3D_fwkqn")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Enemy6/Enemy"]
+debug_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy6" groups=["enemies"]]
+layers = 16
+mesh = SubResource("CapsuleMesh_hj25j")
+skeleton = NodePath("../..")
+
+[node name="Enemy7" type="Node3D" parent="." groups=["enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.984, -1.61697, -13.1526)
+
+[node name="Enemy" type="CharacterBody3D" parent="Enemy7"]
+script = ExtResource("9_u5mom")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy7/Enemy"]
+shape = SubResource("CapsuleShape3D_fwkqn")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Enemy7/Enemy"]
+debug_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy7" groups=["enemies"]]
+layers = 16
+mesh = SubResource("CapsuleMesh_hj25j")
+skeleton = NodePath("../..")
+
+[node name="Enemy8" type="Node3D" parent="." groups=["enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.4964, -1.63591, -13.1177)
+
+[node name="Enemy" type="CharacterBody3D" parent="Enemy8"]
+script = ExtResource("9_u5mom")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy8/Enemy"]
+shape = SubResource("CapsuleShape3D_fwkqn")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Enemy8/Enemy"]
+debug_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy8" groups=["enemies"]]
+layers = 16
+mesh = SubResource("CapsuleMesh_hj25j")
+skeleton = NodePath("../..")
+
+[node name="Target" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.01, -2.45658, 0)

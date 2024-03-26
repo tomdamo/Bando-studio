@@ -1,0 +1,68 @@
+[gd_scene load_steps=13 format=3 uid="uid://bn1bxbpeyv5dv"]
+
+[ext_resource type="Script" path="res://Scripts/Spaceship.gd" id="2_1avu4"]
+[ext_resource type="Shader" path="res://Textures/Shaders/PlanetShader.gdshader" id="2_1x8fc"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_tna02"]
+[ext_resource type="Texture2D" uid="uid://dwnp3387tfw5x" path="res://Textures/Skybox/SpacePanoramas/panorama6.jpg" id="3_8u6nd"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="3_kr4u5"]
+[ext_resource type="PackedScene" uid="uid://7lb2out7gbml" path="res://Scenes/MainMenu.tscn" id="6_ullaa"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ivoyt"]
+panorama = ExtResource("3_8u6nd")
+
+[sub_resource type="Sky" id="Sky_jl18b"]
+sky_material = SubResource("PanoramaSkyMaterial_ivoyt")
+
+[sub_resource type="Environment" id="Environment_1gnt6"]
+background_mode = 2
+sky = SubResource("Sky_jl18b")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ecujf"]
+render_priority = 0
+shader = ExtResource("2_1x8fc")
+
+[sub_resource type="SphereMesh" id="SphereMesh_8pgnw"]
+material = SubResource("ShaderMaterial_ecujf")
+
+[sub_resource type="BoxMesh" id="BoxMesh_pdlqd"]
+size = Vector3(4, 3, 9)
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1gnt6")
+
+[node name="Planet" type="MeshInstance3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, -66.4773, 0, -106.493)
+mesh = SubResource("SphereMesh_8pgnw")
+skeleton = NodePath("../WorldEnvironment")
+
+[node name="Spaceship" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.991076, 0, 0, 0, 0.991076, 0, 0, 0, 0.991076, -100.459, 0, 54.191)
+mesh = SubResource("BoxMesh_pdlqd")
+skeleton = NodePath("../PhantomCamera3D")
+script = ExtResource("2_1avu4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.5994, 0, 64.8248)
+fov = 74.1978
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+script = ExtResource("2_tna02")
+
+[node name="PhantomCamera3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.5994, 0, 64.8248)
+script = ExtResource("3_kr4u5")
+priority_override = false
+priority = 0
+follow_mode = 0
+look_at_mode = 0
+tween_parameters = null
+tween_on_load = true
+inactive_update_mode = 0
+camera_3D_resource = null
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="PhantomCamera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0223694, -0.497341, 119.443)
+
+[node name="Menu" parent="." instance=ExtResource("6_ullaa")]

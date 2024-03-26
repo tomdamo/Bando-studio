@@ -12,7 +12,7 @@ func _process(delta):
 
 #For now we can f around in the practiceRange ?
 func _on_start_button_pressed():
-	get_tree().change_scene_to_file("res://PracticeRange.tscn");
+	get_tree().change_scene_to_file("res://Scenes/ThirdPersonTest.tscn");
 
 #this needs to change, to get back to the previous scene / menu.
 func _on_options_button_pressed():
