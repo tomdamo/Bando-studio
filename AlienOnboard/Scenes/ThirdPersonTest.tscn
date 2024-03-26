@@ -7,7 +7,7 @@
 [ext_resource type="Material" uid="uid://ctdl8fx6qghl7" path="res://Textures/groundTexture.tres" id="4_1n2p5"]
 [ext_resource type="Material" uid="uid://doe4ki7xdi47w" path="res://Textures/walltext.tres" id="5_p2eom"]
 [ext_resource type="PackedScene" uid="uid://dh3iobrlaj6u4" path="res://3DModels/incubator2.glb" id="7_l2ycx"]
-[ext_resource type="PackedScene" uid="uid://dxkboqoqwnvxt" path="res://3DModels/GateV1.glb" id="8_yseo2"]
+[ext_resource type="PackedScene" uid="uid://bquxtupi3ji0i" path="res://3DModels/GateV1.glb" id="8_yseo2"]
 [ext_resource type="Material" uid="uid://csc8vjufq5kxi" path="res://Textures/EnemyNormal.tres" id="9_rwtq7"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_48nfy"]
