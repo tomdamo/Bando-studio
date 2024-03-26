@@ -16,7 +16,7 @@ func _on_start_button_pressed():
 
 #this needs to change, to get back to the previous scene / menu.
 func _on_options_button_pressed():
-	get_tree().change_scene_to_file("res://OptionsMenu.tscn");
+	get_tree().change_scene_to_file("res://UI/OptionsMenu.tscn");
 
 
 func _on_quit_button_pressed():

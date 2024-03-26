@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://crp6gtqj7p4wx"]
+[gd_scene load_steps=14 format=3 uid="uid://crp6gtqj7p4wx"]
 
 [ext_resource type="Script" path="res://Player3rdPerson.gd" id="1_0o4vy"]
 [ext_resource type="Texture2D" uid="uid://dbe1rrtc6aowd" path="res://Textures/PNG/Orange/texture_03.png" id="1_bfd8a"]
+[ext_resource type="Script" path="res://ThirdPersonTest.gd" id="1_kxh8r"]
 [ext_resource type="Material" uid="uid://ctdl8fx6qghl7" path="res://Textures/groundTexture.tres" id="3_w10au"]
+[ext_resource type="PackedScene" uid="uid://dpxd2agykq3ia" path="res://UI/OptionsMenu.tscn" id="3_w855c"]
 [ext_resource type="Material" uid="uid://doe4ki7xdi47w" path="res://Textures/walltext.tres" id="4_tkub5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e07n3"]
@@ -23,6 +25,10 @@ albedo_texture = ExtResource("1_bfd8a")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hoo7o"]
 
 [node name="ThirdPersonTest" type="Node3D"]
+script = ExtResource("1_kxh8r")
+
+[node name="OptionsMenu" parent="." instance=ExtResource("3_w855c")]
+visible = false
 
 [node name="Player3rdPerson" type="CharacterBody3D" parent="."]
 script = ExtResource("1_0o4vy")

@@ -35,7 +35,7 @@ inactive_update_mode = 0
 camera_3D_resource = null
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.704955, 0.709251, 0, -0.709251, 0.704955, 2.08165e-12, 9.23774, 25.6279)
+transform = Transform3D(1, 0, 0, 0, 0.714844, 0.699284, 0, -0.699284, 0.714844, 2.04458e-12, 9.07324, 25.1715)
 script = SubResource("GDScript_k3hv3")
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]

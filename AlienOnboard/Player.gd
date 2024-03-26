@@ -18,7 +18,7 @@ func _process(delta):
 
 func handle_input(delta):
 	var direction = Vector3.ZERO
-	
+
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
 	if Input.is_action_pressed("move_left"):
@@ -27,13 +27,13 @@ func handle_input(delta):
 		direction.z += 1
 	if Input.is_action_pressed("move_forward"):
 		direction.z -= 1
-		
+
 	if Input.is_action_just_pressed("dash") and not is_dashing:
 		start_dash()
 		print("dashing")
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
-	
+
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
 		$Pivot.basis = Basis.looking_at(direction)
@@ -45,7 +45,7 @@ func handle_input(delta):
 	else:
 		target_velocity.x = direction.x * speed
 		target_velocity.z = direction.z * speed
-		
+
 	# Vertical Velocity
 	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
 		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
@@ -53,7 +53,7 @@ func handle_input(delta):
 	# Moving the Character
 	velocity = target_velocity
 	move_and_slide()
-	
+
 func start_dash():
 	is_dashing = true
 	dash_timer = dash_duration
