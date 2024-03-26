@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dq2egoeyevh75"
-path.s3tc="res://.godot/imported/texture_01.png-16d02ada680246ae4bf29ccc6909a043.s3tc.ctex"
+uid="uid://cc0wmici0eic8"
+path="res://.godot/imported/phantom_camera_logo.png-8b8d347b5e4800c86cd8095d030a3e5a.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/PNG/Light/texture_01.png"
-dest_files=["res://.godot/imported/texture_01.png-16d02ada680246ae4bf29ccc6909a043.s3tc.ctex"]
+source_file="res://addons/phantom_camera/icons/phantom_camera_logo.png"
+dest_files=["res://.godot/imported/phantom_camera_logo.png-8b8d347b5e4800c86cd8095d030a3e5a.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
