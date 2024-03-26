@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_kixtv"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_sm0pk"]
-font_size = 54
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj0b3"]
+bg_color = Color(0.415686, 1, 0, 0.219608)
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -14,57 +14,56 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kixtv")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -963.0
-offset_top = -488.0
-offset_right = -586.0
-offset_bottom = -414.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(5, 5)
-text = "Alien Onboard
-"
-label_settings = SubResource("LabelSettings_sm0pk")
-
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 21.0
-offset_top = -485.0
-offset_right = 233.0
-offset_bottom = -338.0
+offset_left = 72.0
+offset_top = -374.0
+offset_right = 355.0
+offset_bottom = -45.0
 grow_vertical = 0
-scale = Vector2(3, 3)
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
+clip_contents = true
 layout_mode = 2
-size_flags_vertical = 10
 focus_neighbor_top = NodePath("../QuitButton")
+theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_sj0b3")
 text = "Start"
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer"]
+clip_contents = true
 layout_mode = 2
-size_flags_vertical = 10
+theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_sj0b3")
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
+clip_contents = true
 layout_mode = 2
-size_flags_vertical = 10
 focus_neighbor_bottom = NodePath("../StartButton")
+theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_sj0b3")
 text = "Quit"
 
 [node name="StartTime" type="Timer" parent="VBoxContainer"]
 wait_time = 5.0
 one_shot = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -894.5
+offset_right = 894.5
+offset_bottom = 349.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 256
+text = "Alien Onboard"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
