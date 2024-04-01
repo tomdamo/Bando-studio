@@ -1,9 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcrujhks30sch"]
+[gd_scene load_steps=2 format=3 uid="uid://dcrujhks30sch"]
 
 [ext_resource type="Script" path="res://UI/Saving/SavingScene.gd" id="1_a4w2i"]
-[ext_resource type="PackedScene" uid="uid://cmv85lya7vklt" path="res://UI/Saving/SaveIconScene.tscn" id="2_lvw32"]
 
-[node name="SavingScene" type="Control"]
+[node name="SavingScene" type="Control" groups=["Persists"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,18 +57,9 @@ text = "Save"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SaveList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="Panel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_lvw32")]
-layout_mode = 2
-
-[node name="Panel2" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_lvw32")]
-layout_mode = 2
-
-[node name="Panel3" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_lvw32")]
-layout_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -81,6 +71,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 30
+action_mode = 0
 text = "Save"
 
 [node name="LoadButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
@@ -90,3 +81,4 @@ theme_override_font_sizes/font_size = 30
 text = "Load"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/LoadButton" to="." method="_on_load_button_pressed"]

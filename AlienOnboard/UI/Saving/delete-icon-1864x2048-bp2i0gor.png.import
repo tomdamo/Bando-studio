@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c77npili4pel4"
-path="res://.godot/imported/level_spritesheet.png-26a44dd21a040a5480d5ccba54377d99.ctex"
+uid="uid://3pt4v7ixptwf"
+path="res://.godot/imported/delete-icon-1864x2048-bp2i0gor.png-22620f1acd73f457bf89dd8ffcb621ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/phantom_camera/examples/textures/2D/level_spritesheet.png"
-dest_files=["res://.godot/imported/level_spritesheet.png-26a44dd21a040a5480d5ccba54377d99.ctex"]
+source_file="res://UI/Saving/delete-icon-1864x2048-bp2i0gor.png"
+dest_files=["res://.godot/imported/delete-icon-1864x2048-bp2i0gor.png-22620f1acd73f457bf89dd8ffcb621ea.ctex"]
 
 [params]
 

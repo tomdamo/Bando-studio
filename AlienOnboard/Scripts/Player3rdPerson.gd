@@ -15,8 +15,8 @@ var dash_timer = 0.0
 @export var mouseSens = 0.5
 
 #Health and damage
-var health = 3 
-var damage = 1 
+var health = 3
+var damage = 1
 
 #Sense Ability, see enemies through walls
 var senseActive = false
@@ -57,6 +57,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 
+
 	#See enemies layer through the walls
 	if Input.is_action_just_pressed("SenseAbility") and not senseActive and sense_cooldown_timer.is_stopped():
 		_activateSenseAbility()
@@ -88,7 +89,7 @@ func _physics_process(delta):
 		sense_timer -= delta
 		if sense_timer <= 0:
 			_deactivateSenseAbility()
-	
+
 func _activateSenseAbility():
 	senseActive = true
 	sense_timer = Sense_duration

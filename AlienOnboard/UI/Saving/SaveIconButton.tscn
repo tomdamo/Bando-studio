@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4qg5npbhjj1j"]
+
+[ext_resource type="Script" path="res://UI/Saving/SaveIconButton.gd" id="1_rp2fc"]
+
+[sub_resource type="SystemFont" id="SystemFont_16d0l"]
+subpixel_positioning = 0
+
+[node name="SaveSlot" type="Button"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+action_mode = 0
+keep_pressed_outside = true
+script = ExtResource("1_rp2fc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SaveLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_fonts/font = SubResource("SystemFont_16d0l")
+theme_override_font_sizes/font_size = 30
+text = "Testing"
+vertical_alignment = 1
+
+[node name="spacer" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="DateLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_fonts/font = SubResource("SystemFont_16d0l")
+theme_override_font_sizes/font_size = 30
+text = "DateLabel"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]

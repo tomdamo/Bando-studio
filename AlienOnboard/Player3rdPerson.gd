@@ -15,10 +15,12 @@ var dash_timer = 0.0
 @export var mouseSens = 0.5
 
 #Health, damage and ranges of player attacks
-var health = 3 
-var damage = 1 
-var biteRange = 1.5 
+var health = 3
+var damage = 1
+var biteRange = 1.5
 var pierceRange = 2.5
+
+
 
 #Ability to see enemies through walls
 var senseAbilityActive = false
