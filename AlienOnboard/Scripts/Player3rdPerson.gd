@@ -15,8 +15,10 @@ var dash_timer = 0.0
 @export var mouseSens = 0.5
 
 #Health and damage
-var health = 3 
+var health
 var damage = 1 
+@onready var healthbar = $CamOrigin/SpringArm3D/Camera3D/MarginContainer/Healthbar
+
 
 #Sense Ability, see enemies through walls
 var senseActive = false
@@ -30,13 +32,16 @@ var sense_timer = 0.0
 var enemyNormalMaterial = load("res://Textures/EnemyNormal.tres")
 var enemyVisibleMaterial = load("res://Textures/EnemyVisible.tres")
 
-# pierce range and bite range???
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	health = 3
+	healthbar.init_health(health)
+	
 func _input(event):
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-event.relative.x * mouseSens))
@@ -108,8 +113,6 @@ func _activateSenseAbility():
 			var meshInstance = enemy.get_node("MeshInstance3D")
 			meshInstance.material_override = enemyVisibleMaterial
 
-
-
 func _deactivateSenseAbility():
 	senseActive = false
 	sense_cooldown_timer.start()
@@ -119,4 +122,5 @@ func _deactivateSenseAbility():
 			var meshInstance = enemy.get_node("MeshInstance3D")
 			meshInstance.material_override = enemyNormalMaterial
 
+	
 

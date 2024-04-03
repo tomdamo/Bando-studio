@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bquxtupi3ji0i"
-path="res://.godot/imported/GateV1.glb-d4a892225ce8882d20e59658ad08a51a.scn"
+uid="uid://bywfvrxxjbhog"
+path="res://.godot/imported/cone.glb-95a303ff24dc69bb821e000d4a0e549b.scn"
 
 [deps]
 
-source_file="res://3DModels/GateV1.glb"
-dest_files=["res://.godot/imported/GateV1.glb-d4a892225ce8882d20e59658ad08a51a.scn"]
+source_file="res://3DModels/cone.glb"
+dest_files=["res://.godot/imported/cone.glb-95a303ff24dc69bb821e000d4a0e549b.scn"]
 
 [params]
 

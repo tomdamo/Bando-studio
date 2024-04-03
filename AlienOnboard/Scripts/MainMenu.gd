@@ -11,7 +11,6 @@ func _process(delta):
 	if loadTime.is_stopped():
 		get_tree().change_scene_to_file("res://Scenes/ThirdPersonTest.tscn");
 	
-#For now we can f around in the practiceRange ?
 func _on_start_button_pressed():
 	loadTime.start()
 	
