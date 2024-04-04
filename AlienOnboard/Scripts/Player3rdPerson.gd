@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+##var StateLevel2 = preload("res://Scripts/AlarmSystem/StateMachine/StateLevel2.gd")
+
 #Movement
 const SPEED = 6.0
 const DASH_SPEED = 30.0
@@ -56,6 +58,11 @@ func _physics_process(delta):
 	# Quit game on ESC, debug purposes.
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
+
+	#if Input.is_action_just_pressed("test"):
+		#var state1 = StateLevel2.new()
+		#StateMachine.set_state(state1)
+		#print(StateMachine.get_state())
 
 
 	#See enemies layer through the walls

@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://crp6gtqj7p4wx"]
+[gd_scene load_steps=24 format=3 uid="uid://crp6gtqj7p4wx"]
 
 [ext_resource type="Texture2D" uid="uid://dwnp3387tfw5x" path="res://Textures/Skybox/SpacePanoramas/panorama6.jpg" id="1_bi5js"]
 [ext_resource type="Script" path="res://Scripts/Player3rdPerson.gd" id="1_hs7xj"]
+[ext_resource type="Script" path="res://Scenes/World.gd" id="1_xpfe0"]
 [ext_resource type="Texture2D" uid="uid://c6t5uouul4cf7" path="res://Textures/Crosshair/Crosshair 2.png" id="2_c57u8"]
 [ext_resource type="Texture2D" uid="uid://dbe1rrtc6aowd" path="res://Textures/PNG/Orange/texture_03.png" id="3_4go0e"]
 [ext_resource type="Material" uid="uid://ctdl8fx6qghl7" path="res://Textures/groundTexture.tres" id="4_1n2p5"]
@@ -49,6 +50,7 @@ material = ExtResource("9_rwtq7")
 height = 1.8
 
 [node name="World" type="Node3D"]
+script = ExtResource("1_xpfe0")
 
 [node name="Prototype" type="CSGCombiner3D" parent="."]
 use_collision = true
@@ -257,8 +259,9 @@ material = SubResource("StandardMaterial3D_m3pch")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1gnt6")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" groups=["lights"]]
 transform = Transform3D(1, 0, 0, 0, 0.0367309, 0.999325, 0, -0.999325, 0.0367309, -12.9848, 41.0897, 0)
+visible = false
 light_energy = 0.486
 light_bake_mode = 1
 
@@ -390,15 +393,23 @@ transform = Transform3D(0.843431, 1.14625e-11, -1.80836e-09, 1.50806e-09, -0.008
 mesh = SubResource("SphereMesh_0bjgs")
 skeleton = NodePath("../..")
 
-[node name="SpotLightOnVents" type="SpotLight3D" parent="."]
+[node name="SpotLightOnVents" type="SpotLight3D" parent="." groups=["lights"]]
 transform = Transform3D(0.180524, 0.0881427, 0.979613, -0.214829, 0.975462, -0.0481803, -0.959823, -0.201752, 0.19503, -0.593904, -2.22189, -4.12342)
 light_energy = 1.462
 light_size = 1.0
 distance_fade_enabled = true
 spot_angle = 12.34
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="."]
+[node name="SGLIGHT" type="SpotLight3D" parent="." groups=["lights"]]
 transform = Transform3D(0.0155698, 0.983133, -0.182226, -0.0415233, 0.182727, 0.982287, 0.999016, -0.00772732, 0.043668, 0.89822, 7.53238, -0.405678)
+light_energy = 11.262
+light_size = 1.0
+distance_fade_enabled = true
+spot_range = 111.056
+spot_angle = 16.74
+
+[node name="SGLIGHT2" type="SpotLight3D" parent="." groups=["lights"]]
+transform = Transform3D(0.0155698, 0.983133, -0.182226, -0.0415233, 0.182727, 0.982286, 0.999016, -0.00772736, 0.043668, -32.2501, 7.53238, -4.78949)
 light_energy = 11.262
 light_size = 1.0
 distance_fade_enabled = true

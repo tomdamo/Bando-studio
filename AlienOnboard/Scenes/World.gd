@@ -1,7 +1,8 @@
-#extends Node3D
-#
-#
-#@onready var player = $Player
-#
-#func _physics_process(delta):
-	#get_tree().call_group("enemies", "update_target_location", player.global_transform.origin)
+extends Node3D
+
+@onready var player = $Player
+@onready var StateLevel2 = preload("res://Scripts/AlarmSystem/StateMachine/StateLevel2.gd")
+
+func _ready():
+	#StateMachine._set_state(StateLevel2.new(self, self))
+	pass

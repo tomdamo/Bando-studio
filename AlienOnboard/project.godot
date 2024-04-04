@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 ConfigFileHandler="*res://singletons/ConfigFileHandler.gd"
+StateMachine="*res://Scripts/AlarmSystem/StateMachine/StateMachine.gd"
 
 [display]
 
@@ -89,6 +90,11 @@ SenseAbility={
 pause={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":80,"key_label":0,"unicode":112,"echo":false,"script":null)
+]
+}
+test={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":78,"key_label":0,"unicode":110,"echo":false,"script":null)
 ]
 }
 
