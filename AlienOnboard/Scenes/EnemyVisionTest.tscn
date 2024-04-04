@@ -25,6 +25,7 @@ data = PackedVector3Array(-2, 2, 0.25, 2, 2, 0.25, -2, -2, 0.25, 2, 2, 0.25, 2, 
 
 [node name="floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.156139, 0)
+layers = 2
 mesh = SubResource("BoxMesh_x4iix")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="floor"]
@@ -40,13 +41,8 @@ environment = SubResource("Environment_31utm")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, -0.0227396, 0.999741, 0, -0.999741, -0.0227396, 0, 5.06517, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.903139, 0.446737, 1.34467)
-visible = false
-size = Vector3(2, 4, 1)
-
 [node name="Wall" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.903139, 0.446737, -0.740815)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.096861, 0.446737, -2.74081)
 mesh = SubResource("BoxMesh_udksh")
 skeleton = NodePath("../floor")
 

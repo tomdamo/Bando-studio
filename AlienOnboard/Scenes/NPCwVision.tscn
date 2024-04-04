@@ -25,6 +25,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.342339, -0.211782)
 mesh = SubResource("SphereMesh_1l85s")
 
 [node name="VisionArea" type="Area3D" parent="."]
+collision_layer = 2
 
 [node name="CollisionShapeCone" type="CollisionShape3D" parent="VisionArea"]
 transform = Transform3D(10, 0, 0, 0, -4.37114e-07, -10, 0, 10, -4.37114e-07, 0, 0.31566, -10.7582)
@@ -35,13 +36,12 @@ wait_time = 0.25
 autostart = true
 
 [node name="VisionRaycast" type="RayCast3D" parent="."]
-target_position = Vector3(0, -1, -100)
+target_position = Vector3(2.08165e-12, 5, -100)
 collide_with_areas = true
 debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="cone" parent="." instance=ExtResource("2_1xohg")]
-transform = Transform3D(10, 0, 0, 0, -4.37114e-07, -10, 0, 10, -4.37114e-07, 0, 0.31566, -10.7582)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 19)
 
 [connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
 [connection signal="timeout" from="VisionTimer" to="." method="_on_vision_timer_timeout"]

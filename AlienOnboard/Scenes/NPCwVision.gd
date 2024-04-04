@@ -28,9 +28,6 @@ func _on_vision_timer_timeout():
 						print("I see you")
 					else:
 						$VisionRaycast.debug_shape_custom_color = Color(0,255,0)
-						print("I dont see you")
+						print(collider.name)
 						
 
-
-func _on_vision_area_body_entered(body):
-	print("Bruhhhh")
