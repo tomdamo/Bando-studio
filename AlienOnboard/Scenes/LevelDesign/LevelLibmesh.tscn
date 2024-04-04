@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://b3dbg4m7vc5qo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pejej"]
+albedo_color = Color(0, 0.764706, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0vjtd"]
+material = SubResource("StandardMaterial3D_pejej")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_28u1s"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5olgt"]
+material = SubResource("StandardMaterial3D_28u1s")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_db0y2"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8ves6"]
+material = SubResource("StandardMaterial3D_db0y2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6um8c"]
+albedo_color = Color(1, 0.501961, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eefr7"]
+material = SubResource("StandardMaterial3D_6um8c")
+
+[node name="LevelDesign" type="Node3D"]
+
+[node name="Restricted" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_0vjtd")
+
+[node name="Safe" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+mesh = SubResource("BoxMesh_5olgt")
+
+[node name="Danger" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+mesh = SubResource("BoxMesh_8ves6")
+
+[node name="Vent" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+mesh = SubResource("BoxMesh_eefr7")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+billboard = 1
+text = "Restricted
+"
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+billboard = 1
+text = "Safe
+"
+
+[node name="Label3D3" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0)
+billboard = 1
+text = "Danger
+"
+
+[node name="Label3D4" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1)
+billboard = 1
+text = "Vent
+"

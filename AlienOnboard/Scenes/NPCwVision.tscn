@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqtejkqmnfxg5"]
+[gd_scene load_steps=6 format=3 uid="uid://cqtejkqmnfxg5"]
 
 [ext_resource type="Script" path="res://Scenes/NPCwVision.gd" id="1_pkwn5"]
-[ext_resource type="PackedScene" uid="uid://bywfvrxxjbhog" path="res://3DModels/cone.glb" id="2_1xohg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_i4a03"]
 
@@ -40,10 +39,5 @@ target_position = Vector3(2.08165e-12, 5, -100)
 collide_with_areas = true
 debug_shape_custom_color = Color(1, 0, 0, 1)
 
-[node name="cone" parent="." instance=ExtResource("2_1xohg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 19)
-
 [connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
 [connection signal="timeout" from="VisionTimer" to="." method="_on_vision_timer_timeout"]
-
-[editable path="cone"]

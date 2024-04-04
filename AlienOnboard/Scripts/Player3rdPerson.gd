@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 #Movement
 const SPEED = 6.0
+const JUMP_VELOCITY = 10
 const DASH_SPEED = 30.0
 const DASH_TIME = 0.05
 
@@ -66,8 +67,11 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("SenseAbility") and not senseActive and sense_cooldown_timer.is_stopped():
 		print("if for senseability passed")
 		_activateSenseAbility()
-
-	# Space to dash
+	
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+	
+	# shift to dash
 	if Input.is_action_just_pressed("dash") and not dashing and dash_cooldown_timer.is_stopped():
 		dash_direction = direction
 		dashing = true
