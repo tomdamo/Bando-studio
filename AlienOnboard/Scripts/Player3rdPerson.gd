@@ -68,8 +68,9 @@ func _physics_process(delta):
 		print("if for senseability passed")
 		_activateSenseAbility()
 	
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("Interact") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		
 	
 	# shift to dash
 	if Input.is_action_just_pressed("dash") and not dashing and dash_cooldown_timer.is_stopped():
