@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bquxtupi3ji0i" path="res://3DModels/GateV1.glb" id="4_u8i1s"]
 [ext_resource type="Texture2D" uid="uid://dwnp3387tfw5x" path="res://Textures/Skybox/SpacePanoramas/panorama6.jpg" id="5_b1v5u"]
-[ext_resource type="PackedScene" uid="uid://d3rsri2ovmpmk" path="res://Scenes/player.tscn" id="6_448hr"]
+[ext_resource type="PackedScene" uid="uid://d3rsri2ovmpmk" path="res://Scenes/Player/player_PHANTOM_CAM.tscn" id="6_448hr"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_2xicp"]
 agent_height = 1.8

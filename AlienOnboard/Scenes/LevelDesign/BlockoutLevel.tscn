@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cpnl0gq73vhcy"]
 
 [ext_resource type="MeshLibrary" uid="uid://bqunyxpdt6giw" path="res://MeshLibraryBlockout.tres" id="1_bj8nq"]
-[ext_resource type="PackedScene" uid="uid://d3rsri2ovmpmk" path="res://Scenes/player.tscn" id="2_xv441"]
-[ext_resource type="PackedScene" uid="uid://cqtejkqmnfxg5" path="res://Scenes/NPCwVision.tscn" id="3_c6hd5"]
+[ext_resource type="PackedScene" uid="uid://d3rsri2ovmpmk" path="res://Scenes/Player/player.tscn" id="2_xv441"]
+[ext_resource type="PackedScene" uid="uid://cqtejkqmnfxg5" path="res://Scenes/Enemy/NPCwVision.tscn" id="3_c6hd5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sad2w"]
 font_size = 42
@@ -46,8 +46,8 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 3, 0)
 
-[node name="Player" parent="." instance=ExtResource("2_xv441")]
-transform = Transform3D(0.999997, -0.0020334, 0.00141364, 0.0020311, 0.999997, 0.00161359, -0.00141695, -0.00161069, 0.999998, 6, 2, 7)
+[node name="Player2" parent="." instance=ExtResource("2_xv441")]
+transform = Transform3D(0.999997, -0.0020334, 0.00141364, 0.0020311, 0.999997, 0.00161359, -0.00141695, -0.00161069, 0.999998, 2.08165e-12, 4, 2.08165e-12)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -21)
