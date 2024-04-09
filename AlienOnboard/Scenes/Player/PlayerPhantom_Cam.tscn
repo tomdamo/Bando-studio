@@ -34,9 +34,12 @@ h_offset = 1.0
 v_offset = 0.0
 fov = 50.0
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s61dn"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6ltdl"]
+points = PackedVector3Array(-0.0376928, -0.228913, -0.266702, 0.0346116, 0.169192, 0.288554, -0.0377577, 0.168968, 0.288169, 0.0104901, 0.32682, -0.195279, 0.288566, -0.169123, 0.0346534, -0.25395, -0.216346, 0.106567, -0.267035, 0.205113, -0.0860178, 0.034695, -0.327095, 0.192267, 0.263098, 0.204495, -0.0978047, 0.0348184, 0.376879, 0.107809, 0.178349, -0.203904, -0.217479, 0.034921, -0.390164, -0.0625408, 0.226544, 0.144072, 0.190484, -0.228944, 0.215393, 0.153941, -0.240828, -0.203368, -0.145174, -0.0377639, 0.156969, -0.291394, 0.058729, -0.156946, 0.288177, -0.157595, -0.143987, 0.250428, 0.130442, 0.143994, -0.265569, -0.13512, 0.364223, -0.0379867, -0.135123, -0.364229, -0.0379874, -0.169047, 0.155551, -0.240873, 0.214891, -0.252533, 0.142709, 0.192269, 0.327087, 0.0347347, 0.192095, -0.326794, -0.0378767, -0.292215, -0.121091, 0.0589582, 0.262239, -0.155898, -0.133443, 0.288581, 0.169132, 0.0346552, -0.110219, -0.338096, 0.143327, -0.10976, 0.312635, 0.178761, 0.1312, 0.349987, -0.0981212, 0.0824662, 0.276183, 0.226602)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_47f0o"]
+radius = 0.3
+height = 0.8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mv4do"]
 albedo_color = Color(0.988235, 0.498039, 0.498039, 1)
@@ -107,27 +110,41 @@ transform = Transform3D(0.999903, 0.0139622, 0, -0.0139622, 0.999903, 0, 0, 0, 1
 collision_layer = 2
 script = ExtResource("5_y8pq1")
 
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="PlayerCharacterBody3D"]
+transform = Transform3D(1, -1.42721e-10, -6.62896e-20, 1.35419e-10, 1, 4.65661e-10, 0, 0, 1, 0.00760986, -0.54498, 0)
+shape = SubResource("ConvexPolygonShape3D_6ltdl")
+
 [node name="PlayerArea3D" type="Area3D" parent="PlayerCharacterBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCharacterBody3D/PlayerArea3D"]
-shape = SubResource("CapsuleShape3D_s61dn")
-
-[node name="PlayerCollisionShape3D" type="CollisionShape3D" parent="PlayerCharacterBody3D"]
-shape = SubResource("CapsuleShape3D_s61dn")
+transform = Transform3D(1, -1.42721e-10, -6.62471e-20, 1.35419e-10, 1, 4.65661e-10, 0, 0, 1, 0.00760986, -0.54498, 0)
+shape = SubResource("ConvexPolygonShape3D_6ltdl")
 
 [node name="PlayerModel" type="Node3D" parent="PlayerCharacterBody3D"]
 
 [node name="PlayerMeshInstance3D" type="MeshInstance3D" parent="PlayerCharacterBody3D/PlayerModel"]
-transform = Transform3D(1, 0, 0, 0, 1, 4.65661e-10, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, -1.42721e-10, -6.62046e-20, 1.35419e-10, 1, 4.65661e-10, 0, 0, 1, 0.00760986, -0.54498, 0)
 mesh = SubResource("CapsuleMesh_47f0o")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_mv4do")
 
 [node name="PlayerMeshInstance3D2" type="MeshInstance3D" parent="PlayerCharacterBody3D/PlayerModel"]
-transform = Transform3D(1, 0, 0, -9.31323e-10, 1, 4.65661e-10, 2.98023e-08, 0, 1, -0.0156226, 1.08631, 0)
+transform = Transform3D(1, -1.42721e-10, -6.62046e-20, -7.95903e-10, 1, 4.65661e-10, 2.98023e-08, 0, 1, -0.00135253, 0.0643589, 0)
 mesh = SubResource("PrismMesh_wg1x3")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_mv4do")
+
+[node name="DashCooldownTimer" type="Timer" parent="PlayerCharacterBody3D"]
+wait_time = 0.6
+one_shot = true
+
+[node name="SenseCooldownTimer" type="Timer" parent="PlayerCharacterBody3D"]
+wait_time = 5.0
+one_shot = true
+
+[node name="ActiveSenseTime" type="Timer" parent="PlayerCharacterBody3D"]
+wait_time = 6.0
+one_shot = true
 
 [node name="Environment" type="Node" parent="."]
 
