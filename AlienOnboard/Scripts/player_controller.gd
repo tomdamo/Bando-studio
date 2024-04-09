@@ -3,7 +3,7 @@ extends CharacterBody3D
 @export var SPEED: float = 5.0
 @export var JUMP_VELOCITY: float = 4.5
 @export var enable_gravity = true
-@export var DASH_SPEED = 1000.0
+@export var DASH_SPEED = 30
 @export var DASH_TIME = 0.05
 
 var dashing = false
@@ -39,7 +39,7 @@ const JUMP_STRINGNAME: StringName = "Jump"
 const SENSE_ABILITY_STRINGNAME: StringName = "Sense"
 const DASH_STRINGNAME: StringName = "Dash"
 
-const INPUT_MOVE_UP_STRINGNAME: StringName = "move_foward"
+const INPUT_MOVE_UP_STRINGNAME: StringName = "move_forward"
 const INPUT_MOVE_DOWM_STRINGNAME: StringName = "move_back"
 const INPUT_MOVE_LEFT_STRINGNAME: StringName = "move_left"
 const INPUT_MOVE_RIGHT_STRINGNAME: StringName = "move_right"
@@ -108,8 +108,7 @@ func _physics_process(delta: float) -> void:
 	
 	# shift to dash
 	if Input.is_action_just_pressed("dash") and not dashing and dash_cooldown_timer.is_stopped():
-		print("Dash if passed")
-		dash_direction = direction
+		dash_direction = cam_dir #TODO fix dash direction? what feels nice..
 		dashing = true
 		dash_timer = DASH_TIME
 		dash_cooldown_timer.start()
@@ -117,24 +116,24 @@ func _physics_process(delta: float) -> void:
 	if dashing:
 		velocity += dash_direction * DASH_SPEED
 		dash_timer -= delta
-		
 		#check if dash time is over
 		if dash_timer <= 0:
 			dashing = false
 			# Reset velocity to zero to prevent continued movement after dash
 			velocity = Vector3.ZERO
 			
-	if direction:
-		var move_dir: Vector3 = Vector3.ZERO
-		move_dir.x = direction.x
-		move_dir.z = direction.z
-
-		move_dir = move_dir.rotated(Vector3.UP, _camera.rotation.y).normalized()
-		velocity.x = move_dir.x * SPEED
-		velocity.z = move_dir.z * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		if direction:
+			var move_dir: Vector3 = Vector3.ZERO
+			move_dir.x = direction.x
+			move_dir.z = direction.z
+
+			move_dir = move_dir.rotated(Vector3.UP, _camera.rotation.y).normalized()
+			velocity.x = move_dir.x * SPEED
+			velocity.z = move_dir.z * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
 	#update sense timer
@@ -148,7 +147,7 @@ func _activateSenseAbility():
 	sense_timer = Sense_duration
 	active_sense_timer.start()
 	print("Sense activated")
-	# Get all enemies within the SenseRange collision shape
+	#TODO Get all enemies within the SenseRange collision shape
 	#if senseRange:
 		#var bodies = senseRange.get_overlapping_areas()
 		#for area in areas:

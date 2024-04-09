@@ -1,12 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://4i5csj0s34nb"]
+[gd_scene load_steps=16 format=3 uid="uid://4i5csj0s34nb"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_gm4dk"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="2_32qfk"]
+[ext_resource type="Texture2D" uid="uid://c6t5uouul4cf7" path="res://Textures/Crosshair/Crosshair 2.png" id="2_t01fh"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_5feqe"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3D_resource.gd" id="4_kk8js"]
 [ext_resource type="Script" path="res://Scripts/player_controller_third_person.gd" id="5_y8pq1"]
-[ext_resource type="PackedScene" uid="uid://cixlwqycoox8h" path="res://addons/phantom_camera/examples/models/3DPrototypeCubeDark.tscn" id="6_6sef2"]
-[ext_resource type="FontFile" uid="uid://c4mm3of2mc8o5" path="res://addons/phantom_camera/fonts/Nunito-Black.ttf" id="7_fm76q"]
 
 [sub_resource type="Resource" id="Resource_0yw0t"]
 script = ExtResource("3_5feqe")
@@ -34,8 +33,11 @@ h_offset = 1.0
 v_offset = 0.0
 fov = 50.0
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6ltdl"]
-points = PackedVector3Array(-0.0376928, -0.228913, -0.266702, 0.0346116, 0.169192, 0.288554, -0.0377577, 0.168968, 0.288169, 0.0104901, 0.32682, -0.195279, 0.288566, -0.169123, 0.0346534, -0.25395, -0.216346, 0.106567, -0.267035, 0.205113, -0.0860178, 0.034695, -0.327095, 0.192267, 0.263098, 0.204495, -0.0978047, 0.0348184, 0.376879, 0.107809, 0.178349, -0.203904, -0.217479, 0.034921, -0.390164, -0.0625408, 0.226544, 0.144072, 0.190484, -0.228944, 0.215393, 0.153941, -0.240828, -0.203368, -0.145174, -0.0377639, 0.156969, -0.291394, 0.058729, -0.156946, 0.288177, -0.157595, -0.143987, 0.250428, 0.130442, 0.143994, -0.265569, -0.13512, 0.364223, -0.0379867, -0.135123, -0.364229, -0.0379874, -0.169047, 0.155551, -0.240873, 0.214891, -0.252533, 0.142709, 0.192269, 0.327087, 0.0347347, 0.192095, -0.326794, -0.0378767, -0.292215, -0.121091, 0.0589582, 0.262239, -0.155898, -0.133443, 0.288581, 0.169132, 0.0346552, -0.110219, -0.338096, 0.143327, -0.10976, 0.312635, 0.178761, 0.1312, 0.349987, -0.0981212, 0.0824662, 0.276183, 0.226602)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ql8o6"]
+height = 1.31571
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_najck"]
+height = 0.716239
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_47f0o"]
 radius = 0.3
@@ -47,17 +49,11 @@ albedo_color = Color(0.988235, 0.498039, 0.498039, 1)
 [sub_resource type="PrismMesh" id="PrismMesh_wg1x3"]
 size = Vector3(0.5, 0.5, 0.3)
 
-[sub_resource type="BoxMesh" id="BoxMesh_wsigl"]
-size = Vector3(1, 10, 20)
-
-[sub_resource type="BoxMesh" id="BoxMesh_bj3re"]
-size = Vector3(1, 7, 7)
-
-[node name="Root" type="Node3D"]
+[node name="Player" type="Node3D"]
 
 [node name="MainCamera3D" type="Camera3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.499999, 0, -0.5, 0.866023, -0.0194088, 2.25688, 3.01476)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.499999, 0, -0.5, 0.866023, -0.019, 1.75, 3.01508)
 current = true
 
 [node name="PhantomCameraHost" type="Node" parent="MainCamera3D"]
@@ -65,7 +61,7 @@ script = ExtResource("1_gm4dk")
 
 [node name="PlayerPhantomCamera3D" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.499999, 0, -0.5, 0.866023, -0.0194088, 2.25688, 3.01476)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.499999, 0, -0.5, 0.866023, -0.019, 1.75, 3.01508)
 script = ExtResource("2_32qfk")
 priority_override = false
 priority = 10
@@ -86,7 +82,7 @@ camera_3D_resource = SubResource("Resource_bai5y")
 
 [node name="PlayerAimPhantomCamera3D" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.953716, -0.0104945, 0.300522, 0, 0.99939, 0.0348995, -0.300706, -0.0332842, 0.953135, 0.431374, 1.35423, 1.41338)
+transform = Transform3D(0.953716, -0.0104945, 0.300522, 0, 0.99939, 0.0348995, -0.300706, -0.0332842, 0.953135, 0.431783, 0.847349, 1.4137)
 script = ExtResource("2_32qfk")
 priority_override = false
 priority = 0
@@ -106,30 +102,53 @@ camera_3D_resource = SubResource("Resource_yf1op")
 
 [node name="PlayerCharacterBody3D" type="CharacterBody3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.999903, 0.0139622, 0, -0.0139622, 0.999903, 0, 0, 0, 1, -0.0194088, 0.506884, -0.0163251)
-collision_layer = 2
+transform = Transform3D(0.999903, 0.0139622, 0, -0.0139622, 0.999903, 0, 0, 0, 1, -0.019, 0, -0.016)
 script = ExtResource("5_y8pq1")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="PlayerCharacterBody3D"]
-transform = Transform3D(1, -1.42721e-10, -6.62896e-20, 1.35419e-10, 1, 4.65661e-10, 0, 0, 1, 0.00760986, -0.54498, 0)
-shape = SubResource("ConvexPolygonShape3D_6ltdl")
+[node name="Control" type="Control" parent="PlayerCharacterBody3D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Crosshair" type="TextureRect" parent="PlayerCharacterBody3D/Control"]
+modulate = Color(1, 1, 1, 0.458824)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 914.0
+offset_top = 491.0
+offset_right = 1426.0
+offset_bottom = 1003.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_t01fh")
+
+[node name="PlayerCollisionShape3D2" type="CollisionShape3D" parent="PlayerCharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 4.65661e-10, 0, 0, 1, 0.00433989, 0.262119, 0)
+shape = SubResource("CapsuleShape3D_ql8o6")
 
 [node name="PlayerArea3D" type="Area3D" parent="PlayerCharacterBody3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCharacterBody3D/PlayerArea3D"]
-transform = Transform3D(1, -1.42721e-10, -6.62471e-20, 1.35419e-10, 1, 4.65661e-10, 0, 0, 1, 0.00760986, -0.54498, 0)
-shape = SubResource("ConvexPolygonShape3D_6ltdl")
+[node name="PlayerCollisionShape3D" type="CollisionShape3D" parent="PlayerCharacterBody3D/PlayerArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 4.65661e-10, 0, 0, 1, -0.00370558, 0.19376, 0)
+shape = SubResource("CylinderShape3D_najck")
 
 [node name="PlayerModel" type="Node3D" parent="PlayerCharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, 0, 0)
 
 [node name="PlayerMeshInstance3D" type="MeshInstance3D" parent="PlayerCharacterBody3D/PlayerModel"]
-transform = Transform3D(1, -1.42721e-10, -6.62046e-20, 1.35419e-10, 1, 4.65661e-10, 0, 0, 1, 0.00760986, -0.54498, 0)
+transform = Transform3D(1, -1.42721e-10, -6.62046e-20, 1.35419e-10, 1, 4.65661e-10, 0, 0, 1, 0.008, 0, 0)
 mesh = SubResource("CapsuleMesh_47f0o")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_mv4do")
 
 [node name="PlayerMeshInstance3D2" type="MeshInstance3D" parent="PlayerCharacterBody3D/PlayerModel"]
-transform = Transform3D(1, -1.42721e-10, -6.62046e-20, -7.95903e-10, 1, 4.65661e-10, 2.98023e-08, 0, 1, -0.00135253, 0.0643589, 0)
+transform = Transform3D(-0.999893, -0.00145507, -0.0145493, -0.0146006, 0.0457089, 0.998849, -0.000788386, 0.998954, -0.0457252, 0.006, 0, 0.37)
 mesh = SubResource("PrismMesh_wg1x3")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_mv4do")
@@ -146,61 +165,4 @@ one_shot = true
 wait_time = 6.0
 one_shot = true
 
-[node name="Environment" type="Node" parent="."]
-
-[node name="Floor" parent="Environment" instance=ExtResource("6_6sef2")]
-transform = Transform3D(1000, 0, 0, 0, 1, 0, 0, 0, 1000, 0, -1, 0)
-metadata/_edit_lock_ = true
-
-[node name="Wall" parent="Environment" instance=ExtResource("6_6sef2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 4.5, 0)
-mesh = SubResource("BoxMesh_wsigl")
-metadata/_edit_lock_ = true
-
-[node name="Wall5" parent="Environment" instance=ExtResource("6_6sef2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.133, 3, -6.5)
-mesh = SubResource("BoxMesh_bj3re")
-metadata/_edit_lock_ = true
-
-[node name="Wall6" parent="Environment" instance=ExtResource("6_6sef2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, 0)
-mesh = SubResource("BoxMesh_bj3re")
-metadata/_edit_lock_ = true
-
-[node name="Wall7" parent="Environment" instance=ExtResource("6_6sef2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 3, 0)
-mesh = SubResource("BoxMesh_bj3re")
-metadata/_edit_lock_ = true
-
-[node name="Wall2" parent="Environment" instance=ExtResource("6_6sef2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 4.5, 0)
-mesh = SubResource("BoxMesh_wsigl")
-metadata/_edit_lock_ = true
-
-[node name="Wall3" parent="Environment" instance=ExtResource("6_6sef2")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 4.5, 10.5)
-mesh = SubResource("BoxMesh_wsigl")
-metadata/_edit_lock_ = true
-
-[node name="Wall4" parent="Environment" instance=ExtResource("6_6sef2")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 4.5, -9.5)
-mesh = SubResource("BoxMesh_wsigl")
-metadata/_edit_lock_ = true
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8, 0)
-metadata/_edit_lock_ = true
-
-[node name="MovementInstructionsLabel" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.0505604, -0.484909, 1.44357)
-modulate = Color(0.294118, 1, 0.631373, 1)
-text = "[WASD] to move"
-font = ExtResource("7_fm76q")
-font_size = 48
-
-[node name="MovementInstructionsLabel3" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.0505604, -0.484909, 0.817134)
-modulate = Color(0.294118, 1, 0.631373, 1)
-text = "[Right Mouse Click] to \"aim\""
-font = ExtResource("7_fm76q")
-font_size = 48
+[connection signal="hidden" from="PlayerCharacterBody3D/Control/Crosshair" to="PlayerCharacterBody3D" method="_on_crosshair_hidden"]
