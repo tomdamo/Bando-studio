@@ -1,9 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://dr6xp1c1m0a6e"]
+[gd_scene load_steps=21 format=3 uid="uid://dr6xp1c1m0a6e"]
 
 [ext_resource type="Texture2D" uid="uid://c5vnmipk0e74j" path="res://Textures/PNG/Light/texture_07.png" id="1_gtyl2"]
 [ext_resource type="Texture2D" uid="uid://dbxyxeedwajty" path="res://Textures/PNG/Dark/texture_07.png" id="2_ee5wk"]
-[ext_resource type="PackedScene" uid="uid://djjb0csnnsyfd" path="res://Scenes/Player/player_PHANTOM_CAM.tscn" id="3_vei1i"]
-[ext_resource type="PackedScene" uid="uid://cqtejkqmnfxg5" path="res://Scenes/Enemy/NPCwVision.tscn" id="4_2g7ox"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pejej"]
 albedo_color = Color(0, 0.764706, 1, 1)
@@ -126,15 +124,6 @@ mesh = SubResource("BoxMesh_cecit")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_6mx03")
-
-[node name="Player" parent="." instance=ExtResource("3_vei1i")]
-transform = Transform3D(0.999997, -0.0020334, 0.00141364, 0.0020311, 0.999997, 0.00161359, -0.00141695, -0.00161069, 0.999998, 1, 1, 5)
-visible = false
-mouseSens = null
-
-[node name="NPCwVision" parent="." instance=ExtResource("4_2g7ox")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, 7)
-visible = false
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 0)

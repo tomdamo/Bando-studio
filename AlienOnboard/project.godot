@@ -26,6 +26,10 @@ window/size/viewport_height=1080
 
 enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 
+[filesystem]
+
+import/fbx/enabled=false
+
 [input]
 
 move_forward={

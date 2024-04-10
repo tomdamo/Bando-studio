@@ -1,0 +1,208 @@
+fileFormatVersion: 2
+guid: afba588271ddfd244b80a98ba7d5757b
+timeCreated: 1524266729
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Barrel
+    100002: Crate
+    100004: Door1
+    100006: Door2
+    100008: Floor
+    100010: Floor2
+    100012: Floor3
+    100014: Floor4
+    100016: Floor5
+    100018: Floor6
+    100020: Floor7
+    100022: Floor8
+    100024: Locker1
+    100026: Locker2
+    100028: //RootNode
+    100030: Wall1
+    100032: Wall2
+    100034: Wall3
+    100036: Wall4
+    100038: Wall5
+    100040: Wall6
+    100042: Wall7
+    100044: Window
+    100046: Cube
+    400000: Barrel
+    400002: Crate
+    400004: Door1
+    400006: Door2
+    400008: Floor
+    400010: Floor2
+    400012: Floor3
+    400014: Floor4
+    400016: Floor5
+    400018: Floor6
+    400020: Floor7
+    400022: Floor8
+    400024: Locker1
+    400026: Locker2
+    400028: //RootNode
+    400030: Wall1
+    400032: Wall2
+    400034: Wall3
+    400036: Wall4
+    400038: Wall5
+    400040: Wall6
+    400042: Wall7
+    400044: Window
+    400046: Cube
+    2100000: None__BluePack_Albedo_tga
+    2100002: Material__BluePack_Albedo_tga
+    2300000: Barrel
+    2300002: Crate
+    2300004: Door1
+    2300006: Door2
+    2300008: Floor
+    2300010: Floor2
+    2300012: Floor3
+    2300014: Floor4
+    2300016: Floor5
+    2300018: Floor6
+    2300020: Floor7
+    2300022: Floor8
+    2300024: Locker1
+    2300026: Locker2
+    2300028: Wall1
+    2300030: Wall2
+    2300032: Wall3
+    2300034: Wall4
+    2300036: Wall5
+    2300038: Wall6
+    2300040: Wall7
+    2300042: Window
+    2300044: Cube
+    3300000: Barrel
+    3300002: Crate
+    3300004: Door1
+    3300006: Door2
+    3300008: Floor
+    3300010: Floor2
+    3300012: Floor3
+    3300014: Floor4
+    3300016: Floor5
+    3300018: Floor6
+    3300020: Floor7
+    3300022: Floor8
+    3300024: Locker1
+    3300026: Locker2
+    3300028: Wall1
+    3300030: Wall2
+    3300032: Wall3
+    3300034: Wall4
+    3300036: Wall5
+    3300038: Wall6
+    3300040: Wall7
+    3300042: Window
+    3300044: Cube
+    4300000: Crate
+    4300002: Barrel
+    4300004: Locker2
+    4300006: Locker1
+    4300008: Door1
+    4300010: Door2
+    4300012: Window
+    4300014: Floor8
+    4300016: Floor7
+    4300018: Floor6
+    4300020: Floor5
+    4300022: Floor4
+    4300024: Floor3
+    4300026: Floor2
+    4300028: Floor
+    4300030: Wall7
+    4300032: Wall6
+    4300034: Wall5
+    4300036: Wall4
+    4300038: Wall3
+    4300040: Wall2
+    4300042: Wall1
+    4300044: Cube
+    7400000: Default Take
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

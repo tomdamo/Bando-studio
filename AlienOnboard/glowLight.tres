@@ -1,0 +1,73 @@
+[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://c8euqbmhu8e5s"]
+
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_03dns"]
+default_input_values = [0, Vector3(1, 1, 1), 1, Vector3(2, 2, 0)]
+operator = 7
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_xho3r"]
+input_name = "backlight"
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+
+
+
+void fragment() {
+	vec3 n_out2p0;
+// ColorOp:2
+	vec3 n_in2p0 = vec3(1.00000, 1.00000, 1.00000);
+	vec3 n_in2p1 = vec3(2.00000, 2.00000, 0.00000);
+	{
+		float base = n_in2p0.x;
+		float blend = n_in2p1.x;
+		if (base < 0.5) {
+			n_out2p0.x = (base * (blend + 0.5));
+		} else {
+			n_out2p0.x = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
+		}
+	}
+	{
+		float base = n_in2p0.y;
+		float blend = n_in2p1.y;
+		if (base < 0.5) {
+			n_out2p0.y = (base * (blend + 0.5));
+		} else {
+			n_out2p0.y = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
+		}
+	}
+	{
+		float base = n_in2p0.z;
+		float blend = n_in2p1.z;
+		if (base < 0.5) {
+			n_out2p0.z = (base * (blend + 0.5));
+		} else {
+			n_out2p0.z = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
+		}
+	}
+
+
+// Output:0
+	BACKLIGHT = n_out2p0;
+
+
+}
+
+void light() {
+// Input:2
+	vec3 n_out2p0 = BACKLIGHT;
+
+
+// Output:0
+	SPECULAR_LIGHT = n_out2p0;
+
+
+}
+"
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorOp_03dns")
+nodes/fragment/2/position = Vector2(-108.787, 211.18)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 18)
+nodes/light/2/node = SubResource("VisualShaderNodeInput_xho3r")
+nodes/light/2/position = Vector2(40, 200)
+nodes/light/connections = PackedInt32Array(2, 0, 0, 1)

@@ -9,7 +9,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if loadTime.is_stopped():
-		get_tree().change_scene_to_file("res://Scenes/ThirdPersonTest.tscn");
+		get_tree().change_scene_to_file("res://Scenes/Tutorial.tscn");
 	
 func _on_start_button_pressed():
 	loadTime.start()

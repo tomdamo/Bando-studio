@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://x3sjatymjask"]
 
-[ext_resource type="MeshLibrary" uid="uid://bkkk1ep54jbka" path="res://MeshLibraryLevel.tres" id="1_iswhy"]
+[ext_resource type="MeshLibrary" uid="uid://vl3tyhi1v6gs" path="res://MeshLibraryLevel.tres" id="1_iswhy"]
 
 [node name="LevelLayout" type="Node3D"]
 
