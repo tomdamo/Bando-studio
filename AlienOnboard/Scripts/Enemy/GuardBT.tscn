@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://jbsbnnwpqfb8"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_q6ren"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="2_og7cr"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence_star.gd" id="3_c7ri6"]
+[ext_resource type="Script" path="res://Scripts/Enemy/PatrolScript.gd" id="4_5uksb"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="5_et30k"]
+[ext_resource type="Script" path="res://Scripts/Enemy/AI/CheckEnemyInFOVRange.gd" id="6_n4smn"]
+[ext_resource type="Script" path="res://Scripts/Enemy/AI/TaskGotoTarget.gd" id="7_rp5jp"]
+
+[node name="BeehaveTree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("1_q6ren")
+blackboard = NodePath("@Node@17607")
+actor = NodePath("..")
+
+[node name="SelectorComposite" type="Node" parent="."]
+script = ExtResource("2_og7cr")
+
+[node name="Patrol" type="Node" parent="SelectorComposite"]
+script = ExtResource("3_c7ri6")
+
+[node name="Patrol" type="Node" parent="SelectorComposite/Patrol"]
+script = ExtResource("4_5uksb")
+_waypoints = Array[Vector3]([Vector3(-2, -1, 2.08165e-12), Vector3(-4, -1, 2.08165e-12)])
+_waitTime = 3.0
+
+[node name="Wait" type="Node" parent="SelectorComposite/Patrol"]
+script = ExtResource("5_et30k")
+
+[node name="ChasePlayerSequence" type="Node" parent="SelectorComposite"]
+script = ExtResource("3_c7ri6")
+
+[node name="CheckEnemyInFOVRange" type="Node" parent="SelectorComposite/ChasePlayerSequence"]
+script = ExtResource("6_n4smn")
+
+[node name="TaskGotoTarget" type="Node" parent="SelectorComposite/ChasePlayerSequence"]
+script = ExtResource("7_rp5jp")
+
+[node name="SequenceStarComposite" type="Node" parent="SelectorComposite"]
+script = ExtResource("3_c7ri6")
+
+[node name="InvestigateNoise" type="Node" parent="SelectorComposite/SequenceStarComposite"]
+script = ExtResource("5_et30k")

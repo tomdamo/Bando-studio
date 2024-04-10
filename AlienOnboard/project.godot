@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="AlienOnboard"
-run/main_scene="res://Scenes/ThirdPersonTest.tscn"
+run/main_scene="res://Scenes/BTTest.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="AlienOnBoardSaveDirectory"
 config/features=PackedStringArray("4.2", "Forward Plus")
@@ -23,6 +23,8 @@ config/icon="res://icon.svg"
 
 ConfigFileHandler="*res://singletons/ConfigFileHandler.gd"
 StateMachine="*res://Scripts/AlarmSystem/StateMachine/StateMachine.gd"
+BeehaveGlobalMetrics="*res://addons/beehave/metrics/beehave_global_metrics.gd"
+BeehaveGlobalDebugger="*res://addons/beehave/debug/global_debugger.gd"
 
 [display]
 
@@ -38,7 +40,7 @@ project/assembly_name="AlienOnboard"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
+enabled=PackedStringArray("res://addons/beehave/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
 [input]
 
@@ -106,6 +108,8 @@ test={
 3d_render/layer_4="Camera_ignore"
 3d_render/layer_5="Enemies"
 3d_render/layer_6="Objects"
+3d_physics/layer_1="player"
+3d_physics/layer_9="enemy"
 
 [rendering]
 

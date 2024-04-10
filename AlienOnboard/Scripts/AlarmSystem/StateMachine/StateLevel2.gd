@@ -10,14 +10,14 @@ func _init(machine, node):
 	self.node = node
 
 func enter():
-	print("Entering StateLevel0")
+	print("Entering StateLevel2")
 	get_lights_in_range(_range)
 
 func exit():
-	print("Exiting StateLevel0")
+	print("Exiting StateLevel2")
 
 func update(delta):
-	print("Updating StateLevel0")
+	print("Updating StateLevel2")
 
 func get_lights_in_range(range):
 	var player_position = node.global_transform.origin
