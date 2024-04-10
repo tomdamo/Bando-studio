@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://cqtejkqmnfxg5"]
+
+[ext_resource type="Script" path="res://Scenes/Enemy/NPCwVision.gd" id="1_pkwn5"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_i4a03"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_20f70"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_1l85s"]
+material = SubResource("StandardMaterial3D_20f70")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rx7n3"]
+points = PackedVector3Array(-0.000195742, 1, -0.000195742, 0.194988, -1, -0.980814, -0.000195742, -1, -1, -0.195184, -1, -0.980814, -0.382733, -1, -0.924041, -0.555599, -1, -0.831637, -0.707126, -1, -0.707126, -0.831637, -1, -0.555599, -0.924041, -1, -0.382733, -0.980814, -1, -0.195184, -1, -1, -0.000195742, -0.980814, -1, 0.194988, -0.924041, -1, 0.382537, -0.831637, -1, 0.555403, -0.707126, -1, 0.70693, -0.555599, -1, 0.831441, -0.382733, -1, 0.923845, -0.195184, -1, 0.980619, -0.000195742, -1, 1, 0.194988, -1, 0.980619, 0.382537, -1, 0.923845, 0.555403, -1, 0.831441, 0.70693, -1, 0.70693, 0.831441, -1, 0.555403, 0.923845, -1, 0.382537, 0.980619, -1, 0.194988, 1, -1, -0.000195742, 0.980619, -1, -0.195184, 0.923845, -1, -0.382733, 0.831441, -1, -0.555599, 0.70693, -1, -0.707126, 0.555403, -1, -0.831637, 0.382537, -1, -0.924041)
+
+[node name="NPCwVision" type="Node3D"]
+script = ExtResource("1_pkwn5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_i4a03")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.342339, -0.211782)
+mesh = SubResource("SphereMesh_1l85s")
+
+[node name="VisionArea" type="Area3D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShapeCone" type="CollisionShape3D" parent="VisionArea"]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, -10, 0, 10, -4.37114e-07, 0, 0.31566, -10.7582)
+shape = SubResource("ConvexPolygonShape3D_rx7n3")
+
+[node name="VisionTimer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[node name="VisionRaycast" type="RayCast3D" parent="."]
+target_position = Vector3(2.08165e-12, 5, -100)
+collide_with_areas = true
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
+[connection signal="timeout" from="VisionTimer" to="." method="_on_vision_timer_timeout"]

@@ -1,0 +1,188 @@
+[gd_scene load_steps=11 format=3 uid="uid://d3rsri2ovmpmk"]
+
+[ext_resource type="Script" path="res://Scripts/Player3rdPerson.gd" id="1_leqnb"]
+[ext_resource type="Texture2D" uid="uid://c6t5uouul4cf7" path="res://Textures/Crosshair/Crosshair 2.png" id="2_fxkmo"]
+[ext_resource type="Texture2D" uid="uid://dbe1rrtc6aowd" path="res://Textures/PNG/Orange/texture_03.png" id="3_1teuq"]
+[ext_resource type="PackedScene" uid="uid://c6ec716pc0530" path="res://Scenes/Player/Healthbar.tscn" id="3_57to3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e07n3"]
+radius = 0.304987
+height = 0.825087
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6lj6r"]
+radius = 9.04352
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ov05a"]
+albedo_texture = ExtResource("3_1teuq")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_thpsq"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_eww40"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_0bjgs"]
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(0.999997, -0.0020334, 0.00141364, 0.0020311, 0.999997, 0.00161359, -0.00141695, -0.00161069, 0.999998, 0.048876, -2.78621, 0.352115)
+script = ExtResource("1_leqnb")
+
+[node name="DashCooldownTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="SenseCooldownTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="ActiveSenseTime" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="PlayerBodyCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 5.00222e-12, 9.31323e-10, 9.3678e-11, 1, 2.32831e-10, 0, 9.31323e-10, 1, -0.00411436, 0.382823, -0.00961402)
+shape = SubResource("CapsuleShape3D_e07n3")
+
+[node name="SenseArea" type="Area3D" parent="."]
+transform = Transform3D(1, 5.91172e-12, 3.49246e-10, 9.3678e-11, 1, 2.32831e-10, 0, 2.32831e-10, 1, -0.00103983, -0.511949, -0.000826061)
+visible = false
+collision_layer = 16
+
+[node name="SenseRange" type="CollisionShape3D" parent="SenseArea"]
+transform = Transform3D(1, 3.61816e-11, 2.9891e-10, 9.3301e-11, 1, 3.93534e-11, 3.41752e-11, 1.8898e-11, 1, 0, 0, 0)
+shape = SubResource("CylinderShape3D_6lj6r")
+
+[node name="CamOrigin" type="Node3D" parent="."]
+transform = Transform3D(1, 5.91172e-12, 2.32831e-10, 9.3678e-11, 1, 2.32831e-10, 0, 2.32831e-10, 1, -0.00103984, 0.723542, -0.00082612)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CamOrigin"]
+spring_length = 2.0
+
+[node name="Camera3D" type="Camera3D" parent="CamOrigin/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.90126)
+current = true
+
+[node name="Crosshair" type="TextureRect" parent="CamOrigin/SpringArm3D/Camera3D"]
+modulate = Color(1, 1, 1, 0.458824)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -29.0
+offset_right = 486.0
+offset_bottom = 483.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_fxkmo")
+
+[node name="MarginContainer" type="MarginContainer" parent="CamOrigin/SpringArm3D/Camera3D"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -89.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+
+[node name="Healthbar" parent="CamOrigin/SpringArm3D/Camera3D/MarginContainer" instance=ExtResource("3_57to3")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CamOrigin/SpringArm3D/Camera3D/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="DashLabel" type="Label" parent="CamOrigin/SpringArm3D/Camera3D/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Dash"
+
+[node name="SenseLabel" type="Label" parent="CamOrigin/SpringArm3D/Camera3D/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Sense"
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.219336, 2.91038e-11, 7.00879e-11, 4.66116e-12, -9.77889e-09, -0.142737, -2.91038e-11, 0.223464, -6.24277e-09, -0.000460476, 0.191881, -0.00545263)
+material_override = SubResource("StandardMaterial3D_ov05a")
+mesh = SubResource("CapsuleMesh_thpsq")
+metadata/_edit_group_ = true
+
+[node name="tail" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.200176, 5.02585e-10, 4.98004e-10, 3.57916e-10, -0.19164, -0.192883, -4.63462e-12, 0.552974, -0.213477, 0.0675806, 0.93846, -0.872969)
+material_override = SubResource("StandardMaterial3D_ov05a")
+mesh = SubResource("CapsuleMesh_thpsq")
+skeleton = NodePath("../..")
+
+[node name="tail1" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.200321, 5.33793e-10, 4.9778e-10, 2.76191e-10, 0.046193, -0.223673, -4.14333e-10, 0.68893, 0.055589, 0.0675806, 1.06543, -1.93834)
+material_override = SubResource("StandardMaterial3D_ov05a")
+mesh = SubResource("CapsuleMesh_thpsq")
+skeleton = NodePath("../..")
+
+[node name="tailtop" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.200332, 4.7859e-10, 4.09816e-10, -7.14289e-11, 0.319545, -0.0643491, -6.37688e-10, 0.224017, 0.316777, 0.0656344, 0.768992, -2.79989)
+material_override = SubResource("StandardMaterial3D_ov05a")
+mesh = SubResource("CapsuleMesh_thpsq")
+skeleton = NodePath("../..")
+
+[node name="tailyeet" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.199287, 4.76091e-10, 4.07677e-10, 1.578e-10, -0.338654, 0.0176353, 5.80423e-10, -0.0681179, -0.334366, 0.0656344, 0.359439, -2.94013)
+material_override = SubResource("StandardMaterial3D_ov05a")
+mesh = SubResource("PrismMesh_eww40")
+skeleton = NodePath("../..")
+
+[node name="Body6" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(-0.0815936, 0.210708, 0.21213, 0.151784, 0.0784491, 0.0784914, -0.000316987, 0.552851, -0.2136, 0.644328, 0.440904, 0.486037)
+material_override = SubResource("StandardMaterial3D_ov05a")
+mesh = SubResource("CapsuleMesh_thpsq")
+skeleton = NodePath("../..")
+
+[node name="Body7" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.0154305, 0.230104, 0.231596, 0.165725, -0.0147725, -0.0148683, -1.31651e-08, 0.552973, -0.213478, 0.686625, -0.0919022, 0.486037)
+material_override = SubResource("StandardMaterial3D_ov05a")
+mesh = SubResource("CapsuleMesh_thpsq")
+skeleton = NodePath("../..")
+
+[node name="Body8" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.0154305, 0.184509, 0.260757, 0.165725, -0.0118453, -0.0167404, -1.31651e-08, 0.443403, -0.240356, 0.653139, -0.515721, 0.486038)
+material_override = SubResource("StandardMaterial3D_ov05a")
+mesh = SubResource("CapsuleMesh_thpsq")
+skeleton = NodePath("../..")
+
+[node name="Body12" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.131621, 0.211683, 0.107079, 0.0440906, -0.472876, 0.0251512, 0.151533, 0.0356861, -0.235813, 0.511446, -0.927216, 0.158785)
+material_override = SubResource("StandardMaterial3D_ov05a")
+mesh = SubResource("CapsuleMesh_thpsq")
+skeleton = NodePath("../..")
+
+[node name="Body13" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.137669, -0.163905, 0.104404, -0.0286547, -0.485783, -0.0319784, 0.151533, 0.0356861, -0.235813, -0.55009, -1.03867, 0.1136)
+material_override = SubResource("StandardMaterial3D_ov05a")
+mesh = SubResource("CapsuleMesh_thpsq")
+skeleton = NodePath("../..")
+
+[node name="Body9" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.00332899, -0.308286, 0.188144, 0.165725, -0.0147725, -0.0148683, 0.0227294, 0.458245, 0.295089, -0.68707, -0.515721, 0.486038)
+material_override = SubResource("StandardMaterial3D_ov05a")
+mesh = SubResource("CapsuleMesh_thpsq")
+skeleton = NodePath("../..")
+
+[node name="Body10" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.00332899, -0.308286, 0.188144, 0.165725, -0.0147725, -0.0148683, 0.0227294, 0.458245, 0.295089, -0.699042, -0.0983768, 0.486037)
+material_override = SubResource("StandardMaterial3D_ov05a")
+mesh = SubResource("CapsuleMesh_thpsq")
+skeleton = NodePath("../..")
+
+[node name="Body11" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.108605, -0.270835, 0.150064, 0.139018, 0.122168, -0.0960439, 0.023705, 0.459135, 0.2944, -0.665955, 0.348895, 0.486037)
+material_override = SubResource("StandardMaterial3D_ov05a")
+mesh = SubResource("CapsuleMesh_thpsq")
+skeleton = NodePath("../..")
+
+[node name="Head" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.843431, 1.14625e-11, -1.80836e-09, 1.50806e-09, -0.0088438, 0.697285, -1.95277e-11, -1.12655, -0.0180667, 0, -0.827218, -0.143143)
+mesh = SubResource("SphereMesh_0bjgs")
+skeleton = NodePath("../..")

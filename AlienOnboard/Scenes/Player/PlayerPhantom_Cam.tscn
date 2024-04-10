@@ -1,0 +1,168 @@
+[gd_scene load_steps=16 format=3 uid="uid://4i5csj0s34nb"]
+
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_gm4dk"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="2_32qfk"]
+[ext_resource type="Texture2D" uid="uid://c6t5uouul4cf7" path="res://Textures/Crosshair/Crosshair 2.png" id="2_t01fh"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_5feqe"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3D_resource.gd" id="4_kk8js"]
+[ext_resource type="Script" path="res://Scripts/player_controller_third_person.gd" id="5_y8pq1"]
+
+[sub_resource type="Resource" id="Resource_0yw0t"]
+script = ExtResource("3_5feqe")
+duration = 0.3
+transition = 1
+ease = 2
+
+[sub_resource type="Resource" id="Resource_bai5y"]
+script = ExtResource("4_kk8js")
+cull_mask = 1048575
+h_offset = 0.0
+v_offset = 0.0
+fov = 75.0
+
+[sub_resource type="Resource" id="Resource_xvcjx"]
+script = ExtResource("3_5feqe")
+duration = 0.25
+transition = 1
+ease = 2
+
+[sub_resource type="Resource" id="Resource_yf1op"]
+script = ExtResource("4_kk8js")
+cull_mask = 1048575
+h_offset = 1.0
+v_offset = 0.0
+fov = 50.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ql8o6"]
+height = 1.31571
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_najck"]
+height = 0.716239
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_47f0o"]
+radius = 0.3
+height = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mv4do"]
+albedo_color = Color(0.988235, 0.498039, 0.498039, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_wg1x3"]
+size = Vector3(0.5, 0.5, 0.3)
+
+[node name="Player" type="Node3D"]
+
+[node name="MainCamera3D" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.499999, 0, -0.5, 0.866023, -0.019, 1.75, 3.01508)
+current = true
+
+[node name="PhantomCameraHost" type="Node" parent="MainCamera3D"]
+script = ExtResource("1_gm4dk")
+
+[node name="PlayerPhantomCamera3D" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.499999, 0, -0.5, 0.866023, -0.019, 1.75, 3.01508)
+script = ExtResource("2_32qfk")
+priority_override = false
+priority = 10
+follow_mode = 6
+follow_target = NodePath("../PlayerCharacterBody3D")
+follow_parameters/spring_arm/spring_length = 3.5
+follow_parameters/spring_arm/collision_mask = 1
+follow_parameters/spring_arm/shape = null
+follow_parameters/spring_arm/margin = 0.2
+follow_parameters/target_offset = Vector3(0, 0, 0)
+follow_parameters/damping = true
+follow_parameters/damping_value = 30.867
+look_at_mode = 0
+tween_parameters = SubResource("Resource_0yw0t")
+tween_on_load = false
+inactive_update_mode = 0
+camera_3D_resource = SubResource("Resource_bai5y")
+
+[node name="PlayerAimPhantomCamera3D" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.953716, -0.0104945, 0.300522, 0, 0.99939, 0.0348995, -0.300706, -0.0332842, 0.953135, 0.431783, 0.847349, 1.4137)
+script = ExtResource("2_32qfk")
+priority_override = false
+priority = 0
+follow_mode = 6
+follow_target = NodePath("../PlayerCharacterBody3D")
+follow_parameters/spring_arm/spring_length = 1.5
+follow_parameters/spring_arm/collision_mask = 1
+follow_parameters/spring_arm/shape = null
+follow_parameters/spring_arm/margin = 0.5
+follow_parameters/target_offset = Vector3(0, 0.795, 0)
+follow_parameters/damping = false
+look_at_mode = 0
+tween_parameters = SubResource("Resource_xvcjx")
+tween_on_load = false
+inactive_update_mode = 0
+camera_3D_resource = SubResource("Resource_yf1op")
+
+[node name="PlayerCharacterBody3D" type="CharacterBody3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.999903, 0.0139622, 0, -0.0139622, 0.999903, 0, 0, 0, 1, -0.019, 0, -0.016)
+script = ExtResource("5_y8pq1")
+
+[node name="Control" type="Control" parent="PlayerCharacterBody3D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Crosshair" type="TextureRect" parent="PlayerCharacterBody3D/Control"]
+modulate = Color(1, 1, 1, 0.458824)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 914.0
+offset_top = 491.0
+offset_right = 1426.0
+offset_bottom = 1003.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_t01fh")
+
+[node name="PlayerCollisionShape3D2" type="CollisionShape3D" parent="PlayerCharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 4.65661e-10, 0, 0, 1, 0.00433989, 0.262119, 0)
+shape = SubResource("CapsuleShape3D_ql8o6")
+
+[node name="PlayerArea3D" type="Area3D" parent="PlayerCharacterBody3D"]
+
+[node name="PlayerCollisionShape3D" type="CollisionShape3D" parent="PlayerCharacterBody3D/PlayerArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 4.65661e-10, 0, 0, 1, -0.00370558, 0.19376, 0)
+shape = SubResource("CylinderShape3D_najck")
+
+[node name="PlayerModel" type="Node3D" parent="PlayerCharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, 0, 0)
+
+[node name="PlayerMeshInstance3D" type="MeshInstance3D" parent="PlayerCharacterBody3D/PlayerModel"]
+transform = Transform3D(1, -1.42721e-10, -6.62046e-20, 1.35419e-10, 1, 4.65661e-10, 0, 0, 1, 0.008, 0, 0)
+mesh = SubResource("CapsuleMesh_47f0o")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_mv4do")
+
+[node name="PlayerMeshInstance3D2" type="MeshInstance3D" parent="PlayerCharacterBody3D/PlayerModel"]
+transform = Transform3D(-0.999893, -0.00145507, -0.0145493, -0.0146006, 0.0457089, 0.998849, -0.000788386, 0.998954, -0.0457252, 0.006, 0, 0.37)
+mesh = SubResource("PrismMesh_wg1x3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_mv4do")
+
+[node name="DashCooldownTimer" type="Timer" parent="PlayerCharacterBody3D"]
+wait_time = 0.6
+one_shot = true
+
+[node name="SenseCooldownTimer" type="Timer" parent="PlayerCharacterBody3D"]
+wait_time = 5.0
+one_shot = true
+
+[node name="ActiveSenseTime" type="Timer" parent="PlayerCharacterBody3D"]
+wait_time = 6.0
+one_shot = true
+
+[connection signal="hidden" from="PlayerCharacterBody3D/Control/Crosshair" to="PlayerCharacterBody3D" method="_on_crosshair_hidden"]

@@ -1,0 +1,29 @@
+[gd_resource type="VisualShader" load_steps=2 format=3 uid="uid://bnhik46go1uve"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_si44s"]
+parameter_name = "Base_colo"
+default_value_enabled = true
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform vec4 Base_colo : source_color = vec4(1.000000, 1.000000, 1.000000, 1.000000);
+
+
+
+void fragment() {
+// ColorParameter:2
+	vec4 n_out2p0 = Base_colo;
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(-158.473, 3.38873)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_si44s")
+nodes/fragment/2/position = Vector2(-140, 180)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0)
