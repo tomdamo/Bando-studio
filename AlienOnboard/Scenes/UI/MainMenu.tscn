@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://7lb2out7gbml"]
+[gd_scene load_steps=4 format=3 uid="uid://7lb2out7gbml"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_kixtv"]
+[ext_resource type="FontFile" uid="uid://dlvhjyl50fcs4" path="res://Textures/Font/batmfa__.ttf" id="2_mm6hj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj0b3"]
 bg_color = Color(0.415686, 1, 0, 0.219608)
@@ -34,6 +35,7 @@ grow_vertical = 0
 clip_contents = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../QuitButton")
+theme_override_fonts/font = ExtResource("2_mm6hj")
 theme_override_font_sizes/font_size = 72
 theme_override_styles/focus = SubResource("StyleBoxFlat_sj0b3")
 text = "Start"
@@ -41,6 +43,7 @@ text = "Start"
 [node name="OptionsButton" type="Button" parent="VBoxContainer"]
 clip_contents = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_mm6hj")
 theme_override_font_sizes/font_size = 72
 theme_override_styles/focus = SubResource("StyleBoxFlat_sj0b3")
 text = "Options"
@@ -49,6 +52,7 @@ text = "Options"
 clip_contents = true
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../StartButton")
+theme_override_fonts/font = ExtResource("2_mm6hj")
 theme_override_font_sizes/font_size = 72
 theme_override_styles/focus = SubResource("StyleBoxFlat_sj0b3")
 text = "Quit"
@@ -66,7 +70,8 @@ theme_override_colors/font_color = Color(0.607843, 0.933333, 0.701961, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 15
 theme_override_constants/shadow_offset_y = 10
-theme_override_font_sizes/font_size = 256
+theme_override_fonts/font = ExtResource("2_mm6hj")
+theme_override_font_sizes/font_size = 180
 text = "Alien Onboard"
 
 [node name="Label2" type="Label" parent="."]
@@ -83,6 +88,7 @@ theme_override_colors/font_color = Color(0.701961, 0.870588, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 7
 theme_override_constants/shadow_offset_y = 7
+theme_override_fonts/font = ExtResource("2_mm6hj")
 theme_override_font_sizes/font_size = 72
 text = "By
 Bando Studio"
