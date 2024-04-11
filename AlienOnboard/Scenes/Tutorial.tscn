@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://cejpgv0y5t1x4"]
+[gd_scene load_steps=75 format=3 uid="uid://cejpgv0y5t1x4"]
 
 [ext_resource type="Environment" uid="uid://bakv155d3f0pc" path="res://Scenes/Player/worldEnv.tres" id="1_823g4"]
 [ext_resource type="Material" uid="uid://c3jvamrxrrh8h" path="res://Textures/PanelMaterial.tres" id="2_tn1mc"]
@@ -55,10 +55,11 @@ size = Vector3(2.88733, 17.1841, 2.94128)
 size = Vector3(10.1135, 13.1632, 3.09729)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2iv0k"]
+font = ExtResource("12_kkne3")
 font_size = 42
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_menxs"]
-size = Vector3(10, 5, 5)
+size = Vector3(11.876, 5, 7.47339)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0qvv1"]
 resource_name = "Material.003"
@@ -167,6 +168,9 @@ radius = 3.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_t6mrt"]
 height = 9.5
 radius = 3.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2nrd4"]
+size = Vector3(4.75513, 5.25076, 4.51611)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_h3dg3"]
 height = 9.5
@@ -373,7 +377,7 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 4, 0)
 
 [node name="Player" parent="." instance=ExtResource("8_chp8q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2523, 3.37406, 2.98673)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59308, 3.37406, 1.72426)
 
 [node name="Lights" type="Node3D" parent="."]
 
@@ -571,36 +575,43 @@ offset_bottom = 210.0
 layout_mode = 2
 
 [node name="HowToWalkLabel" type="Label" parent="TutorialTriggers/Control/PanelContainer/Panel"]
-layout_mode = 0
-offset_right = 498.0
-offset_bottom = 199.0
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -67.5
+offset_bottom = 67.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "<WASD> to walk
-Use the mouse to
-look around"
+Use the mouse 
+to look around"
 label_settings = SubResource("LabelSettings_2iv0k")
+horizontal_alignment = 1
 
 [node name="HowToWalkArea" type="Area3D" parent="TutorialTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.76377, 0.520514)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.53601, 2.76377, 3.41915)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialTriggers/HowToWalkArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.06477, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.938019, 2.06477, 0.619019)
 shape = SubResource("BoxShape3D_menxs")
 
 [node name="LabProps" type="Node3D" parent="."]
 
 [node name="incubators" type="Node3D" parent="LabProps"]
 
-[node name="brokenIncubator" type="Node3D" parent="LabProps/incubators"]
+[node name="Incubator" type="Node3D" parent="LabProps/incubators"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.317708, 2.09031, -3.168)
 
-[node name="Circle_001" type="MeshInstance3D" parent="LabProps/incubators/brokenIncubator"]
+[node name="Circle_001" type="MeshInstance3D" parent="LabProps/incubators/Incubator"]
 transform = Transform3D(2.77349, 0, 0, 0, 3.99751, 0, 0, 0, 2.77349, 0, -2, 0)
 mesh = SubResource("ArrayMesh_wnrj5")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LabProps/incubators/brokenIncubator"]
+[node name="StaticBody3D" type="StaticBody3D" parent="LabProps/incubators/Incubator"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LabProps/incubators/brokenIncubator/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LabProps/incubators/Incubator/StaticBody3D"]
 shape = SubResource("CylinderShape3D_t5ay2")
 
 [node name="incubator3" parent="LabProps/incubators" instance=ExtResource("6_mwcah")]
@@ -627,14 +638,14 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 1.78477, 2.09031, -3.16
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LabProps/incubators/incubator5/StaticBody3D"]
 shape = SubResource("CylinderShape3D_t6mrt")
 
-[node name="incubator6" parent="LabProps/incubators" instance=ExtResource("6_mwcah")]
+[node name="incubatorBROKEN" parent="LabProps/incubators" instance=ExtResource("6_mwcah")]
 transform = Transform3D(0.3, 0, 0, 0, -0.0496021, -0.295871, 0, 0.295871, -0.0496021, 3.90039, 2.69467, -2.67922)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LabProps/incubators/incubator6"]
+[node name="StaticBody3D" type="StaticBody3D" parent="LabProps/incubators/incubatorBROKEN"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LabProps/incubators/incubator6/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.54396, -0.761785)
-shape = SubResource("CylinderShape3D_h3dg3")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LabProps/incubators/incubatorBROKEN/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999995, 5.96046e-08, 0, -5.96046e-08, 0.999995, -0.159058, 2.41719, -0.519845)
+shape = SubResource("BoxShape3D_2nrd4")
 
 [node name="incubator12" parent="LabProps/incubators" instance=ExtResource("6_mwcah")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 16.5921, -0.966087, 0.378592)
@@ -733,11 +744,41 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48573, -0.0131435, 0.72892)
 mesh = SubResource("BoxMesh_oo2gk")
 
 [node name="Label3D3" type="Label3D" parent="LabProps/Screens/schermLabBig"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.36204, 0.0636754, -0.0889635)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.36204, 0.105134, -0.758973)
 text = "species: unknown.
 "
 font = ExtResource("12_kkne3")
 font_size = 44
+horizontal_alignment = 0
+
+[node name="Label3D5" type="Label3D" parent="LabProps/Screens/schermLabBig"]
+transform = Transform3D(-7.54952e-15, 0.726275, -0.687405, 1, -3.00474e-08, -3.17465e-08, -4.37114e-08, -0.687405, -0.726275, 5.01548, 8.07415, 1.26156)
+text = "authorization 
+required
+"
+font = ExtResource("12_kkne3")
+font_size = 35
+
+[node name="Label3D6" type="Label3D" parent="LabProps/Screens/schermLabBig"]
+transform = Transform3D(-7.54952e-15, 0.726275, -0.687405, 1, -3.00474e-08, -3.17465e-08, -4.37114e-08, -0.687405, -0.726275, 5.01548, 15.4579, 1.26156)
+text = "authorization 
+required
+"
+font = ExtResource("12_kkne3")
+font_size = 35
+
+[node name="Label3D4" type="Label3D" parent="LabProps/Screens/schermLabBig"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.38588, 0.105134, 0.149975)
+text = "planet of discovery:
+TRAPPIST1-f
+
+Temperature: ?
+
+
+
+6 bomboclat egg"
+font = ExtResource("12_kkne3")
+font_size = 34
 horizontal_alignment = 0
 
 [node name="schermLabSmall1" type="MeshInstance3D" parent="LabProps/Screens"]
