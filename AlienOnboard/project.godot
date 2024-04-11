@@ -11,11 +11,11 @@ config_version=5
 [application]
 
 config/name="AlienOnboard"
+config/description="GDS project. Game by Furat and Tom."
 run/main_scene="res://Scenes/UI/OpeningScene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-boot_splash/show_image=false
-boot_splash/image="res://Textures/3.png"
-config/icon="res://icon.svg"
+boot_splash/image="res://Scenes/UI/logo1.0.png"
+config/icon="res://Scenes/UI/ALIEN_ON_BOARD_PICTOGRAM-removebg-preview.png"
 
 [display]
 
