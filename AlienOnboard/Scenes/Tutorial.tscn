@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://cejpgv0y5t1x4"]
+[gd_scene load_steps=83 format=3 uid="uid://cejpgv0y5t1x4"]
 
 [ext_resource type="Environment" uid="uid://bakv155d3f0pc" path="res://Scenes/Player/worldEnv.tres" id="1_823g4"]
 [ext_resource type="Material" uid="uid://c3jvamrxrrh8h" path="res://Textures/PanelMaterial.tres" id="2_tn1mc"]
@@ -54,12 +54,35 @@ size = Vector3(2.88733, 17.1841, 2.94128)
 [sub_resource type="BoxShape3D" id="BoxShape3D_kcfnh"]
 size = Vector3(10.1135, 13.1632, 3.09729)
 
+[sub_resource type="LabelSettings" id="LabelSettings_4d6l0"]
+font = ExtResource("12_kkne3")
+font_size = 26
+
 [sub_resource type="LabelSettings" id="LabelSettings_2iv0k"]
 font = ExtResource("12_kkne3")
-font_size = 42
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_eyfl4"]
+font = ExtResource("12_kkne3")
+font_size = 29
+
+[sub_resource type="LabelSettings" id="LabelSettings_fhc8n"]
+font = ExtResource("12_kkne3")
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_87ddj"]
+font = ExtResource("12_kkne3")
+font_size = 33
+
+[sub_resource type="LabelSettings" id="LabelSettings_0m527"]
+font = ExtResource("12_kkne3")
+font_size = 21
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_menxs"]
-size = Vector3(11.876, 5, 7.47339)
+size = Vector3(25.273, 5, 12.0565)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d1ivl"]
+size = Vector3(9.05814, 5, 11.3645)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0qvv1"]
 resource_name = "Material.003"
@@ -286,6 +309,13 @@ size = Vector3(12, 5, 2)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_chusb"]
 data = PackedVector3Array(-6, 2.5, 1, 6, 2.5, 1, -6, -2.5, 1, 6, 2.5, 1, 6, -2.5, 1, -6, -2.5, 1, 6, 2.5, -1, -6, 2.5, -1, 6, -2.5, -1, -6, 2.5, -1, -6, -2.5, -1, 6, -2.5, -1, 6, 2.5, 1, 6, 2.5, -1, 6, -2.5, 1, 6, 2.5, -1, 6, -2.5, -1, 6, -2.5, 1, -6, 2.5, -1, -6, 2.5, 1, -6, -2.5, -1, -6, 2.5, 1, -6, -2.5, 1, -6, -2.5, -1, 6, 2.5, 1, -6, 2.5, 1, 6, 2.5, -1, -6, 2.5, 1, -6, 2.5, -1, 6, 2.5, -1, -6, -2.5, 1, 6, -2.5, 1, -6, -2.5, -1, 6, -2.5, 1, 6, -2.5, -1, -6, -2.5, -1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_x2d5d"]
+material = SubResource("StandardMaterial3D_kuovk")
+size = Vector3(5, 1.5, 2)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_k2fgr"]
+data = PackedVector3Array(-2.5, 0.75, 1, 2.5, 0.75, 1, -2.5, -0.75, 1, 2.5, 0.75, 1, 2.5, -0.75, 1, -2.5, -0.75, 1, 2.5, 0.75, -1, -2.5, 0.75, -1, 2.5, -0.75, -1, -2.5, 0.75, -1, -2.5, -0.75, -1, 2.5, -0.75, -1, 2.5, 0.75, 1, 2.5, 0.75, -1, 2.5, -0.75, 1, 2.5, 0.75, -1, 2.5, -0.75, -1, 2.5, -0.75, 1, -2.5, 0.75, -1, -2.5, 0.75, 1, -2.5, -0.75, -1, -2.5, 0.75, 1, -2.5, -0.75, 1, -2.5, -0.75, -1, 2.5, 0.75, 1, -2.5, 0.75, 1, 2.5, 0.75, -1, -2.5, 0.75, 1, -2.5, 0.75, -1, 2.5, 0.75, -1, -2.5, -0.75, 1, 2.5, -0.75, 1, -2.5, -0.75, -1, 2.5, -0.75, 1, 2.5, -0.75, -1, -2.5, -0.75, -1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_elf6i"]
 albedo_color = Color(0.10748, 0.10748, 0.10748, 1)
 
@@ -308,7 +338,7 @@ data = PackedVector3Array(-6, 2.5, 1, 6, 2.5, 1, -6, -2.5, 1, 6, 2.5, 1, 6, -2.5
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_8m0qe"]
 data = PackedVector3Array(-6, 2.5, 1, 6, 2.5, 1, -6, -2.5, 1, 6, 2.5, 1, 6, -2.5, 1, -6, -2.5, 1, 6, 2.5, -1, -6, 2.5, -1, 6, -2.5, -1, -6, 2.5, -1, -6, -2.5, -1, 6, -2.5, -1, 6, 2.5, 1, 6, 2.5, -1, 6, -2.5, 1, 6, 2.5, -1, 6, -2.5, -1, 6, -2.5, 1, -6, 2.5, -1, -6, 2.5, 1, -6, -2.5, -1, -6, 2.5, 1, -6, -2.5, 1, -6, -2.5, -1, 6, 2.5, 1, -6, 2.5, 1, 6, 2.5, -1, -6, 2.5, 1, -6, 2.5, -1, 6, 2.5, -1, -6, -2.5, 1, 6, -2.5, 1, -6, -2.5, -1, 6, -2.5, 1, 6, -2.5, -1, -6, -2.5, -1)
 
-[node name="Tutorial" type="Node3D"]
+[node name="TutorialLevel" type="Node3D"]
 
 [node name="BoxesForLibmesh" type="Node3D" parent="."]
 visible = false
@@ -564,24 +594,56 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="PanelContainer" type="PanelContainer" parent="TutorialTriggers/Control"]
-layout_mode = 0
+[node name="TutorialPanel" type="Panel" parent="TutorialTriggers/Control"]
+layout_mode = 2
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 510.0
 offset_bottom = 210.0
 
-[node name="Panel" type="Panel" parent="TutorialTriggers/Control/PanelContainer"]
-layout_mode = 2
-
-[node name="HowToWalkLabel" type="Label" parent="TutorialTriggers/Control/PanelContainer/Panel"]
+[node name="GettingStartedLabel" type="Label" parent="TutorialTriggers/Control/TutorialPanel"]
+visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -67.5
-offset_bottom = 67.5
+offset_left = -94.0
+offset_top = -98.0
+offset_right = -94.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "getting started"
+label_settings = SubResource("LabelSettings_4d6l0")
+horizontal_alignment = 1
+
+[node name="WatchOutLabel" type="Label" parent="TutorialTriggers/Control/TutorialPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -96.0
+offset_right = -136.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "watch out!"
+label_settings = SubResource("LabelSettings_4d6l0")
+horizontal_alignment = 1
+
+[node name="HowToWalkLabel" type="Label" parent="TutorialTriggers/Control/TutorialPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -57.0
+offset_bottom = 78.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "<WASD> to walk
@@ -590,11 +652,136 @@ to look around"
 label_settings = SubResource("LabelSettings_2iv0k")
 horizontal_alignment = 1
 
+[node name="HowToDashLabel" type="Label" parent="TutorialTriggers/Control/TutorialPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -58.0
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "press <shift> to
+ dash towards 
+camera direction"
+label_settings = SubResource("LabelSettings_2iv0k")
+horizontal_alignment = 1
+
+[node name="HowToSenseLabel" type="Label" parent="TutorialTriggers/Control/TutorialPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -58.0
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "guards nearby..
+press f to use 
+the sense ability"
+label_settings = SubResource("LabelSettings_2iv0k")
+horizontal_alignment = 1
+
+[node name="HowToJumpLabel" type="Label" parent="TutorialTriggers/Control/TutorialPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -58.0
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "press <space> to
+jump 
+"
+label_settings = SubResource("LabelSettings_2iv0k")
+horizontal_alignment = 1
+
+[node name="HowToJumpLabelTIP" type="Label" parent="TutorialTriggers/Control/TutorialPanel/HowToJumpLabel"]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 20.5
+offset_bottom = 155.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "tip: dash after jumping 
+to reach more height.
+"
+label_settings = SubResource("LabelSettings_eyfl4")
+horizontal_alignment = 1
+
+[node name="QuestPanel" type="Panel" parent="TutorialTriggers/Control"]
+visible = false
+layout_mode = 2
+offset_left = 1410.0
+offset_top = 10.0
+offset_right = 1910.0
+offset_bottom = 160.0
+
+[node name="currentQuestlabel" type="Label" parent="TutorialTriggers/Control/QuestPanel"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 4.0
+offset_right = 175.0
+offset_bottom = 27.0
+text = "current quest"
+label_settings = SubResource("LabelSettings_fhc8n")
+
+[node name="Quest1" type="Label" parent="TutorialTriggers/Control/QuestPanel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 31.0
+offset_right = 490.0
+offset_bottom = 102.0
+text = "find a way into 
+the storage facility."
+label_settings = SubResource("LabelSettings_87ddj")
+
+[node name="Tip" type="Label" parent="TutorialTriggers/Control/QuestPanel"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 110.0
+offset_right = 470.0
+offset_bottom = 135.0
+text = "tip: press pause to see quests"
+label_settings = SubResource("LabelSettings_0m527")
+
 [node name="HowToWalkArea" type="Area3D" parent="TutorialTriggers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.53601, 2.76377, 3.41915)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialTriggers/HowToWalkArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.938019, 2.06477, 0.619019)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.63765, 2.06477, -0.166473)
+shape = SubResource("BoxShape3D_menxs")
+
+[node name="HowToJumpArea" type="Area3D" parent="TutorialTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4177, 2.76377, -26.3212)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialTriggers/HowToJumpArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.34697, 2.06477, -0.706604)
+shape = SubResource("BoxShape3D_d1ivl")
+
+[node name="HowToSenseArea" type="Area3D" parent="TutorialTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6254, 3.64485, -44.3264)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialTriggers/HowToSenseArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.34697, 2.06477, 2.56459)
+shape = SubResource("BoxShape3D_d1ivl")
+
+[node name="QuestTrigger" type="Area3D" parent="TutorialTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7374, 2.76377, 2.98695)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialTriggers/QuestTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.18477, 2.06477, 1.30205)
 shape = SubResource("BoxShape3D_menxs")
 
 [node name="LabProps" type="Node3D" parent="."]
@@ -612,6 +799,7 @@ skeleton = NodePath("")
 [node name="StaticBody3D" type="StaticBody3D" parent="LabProps/incubators/Incubator"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LabProps/incubators/Incubator/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 0)
 shape = SubResource("CylinderShape3D_t5ay2")
 
 [node name="incubator3" parent="LabProps/incubators" instance=ExtResource("6_mwcah")]
@@ -620,6 +808,7 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2.47216, 2.09031, -3.1
 [node name="StaticBody3D" type="StaticBody3D" parent="LabProps/incubators/incubator3"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LabProps/incubators/incubator3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 0)
 shape = SubResource("CylinderShape3D_hfxxy")
 
 [node name="incubator4" parent="LabProps/incubators" instance=ExtResource("6_mwcah")]
@@ -628,6 +817,7 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -4.56128, 2.09031, -3.1
 [node name="StaticBody3D" type="StaticBody3D" parent="LabProps/incubators/incubator4"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LabProps/incubators/incubator4/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 0)
 shape = SubResource("CylinderShape3D_uvf4n")
 
 [node name="incubator5" parent="LabProps/incubators" instance=ExtResource("6_mwcah")]
@@ -636,6 +826,7 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 1.78477, 2.09031, -3.16
 [node name="StaticBody3D" type="StaticBody3D" parent="LabProps/incubators/incubator5"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LabProps/incubators/incubator5/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 0)
 shape = SubResource("CylinderShape3D_t6mrt")
 
 [node name="incubatorBROKEN" parent="LabProps/incubators" instance=ExtResource("6_mwcah")]
@@ -653,6 +844,7 @@ transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 16.5921, -0.966087, 0.3
 [node name="StaticBody3D" type="StaticBody3D" parent="LabProps/incubators/incubator12"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LabProps/incubators/incubator12/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.65094, 0)
 shape = SubResource("CylinderShape3D_h3dg3")
 
 [node name="incubator13" parent="LabProps/incubators" instance=ExtResource("6_mwcah")]
@@ -670,6 +862,7 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.450351, 2.09031, 11.
 [node name="StaticBody3D" type="StaticBody3D" parent="LabProps/incubators/incubator7"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LabProps/incubators/incubator7/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 0)
 shape = SubResource("CylinderShape3D_id3xc")
 
 [node name="incubator8" parent="LabProps/incubators" instance=ExtResource("6_mwcah")]
@@ -678,6 +871,7 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2.60481, 2.09031, 11.0
 [node name="StaticBody3D" type="StaticBody3D" parent="LabProps/incubators/incubator8"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LabProps/incubators/incubator8/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 0)
 shape = SubResource("CylinderShape3D_fcwb8")
 
 [node name="incubator9" parent="LabProps/incubators" instance=ExtResource("6_mwcah")]
@@ -686,6 +880,7 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -4.69392, 2.09031, 11.0
 [node name="StaticBody3D" type="StaticBody3D" parent="LabProps/incubators/incubator9"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LabProps/incubators/incubator9/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 0)
 shape = SubResource("CylinderShape3D_syu3e")
 
 [node name="incubator10" parent="LabProps/incubators" instance=ExtResource("6_mwcah")]
@@ -694,6 +889,7 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 1.65213, 2.09031, 11.09
 [node name="StaticBody3D" type="StaticBody3D" parent="LabProps/incubators/incubator10"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LabProps/incubators/incubator10/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 0)
 shape = SubResource("CylinderShape3D_65dww")
 
 [node name="incubator11" parent="LabProps/incubators" instance=ExtResource("6_mwcah")]
@@ -702,6 +898,7 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 3.76774, 2.09031, 11.09
 [node name="StaticBody3D" type="StaticBody3D" parent="LabProps/incubators/incubator11"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LabProps/incubators/incubator11/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 0)
 shape = SubResource("CylinderShape3D_e73gq")
 
 [node name="Screens" type="Node3D" parent="LabProps"]
@@ -982,64 +1179,84 @@ shape = SubResource("ConcavePolygonShape3D_olkrv")
 
 [node name="ServerRoom" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ServerRoom"]
+[node name="ServerRack1" type="MeshInstance3D" parent="ServerRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0191, 4.44864, -23.7107)
 mesh = SubResource("BoxMesh_rux5i")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ServerRoom/MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ServerRoom/ServerRack1"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ServerRoom/MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ServerRoom/ServerRack1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_chusb")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="ServerRoom"]
+[node name="LilJumpHelp" type="MeshInstance3D" parent="ServerRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4905, 2.32627, -29.3313)
+mesh = SubResource("BoxMesh_x2d5d")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="ServerRoom/LilJumpHelp"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ServerRoom/LilJumpHelp/StaticBody3D2"]
+shape = SubResource("ConcavePolygonShape3D_k2fgr")
+
+[node name="LilJumpHelp2" type="MeshInstance3D" parent="ServerRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5021, 2.32627, -29.3313)
+mesh = SubResource("BoxMesh_x2d5d")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="ServerRoom/LilJumpHelp2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ServerRoom/LilJumpHelp2/StaticBody3D2"]
+shape = SubResource("ConcavePolygonShape3D_k2fgr")
+
+[node name="ServerRack" type="MeshInstance3D" parent="ServerRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0191, 4.44864, -18.7971)
 mesh = SubResource("BoxMesh_1ttkg")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ServerRoom/MeshInstance3D2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ServerRoom/ServerRack"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ServerRoom/MeshInstance3D2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ServerRoom/ServerRack/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_3m3bw")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="ServerRoom"]
+[node name="ServerRack2" type="MeshInstance3D" parent="ServerRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0191, 4.44864, -13.6896)
 mesh = SubResource("BoxMesh_1ttkg")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ServerRoom/MeshInstance3D3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ServerRoom/ServerRack2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ServerRoom/MeshInstance3D3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ServerRoom/ServerRack2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_vj3ew")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="ServerRoom"]
+[node name="ServerRack3" type="MeshInstance3D" parent="ServerRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0282, 4.44864, -23.7107)
 mesh = SubResource("BoxMesh_1ttkg")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ServerRoom/MeshInstance3D4"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ServerRoom/ServerRack3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ServerRoom/MeshInstance3D4/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ServerRoom/ServerRack3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_k1fuw")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="ServerRoom"]
+[node name="ServerRack4" type="MeshInstance3D" parent="ServerRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0282, 4.44864, -18.7971)
 mesh = SubResource("BoxMesh_1ttkg")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ServerRoom/MeshInstance3D5"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ServerRoom/ServerRack4"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ServerRoom/MeshInstance3D5/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ServerRoom/ServerRack4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ep0r6")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="ServerRoom"]
+[node name="ServerRack5" type="MeshInstance3D" parent="ServerRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0282, 4.44864, -13.6896)
 mesh = SubResource("BoxMesh_1ttkg")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ServerRoom/MeshInstance3D6"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ServerRoom/ServerRack5"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ServerRoom/MeshInstance3D6/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ServerRoom/ServerRack5/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_8m0qe")
 
 [node name="Signs" type="Node3D" parent="."]
@@ -1062,6 +1279,11 @@ text = "Researching species
 of planet TRAPPIST1-F"
 font = ExtResource("12_kkne3")
 
+[node name="Label3D3" type="Label3D" parent="Signs/LabSign"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.00510979, 0.0416163, 0.640711)
+text = "door: unlocked"
+font = ExtResource("12_kkne3")
+
 [node name="ServerSign" type="MeshInstance3D" parent="Signs"]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -25.9981, 5.38797, -33.5759)
 mesh = SubResource("PlaneMesh_rs63a")
@@ -1074,7 +1296,8 @@ font = ExtResource("12_kkne3")
 font_size = 54
 
 [node name="Label3D2" type="Label3D" parent="Signs/ServerSign"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.00510979, 0.0416163, 0.0471859)
+transform = Transform3D(1, 4.23656e-23, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.00510788, 0.0416164, 0.760038)
+text = "door: locked"
 font = ExtResource("12_kkne3")
 
 [node name="Hangar" type="MeshInstance3D" parent="Signs"]
@@ -1089,7 +1312,8 @@ font = ExtResource("12_kkne3")
 font_size = 54
 
 [node name="Label3D2" type="Label3D" parent="Signs/Hangar"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.00510979, 0.0416163, 0.0471859)
+transform = Transform3D(1, 4.23656e-23, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.00511169, 0.0416164, 0.814733)
+text = "door: locked"
 font = ExtResource("12_kkne3")
 
 [node name="Hangar2" type="MeshInstance3D" parent="Signs"]
@@ -1105,7 +1329,8 @@ font = ExtResource("12_kkne3")
 font_size = 47
 
 [node name="Label3D2" type="Label3D" parent="Signs/Hangar2"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.00510979, 0.0416163, 0.0471859)
+transform = Transform3D(1, 4.23656e-23, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.00511169, 0.0416164, 0.836362)
+text = "door: locked"
 font = ExtResource("12_kkne3")
 
 [node name="StorageSign" type="MeshInstance3D" parent="Signs"]
@@ -1123,6 +1348,11 @@ font_size = 51
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.00510979, 0.0416163, 0.0471859)
 font = ExtResource("12_kkne3")
 
+[node name="Label3D4" type="Label3D" parent="Signs/StorageSign"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.0255318, 0.0416164, 0.801105)
+text = "door: locked"
+font = ExtResource("12_kkne3")
+
 [node name="StorageSign2" type="MeshInstance3D" parent="Signs"]
 transform = Transform3D(1.19249e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, 1.19249e-08, -5.21253e-16, -48.0265, 5.55862, -12.1019)
 mesh = SubResource("PlaneMesh_rs63a")
@@ -1135,7 +1365,15 @@ font = ExtResource("12_kkne3")
 font_size = 51
 
 [node name="Label3D2" type="Label3D" parent="Signs/StorageSign2"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.00510979, 0.0416163, 0.0471859)
+transform = Transform3D(1, -8.46612e-23, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.00510979, 0.0416145, 0.801126)
+text = "door: unlocked"
 font = ExtResource("12_kkne3")
 
 [connection signal="area_entered" from="TutorialTriggers/HowToWalkArea" to="TutorialTriggers" method="_on_how_to_walk_area_area_entered"]
+[connection signal="area_exited" from="TutorialTriggers/HowToWalkArea" to="TutorialTriggers" method="_on_how_to_walk_area_area_exited"]
+[connection signal="area_entered" from="TutorialTriggers/HowToJumpArea" to="TutorialTriggers" method="_on_how_to_jump_area_area_entered"]
+[connection signal="area_exited" from="TutorialTriggers/HowToJumpArea" to="TutorialTriggers" method="_on_how_to_jump_area_area_exited"]
+[connection signal="area_entered" from="TutorialTriggers/HowToSenseArea" to="TutorialTriggers" method="_on_how_to_sense_area_area_entered"]
+[connection signal="area_exited" from="TutorialTriggers/HowToSenseArea" to="TutorialTriggers" method="_on_how_to_sense_area_area_exited"]
+[connection signal="area_entered" from="TutorialTriggers/QuestTrigger" to="TutorialTriggers" method="_on_quest_trigger_area_entered"]
+[connection signal="area_exited" from="TutorialTriggers/QuestTrigger" to="TutorialTriggers" method="_on_quest_trigger_area_exited"]
