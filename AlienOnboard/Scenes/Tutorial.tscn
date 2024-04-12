@@ -1,9 +1,9 @@
-[gd_scene load_steps=40 format=3 uid="uid://cejpgv0y5t1x4"]
+[gd_scene load_steps=40 format=3 uid="uid://nwcn0fnnmkdu"]
 
 [ext_resource type="Environment" uid="uid://bakv155d3f0pc" path="res://Scenes/Player/worldEnv.tres" id="1_823g4"]
-[ext_resource type="Material" uid="uid://c3jvamrxrrh8h" path="res://Textures/PanelMaterial.tres" id="2_tn1mc"]
-[ext_resource type="MeshLibrary" uid="uid://4yiy6b0cq1oj" path="res://MeshLibraryTutorial.tres" id="3_b3alo"]
-[ext_resource type="Shader" uid="uid://c8euqbmhu8e5s" path="res://glowLight.tres" id="4_ef5fc"]
+[ext_resource type="Material" path="res://Textures/PanelMaterial.tres" id="2_tn1mc"]
+[ext_resource type="MeshLibrary" uid="uid://d1j7c8ylgge4f" path="res://MeshLibraryTutorial.tres" id="3_b3alo"]
+[ext_resource type="Shader" uid="uid://bnsya0la0ymrb" path="res://glowLight.tres" id="4_ef5fc"]
 [ext_resource type="PackedScene" uid="uid://bquxtupi3ji0i" path="res://3DModels/GateV1.glb" id="5_fumsa"]
 [ext_resource type="PackedScene" uid="uid://dh3iobrlaj6u4" path="res://3DModels/incubator2.glb" id="6_mwcah"]
 [ext_resource type="Shader" uid="uid://i1to2g8p5axg" path="res://Textures/Shaders/Hologram.tres" id="8_6fel8"]

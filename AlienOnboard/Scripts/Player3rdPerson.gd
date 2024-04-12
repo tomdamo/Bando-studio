@@ -1,7 +1,5 @@
 extends CharacterBody3D
 
-##var StateLevel2 = preload("res://Scripts/AlarmSystem/StateMachine/StateLevel2.gd")
-
 #Movement
 const SPEED = 6.0
 const JUMP_VELOCITY = 10
@@ -22,6 +20,7 @@ var health = 3
 var damage = 1
 @onready var healthbar = $CamOrigin/SpringArm3D/Camera3D/MarginContainer/Healthbar
 
+
 #Sense Ability, see enemies through walls
 var senseActive = false
 const Sense_duration = 10.0
@@ -41,9 +40,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	health = 3
-	healthbar.init_health(health)
-	
+	#healthbar.init_health(health)
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-event.relative.x * mouseSens))
@@ -64,21 +62,15 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 
-	#if Input.is_action_just_pressed("test"):
-		#var state1 = StateLevel2.new()
-		#StateMachine.set_state(state1)
-		#print(StateMachine.get_state())
-
-
 	#See enemies layer through the walls
 	if Input.is_action_just_pressed("SenseAbility") and not senseActive and sense_cooldown_timer.is_stopped():
 		print("if for senseability passed")
 		_activateSenseAbility()
-	
+
 	if Input.is_action_just_pressed("Interact") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		
-	
+
+
 	# shift to dash
 	if Input.is_action_just_pressed("dash") and not dashing and dash_cooldown_timer.is_stopped():
 		dash_direction = direction
@@ -134,5 +126,8 @@ func _deactivateSenseAbility():
 			var meshInstance = enemy.get_node("MeshInstance3D")
 			meshInstance.material_override = enemyNormalMaterial
 
-	
+func _get_Player_node():
+	return self
+
+
 

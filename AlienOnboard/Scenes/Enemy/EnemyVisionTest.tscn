@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://brnsoicyapugk"]
 
-[ext_resource type="PackedScene" uid="uid://d3rsri2ovmpmk" path="res://Scenes/Player/player_PHANTOM_CAM.tscn" id="1_rxmo4"]
+[ext_resource type="PackedScene" uid="uid://d3rsri2ovmpmk" path="res://Scenes/Player/player.tscn" id="1_rxmo4"]
 [ext_resource type="PackedScene" uid="uid://cqtejkqmnfxg5" path="res://Scenes/Enemy/NPCwVision.tscn" id="2_l765j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h1ehm"]
@@ -55,4 +55,4 @@ shape = SubResource("ConcavePolygonShape3D_y4ui0")
 transform = Transform3D(0.999997, -0.0020334, 0.00141364, 0.0020311, 0.999997, 0.00161359, -0.00141695, -0.00161069, 0.999998, -3.91919, 0, 3.64091)
 
 [node name="NPCwVision" parent="." instance=ExtResource("2_l765j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.994359, 6.28359)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.994359, 3.79009)

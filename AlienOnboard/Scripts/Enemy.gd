@@ -19,18 +19,18 @@ func _ready():
 func _physics_process(delta):
 	var direction = Vector3()
 	nav.target_position = global_position
-	
+
 	direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()
-	
+
 	velocity = velocity.lerp(direction * speed , accel * delta)
 	move_and_slide()
-	
+
 	if vision:  # Vision is somehow stuck on NULL
 		var checkPlayer = vision.get_overlapping_bodies()
 		# Further processing...
-	
-			
+
+
 func _on_detection_timer_timeout():
 	detectsplayer = false
 	detectionTimerRunning = false
