@@ -79,7 +79,7 @@ font = ExtResource("12_kkne3")
 font_size = 21
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_menxs"]
-size = Vector3(5.57419, 5, 7.90179)
+size = Vector3(18.9339, 5.10254, 9.77914)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d1ivl"]
 size = Vector3(10.9371, 5, 4.75809)
@@ -231,6 +231,7 @@ shader_parameter/Fresnel_Color = Color(0, 0, 1, 1)
 shader_parameter/Scanline_Texture = ExtResource("9_oi1n3")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rs63a"]
+lightmap_size_hint = Vector2i(17, 12)
 material = SubResource("ShaderMaterial_qpmqh")
 size = Vector2(3, 2)
 
@@ -260,6 +261,7 @@ size = Vector2(2, 1.8)
 albedo_color = Color(0.858824, 1, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_j00p8"]
+lightmap_size_hint = Vector2i(35, 34)
 material = SubResource("StandardMaterial3D_8gxf6")
 size = Vector3(5.2, 0.2, 1.2)
 
@@ -267,6 +269,7 @@ size = Vector3(5.2, 0.2, 1.2)
 data = PackedVector3Array(-2.6, 0.1, 0.6, 2.6, 0.1, 0.6, -2.6, -0.1, 0.6, 2.6, 0.1, 0.6, 2.6, -0.1, 0.6, -2.6, -0.1, 0.6, 2.6, 0.1, -0.6, -2.6, 0.1, -0.6, 2.6, -0.1, -0.6, -2.6, 0.1, -0.6, -2.6, -0.1, -0.6, 2.6, -0.1, -0.6, 2.6, 0.1, 0.6, 2.6, 0.1, -0.6, 2.6, -0.1, 0.6, 2.6, 0.1, -0.6, 2.6, -0.1, -0.6, 2.6, -0.1, 0.6, -2.6, 0.1, -0.6, -2.6, 0.1, 0.6, -2.6, -0.1, -0.6, -2.6, 0.1, 0.6, -2.6, -0.1, 0.6, -2.6, -0.1, -0.6, 2.6, 0.1, 0.6, -2.6, 0.1, 0.6, 2.6, 0.1, -0.6, -2.6, 0.1, 0.6, -2.6, 0.1, -0.6, 2.6, 0.1, -0.6, -2.6, -0.1, 0.6, 2.6, -0.1, 0.6, -2.6, -0.1, -0.6, 2.6, -0.1, 0.6, 2.6, -0.1, -0.6, -2.6, -0.1, -0.6)
 
 [sub_resource type="BoxMesh" id="BoxMesh_hv5e0"]
+lightmap_size_hint = Vector2i(34, 46)
 size = Vector3(5, 1.5, 1)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_emhk0"]
@@ -288,6 +291,7 @@ size = Vector3(1, 1, 2)
 size = Vector3(1, 1, 2)
 
 [sub_resource type="PrismMesh" id="PrismMesh_0l3tk"]
+lightmap_size_hint = Vector2i(19, 26)
 left_to_right = 1.0
 size = Vector3(1, 1, 2)
 
@@ -462,285 +466,317 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59308, 3.37406, 1.72426)
 
 [node name="Lights" type="Node3D" parent="."]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
+[node name="OmniLightLab1" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.790937, 7.56077, 8.0764)
 light_energy = 2.983
+light_bake_mode = 1
+distance_fade_enabled = true
+omni_range = 14.021
+
+[node name="OmniLightLab2" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.790937, 7.6261, -0.683729)
+light_energy = 2.983
+light_bake_mode = 1
+distance_fade_enabled = true
+omni_range = 14.021
+
+[node name="OmniLightLab3" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.78259, 7.52189, -0.00451279)
+light_energy = 2.983
+light_bake_mode = 1
+distance_fade_enabled = true
+omni_range = 14.021
+
+[node name="OmniLightLab4" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.7781, 7.22945, 7.99651)
+light_energy = 2.983
+light_bake_mode = 1
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D5" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.3715, 7.73887, 3.16525)
-light_energy = 2.983
+light_energy = 0.4
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D6" type="OmniLight3D" parent="Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.689, 8.20323, 3.07703)
-light_energy = 2.983
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.689, 6.91085, 3.07703)
+light_energy = 0.4
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D7" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6043, 7.5697, -23.3202)
 light_energy = 0.339
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D8" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6043, 7.45093, -14.0476)
 light_energy = 0.339
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D11" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.3601, 7.08974, -35.8988)
 light_energy = 0.339
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D12" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.3601, 7.08974, -51.6577)
 light_energy = 0.339
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D23" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.1081, 6.65434, -50.7667)
 light_energy = 0.339
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D24" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.0022, 6.65434, -50.7667)
 light_energy = 0.339
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D25" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.443, 6.65434, -38.1734)
 light_energy = 0.339
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D26" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.443, 6.65434, -18.8314)
 light_energy = 0.339
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D27" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.2978, 6.65434, 2.23045)
 light_energy = 0.339
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D13" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.3601, 7.08974, -71.8696)
 light_energy = 0.339
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D14" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.3601, 7.08974, -106.262)
 light_energy = 0.339
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D15" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.9688, 7.08974, -83.2204)
 light_energy = 0.339
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D16" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7733, 7.08974, -82.8143)
 light_energy = 0.339
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D17" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.63442, 7.08974, -82.8143)
 light_energy = 0.339
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D18" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0939, 7.08974, -51.3813)
 light_energy = 0.339
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D19" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.440125, 7.08974, -51.3813)
 light_energy = 0.339
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D20" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7445, 7.08974, -51.3813)
 light_energy = 0.339
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D22" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2159, 7.08974, -69.7581)
 light_energy = 0.339
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D9" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.3352, 7.67608, -23.3131)
 light_energy = 0.339
+distance_fade_enabled = true
 omni_range = 14.021
 
 [node name="OmniLight3D10" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.3352, 7.42978, -14.6296)
 light_energy = 0.339
+distance_fade_enabled = true
 omni_range = 14.021
-
-[node name="OmniLight3D4" type="OmniLight3D" parent="Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.790937, 7.6261, -0.683729)
-light_energy = 2.983
-omni_range = 14.021
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.78259, 7.52189, -0.00451279)
-light_energy = 2.983
-omni_range = 14.021
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.7781, 7.22945, 7.99651)
-light_energy = 2.983
-omni_range = 14.021
-
-[node name="lightMesh" type="MeshInstance3D" parent="Lights"]
-transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, 0.4928, 8.32973, 0)
-mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
-
-[node name="lightMesh6" type="MeshInstance3D" parent="Lights"]
-transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, -17.4273, 8.32973, -14.1533)
-mesh = SubResource("BoxMesh_uvqwq")
-skeleton = NodePath("../../Ceiling")
-
-[node name="lightMesh7" type="MeshInstance3D" parent="Lights"]
-transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, -17.4273, 8.32973, -18.8509)
-mesh = SubResource("BoxMesh_uvqwq")
-skeleton = NodePath("../../Ceiling")
-
-[node name="lightMesh8" type="MeshInstance3D" parent="Lights"]
-transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, -17.4273, 8.32973, -23.361)
-mesh = SubResource("BoxMesh_uvqwq")
-skeleton = NodePath("../../Ceiling")
-
-[node name="lightMesh9" type="MeshInstance3D" parent="Lights"]
-transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, -33.2936, 8.32973, -14.1533)
-mesh = SubResource("BoxMesh_uvqwq")
-skeleton = NodePath("../../Ceiling")
-
-[node name="lightMesh10" type="MeshInstance3D" parent="Lights"]
-transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, -33.2936, 8.32973, -18.8509)
-mesh = SubResource("BoxMesh_uvqwq")
-skeleton = NodePath("../../Ceiling")
-
-[node name="lightMesh11" type="MeshInstance3D" parent="Lights"]
-transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, -33.2936, 8.32973, -23.361)
-mesh = SubResource("BoxMesh_uvqwq")
-skeleton = NodePath("../../Ceiling")
-
-[node name="lightMesh4" type="MeshInstance3D" parent="Lights"]
-transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, -14.2073, 8.32973, 3.31315)
-mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
-
-[node name="lightMesh12" type="MeshInstance3D" parent="Lights"]
-transform = Transform3D(-4.31777e-07, 0, 3.34513, 0, 1, 0, -9.87791, 0, -1.4622e-07, -23.109, 8.32973, -39.3282)
-mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
-
-[node name="lightMesh13" type="MeshInstance3D" parent="Lights"]
-transform = Transform3D(-4.31777e-07, 0, 3.34513, 0, 1, 0, -9.87791, 0, -1.4622e-07, -23.109, 8.32973, -53.6041)
-mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
-
-[node name="lightMesh25" type="MeshInstance3D" parent="Lights"]
-transform = Transform3D(-4.31777e-07, 0, 3.34513, 0, 1, 0, -9.87791, 0, -1.4622e-07, -51.1634, 8.32973, -39.6984)
-mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
-
-[node name="lightMesh26" type="MeshInstance3D" parent="Lights"]
-transform = Transform3D(-4.31777e-07, 0, 3.34513, 0, 1, 0, -9.87791, 0, -1.4622e-07, -51.1634, 8.32973, -18.9403)
-mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
-
-[node name="lightMesh27" type="MeshInstance3D" parent="Lights"]
-transform = Transform3D(-4.31777e-07, 0, 3.34513, 0, 1, 0, -9.87791, 0, -1.4622e-07, -48.0768, 8.32973, 1.86569)
-mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
-
-[node name="lightMesh14" type="MeshInstance3D" parent="Lights"]
-transform = Transform3D(-4.31777e-07, 0, 3.34513, 0, 1, 0, -9.87791, 0, -1.4622e-07, -23.109, 8.32973, -79.1121)
-mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
-
-[node name="lightMesh15" type="MeshInstance3D" parent="Lights"]
-transform = Transform3D(-4.31777e-07, 0, 3.34513, 0, 1, 0, -9.87791, 0, -1.4622e-07, -23.109, 8.32973, -108.476)
-mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
 
 [node name="OmniLight3D21" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.3601, 7.08974, -106.262)
 light_energy = 0.339
 omni_range = 14.021
 
-[node name="lightMesh28" type="MeshInstance3D" parent="Lights"]
+[node name="Lightmeshes" type="Node3D" parent="Lights"]
+
+[node name="lightMesh" type="MeshInstance3D" parent="Lights/Lightmeshes"]
+transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, 0.4928, 8.32973, 0)
+mesh = SubResource("BoxMesh_qg28s")
+skeleton = NodePath("../../../Ceiling")
+
+[node name="lightMesh6" type="MeshInstance3D" parent="Lights/Lightmeshes"]
+transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, -17.4273, 8.32973, -14.1533)
+mesh = SubResource("BoxMesh_uvqwq")
+skeleton = NodePath("../../../Ceiling")
+
+[node name="lightMesh7" type="MeshInstance3D" parent="Lights/Lightmeshes"]
+transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, -17.4273, 8.32973, -18.8509)
+mesh = SubResource("BoxMesh_uvqwq")
+skeleton = NodePath("../../../Ceiling")
+
+[node name="lightMesh8" type="MeshInstance3D" parent="Lights/Lightmeshes"]
+transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, -17.4273, 8.32973, -23.361)
+mesh = SubResource("BoxMesh_uvqwq")
+skeleton = NodePath("../../../Ceiling")
+
+[node name="lightMesh9" type="MeshInstance3D" parent="Lights/Lightmeshes"]
+transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, -33.2936, 8.32973, -14.1533)
+mesh = SubResource("BoxMesh_uvqwq")
+skeleton = NodePath("../../../Ceiling")
+
+[node name="lightMesh10" type="MeshInstance3D" parent="Lights/Lightmeshes"]
+transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, -33.2936, 8.32973, -18.8509)
+mesh = SubResource("BoxMesh_uvqwq")
+skeleton = NodePath("../../../Ceiling")
+
+[node name="lightMesh11" type="MeshInstance3D" parent="Lights/Lightmeshes"]
+transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, -33.2936, 8.32973, -23.361)
+mesh = SubResource("BoxMesh_uvqwq")
+skeleton = NodePath("../../../Ceiling")
+
+[node name="lightMesh4" type="MeshInstance3D" parent="Lights/Lightmeshes"]
+transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, -14.2073, 8.32973, 3.31315)
+mesh = SubResource("BoxMesh_qg28s")
+skeleton = NodePath("../../../Ceiling")
+
+[node name="lightMesh12" type="MeshInstance3D" parent="Lights/Lightmeshes"]
+transform = Transform3D(-4.31777e-07, 0, 3.34513, 0, 1, 0, -9.87791, 0, -1.4622e-07, -23.109, 8.32973, -39.3282)
+mesh = SubResource("BoxMesh_qg28s")
+skeleton = NodePath("../../../Ceiling")
+
+[node name="lightMesh13" type="MeshInstance3D" parent="Lights/Lightmeshes"]
+transform = Transform3D(-4.31777e-07, 0, 3.34513, 0, 1, 0, -9.87791, 0, -1.4622e-07, -23.109, 8.32973, -53.6041)
+mesh = SubResource("BoxMesh_qg28s")
+skeleton = NodePath("../../../Ceiling")
+
+[node name="lightMesh25" type="MeshInstance3D" parent="Lights/Lightmeshes"]
+transform = Transform3D(-4.31777e-07, 0, 3.34513, 0, 1, 0, -9.87791, 0, -1.4622e-07, -51.1634, 8.32973, -39.6984)
+mesh = SubResource("BoxMesh_qg28s")
+skeleton = NodePath("../../../Ceiling")
+
+[node name="lightMesh26" type="MeshInstance3D" parent="Lights/Lightmeshes"]
+transform = Transform3D(-4.31777e-07, 0, 3.34513, 0, 1, 0, -9.87791, 0, -1.4622e-07, -51.1634, 8.32973, -18.9403)
+mesh = SubResource("BoxMesh_qg28s")
+skeleton = NodePath("../../../Ceiling")
+
+[node name="lightMesh27" type="MeshInstance3D" parent="Lights/Lightmeshes"]
+transform = Transform3D(-4.31777e-07, 0, 3.34513, 0, 1, 0, -9.87791, 0, -1.4622e-07, -48.0768, 8.32973, 1.86569)
+mesh = SubResource("BoxMesh_qg28s")
+skeleton = NodePath("../../../Ceiling")
+
+[node name="lightMesh14" type="MeshInstance3D" parent="Lights/Lightmeshes"]
+transform = Transform3D(-4.31777e-07, 0, 3.34513, 0, 1, 0, -9.87791, 0, -1.4622e-07, -23.109, 8.32973, -79.1121)
+mesh = SubResource("BoxMesh_qg28s")
+skeleton = NodePath("../../../Ceiling")
+
+[node name="lightMesh15" type="MeshInstance3D" parent="Lights/Lightmeshes"]
 transform = Transform3D(-4.31777e-07, 0, 3.34513, 0, 1, 0, -9.87791, 0, -1.4622e-07, -23.109, 8.32973, -108.476)
 mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
+skeleton = NodePath("../../../Ceiling")
 
-[node name="lightMesh16" type="MeshInstance3D" parent="Lights"]
+[node name="lightMesh28" type="MeshInstance3D" parent="Lights/Lightmeshes"]
+transform = Transform3D(-4.31777e-07, 0, 3.34513, 0, 1, 0, -9.87791, 0, -1.4622e-07, -23.109, 8.32973, -108.476)
+mesh = SubResource("BoxMesh_qg28s")
+skeleton = NodePath("../../../Ceiling")
+
+[node name="lightMesh16" type="MeshInstance3D" parent="Lights/Lightmeshes"]
 transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, -14.7226, 8.32973, -83.077)
 mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
+skeleton = NodePath("../../../Ceiling")
 
-[node name="lightMesh17" type="MeshInstance3D" parent="Lights"]
+[node name="lightMesh17" type="MeshInstance3D" parent="Lights/Lightmeshes"]
 transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, -0.0527382, 8.32973, -83.077)
 mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
+skeleton = NodePath("../../../Ceiling")
 
-[node name="lightMesh18" type="MeshInstance3D" parent="Lights"]
+[node name="lightMesh18" type="MeshInstance3D" parent="Lights/Lightmeshes"]
 transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, 15.5079, 8.32973, -83.077)
 mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
+skeleton = NodePath("../../../Ceiling")
 
-[node name="lightMesh20" type="MeshInstance3D" parent="Lights"]
+[node name="lightMesh20" type="MeshInstance3D" parent="Lights/Lightmeshes"]
 transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, 15.5079, 8.32973, -51.1418)
 mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
+skeleton = NodePath("../../../Ceiling")
 
-[node name="lightMesh21" type="MeshInstance3D" parent="Lights"]
+[node name="lightMesh21" type="MeshInstance3D" parent="Lights/Lightmeshes"]
 transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, 0.530124, 8.32973, -51.1418)
 mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
+skeleton = NodePath("../../../Ceiling")
 
-[node name="lightMesh22" type="MeshInstance3D" parent="Lights"]
+[node name="lightMesh22" type="MeshInstance3D" parent="Lights/Lightmeshes"]
 transform = Transform3D(9.87791, 0, 0, 0, 0.999951, -0.0330445, 0, 0.0098784, 3.34497, -14.1391, 8.32973, -51.1418)
 mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
+skeleton = NodePath("../../../Ceiling")
 
-[node name="lightMesh23" type="MeshInstance3D" parent="Lights"]
+[node name="lightMesh23" type="MeshInstance3D" parent="Lights/Lightmeshes"]
 transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, -47.1517, 8.32973, -51.1418)
 mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
+skeleton = NodePath("../../../Ceiling")
 
-[node name="lightMesh24" type="MeshInstance3D" parent="Lights"]
+[node name="lightMesh24" type="MeshInstance3D" parent="Lights/Lightmeshes"]
 transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, -34.9193, 8.32973, -51.1418)
 mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
+skeleton = NodePath("../../../Ceiling")
 
-[node name="lightMesh19" type="MeshInstance3D" parent="Lights"]
+[node name="lightMesh19" type="MeshInstance3D" parent="Lights/Lightmeshes"]
 transform = Transform3D(-4.31777e-07, 0, 3.34513, 0, 1, 0, -9.87791, 0, -1.4622e-07, 19.4503, 8.32973, -70.545)
 mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
+skeleton = NodePath("../../../Ceiling")
 
-[node name="lightMesh5" type="MeshInstance3D" parent="Lights"]
+[node name="lightMesh5" type="MeshInstance3D" parent="Lights/Lightmeshes"]
 transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, -27.1943, 8.32973, 3.31315)
 mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
+skeleton = NodePath("../../../Ceiling")
 
-[node name="w" type="MeshInstance3D" parent="Lights"]
+[node name="w" type="MeshInstance3D" parent="Lights/Lightmeshes"]
 transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, 12.4116, 8.32973, 0)
 mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
+skeleton = NodePath("../../../Ceiling")
 
-[node name="lightMesh2" type="MeshInstance3D" parent="Lights"]
+[node name="lightMesh2" type="MeshInstance3D" parent="Lights/Lightmeshes"]
 transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, 0.4928, 8.32973, 7.7967)
 mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
+skeleton = NodePath("../../../Ceiling")
 
-[node name="lightMesh3" type="MeshInstance3D" parent="Lights"]
+[node name="lightMesh3" type="MeshInstance3D" parent="Lights/Lightmeshes"]
 transform = Transform3D(9.87791, 0, 0, 0, 1, 0, 0, 0, 3.34513, 11.9725, 8.35459, 7.90542)
 mesh = SubResource("BoxMesh_qg28s")
-skeleton = NodePath("../../Ceiling")
+skeleton = NodePath("../../../Ceiling")
 
 [node name="Gates" type="Node3D" parent="."]
 
@@ -816,11 +852,12 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="TutorialPanel" type="Panel" parent="TutorialTriggers/Control"]
+visible = false
 layout_mode = 2
 offset_left = 10.0
 offset_top = 10.0
-offset_right = 510.0
-offset_bottom = 210.0
+offset_right = 578.0
+offset_bottom = 270.0
 
 [node name="GettingStartedLabel" type="Label" parent="TutorialTriggers/Control/TutorialPanel"]
 visible = false
@@ -981,7 +1018,7 @@ label_settings = SubResource("LabelSettings_0m527")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.53601, 2.76377, 3.41915)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialTriggers/HowToWalkArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.63765, 2.06477, -0.166473)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.954209, 2.0135, 0.772203)
 shape = SubResource("BoxShape3D_menxs")
 
 [node name="HowToJumpArea" type="Area3D" parent="TutorialTriggers"]
@@ -1002,7 +1039,7 @@ shape = SubResource("BoxShape3D_d1ivl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7374, 2.76377, 2.98695)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialTriggers/QuestTrigger"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7813, 2.06477, -0.775307)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.62923, 2.06477, -0.775307)
 shape = SubResource("BoxShape3D_menxs")
 
 [node name="LabProps" type="Node3D" parent="."]
