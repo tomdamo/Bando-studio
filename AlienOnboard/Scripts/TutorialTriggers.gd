@@ -36,9 +36,10 @@ func _process(delta):
 
 
 func _on_how_to_walk_area_area_entered(area):
-	TutorialPanel.show()
-	GettingStartedLabel.show()
-	WalkLabel.show()
+	if !quest1Done:
+		TutorialPanel.show()
+		GettingStartedLabel.show()
+		WalkLabel.show()
 
 
 func _on_how_to_walk_area_area_exited(area):
@@ -50,9 +51,10 @@ func _on_how_to_walk_area_area_exited(area):
 
 
 func _on_how_to_jump_area_area_entered(area):
-	TutorialPanel.show()
-	GettingStartedLabel.show()
-	JumpLabel.show()
+	if !quest1Done:		
+		TutorialPanel.show()
+		GettingStartedLabel.show()
+		JumpLabel.show()
 
 func _on_how_to_jump_area_area_exited(area):
 	TutorialPanel.hide()
@@ -61,9 +63,10 @@ func _on_how_to_jump_area_area_exited(area):
 
 
 func _on_how_to_sense_area_area_entered(area):
-	TutorialPanel.show()
-	WatchoutLabel.show()
-	SenseLabel.show()
+	if !quest1Done:		
+		TutorialPanel.show()
+		WatchoutLabel.show()
+		SenseLabel.show()
 
 
 func _on_how_to_sense_area_area_exited(area):
@@ -73,9 +76,10 @@ func _on_how_to_sense_area_area_exited(area):
 
 
 func _on_quest_trigger_area_entered(area):
-	QuestPanel.show()
-	QuestLabel.show()
-	Quest1Label.show()
+	if !quest1Done:		
+		QuestPanel.show()
+		QuestLabel.show()
+		Quest1Label.show()
 
 
 func _on_quest_finish_trigger_area_entered(area):
