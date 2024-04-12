@@ -26,9 +26,10 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	super(delta)
 
-	if velocity.length() > 0.2:
+	if velocity.length() > 0.2 and not dashing and is_on_floor():
 		var look_direction: Vector2 = Vector2(velocity.z, velocity.x)
 		_model.rotation.y = look_direction.angle()
+		
 
 func _unhandled_input(event: InputEvent) -> void:
 	if _player_pcam.get_follow_mode() == _player_pcam.Constants.FollowMode.THIRD_PERSON:
