@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bn1bxbpeyv5dv"]
+[gd_scene load_steps=14 format=3 uid="uid://bn1bxbpeyv5dv"]
 
 [ext_resource type="Script" path="res://Scripts/Spaceship.gd" id="2_1avu4"]
 [ext_resource type="Shader" path="res://Textures/Shaders/PlanetShader.gdshader" id="2_1x8fc"]
@@ -27,6 +27,9 @@ material = SubResource("ShaderMaterial_ecujf")
 [sub_resource type="BoxMesh" id="BoxMesh_pdlqd"]
 size = Vector3(4, 3, 9)
 
+[sub_resource type="BoxMesh" id="BoxMesh_lfijb"]
+size = Vector3(3, 3, 3)
+
 [node name="World" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -43,9 +46,17 @@ mesh = SubResource("BoxMesh_pdlqd")
 skeleton = NodePath("../PhantomCamera3D")
 script = ExtResource("2_1avu4")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spaceship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.26959, -0.176824, -2.90069)
+mesh = SubResource("BoxMesh_lfijb")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Spaceship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83879, -0.176824, -2.90068)
+mesh = SubResource("BoxMesh_lfijb")
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.5994, 0, 64.8248)
-fov = 74.4936
+fov = 74.5536
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 script = ExtResource("2_tna02")
