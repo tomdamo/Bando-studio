@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dwnp3387tfw5x" path="res://Textures/Skybox/SpacePanoramas/panorama6.jpg" id="1_bi5js"]
 [ext_resource type="Script" path="res://Scripts/Player3rdPerson.gd" id="1_hs7xj"]
-[ext_resource type="Script" path="res://Scenes/World.gd" id="1_xpfe0"]
+[ext_resource type="Script" path="res://Scripts/World.gd" id="1_xpfe0"]
 [ext_resource type="Texture2D" uid="uid://c6t5uouul4cf7" path="res://Textures/Crosshair/Crosshair 2.png" id="2_c57u8"]
 [ext_resource type="Texture2D" uid="uid://dbe1rrtc6aowd" path="res://Textures/PNG/Orange/texture_03.png" id="3_4go0e"]
 [ext_resource type="Material" uid="uid://ctdl8fx6qghl7" path="res://Textures/groundTexture.tres" id="4_1n2p5"]
