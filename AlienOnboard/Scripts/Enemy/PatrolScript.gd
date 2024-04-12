@@ -1,4 +1,5 @@
 extends ActionLeaf
+
 @onready var basic_guard = "$BasicGuard"
 
 @export var _waypoints: Array[Vector3]

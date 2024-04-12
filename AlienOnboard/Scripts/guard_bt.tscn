@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://pwu26vhgh16c"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_lsel2"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="2_yiuyw"]
+[ext_resource type="Script" path="res://Scripts/Enemy/PatrolScript.gd" id="3_a2eg1"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_85d1l"]
+[ext_resource type="Script" path="res://Scripts/Enemy/CheckEnemyInAttackRange.gd" id="5_os2jw"]
+[ext_resource type="Script" path="res://Scripts/Enemy/TaskAttack.gd" id="6_uju5a"]
+[ext_resource type="Script" path="res://Scripts/Enemy/AI/CheckEnemyInFOVRange.gd" id="7_shky4"]
+[ext_resource type="Script" path="res://Scripts/Enemy/AI/TaskGotoTarget.gd" id="8_n8fbc"]
+
+[node name="GuardBT" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("1_lsel2")
+blackboard = NodePath("@Node@24501")
+actor = NodePath("..")
+
+[node name="SelectorComposite" type="Node" parent="."]
+script = ExtResource("2_yiuyw")
+
+[node name="SelectorComposite" type="Node" parent="SelectorComposite"]
+script = ExtResource("2_yiuyw")
+
+[node name="SequenceComposite" type="Node" parent="SelectorComposite/SelectorComposite"]
+script = ExtResource("4_85d1l")
+
+[node name="CheckEnemyInAttackRange" type="Node" parent="SelectorComposite/SelectorComposite/SequenceComposite"]
+script = ExtResource("5_os2jw")
+
+[node name="TaskAttack" type="Node" parent="SelectorComposite/SelectorComposite/SequenceComposite"]
+script = ExtResource("6_uju5a")
+
+[node name="SequenceComposite2" type="Node" parent="SelectorComposite/SelectorComposite"]
+script = ExtResource("4_85d1l")
+
+[node name="CheckEnemyInFOVRange" type="Node" parent="SelectorComposite/SelectorComposite/SequenceComposite2"]
+script = ExtResource("7_shky4")
+
+[node name="TaskGotoTarget" type="Node" parent="SelectorComposite/SelectorComposite/SequenceComposite2"]
+script = ExtResource("8_n8fbc")
+
+[node name="Patrol" type="Node" parent="SelectorComposite/SelectorComposite"]
+script = ExtResource("3_a2eg1")
+_waypoints = Array[Vector3]([Vector3(1, -1, 2.08165e-12), Vector3(5, -1, 2.08165e-12)])

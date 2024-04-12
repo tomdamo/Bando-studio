@@ -20,5 +20,5 @@ func tick(actor, blackboard: Blackboard):
 					if "Player" in collider.name:
 						actor.find_child("VisionRaycast").debug_shape_custom_color = Color(174,8,0)
 						print(self)
-						return SUCCESS
-	return RUNNING
+				return SUCCESS
+	return FAILURE

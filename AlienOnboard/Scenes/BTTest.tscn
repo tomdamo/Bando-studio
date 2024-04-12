@@ -1,11 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://cnik52f7s7roy"]
+[gd_scene load_steps=17 format=3 uid="uid://cnik52f7s7roy"]
 
 [ext_resource type="Script" path="res://Scripts/World.gd" id="1_n5lml"]
 [ext_resource type="Material" uid="uid://ctdl8fx6qghl7" path="res://Textures/groundTexture.tres" id="2_mnjd3"]
 [ext_resource type="Material" uid="uid://doe4ki7xdi47w" path="res://Textures/walltext.tres" id="3_acm4n"]
 [ext_resource type="Texture2D" uid="uid://dwnp3387tfw5x" path="res://Textures/Skybox/SpacePanoramas/panorama6.jpg" id="4_q3lty"]
 [ext_resource type="PackedScene" uid="uid://d3rsri2ovmpmk" path="res://Scenes/Player/player.tscn" id="5_s3s2r"]
-[ext_resource type="PackedScene" uid="uid://jbsbnnwpqfb8" path="res://Scripts/Enemy/GuardBT.tscn" id="8_31pih"]
 [ext_resource type="Script" path="res://Scripts/Enemy/AI/BasicGuard.gd" id="8_srx51"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_48nfy"]
@@ -255,8 +254,10 @@ light_bake_mode = 1
 transform = Transform3D(0.999997, -0.0020334, 0.00141364, 0.0020311, 0.999997, 0.00161359, -0.00141695, -0.00161069, 0.999998, -3.91919, 0, 3.64091)
 
 [node name="Enemy" type="CharacterBody3D" parent="."]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2, -1, 4)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2, -1.5, 4)
 collision_layer = 2
+collision_mask = 2
+floor_constant_speed = true
 script = ExtResource("8_srx51")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy"]
@@ -286,6 +287,3 @@ autostart = true
 target_position = Vector3(2.08165e-12, 5, -100)
 collide_with_areas = true
 debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="BeehaveTree" parent="Enemy" node_paths=PackedStringArray("blackboard") instance=ExtResource("8_31pih")]
-blackboard = NodePath("@Node@17611")

@@ -18,4 +18,5 @@ func tick(actor, blackboard: Blackboard):
 				actor.find_child("VisionRaycast").force_raycast_update()
 				print(self)
 				return SUCCESS
-	return FAILURE
+	else:
+		return FAILURE
