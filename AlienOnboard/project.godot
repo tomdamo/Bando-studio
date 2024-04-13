@@ -12,7 +12,7 @@ config_version=5
 
 config/name="AlienOnboard"
 config/description="GDS project. Game by Furat and Tom."
-run/main_scene="res://Scenes/UI/OpeningScene.tscn"
+run/main_scene="res://Scenes/UI/StartScreen.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/show_image=false
 boot_splash/image="res://Scenes/UI/logo1.0.png"
