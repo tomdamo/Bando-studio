@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://cejpgv0y5t1x4"]
+[gd_scene load_steps=91 format=3 uid="uid://cejpgv0y5t1x4"]
 
 [ext_resource type="Environment" uid="uid://bakv155d3f0pc" path="res://Scenes/Player/worldEnv.tres" id="1_823g4"]
 [ext_resource type="Material" uid="uid://c3jvamrxrrh8h" path="res://Textures/PanelMaterial.tres" id="2_tn1mc"]
@@ -87,6 +87,9 @@ size = Vector3(18.9339, 5.10254, 9.77914)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d1ivl"]
 size = Vector3(10.9371, 5, 4.75809)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_06c7c"]
+size = Vector3(23.9843, 6.45264, 5.54292)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_t5ay2"]
 height = 9.5
@@ -1077,6 +1080,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6254, 3.64485, -44.3264)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.34697, 2.06477, 2.56459)
 shape = SubResource("BoxShape3D_d1ivl")
 
+[node name="HowToDashArea" type="Area3D" parent="TutorialTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.3111, 3.64485, -53.3813)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialTriggers/HowToDashArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46527, 1.33845, 2.3131)
+shape = SubResource("BoxShape3D_06c7c")
+
 [node name="QuestTrigger" type="Area3D" parent="TutorialTriggers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7374, 2.76377, 2.98695)
 
@@ -1763,6 +1773,8 @@ transform = Transform3D(-0.946728, 0, -0.322034, 0, 1, 0, 0.322034, 0, -0.946728
 [connection signal="area_exited" from="TutorialTriggers/HowToJumpArea" to="TutorialTriggers" method="_on_how_to_jump_area_area_exited"]
 [connection signal="area_entered" from="TutorialTriggers/HowToSenseArea" to="TutorialTriggers" method="_on_how_to_sense_area_area_entered"]
 [connection signal="area_exited" from="TutorialTriggers/HowToSenseArea" to="TutorialTriggers" method="_on_how_to_sense_area_area_exited"]
+[connection signal="area_entered" from="TutorialTriggers/HowToDashArea" to="TutorialTriggers" method="_on_how_to_dash_area_area_entered"]
+[connection signal="area_exited" from="TutorialTriggers/HowToDashArea" to="TutorialTriggers" method="_on_how_to_dash_area_area_exited"]
 [connection signal="area_entered" from="TutorialTriggers/QuestTrigger" to="TutorialTriggers" method="_on_quest_trigger_area_entered"]
 [connection signal="area_exited" from="TutorialTriggers/QuestTrigger" to="TutorialTriggers" method="_on_quest_trigger_area_exited"]
 [connection signal="area_entered" from="TutorialTriggers/QuestFinishTrigger" to="TutorialTriggers" method="_on_quest_finish_trigger_area_entered"]

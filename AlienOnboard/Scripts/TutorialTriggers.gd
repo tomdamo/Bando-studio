@@ -87,3 +87,16 @@ func _on_quest_finish_trigger_area_entered(area):
 	QuestTimer.start()
 	quest1Done = true
 	
+
+
+func _on_how_to_dash_area_area_entered(area):
+	if !quest1Done:		
+		TutorialPanel.show()
+		GettingStartedLabel.show()
+		DashLabel.show()
+
+
+func _on_how_to_dash_area_area_exited(area):
+	TutorialPanel.hide()
+	GettingStartedLabel.hide()
+	DashLabel.hide()
