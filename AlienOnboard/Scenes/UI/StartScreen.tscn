@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Spaceship.gd" id="3_dos12"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_a84me"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="5_ys583"]
-[ext_resource type="PackedScene" uid="uid://7lb2out7gbml" path="res://Scenes/UI/StartMenu.tscn" id="6_ntdsl"]
+[ext_resource type="PackedScene" uid="uid://7lb2out7gbml" path="res://Scenes/UI/StartMenu.tscn" id="6_jp10s"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ivoyt"]
 panorama = ExtResource("1_cijqd")
@@ -56,7 +56,7 @@ mesh = SubResource("BoxMesh_lfijb")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.5994, 0, 64.8248)
-fov = 74.9902
+fov = 74.1361
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 script = ExtResource("4_a84me")
@@ -76,4 +76,4 @@ camera_3D_resource = null
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="PhantomCamera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0223694, -0.497341, 119.443)
 
-[node name="Menu" parent="." instance=ExtResource("6_ntdsl")]
+[node name="StartMenu" parent="." instance=ExtResource("6_jp10s")]
