@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_tna02"]
 [ext_resource type="Texture2D" uid="uid://dwnp3387tfw5x" path="res://Textures/Skybox/SpacePanoramas/panorama6.jpg" id="3_8u6nd"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="3_kr4u5"]
-[ext_resource type="PackedScene" uid="uid://7lb2out7gbml" path="res://UI/MainMenu.tscn" id="6_ullaa"]
+[ext_resource type="PackedScene" uid="uid://7lb2out7gbml" path="res://Scenes/UI/MainMenu.tscn" id="6_ullaa"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ivoyt"]
 panorama = ExtResource("3_8u6nd")
