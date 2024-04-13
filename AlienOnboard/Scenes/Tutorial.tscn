@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://cejpgv0y5t1x4"]
+[gd_scene load_steps=89 format=3 uid="uid://cejpgv0y5t1x4"]
 
 [ext_resource type="Environment" uid="uid://bakv155d3f0pc" path="res://Scenes/Player/worldEnv.tres" id="1_823g4"]
 [ext_resource type="Material" uid="uid://c3jvamrxrrh8h" path="res://Textures/PanelMaterial.tres" id="2_tn1mc"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://ugd75701em2q" path="res://Textures/Shaders/HologramLines.png" id="9_oi1n3"]
 [ext_resource type="FontFile" uid="uid://dlvhjyl50fcs4" path="res://Textures/Font/batmfa__.ttf" id="12_kkne3"]
 [ext_resource type="PackedScene" uid="uid://cqtejkqmnfxg5" path="res://Scenes/Enemy/NPCwVision.tscn" id="13_t5glx"]
+[ext_resource type="PackedScene" uid="uid://vrrsiutxhi0v" path="res://Scenes/UI/PauseMenu.tscn" id="14_0ep6x"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_pwsl1"]
 material = ExtResource("2_tn1mc")
@@ -860,7 +861,12 @@ shape = SubResource("BoxShape3D_kcfnh")
 [node name="TutorialTriggers" type="Node3D" parent="."]
 script = ExtResource("9_1a0f1")
 
+[node name="PauseMenu" parent="TutorialTriggers" instance=ExtResource("14_0ep6x")]
+visible = false
+top_level = true
+
 [node name="Control" type="Control" parent="TutorialTriggers"]
+visibility_layer = 2
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -868,6 +874,7 @@ offset_bottom = 40.0
 
 [node name="TutorialPanel" type="Panel" parent="TutorialTriggers/Control"]
 visible = false
+show_behind_parent = true
 layout_mode = 2
 offset_left = 10.0
 offset_top = 10.0

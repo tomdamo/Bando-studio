@@ -1,10 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://7lb2out7gbml"]
 
-<<<<<<<< HEAD:AlienOnboard/UI/MainMenu.tscn
-[ext_resource type="Script" path="res://UI/MainMenu.gd" id="1_kixtv"]
-========
+
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_kixtv"]
->>>>>>>> origin/dev:AlienOnboard/Scenes/MainMenu.tscn
 
 [sub_resource type="LabelSettings" id="LabelSettings_sm0pk"]
 font_size = 54
