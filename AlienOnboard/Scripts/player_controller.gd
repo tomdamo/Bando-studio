@@ -13,6 +13,8 @@ var dash_timer = 0.0
 
 @onready var _camera: Camera3D = %MainCamera3D
 
+@onready var pauseMenu = $PauseMenu
+var paused = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = 9.8
 
@@ -89,7 +91,7 @@ func _physics_process(delta: float) -> void:
 		INPUT_MOVE_UP_STRINGNAME,
 		INPUT_MOVE_DOWM_STRINGNAME
 	)
-	
+	#Quit with f1
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 		
@@ -100,7 +102,9 @@ func _physics_process(delta: float) -> void:
 		_activateSenseAbility()
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-			
+	
+	if Input.is_action_just_pressed("pause"):
+		_pauseMenu()
 
 	var cam_dir: Vector3 = -_camera.global_transform.basis.z
 
@@ -168,3 +172,16 @@ func _deactivateSenseAbility():
 		if enemy.has_node("MeshInstance3D"):
 			var meshInstance = enemy.get_node("MeshInstance3D")
 			meshInstance.material_override = enemyNormalMaterial
+
+func _pauseMenu():
+	if paused:
+		pauseMenu.hide()
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		get_tree().paused = false
+	else:
+		pauseMenu.show()
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().paused = true
+
+	
+	paused = !paused

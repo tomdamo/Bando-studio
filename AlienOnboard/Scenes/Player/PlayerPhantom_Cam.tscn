@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://4i5csj0s34nb"]
+[gd_scene load_steps=19 format=3 uid="uid://4i5csj0s34nb"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_gm4dk"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="2_32qfk"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3D_resource.gd" id="4_kk8js"]
 [ext_resource type="Script" path="res://Scripts/player_controller_third_person.gd" id="5_y8pq1"]
 [ext_resource type="Texture2D" uid="uid://dbe1rrtc6aowd" path="res://Textures/PNG/Orange/texture_03.png" id="7_skg8d"]
+[ext_resource type="PackedScene" uid="uid://vrrsiutxhi0v" path="res://Scenes/UI/PauseMenu.tscn" id="8_p1cf0"]
 
 [sub_resource type="Resource" id="Resource_0yw0t"]
 script = ExtResource("3_5feqe")
@@ -235,5 +236,8 @@ one_shot = true
 [node name="ActiveSenseTime" type="Timer" parent="PlayerCharacterBody3D"]
 wait_time = 6.0
 one_shot = true
+
+[node name="PauseMenu" parent="PlayerCharacterBody3D" instance=ExtResource("8_p1cf0")]
+visible = false
 
 [connection signal="hidden" from="PlayerCharacterBody3D/Control/Crosshair" to="PlayerCharacterBody3D" method="_on_crosshair_hidden"]

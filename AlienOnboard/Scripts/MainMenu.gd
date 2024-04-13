@@ -10,9 +10,9 @@ func _process(delta):
 	pass
 
 func _on_start_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/Tutorial.tscn");
-
-
+	var loadingScreen = load("res://Scenes/UI/loading.tscn")
+	get_tree().change_scene_to_packed(loadingScreen)
+	
 #this needs to change, to get back to the previous scene / menu.
 func _on_options_button_pressed():
 	get_tree().change_scene_to_file("res://UI/OptionsMenu.tscn");

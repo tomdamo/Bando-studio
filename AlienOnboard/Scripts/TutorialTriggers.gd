@@ -1,5 +1,5 @@
 extends Node3D
-
+#All tutorial stuff..
 @onready var TutorialPanel = $Control/TutorialPanel
 @onready var WalkLabel = $Control/TutorialPanel/HowToWalkLabel
 @onready var GettingStartedLabel = $Control/TutorialPanel/GettingStartedLabel
@@ -11,8 +11,14 @@ extends Node3D
 @onready var Quest1Label = $Control/QuestPanel/Quest1
 @onready var QuestTipLabel = $Control/QuestPanel/Tip
 @onready var WatchoutLabel = $Control/TutorialPanel/WatchOutLabel
+@onready var QuestTimer = $Control/QuestPanel/FinishTimer
 
+#Storage Door switch open after quest
+@onready var ClosedStorageDoor = $"../Gates/GateClosedStorage"
+@onready var OpenStorageDoor = $"../Gates/GateOpenStorage2"
+@onready var closedColl = $"../Gates/GateClosedStorage/StaticBody3D/CollisionShape3D"
 
+var quest1Done = false;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -20,13 +26,20 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if QuestTimer.is_stopped() and quest1Done:
+		QuestPanel.hide()
+		QuestLabel.hide()
+		Quest1Label.hide()
+		ClosedStorageDoor.hide()
+		closedColl.disabled = true
+		OpenStorageDoor.show()
 
 
 func _on_how_to_walk_area_area_entered(area):
-	TutorialPanel.show()
-	GettingStartedLabel.show()
-	WalkLabel.show()
+	if !quest1Done:
+		TutorialPanel.show()
+		GettingStartedLabel.show()
+		WalkLabel.show()
 
 
 func _on_how_to_walk_area_area_exited(area):
@@ -38,10 +51,10 @@ func _on_how_to_walk_area_area_exited(area):
 
 
 func _on_how_to_jump_area_area_entered(area):
-	TutorialPanel.show()
-	GettingStartedLabel.show()
-	JumpLabel.show()
-
+	if !quest1Done:		
+		TutorialPanel.show()
+		GettingStartedLabel.show()
+		JumpLabel.show()
 
 func _on_how_to_jump_area_area_exited(area):
 	TutorialPanel.hide()
@@ -50,9 +63,10 @@ func _on_how_to_jump_area_area_exited(area):
 
 
 func _on_how_to_sense_area_area_entered(area):
-	TutorialPanel.show()
-	WatchoutLabel.show()
-	SenseLabel.show()
+	if !quest1Done:		
+		TutorialPanel.show()
+		WatchoutLabel.show()
+		SenseLabel.show()
 
 
 func _on_how_to_sense_area_area_exited(area):
@@ -62,14 +76,27 @@ func _on_how_to_sense_area_area_exited(area):
 
 
 func _on_quest_trigger_area_entered(area):
-	QuestPanel.show()
-	QuestLabel.show()
-	Quest1Label.show()
+	if !quest1Done:		
+		QuestPanel.show()
+		QuestLabel.show()
+		Quest1Label.show()
+
+
+func _on_quest_finish_trigger_area_entered(area):
 	QuestTipLabel.show()
+	QuestTimer.start()
+	quest1Done = true
+	
 
 
-func _on_quest_trigger_area_exited(area):
-	QuestPanel.hide()
-	QuestLabel.hide()
-	Quest1Label.hide()
-	QuestTipLabel.hide()
+func _on_how_to_dash_area_area_entered(area):
+	if !quest1Done:		
+		TutorialPanel.show()
+		GettingStartedLabel.show()
+		DashLabel.show()
+
+
+func _on_how_to_dash_area_area_exited(area):
+	TutorialPanel.hide()
+	GettingStartedLabel.hide()
+	DashLabel.hide()
