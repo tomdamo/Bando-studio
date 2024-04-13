@@ -56,7 +56,6 @@ mesh = SubResource("BoxMesh_lfijb")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.5994, 0, 64.8248)
-fov = 74.9899
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 script = ExtResource("2_tna02")

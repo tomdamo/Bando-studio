@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://cejpgv0y5t1x4"]
+[gd_scene load_steps=90 format=3 uid="uid://cejpgv0y5t1x4"]
 
 [ext_resource type="Environment" uid="uid://bakv155d3f0pc" path="res://Scenes/Player/worldEnv.tres" id="1_823g4"]
 [ext_resource type="Material" uid="uid://c3jvamrxrrh8h" path="res://Textures/PanelMaterial.tres" id="2_tn1mc"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://4i5csj0s34nb" path="res://Scenes/Player/PlayerPhantom_Cam.tscn" id="8_chp8q"]
 [ext_resource type="Script" path="res://Scripts/TutorialTriggers.gd" id="9_1a0f1"]
 [ext_resource type="Texture2D" uid="uid://ugd75701em2q" path="res://Textures/Shaders/HologramLines.png" id="9_oi1n3"]
+[ext_resource type="PackedScene" uid="uid://rlldo7t3bn5s" path="res://Scenes/UI/GameOver.tscn" id="10_yqx2j"]
 [ext_resource type="FontFile" uid="uid://dlvhjyl50fcs4" path="res://Textures/Font/batmfa__.ttf" id="12_kkne3"]
 [ext_resource type="PackedScene" uid="uid://cqtejkqmnfxg5" path="res://Scenes/Enemy/NPCwVision.tscn" id="13_t5glx"]
 [ext_resource type="PackedScene" uid="uid://vrrsiutxhi0v" path="res://Scenes/UI/PauseMenu.tscn" id="14_0ep6x"]
@@ -864,6 +865,9 @@ script = ExtResource("9_1a0f1")
 [node name="PauseMenu" parent="TutorialTriggers" instance=ExtResource("14_0ep6x")]
 visible = false
 top_level = true
+
+[node name="GameverMenu" parent="TutorialTriggers" instance=ExtResource("10_yqx2j")]
+visible = false
 
 [node name="Control" type="Control" parent="TutorialTriggers"]
 visibility_layer = 2

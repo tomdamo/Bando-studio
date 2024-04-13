@@ -1,17 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://vrrsiutxhi0v"]
+[gd_scene load_steps=7 format=3 uid="uid://rlldo7t3bn5s"]
 
-[ext_resource type="Script" path="res://Scenes/UI/PauseMenu.gd" id="1_5wh1r"]
-[ext_resource type="FontFile" uid="uid://dlvhjyl50fcs4" path="res://Textures/Font/batmfa__.ttf" id="1_jq6l8"]
-[ext_resource type="Texture2D" uid="uid://c7r5072nr5o1" path="res://Scenes/UI/ALIEN_ON_BOARD_PICTOGRAM-removebg-preview.png" id="2_7ni5h"]
+[ext_resource type="Script" path="res://Scenes/UI/GameOver.gd" id="1_h3af3"]
+[ext_resource type="FontFile" uid="uid://dlvhjyl50fcs4" path="res://Textures/Font/batmfa__.ttf" id="2_6a64o"]
+[ext_resource type="Texture2D" uid="uid://c7r5072nr5o1" path="res://Scenes/UI/ALIEN_ON_BOARD_PICTOGRAM-removebg-preview.png" id="3_3anho"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cl6r0"]
-font = ExtResource("1_jq6l8")
+font = ExtResource("2_6a64o")
 font_size = 100
 
-[sub_resource type="Theme" id="Theme_asf55"]
-default_font = ExtResource("1_jq6l8")
+[sub_resource type="LabelSettings" id="LabelSettings_07mjw"]
+font = ExtResource("2_6a64o")
+font_size = 50
 
-[node name="PauseMenu" type="Control"]
+[sub_resource type="Theme" id="Theme_asf55"]
+default_font = ExtResource("2_6a64o")
+
+[node name="GameverMenu" type="Control"]
 process_mode = 2
 layout_mode = 3
 anchors_preset = 15
@@ -19,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_5wh1r")
+script = ExtResource("1_h3af3")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -39,13 +43,37 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="Panel"]
-layout_mode = 2
-offset_left = 710.0
-offset_top = 372.0
-offset_right = 1214.0
-offset_bottom = 472.0
-text = "PAUSEd"
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -365.0
+offset_top = -218.0
+offset_right = 365.0
+offset_bottom = -118.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER"
 label_settings = SubResource("LabelSettings_cl6r0")
+
+[node name="Label2" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -423.0
+offset_top = -301.0
+offset_right = 419.0
+offset_bottom = 152.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "FEEDback will always 
+be appreciated🙏"
+label_settings = SubResource("LabelSettings_07mjw")
 
 [node name="TextureRect" type="TextureRect" parent="Panel"]
 layout_mode = 1
@@ -58,7 +86,7 @@ offset_left = -500.0
 offset_top = -500.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("2_7ni5h")
+texture = ExtResource("3_3anho")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -78,23 +106,17 @@ theme = SubResource("Theme_asf55")
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("Quit")
-focus_neighbor_bottom = NodePath("Resume")
+focus_neighbor_bottom = NodePath("Startover")
 
-[node name="Resume" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Startover" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "Resume"
-
-[node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "Options"
+text = "start over"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Quit"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Startover" to="." method="_on_startover_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
