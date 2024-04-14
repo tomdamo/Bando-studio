@@ -16,7 +16,8 @@ func enter():
 	get_lights_in_range(_range)
 
 func exit():
-	print("Exiting StateLevel2")
+	#print("Exiting StateLevel2")
+	pass
 
 func update(delta):
 	print("Updating StateLevel2")
@@ -30,7 +31,7 @@ func get_lights_in_range(range):
 			var light_position = light.global_transform.origin
 			if player_position.distance_to(light_position) <= range:
 				_lights_in_range.append(light)
-				print(light)
+				#print(light)
 				add_timer_to_light(light)
 
 func add_timer_to_light(light):

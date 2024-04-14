@@ -21,7 +21,8 @@ func tick(actor, blackboard: Blackboard):
 					var playerPosition = overlap.global_transform.origin
 					var distance_to_player = actor.global_transform.origin.distance_to(playerPosition)
 					if distance_to_player < actor.attack_range:
-						print("Is in range")
+						var gameOverScreen = load("res://Scenes/UI/GameOver.tscn")
+						get_tree().change_scene_to_packed(gameOverScreen)
 						return SUCCESS
 					else:
 						print("Is not in range")

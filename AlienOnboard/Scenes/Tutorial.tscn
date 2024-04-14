@@ -853,14 +853,6 @@ light_specular = 0.0
 spot_range = 17.805
 spot_angle = 22.0506
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="lights" groups=["lights"]]
-transform = Transform3D(1, 0, 0, 0, 0.254669, 0.967028, 0, -0.967028, 0.254669, 0, 9.09155, 6.22673)
-light_energy = 9.008
-light_indirect_energy = 1.05
-light_size = 2.71
-spot_range = 14.827
-spot_angle = 28.36
-
 [node name="Gates" type="Node3D" parent="."]
 
 [node name="GateV1" parent="Gates" instance=ExtResource("5_fumsa")]
@@ -1861,7 +1853,7 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="BeehaveTree" type="Node" parent="enemies/Enemy1" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("15_nvitn")
-blackboard = NodePath("@Node@134299")
+blackboard = NodePath("@Node@20011")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="enemies/Enemy1/BeehaveTree"]
@@ -1924,7 +1916,7 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="BeehaveTree1" type="Node" parent="enemies/Guard2" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("15_nvitn")
-blackboard = NodePath("@Node@134300")
+blackboard = NodePath("@Node@20012")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="enemies/Guard2/BeehaveTree1"]

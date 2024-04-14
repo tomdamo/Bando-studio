@@ -34,10 +34,10 @@ func tick(actor, blackboard: Blackboard):
 #
 				if "Player" in collider.name:
 					var playerPosition = overlap.global_transform.origin
-					target = collider
-					print("in fov range")
 					if StateMachine._current_state != StateLevel2:
 						StateMachine._set_state(StateLevel2.new(self, self, playerPosition))
+					target = collider
+					#print("in fov range")
 					return SUCCESS
 	if target == null:
 		#print(target)
