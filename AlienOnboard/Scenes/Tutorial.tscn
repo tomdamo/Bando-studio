@@ -1853,7 +1853,7 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="BeehaveTree" type="Node" parent="enemies/Enemy1" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("15_nvitn")
-blackboard = NodePath("@Node@20011")
+blackboard = NodePath("@Node@24260")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="enemies/Enemy1/BeehaveTree"]
@@ -1916,7 +1916,7 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="BeehaveTree1" type="Node" parent="enemies/Guard2" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("15_nvitn")
-blackboard = NodePath("@Node@20012")
+blackboard = NodePath("@Node@24261")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="enemies/Guard2/BeehaveTree1"]
