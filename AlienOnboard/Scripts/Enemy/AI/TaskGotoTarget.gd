@@ -20,5 +20,5 @@ func tick(actor, blackboard: Blackboard):
 					actor.global_transform.origin += direction * speed * _delta_time
 				else:
 					return SUCCESS
-				return RUNNING  # Player found, but not within attack range, return RUNNING
-	return FAILURE  # No player found, return FAILURE
+				return RUNNING
+	return FAILURE

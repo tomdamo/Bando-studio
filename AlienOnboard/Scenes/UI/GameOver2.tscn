@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=3 uid="uid://br3x1p8e76i6m"]
+
+[ext_resource type="Script" path="res://Scenes/UI/GameOver2.gd" id="1_e55wx"]
+[ext_resource type="FontFile" uid="uid://dlvhjyl50fcs4" path="res://Textures/Font/batmfa__.ttf" id="1_ic5x0"]
+[ext_resource type="Texture2D" uid="uid://c7r5072nr5o1" path="res://Scenes/UI/ALIEN_ON_BOARD_PICTOGRAM-removebg-preview.png" id="2_cc3qe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xi245"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tsglt"]
+font = ExtResource("1_ic5x0")
+font_size = 100
+
+[sub_resource type="FontVariation" id="FontVariation_4sk44"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ax5bl"]
+font = ExtResource("1_ic5x0")
+font_size = 50
+
+[node name="GameOver2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e55wx")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xi245")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_tsglt")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="StartOver" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = SubResource("FontVariation_4sk44")
+theme_override_font_sizes/font_size = 50
+text = "StartOver"
+
+[node name="Quit" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+text = "Quit
+"
+
+[node name="Label2" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "FEEDback will always 
+be appreciated🙏"
+label_settings = SubResource("LabelSettings_ax5bl")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -500.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("2_cc3qe")
+
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/StartOver" to="." method="_on_start_over_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

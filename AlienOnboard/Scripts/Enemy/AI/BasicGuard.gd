@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-var attack_range : float = 2.0;
+var attack_range : float = 1.0;
 var speed :float = 5.0
 const JUMP_VELOCITY = 4.5
 
