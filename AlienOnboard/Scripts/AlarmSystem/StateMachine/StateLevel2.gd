@@ -4,10 +4,12 @@ var _lights_in_range = []
 var _range = 10.0
 var machine
 var node
+var player_pos
 
-func _init(machine, node):
+func _init(machine, node, _player_pos):
 	self.machine = machine
 	self.node = node
+	player_pos = _player_pos
 
 func enter():
 	print("Entering StateLevel2")
@@ -20,7 +22,7 @@ func update(delta):
 	print("Updating StateLevel2")
 
 func get_lights_in_range(range):
-	var player_position = node.global_transform.origin
+	var player_position = player_pos
 	var lights = node.get_tree().get_nodes_in_group("lights")
 
 	if lights != null:
@@ -42,4 +44,4 @@ func add_timer_to_light(light):
 	light.set_script(load("res://Scripts/AlarmSystem/LightScript.gd"))
 
 func _on_Timer_timeout():
-	node.visible = !node.visible
+	self.visible = !self.visible

@@ -65,6 +65,7 @@ void light() {
 
 }
 "
+graph_offset = Vector2(-621.729, -33.2233)
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorOp_03dns")
 nodes/fragment/2/position = Vector2(-108.787, 211.18)
 nodes/fragment/connections = PackedInt32Array(2, 0, 0, 18)

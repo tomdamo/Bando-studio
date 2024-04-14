@@ -29,5 +29,6 @@ func tick(actor, blackboard: Blackboard):
 		else:
 			var direction = (wp - actor.global_transform.origin).normalized()
 			actor.global_transform.origin += direction * speed * _delta_time
+			actor.look_at(wp, Vector3.UP)
 			return SUCCESS
 	return RUNNING
