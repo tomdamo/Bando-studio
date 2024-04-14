@@ -9,7 +9,7 @@ func tick(actor, blackboard: Blackboard):
 		for overlap in overlaps:
 			var player :String = "Player"
 			if player in overlap.name:
-				print(self)
+				#print(self)
 				print("defeated")
 				return SUCCESS
 	return RUNNING

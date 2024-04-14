@@ -1,3 +1,29 @@
-[gd_scene format=3 uid="uid://byp27n5wp2aab"]
+[gd_scene load_steps=7 format=3 uid="uid://bwd5qpal3hdjj"]
 
-[node name="GuardBt" type="Node2D"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_lsel2"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="2_yiuyw"]
+[ext_resource type="Script" path="res://Scripts/Enemy/PatrolScript.gd" id="3_a2eg1"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="3_d2a6v"]
+[ext_resource type="Script" path="res://Scripts/Enemy/AI/CheckEnemyInFOVRange.gd" id="7_shky4"]
+[ext_resource type="Script" path="res://Scripts/Enemy/AI/TaskGotoTarget.gd" id="8_n8fbc"]
+
+[node name="GuardBT" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("1_lsel2")
+blackboard = NodePath("@Node@37501")
+actor = NodePath("")
+
+[node name="SelectorComposite" type="Node" parent="."]
+script = ExtResource("2_yiuyw")
+
+[node name="SequenceComposite2" type="Node" parent="SelectorComposite"]
+script = ExtResource("3_d2a6v")
+
+[node name="CheckEnemyInFOVRange" type="Node" parent="SelectorComposite/SequenceComposite2"]
+script = ExtResource("7_shky4")
+
+[node name="TaskGotoTarget" type="Node" parent="SelectorComposite/SequenceComposite2"]
+script = ExtResource("8_n8fbc")
+
+[node name="Patrol" type="Node" parent="SelectorComposite"]
+script = ExtResource("3_a2eg1")
+_waypoints = Array[Vector3]([Vector3(-2, -1.5, 4), Vector3(-2, -1.5, -3)])

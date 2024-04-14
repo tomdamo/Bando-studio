@@ -11,4 +11,4 @@ func _on_quit_pressed():
 
 
 func _on_startover_pressed():
-	var _reload = get_tree().reload_current_scene() 
+	var _reload = get_tree().reload_current_scene()

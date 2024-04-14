@@ -21,7 +21,7 @@ var gravity: float = 9.8
 
 #Health and damage
 var health
-var damage = 1 
+var damage = 1
 
 #Sense Ability, see enemies through walls
 var senseActive = false
@@ -75,7 +75,7 @@ func _ready() -> void:
 		movement_input.physical_keycode = key_val
 		InputMap.add_action(action_val)
 		InputMap.action_add_event(action_val, movement_input)
-		
+
 
 
 func _physics_process(delta: float) -> void:
@@ -94,22 +94,22 @@ func _physics_process(delta: float) -> void:
 	#Quit with f1
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
-		
-		
+
+
 	#See enemies layer through the walls
 	if Input.is_action_just_pressed("SenseAbility") and not senseActive and sense_cooldown_timer.is_stopped():
 		print("if for senseability passed")
 		_activateSenseAbility()
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-	
+
 	if Input.is_action_just_pressed("pause"):
 		_pauseMenu()
 
 	var cam_dir: Vector3 = -_camera.global_transform.basis.z
 
 	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
+
 	# shift to dash
 	if Input.is_action_just_pressed("dash") and not dashing and dash_cooldown_timer.is_stopped():
 		dash_direction = cam_dir #TODO fix dash direction? what feels nice..
@@ -125,7 +125,7 @@ func _physics_process(delta: float) -> void:
 			dashing = false
 			# Reset velocity to zero to prevent continued movement after dash
 			velocity = Vector3.ZERO
-			
+
 	else:
 		if direction:
 			var move_dir: Vector3 = Vector3.ZERO
@@ -183,5 +183,5 @@ func _pauseMenu():
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().paused = true
 
-	
+
 	paused = !paused
