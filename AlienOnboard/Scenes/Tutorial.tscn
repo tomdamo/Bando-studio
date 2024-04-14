@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/World.gd" id="1_7ywor"]
 [ext_resource type="Environment" uid="uid://bakv155d3f0pc" path="res://Scenes/Player/worldEnv.tres" id="1_823g4"]
-[ext_resource type="Material" path="res://Textures/PanelMaterial.tres" id="2_tn1mc"]
+[ext_resource type="Material" uid="uid://c3jvamrxrrh8h" path="res://Textures/PanelMaterial.tres" id="2_tn1mc"]
 [ext_resource type="MeshLibrary" uid="uid://d1j7c8ylgge4f" path="res://MeshLibraryTutorial.tres" id="3_b3alo"]
 [ext_resource type="Shader" uid="uid://c76hqnsc7136y" path="res://glowLight.tres" id="4_ef5fc"]
 [ext_resource type="PackedScene" uid="uid://bquxtupi3ji0i" path="res://3DModels/GateV1.glb" id="5_fumsa"]
@@ -12,9 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://4i5csj0s34nb" path="res://Scenes/Player/PlayerPhantom_Cam.tscn" id="8_chp8q"]
 [ext_resource type="Script" path="res://Scripts/TutorialTriggers.gd" id="9_1a0f1"]
 [ext_resource type="Texture2D" uid="uid://ugd75701em2q" path="res://Textures/Shaders/HologramLines.png" id="9_oi1n3"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/GameOver.tscn" id="10_yqx2j"]
+[ext_resource type="PackedScene" uid="uid://rlldo7t3bn5s" path="res://Scenes/UI/GameOver.tscn" id="10_yqx2j"]
 [ext_resource type="FontFile" uid="uid://dlvhjyl50fcs4" path="res://Textures/Font/batmfa__.ttf" id="12_kkne3"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/PauseMenu.tscn" id="14_0ep6x"]
+[ext_resource type="PackedScene" uid="uid://vrrsiutxhi0v" path="res://Scenes/UI/PauseMenu.tscn" id="14_0ep6x"]
 [ext_resource type="Script" path="res://Scripts/Enemy/AI/BasicGuard.gd" id="15_l8v3n"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="15_nvitn"]
 [ext_resource type="PackedScene" uid="uid://b6otf3p8jft2w" path="res://Scenes/enemy_2.tscn" id="16_4d2au"]
@@ -1818,7 +1818,7 @@ shape = SubResource("CylinderShape3D_eu0lh")
 
 [node name="enemies" type="Node3D" parent="."]
 
-[node name="Enemy1" type="CharacterBody3D" parent="enemies"]
+[node name="Enemy1" type="CharacterBody3D" parent="enemies" groups=["enemies"]]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -51.918, 3.22, -50)
 script = ExtResource("15_l8v3n")
 
@@ -1853,7 +1853,7 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="BeehaveTree" type="Node" parent="enemies/Enemy1" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("15_nvitn")
-blackboard = NodePath("@Node@24260")
+blackboard = NodePath("@Node@20753")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="enemies/Enemy1/BeehaveTree"]
@@ -1881,7 +1881,7 @@ script = ExtResource("21_o6mjf")
 script = ExtResource("22_o5jhq")
 _waypoints = Array[Vector3]([Vector3(-51.918, 3.22, -50), Vector3(-51.918, 3.22, -6)])
 
-[node name="Guard2" type="CharacterBody3D" parent="enemies"]
+[node name="Guard2" type="CharacterBody3D" parent="enemies" groups=["enemies"]]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -25.6673, 3.22, -27.9921)
 script = ExtResource("15_l8v3n")
 
@@ -1916,7 +1916,7 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="BeehaveTree1" type="Node" parent="enemies/Guard2" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("15_nvitn")
-blackboard = NodePath("@Node@24261")
+blackboard = NodePath("@Node@20754")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="enemies/Guard2/BeehaveTree1"]
@@ -1944,7 +1944,7 @@ script = ExtResource("21_o6mjf")
 script = ExtResource("22_o5jhq")
 _waypoints = Array[Vector3]([Vector3(-25.667, 3.22, -27.992), Vector3(-25.667, 3.22, -11.717)])
 
-[node name="Enemy2" parent="enemies" instance=ExtResource("16_4d2au")]
+[node name="Enemy2" parent="enemies" groups=["enemies"] instance=ExtResource("16_4d2au")]
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -22.918, 3.22, -54)
 
 [node name="singularpillar" type="Node3D" parent="."]
