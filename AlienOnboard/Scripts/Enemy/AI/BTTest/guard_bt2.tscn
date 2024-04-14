@@ -9,10 +9,10 @@
 [ext_resource type="Script" path="res://Scripts/Enemy/CheckEnemyInAttackRange.gd" id="6_rmq33"]
 [ext_resource type="Script" path="res://Scripts/Enemy/TaskAttack.gd" id="7_dkbr2"]
 
-[node name="GuardBT2" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
+[node name="Guard2" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_1cmqb")
-blackboard = NodePath("@Node@37615")
-actor = NodePath("..")
+blackboard = NodePath("@Node@79046")
+actor = NodePath("")
 
 [node name="SelectorComposite" type="Node" parent="."]
 script = ExtResource("2_1kuls")
@@ -37,4 +37,4 @@ script = ExtResource("5_2mwe0")
 
 [node name="Patrol" type="Node" parent="SelectorComposite"]
 script = ExtResource("6_64slw")
-_waypoints = Array[Vector3]([Vector3(6, -1.5, 4), Vector3(6, -1.5, 2.08165e-12)])
+_waypoints = Array[Vector3]([Vector3(-22.918, 3.22, -54), Vector3(-22.918, 3.22, -83), Vector3(19, 3.22, -83), Vector3(19.623, 3.221, -50.964)])
