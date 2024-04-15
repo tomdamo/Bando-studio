@@ -12,8 +12,10 @@ func _process(delta):
 
 
 func _on_start_over_pressed():
-	var _reload = get_tree().reload_current_scene()
+	var loadingScreen = load("res://Scenes/UI/loading.tscn")
+	get_tree().change_scene_to_packed(loadingScreen)
 
 
 func _on_quit_pressed():
+	print("test")
 	get_tree().quit()

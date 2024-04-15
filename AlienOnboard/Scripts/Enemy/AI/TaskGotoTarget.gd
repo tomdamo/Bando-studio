@@ -14,11 +14,14 @@ func tick(actor, blackboard: Blackboard):
 			if "Player" in overlap.name:
 				var playerPosition = overlap.global_transform.origin
 				var distance = actor.global_transform.origin.distance_to(playerPosition)
-
-				if distance > 1.0:
+				if (distance > 0.1):
 					var direction = (playerPosition - actor.global_transform.origin).normalized()
 					actor.global_transform.origin += direction * speed * _delta_time
 				else:
-					return SUCCESS
-				return RUNNING
+					if distance > actor.attack_range:
+						var direction = (playerPosition - actor.global_transform.origin).normalized()
+						actor.global_transform.origin += direction * speed * _delta_time
+					else:
+						return SUCCESS
+					return RUNNING
 	return FAILURE

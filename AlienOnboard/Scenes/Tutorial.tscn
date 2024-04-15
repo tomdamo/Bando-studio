@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/World.gd" id="1_7ywor"]
 [ext_resource type="Environment" uid="uid://bakv155d3f0pc" path="res://Scenes/Player/worldEnv.tres" id="1_823g4"]
-[ext_resource type="Material" path="res://Textures/PanelMaterial.tres" id="2_tn1mc"]
+[ext_resource type="Material" uid="uid://c3jvamrxrrh8h" path="res://Textures/PanelMaterial.tres" id="2_tn1mc"]
 [ext_resource type="MeshLibrary" uid="uid://d1j7c8ylgge4f" path="res://MeshLibraryTutorial.tres" id="3_b3alo"]
 [ext_resource type="Shader" uid="uid://c76hqnsc7136y" path="res://glowLight.tres" id="4_ef5fc"]
 [ext_resource type="PackedScene" uid="uid://bquxtupi3ji0i" path="res://3DModels/GateV1.glb" id="5_fumsa"]
@@ -406,11 +406,11 @@ radius = 2.126
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_fer84"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x3tvo"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mbl8l"]
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_46vgv"]
-material = SubResource("StandardMaterial3D_x3tvo")
+material = SubResource("StandardMaterial3D_mbl8l")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_v4x4e"]
 points = PackedVector3Array(-0.000195742, 1, -0.000195742, 0.194988, -1, -0.980814, -0.000195742, -1, -1, -0.195184, -1, -0.980814, -0.382733, -1, -0.924041, -0.555599, -1, -0.831637, -0.707126, -1, -0.707126, -0.831637, -1, -0.555599, -0.924041, -1, -0.382733, -0.980814, -1, -0.195184, -1, -1, -0.000195742, -0.980814, -1, 0.194988, -0.924041, -1, 0.382537, -0.831637, -1, 0.555403, -0.707126, -1, 0.70693, -0.555599, -1, 0.831441, -0.382733, -1, 0.923845, -0.195184, -1, 0.980619, -0.000195742, -1, 1, 0.194988, -1, 0.980619, 0.382537, -1, 0.923845, 0.555403, -1, 0.831441, 0.70693, -1, 0.70693, 0.831441, -1, 0.555403, 0.923845, -1, 0.382537, 0.980619, -1, 0.194988, 1, -1, -0.000195742, 0.980619, -1, -0.195184, 0.923845, -1, -0.382733, 0.831441, -1, -0.555599, 0.70693, -1, -0.707126, 0.555403, -1, -0.831637, 0.382537, -1, -0.924041)
@@ -1853,7 +1853,7 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="BeehaveTree" type="Node" parent="enemies/Enemy1" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("15_nvitn")
-blackboard = NodePath("@Node@171439")
+blackboard = NodePath("@Node@17607")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="enemies/Enemy1/BeehaveTree"]
@@ -1882,7 +1882,7 @@ script = ExtResource("22_o5jhq")
 _waypoints = Array[Vector3]([Vector3(-51.918, 3.22, -50), Vector3(-51.918, 3.22, -6)])
 
 [node name="Guard2" type="CharacterBody3D" parent="enemies" groups=["enemies"]]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -25.6673, 3.22, -27.9921)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -25.6673, 3.02, -27.9921)
 script = ExtResource("15_l8v3n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="enemies/Guard2"]
@@ -1916,7 +1916,7 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="BeehaveTree1" type="Node" parent="enemies/Guard2" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("15_nvitn")
-blackboard = NodePath("@Node@171440")
+blackboard = NodePath("@Node@17608")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="enemies/Guard2/BeehaveTree1"]
