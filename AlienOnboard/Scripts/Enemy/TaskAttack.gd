@@ -10,7 +10,6 @@ func tick(actor, blackboard: Blackboard):
 			var player :String = "Player"
 			if player in overlap.name:
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
 				actor.get_tree().change_scene_to_file("res://Scenes/UI/GameOver2.tscn")
 				print("defeated")
 				return SUCCESS

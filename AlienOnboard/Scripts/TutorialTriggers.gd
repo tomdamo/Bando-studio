@@ -46,12 +46,12 @@ func _on_how_to_walk_area_area_exited(area):
 	TutorialPanel.hide()
 	GettingStartedLabel.hide()
 	WalkLabel.hide()
-	
+
 
 
 
 func _on_how_to_jump_area_area_entered(area):
-	if !quest1Done:		
+	if !quest1Done:
 		TutorialPanel.show()
 		GettingStartedLabel.show()
 		JumpLabel.show()
@@ -62,21 +62,21 @@ func _on_how_to_jump_area_area_exited(area):
 	JumpLabel.hide()
 
 
-func _on_how_to_sense_area_area_entered(area):
-	if !quest1Done:		
-		TutorialPanel.show()
-		WatchoutLabel.show()
-		SenseLabel.show()
-
-
-func _on_how_to_sense_area_area_exited(area):
-	TutorialPanel.hide()
-	WatchoutLabel.hide()
-	SenseLabel.hide()
+#func _on_how_to_sense_area_area_entered(area):
+	#if !quest1Done:
+		#TutorialPanel.show()
+		#WatchoutLabel.show()
+		#SenseLabel.show()
+#
+#
+#func _on_how_to_sense_area_area_exited(area):
+	#TutorialPanel.hide()
+	#WatchoutLabel.hide()
+	#SenseLabel.hide()
 
 
 func _on_quest_trigger_area_entered(area):
-	if !quest1Done:		
+	if !quest1Done:
 		QuestPanel.show()
 		QuestLabel.show()
 		Quest1Label.show()
@@ -86,11 +86,11 @@ func _on_quest_finish_trigger_area_entered(area):
 	QuestTipLabel.show()
 	QuestTimer.start()
 	quest1Done = true
-	
+
 
 
 func _on_how_to_dash_area_area_entered(area):
-	if !quest1Done:		
+	if !quest1Done:
 		TutorialPanel.show()
 		GettingStartedLabel.show()
 		DashLabel.show()

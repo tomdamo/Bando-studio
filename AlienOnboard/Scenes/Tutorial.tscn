@@ -1125,7 +1125,7 @@ text = "QUEST COMPLETED!"
 label_settings = SubResource("LabelSettings_0m527")
 
 [node name="FinishTimer" type="Timer" parent="TutorialTriggers/Control/QuestPanel"]
-wait_time = 6.0
+wait_time = 3.0
 one_shot = true
 
 [node name="HowToWalkArea" type="Area3D" parent="TutorialTriggers"]
@@ -1148,6 +1148,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6254, 3.64485, -44.3264)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialTriggers/HowToSenseArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.34697, 2.06477, 2.56459)
 shape = SubResource("BoxShape3D_d1ivl")
+
+[node name="Label3D" type="Label3D" parent="TutorialTriggers/HowToSenseArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.2105, -0.713741, 32.6112)
+billboard = 1
+text = "guards nearby..
+press f to use 
+the sense ability"
+font = ExtResource("12_kkne3")
 
 [node name="HowToDashArea" type="Area3D" parent="TutorialTriggers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.3111, 3.64485, -53.3813)
