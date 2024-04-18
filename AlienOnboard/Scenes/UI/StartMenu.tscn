@@ -1,0 +1,139 @@
+[gd_scene load_steps=5 format=3 uid="uid://7lb2out7gbml"]
+
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_kixtv"]
+[ext_resource type="PackedScene" uid="uid://c1xqdgnxsubss" path="res://Sound/OSTScene.tscn" id="2_2dnxk"]
+[ext_resource type="FontFile" uid="uid://dlvhjyl50fcs4" path="res://Textures/Font/batmfa__.ttf" id="2_mm6hj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj0b3"]
+bg_color = Color(0.415686, 1, 0, 0.219608)
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kixtv")
+
+[node name="OstScene" parent="." instance=ExtResource("2_2dnxk")]
+
+[node name="LoadTime" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+offset_top = -374.0
+offset_right = 355.0
+offset_bottom = -45.0
+grow_vertical = 0
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+theme_override_fonts/font = ExtResource("2_mm6hj")
+theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_sj0b3")
+text = "Start"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_mm6hj")
+theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_sj0b3")
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../StartButton")
+theme_override_fonts/font = ExtResource("2_mm6hj")
+theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_sj0b3")
+text = "Quit"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -894.5
+offset_right = 894.5
+offset_bottom = 349.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.607843, 0.933333, 0.701961, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 15
+theme_override_constants/shadow_offset_y = 10
+theme_override_fonts/font = ExtResource("2_mm6hj")
+theme_override_font_sizes/font_size = 180
+text = "Alien Onboard"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -932.0
+offset_top = 294.0
+offset_right = 857.0
+offset_bottom = 643.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.701961, 0.870588, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_fonts/font = ExtResource("2_mm6hj")
+theme_override_font_sizes/font_size = 72
+text = "By
+Bando Studio"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -696.0
+offset_top = 456.0
+offset_right = 1093.0
+offset_bottom = 805.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.701961, 0.870588, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_fonts/font = ExtResource("2_mm6hj")
+theme_override_font_sizes/font_size = 50
+text = "(furat & tom)"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -210.0
+offset_top = 968.0
+offset_right = 1579.0
+offset_bottom = 1317.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_font_sizes/font_size = 54
+text = "Pre-Alpha v0.0.0.0.1"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

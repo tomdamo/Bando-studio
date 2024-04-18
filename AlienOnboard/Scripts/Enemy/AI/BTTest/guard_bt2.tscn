@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://n2irggd6v6fe"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_1cmqb"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="2_1kuls"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence_star.gd" id="3_ta2ir"]
+[ext_resource type="Script" path="res://Scripts/Enemy/AI/CheckEnemyInFOVRange.gd" id="4_bpqea"]
+[ext_resource type="Script" path="res://Scripts/Enemy/AI/TaskGotoTarget.gd" id="5_2mwe0"]
+[ext_resource type="Script" path="res://Scripts/Enemy/PatrolScript.gd" id="6_64slw"]
+[ext_resource type="Script" path="res://Scripts/Enemy/CheckEnemyInAttackRange.gd" id="6_rmq33"]
+[ext_resource type="Script" path="res://Scripts/Enemy/TaskAttack.gd" id="7_dkbr2"]
+
+[node name="Guard2" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("1_1cmqb")
+blackboard = NodePath("@Node@21794")
+actor = NodePath("")
+
+[node name="SelectorComposite" type="Node" parent="."]
+script = ExtResource("2_1kuls")
+
+[node name="SequenceStarComposite2" type="Node" parent="SelectorComposite"]
+script = ExtResource("3_ta2ir")
+
+[node name="CheckEnemyInAttackRange" type="Node" parent="SelectorComposite/SequenceStarComposite2"]
+script = ExtResource("6_rmq33")
+
+[node name="TaskAttack" type="Node" parent="SelectorComposite/SequenceStarComposite2"]
+script = ExtResource("7_dkbr2")
+
+[node name="SequenceStarComposite" type="Node" parent="SelectorComposite"]
+script = ExtResource("3_ta2ir")
+
+[node name="CheckEnemyInFOVRange" type="Node" parent="SelectorComposite/SequenceStarComposite"]
+script = ExtResource("4_bpqea")
+
+[node name="TaskGotoTarget" type="Node" parent="SelectorComposite/SequenceStarComposite"]
+script = ExtResource("5_2mwe0")
+
+[node name="Patrol" type="Node" parent="SelectorComposite"]
+script = ExtResource("6_64slw")
+_waypoints = Array[Vector3]([Vector3(-22.918, 3.22, -54), Vector3(-22.918, 3.22, -83), Vector3(19, 3.22, -83), Vector3(19.623, 3.221, -50.964)])
