@@ -20,8 +20,10 @@ var gravity: float = 9.8
 
 
 #Health and damage
-var health
-var damage = 1
+@export var health = 6
+@export var damage = 3
+
+@onready var attack_range = %AttackRange
 
 #Sense Ability, see enemies through walls
 var senseActive = false
@@ -105,9 +107,14 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("pause"):
 		_pauseMenu()
-
+	
+	if Input.is_action_just_pressed("Attack"):
+		print("attack pressed")
+		attack()
+		#TODO play attack animation
+		#TODO check if enemy is in attack range
+	#Cam direction for dashing purposes
 	var cam_dir: Vector3 = -_camera.global_transform.basis.z
-
 	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 	# shift to dash
@@ -185,3 +192,14 @@ func _pauseMenu():
 
 
 	paused = !paused
+
+func attack():
+	# Get all bodies within the player's attack range
+	var bodies = attack_range.get_overlapping_bodies()
+	print(bodies)
+	# Loop through each body
+	for body in bodies:
+		# Check if the body is an enemy
+		if body.is_in_group("enemies"):
+			# Apply damage to the enemy
+			body.take_damage(damage)

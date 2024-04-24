@@ -134,9 +134,6 @@ transform = Transform3D(1, 0, -4.33681e-19, 0, 1, 4.65661e-10, 0, 0, 1, 0.008710
 shape = SubResource("BoxShape3D_jhlf1")
 
 [node name="AttackRange" type="Area3D" parent="PlayerCharacterBody3D"]
-unique_name_in_owner = true
-collision_layer = 2
-collision_mask = 2
 
 [node name="PlayerCollisionShape3D" type="CollisionShape3D" parent="PlayerCharacterBody3D/AttackRange"]
 transform = Transform3D(1, 0, -4.33681e-19, 0, 1, 4.65661e-10, 0, 0, 1, 0.00361115, 0.0321273, 0.158325)
@@ -244,3 +241,5 @@ one_shot = true
 visible = false
 
 [connection signal="hidden" from="PlayerCharacterBody3D/Control/Crosshair" to="PlayerCharacterBody3D" method="_on_crosshair_hidden"]
+[connection signal="body_entered" from="PlayerCharacterBody3D/AttackRange" to="PlayerCharacterBody3D" method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="PlayerCharacterBody3D/AttackRange" to="PlayerCharacterBody3D" method="_on_attack_range_body_exited"]
