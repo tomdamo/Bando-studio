@@ -1,12 +1,68 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3uqd8ldc25d7"]
+[gd_scene load_steps=18 format=3 uid="uid://b3uqd8ldc25d7"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/npc.gd" id="1_w6csw"]
+[ext_resource type="Shader" uid="uid://b1wdkryuh65mm" path="res://Textures/Shaders/blood_spot.tres" id="2_c7o0g"]
+[ext_resource type="Shader" uid="uid://g73rnhf5c3b4" path="res://Textures/Shaders/blood.tres" id="3_lwqc1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_k15k0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s0a2e"]
 radius = 0.575551
 height = 2.0885
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uhcsp"]
+render_priority = 0
+shader = ExtResource("2_c7o0g")
+shader_parameter/ColorParameter = Color(1, 0, 0.071664, 1)
+
+[sub_resource type="Curve" id="Curve_ffsxo"]
+max_value = 200.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jc5vp"]
+curve = SubResource("Curve_ffsxo")
+
+[sub_resource type="Curve" id="Curve_bmw7p"]
+_data = [Vector2(0, 0.712), 0.0, 0.0, 0, 0, Vector2(0.147482, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_a64y2"]
+curve = SubResource("Curve_bmw7p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_soy8s"]
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_a64y2")
+anim_speed_curve = SubResource("CurveTexture_jc5vp")
+
+[sub_resource type="QuadMesh" id="QuadMesh_o41gc"]
+orientation = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yc84f"]
+render_priority = 0
+shader = ExtResource("3_lwqc1")
+shader_parameter/ColorParameter = Color(1, 0, 0.071664, 1)
+
+[sub_resource type="Curve" id="Curve_hnrq6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.452), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_avbyp"]
+curve = SubResource("Curve_hnrq6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f06s2"]
+angular_velocity_min = 4.0
+angular_velocity_max = 6.0
+linear_accel_min = 4.0
+linear_accel_max = 4.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_avbyp")
+collision_mode = 2
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_40qxx"]
 
 [node name="NPC" type="CharacterBody3D"]
 collision_layer = 2
@@ -19,3 +75,35 @@ mesh = SubResource("CapsuleMesh_k15k0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_s0a2e")
+
+[node name="BloodTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
+[node name="BloodEffect" type="Node3D" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="BloodFloor" type="GPUParticlesCollisionBox3D" parent="BloodEffect"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0785181, -1.06574, -0.0249611)
+size = Vector3(20, 0.863037, 20)
+
+[node name="BloodSpot" type="GPUParticles3D" parent="BloodEffect"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0785181, 1.06545, -0.0249611)
+material_override = SubResource("ShaderMaterial_uhcsp")
+cast_shadow = 0
+amount = 50
+visibility_aabb = AABB(-0.977377, -1.00478, -0.748155, 1.95475, 2.00956, 1.49631)
+process_material = SubResource("ParticleProcessMaterial_soy8s")
+draw_pass_1 = SubResource("QuadMesh_o41gc")
+
+[node name="BloodParticle" type="GPUParticles3D" parent="BloodEffect"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0785181, 0.642112, -0.0249611)
+material_override = SubResource("ShaderMaterial_yc84f")
+amount = 50
+sub_emitter = NodePath("../BloodSpot")
+process_material = SubResource("ParticleProcessMaterial_f06s2")
+draw_pass_1 = SubResource("QuadMesh_40qxx")
+
+[connection signal="timeout" from="BloodTimer" to="." method="_on_blood_timer_timeout"]
