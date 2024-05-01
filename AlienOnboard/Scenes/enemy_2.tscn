@@ -22,7 +22,7 @@ floor_constant_speed = true
 script = ExtResource("1_bohi3")
 
 [node name="Guard1" parent="." node_paths=PackedStringArray("blackboard", "actor") instance=ExtResource("2_m3m3b")]
-blackboard = NodePath("@Node@161023")
+blackboard = NodePath("@Node@17521")
 actor = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

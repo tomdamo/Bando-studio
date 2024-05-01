@@ -38,9 +38,6 @@ fov = 50.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_jhlf1"]
 size = Vector3(0.486572, 0.547485, 0.628143)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_oom1k"]
-size = Vector3(0.539795, 0.883911, 0.858643)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_liqiy"]
 albedo_texture = ExtResource("7_skg8d")
 
@@ -49,6 +46,10 @@ albedo_texture = ExtResource("7_skg8d")
 [sub_resource type="PrismMesh" id="PrismMesh_rqd08"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_gr5ao"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_if5eh"]
+height = 0.798162
+radius = 0.513441
 
 [node name="Player" type="Node3D"]
 
@@ -103,7 +104,7 @@ camera_3D_resource = SubResource("Resource_yf1op")
 
 [node name="PlayerCharacterBody3D" type="CharacterBody3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.999903, 0.0139622, 0, -0.0139622, 0.999903, 0, 0, 0, 1, -0.019, 0, -0.016)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.019, 0, -0.016)
 script = ExtResource("5_y8pq1")
 
 [node name="Control" type="Control" parent="PlayerCharacterBody3D"]
@@ -130,23 +131,14 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_t01fh")
 
 [node name="PlayerCollisionShape3D2" type="CollisionShape3D" parent="PlayerCharacterBody3D"]
-transform = Transform3D(1, 0, -4.33681e-19, 0, 1, 4.65661e-10, 0, 0, 1, 0.00871092, 0.075222, 0.0281082)
+transform = Transform3D(1, 0, -4.33681e-19, 0, 1, 4.65661e-10, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 shape = SubResource("BoxShape3D_jhlf1")
-
-[node name="AttackRange" type="Area3D" parent="PlayerCharacterBody3D"]
-unique_name_in_owner = true
-collision_layer = 2
-collision_mask = 2
-
-[node name="PlayerCollisionShape3D" type="CollisionShape3D" parent="PlayerCharacterBody3D/AttackRange"]
-transform = Transform3D(1, 0, -4.33681e-19, 0, 1, 4.65661e-10, 0, 0, 1, 0.00361115, 0.0321273, 0.158325)
-shape = SubResource("BoxShape3D_oom1k")
 
 [node name="PlayerModel" type="Node3D" parent="PlayerCharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, 0, 0)
 
 [node name="Body" type="MeshInstance3D" parent="PlayerCharacterBody3D/PlayerModel"]
-transform = Transform3D(-0.219336, 1.95358e-08, -2.17616e-24, 8.38164e-16, 9.76792e-09, -0.142737, -1.9175e-08, -0.223464, -6.23923e-09, 0.00348353, -0.0905691, -0.00545263)
+transform = Transform3D(-0.219336, -1.95358e-08, 5.45451e-16, -3.34399e-24, -9.76792e-09, -0.142737, 1.9175e-08, -0.223464, 6.23923e-09, 0.00348352, -0.0905691, -0.00545263)
 material_override = SubResource("StandardMaterial3D_liqiy")
 mesh = SubResource("CapsuleMesh_va1r7")
 metadata/_edit_group_ = true
@@ -242,5 +234,15 @@ one_shot = true
 
 [node name="PauseMenu" parent="PlayerCharacterBody3D" instance=ExtResource("8_p1cf0")]
 visible = false
+
+[node name="AttackRange" type="Area3D" parent="PlayerCharacterBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, -1.42721e-10, 0, 1.35419e-10, 1, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="PlayerCollisionShape3D" type="CollisionShape3D" parent="PlayerCharacterBody3D/AttackRange"]
+transform = Transform3D(1, -1.42721e-10, -9.33736e-19, 1.35419e-10, 1, 4.65661e-10, 0, 0, 1, 0.00509038, -0.0738079, 0.0190381)
+shape = SubResource("CylinderShape3D_if5eh")
 
 [connection signal="hidden" from="PlayerCharacterBody3D/Control/Crosshair" to="PlayerCharacterBody3D" method="_on_crosshair_hidden"]

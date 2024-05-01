@@ -1,6 +1,5 @@
 @tool
-@icon("res://addons/phantom_camera/icons/PhantomCameraIcon3D.svg")
-class_name PhantomCamera3D
+@icon("res://addons/phantom_camera/icons/PhantomCameraIcon3D.svg") class_name PhantomCamera3D
 extends Node3D
 
 #region Constants
