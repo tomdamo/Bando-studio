@@ -3,7 +3,6 @@ extends "res://Scripts/new_player_controller_third_person.gd"
 @onready var _player_pcam: PhantomCamera3D
 @onready var _aim_pcam: PhantomCamera3D
 @onready var _player_direction: Node3D = %PlayerDirection
-@onready var _ceiling_pcam: PhantomCamera3D
 
 @export var mouse_sensitivity: float = 0.05
 

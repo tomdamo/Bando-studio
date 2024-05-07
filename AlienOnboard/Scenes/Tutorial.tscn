@@ -931,13 +931,6 @@ shape = SubResource("BoxShape3D_kcfnh")
 [node name="TutorialTriggers" type="Node3D" parent="."]
 script = ExtResource("9_1a0f1")
 
-[node name="PauseMenu" parent="TutorialTriggers" instance=ExtResource("14_0ep6x")]
-visible = false
-top_level = true
-
-[node name="GameverMenu" parent="TutorialTriggers" instance=ExtResource("10_yqx2j")]
-visible = false
-
 [node name="Control" type="Control" parent="TutorialTriggers"]
 visibility_layer = 2
 layout_mode = 3
@@ -1124,6 +1117,16 @@ label_settings = SubResource("LabelSettings_0m527")
 [node name="FinishTimer" type="Timer" parent="TutorialTriggers/Control/QuestPanel"]
 wait_time = 3.0
 one_shot = true
+
+[node name="GameverMenu" parent="TutorialTriggers/Control" instance=ExtResource("10_yqx2j")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="PauseMenu" parent="TutorialTriggers/Control" instance=ExtResource("14_0ep6x")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
 
 [node name="HowToWalkArea" type="Area3D" parent="TutorialTriggers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.53601, 2.76377, 3.41915)
@@ -1858,7 +1861,7 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="BeehaveTree" type="Node" parent="enemies/Enemy1" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("15_nvitn")
-blackboard = NodePath("@Node@60607")
+blackboard = NodePath("@Node@31394")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="enemies/Enemy1/BeehaveTree"]
@@ -1921,7 +1924,7 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="BeehaveTree1" type="Node" parent="enemies/Guard2" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("15_nvitn")
-blackboard = NodePath("@Node@60608")
+blackboard = NodePath("@Node@31395")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="enemies/Guard2/BeehaveTree1"]
@@ -1977,6 +1980,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_r5ihr")
 
 [node name="PlayerCharacterBody3D" parent="." instance=ExtResource("25_wji3v")]
+unique_name_in_owner = true
 transform = Transform3D(0.999903, 0.0139622, 0, -0.0139622, 0.999903, 0, 0, 0, 1, 7.2187, 4.81062, 7.2364)
 
 [connection signal="area_entered" from="TutorialTriggers/HowToWalkArea" to="TutorialTriggers" method="_on_how_to_walk_area_area_entered"]
