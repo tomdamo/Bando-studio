@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://brnsoicyapugk"]
 
-[ext_resource type="PackedScene" uid="uid://d3rsri2ovmpmk" path="res://Scenes/Player/player.tscn" id="1_rxmo4"]
+[ext_resource type="PackedScene" uid="uid://4i5csj0s34nb" path="res://Scenes/Player/PlayerPhantom_Cam.tscn" id="2_f6oft"]
 [ext_resource type="PackedScene" uid="uid://cqtejkqmnfxg5" path="res://Scenes/Enemy/NPCwVision.tscn" id="2_l765j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h1ehm"]
@@ -8,18 +8,18 @@ albedo_color = Color(0.243137, 0.235294, 0.141176, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_x4iix"]
 material = SubResource("StandardMaterial3D_h1ehm")
-size = Vector3(10, 0.2, 10)
+size = Vector3(30, 0.2, 30)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_n4xwj"]
-points = PackedVector3Array(5.07738, 0.138095, 5.07738, -5.07738, -0.179365, -5.07738, -5.07738, 0.138095, -5.07738, 5.07738, -0.179365, -5.07738, -5.07738, -0.179365, 5.07738, -5.07738, 0.138095, 5.07738, 5.07738, 0.138095, -5.07738, 5.07738, -0.179365, 5.07738)
+[sub_resource type="BoxShape3D" id="BoxShape3D_37m4k"]
+size = Vector3(30, 0.2, 30)
 
 [sub_resource type="Environment" id="Environment_31utm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_udksh"]
 size = Vector3(4, 4, 0.5)
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_y4ui0"]
-data = PackedVector3Array(-2, 2, 0.25, 2, 2, 0.25, -2, -2, 0.25, 2, 2, 0.25, 2, -2, 0.25, -2, -2, 0.25, 2, 2, -0.25, -2, 2, -0.25, 2, -2, -0.25, -2, 2, -0.25, -2, -2, -0.25, 2, -2, -0.25, 2, 2, 0.25, 2, 2, -0.25, 2, -2, 0.25, 2, 2, -0.25, 2, -2, -0.25, 2, -2, 0.25, -2, 2, -0.25, -2, 2, 0.25, -2, -2, -0.25, -2, 2, 0.25, -2, -2, 0.25, -2, -2, -0.25, 2, 2, 0.25, -2, 2, 0.25, 2, 2, -0.25, -2, 2, 0.25, -2, 2, -0.25, 2, 2, -0.25, -2, -2, 0.25, 2, -2, 0.25, -2, -2, -0.25, 2, -2, 0.25, 2, -2, -0.25, -2, -2, -0.25)
+[sub_resource type="BoxShape3D" id="BoxShape3D_tk0al"]
+size = Vector3(4, 4, 0.5)
 
 [node name="World" type="Node3D"]
 
@@ -33,7 +33,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.156139, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.156139, 0)
-shape = SubResource("ConvexPolygonShape3D_n4xwj")
+shape = SubResource("BoxShape3D_37m4k")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_31utm")
@@ -49,10 +49,10 @@ skeleton = NodePath("../floor")
 [node name="StaticBody3D" type="StaticBody3D" parent="Wall"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_y4ui0")
+shape = SubResource("BoxShape3D_tk0al")
 
-[node name="Player" parent="." instance=ExtResource("1_rxmo4")]
-transform = Transform3D(0.999997, -0.0020334, 0.00141364, 0.0020311, 0.999997, 0.00161359, -0.00141695, -0.00161069, 0.999998, -3.91919, 0, 3.64091)
-
-[node name="NPCwVision" parent="." instance=ExtResource("2_l765j")]
+[node name="NPCwVision" parent="." groups=["enemies"] instance=ExtResource("2_l765j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.994359, 3.79009)
+
+[node name="Player" parent="." instance=ExtResource("2_f6oft")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0994048, 1.38449, 0.434016)

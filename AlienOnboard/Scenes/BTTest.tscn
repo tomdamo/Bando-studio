@@ -4,7 +4,6 @@
 [ext_resource type="Material" uid="uid://ctdl8fx6qghl7" path="res://Textures/groundTexture.tres" id="2_mnjd3"]
 [ext_resource type="Material" uid="uid://doe4ki7xdi47w" path="res://Textures/walltext.tres" id="3_acm4n"]
 [ext_resource type="Texture2D" uid="uid://dwnp3387tfw5x" path="res://Textures/Skybox/SpacePanoramas/panorama6.jpg" id="4_q3lty"]
-[ext_resource type="PackedScene" uid="uid://d3rsri2ovmpmk" path="res://Scenes/Player/player.tscn" id="5_s3s2r"]
 [ext_resource type="Script" path="res://Scripts/Enemy/AI/BasicGuard.gd" id="6_l8hat"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="7_qhx1b"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="8_54n4i"]
@@ -13,6 +12,7 @@
 [ext_resource type="Script" path="res://Scripts/Enemy/TaskAttack.gd" id="11_kpj63"]
 [ext_resource type="Script" path="res://Scripts/Enemy/AI/CheckEnemyInFOVRange.gd" id="12_bowlc"]
 [ext_resource type="Script" path="res://Scripts/Enemy/AI/TaskGotoTarget.gd" id="13_lghwi"]
+[ext_resource type="PackedScene" uid="uid://4i5csj0s34nb" path="res://Scenes/Player/PlayerPhantom_Cam.tscn" id="14_4elsm"]
 [ext_resource type="Script" path="res://Scripts/Enemy/PatrolScript.gd" id="14_rjk7m"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_48nfy"]
@@ -39,8 +39,8 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="SphereMesh" id="SphereMesh_vyp7c"]
 material = SubResource("StandardMaterial3D_x3tvo")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t0sk1"]
-points = PackedVector3Array(-0.000195742, 1, -0.000195742, 0.194988, -1, -0.980814, -0.000195742, -1, -1, -0.195184, -1, -0.980814, -0.382733, -1, -0.924041, -0.555599, -1, -0.831637, -0.707126, -1, -0.707126, -0.831637, -1, -0.555599, -0.924041, -1, -0.382733, -0.980814, -1, -0.195184, -1, -1, -0.000195742, -0.980814, -1, 0.194988, -0.924041, -1, 0.382537, -0.831637, -1, 0.555403, -0.707126, -1, 0.70693, -0.555599, -1, 0.831441, -0.382733, -1, 0.923845, -0.195184, -1, 0.980619, -0.000195742, -1, 1, 0.194988, -1, 0.980619, 0.382537, -1, 0.923845, 0.555403, -1, 0.831441, 0.70693, -1, 0.70693, 0.831441, -1, 0.555403, 0.923845, -1, 0.382537, 0.980619, -1, 0.194988, 1, -1, -0.000195742, 0.980619, -1, -0.195184, 0.923845, -1, -0.382733, 0.831441, -1, -0.555599, 0.70693, -1, -0.707126, 0.555403, -1, -0.831637, 0.382537, -1, -0.924041)
+[sub_resource type="BoxShape3D" id="BoxShape3D_r1ceh"]
+size = Vector3(2, 1.867, 0.584)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_n5lml")
@@ -258,9 +258,6 @@ transform = Transform3D(1, 0, 0, 0, 0.0367309, 0.999325, 0, -0.999325, 0.0367309
 light_energy = 0.486
 light_bake_mode = 1
 
-[node name="Player" parent="." instance=ExtResource("5_s3s2r")]
-transform = Transform3D(0.999997, -0.0020334, 0.00141364, 0.0020311, 0.999997, 0.00161359, -0.00141695, -0.00161069, 0.999998, 6, -1.5, 4)
-
 [node name="Guard2" type="CharacterBody3D" parent="." groups=["enemies"]]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 2.08165e-12, -1.5, -6)
 script = ExtResource("6_l8hat")
@@ -282,8 +279,8 @@ transform = Transform3D(1, -1.21652e-31, 0, -1.21652e-31, 1, 0, 0, 0, 1, 0, 0, 0
 collision_layer = 2
 
 [node name="CollisionShapeCone" type="CollisionShape3D" parent="Guard2/VisionArea"]
-transform = Transform3D(10, 0, 0, 0, -4.37114e-07, -10, 0, 10, -4.37114e-07, 0, 0.31566, -10.7582)
-shape = SubResource("ConvexPolygonShape3D_t0sk1")
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, -10, 0, 10, -4.37114e-07, 0, 2.07901, -8.26065)
+shape = SubResource("BoxShape3D_r1ceh")
 
 [node name="VisionTimer" type="Timer" parent="Guard2"]
 wait_time = 0.25
@@ -296,7 +293,7 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="BeehaveTree1" type="Node" parent="Guard2" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("7_qhx1b")
-blackboard = NodePath("@Node@17611")
+blackboard = NodePath("@Node@47927")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="Guard2/BeehaveTree1"]
@@ -323,3 +320,6 @@ script = ExtResource("13_lghwi")
 [node name="Patrol" type="Node" parent="Guard2/BeehaveTree1/SelectorComposite"]
 script = ExtResource("14_rjk7m")
 _waypoints = Array[Vector3]([Vector3(2.08165e-12, -1.5, -6), Vector3(2.08165e-12, -1.5, 2.08165e-12)])
+
+[node name="Player" parent="." instance=ExtResource("14_4elsm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.95779, 0.907693, 0.379626)

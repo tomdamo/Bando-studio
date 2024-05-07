@@ -43,6 +43,10 @@ project/assembly_name="AlienOnboard"
 
 enabled=PackedStringArray("res://addons/beehave/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
+[filesystem]
+
+import/fbx/enabled=false
+
 [input]
 
 move_forward={

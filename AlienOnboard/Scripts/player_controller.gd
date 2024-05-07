@@ -76,7 +76,6 @@ func _ready() -> void:
 
 		var movement_input = InputEventKey.new()
 		movement_input.physical_keycode = key_val
-		InputMap.add_action(action_val)
 		InputMap.action_add_event(action_val, movement_input)
 
 
