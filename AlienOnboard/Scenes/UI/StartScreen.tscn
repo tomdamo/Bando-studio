@@ -1,10 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://bn1bxbpeyv5dv"]
+[gd_scene load_steps=12 format=3 uid="uid://bn1bxbpeyv5dv"]
 
 [ext_resource type="Texture2D" uid="uid://dwnp3387tfw5x" path="res://Textures/Skybox/SpacePanoramas/panorama6.jpg" id="1_cijqd"]
 [ext_resource type="Shader" path="res://Textures/Shaders/PlanetShader.gdshader" id="2_xdig6"]
 [ext_resource type="Script" path="res://Scripts/Spaceship.gd" id="3_dos12"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_a84me"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="5_ys583"]
 [ext_resource type="PackedScene" uid="uid://7lb2out7gbml" path="res://Scenes/UI/StartMenu.tscn" id="6_jp10s"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ivoyt"]
@@ -43,7 +41,7 @@ skeleton = NodePath("../WorldEnvironment")
 [node name="Spaceship" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.991076, 0, 0, 0, 0.991076, 0, 0, 0, 0.991076, -100.459, 0, 54.191)
 mesh = SubResource("BoxMesh_pdlqd")
-skeleton = NodePath("../PhantomCamera3D")
+skeleton = NodePath("")
 script = ExtResource("3_dos12")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Spaceship"]
@@ -58,22 +56,7 @@ mesh = SubResource("BoxMesh_lfijb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.5994, 0, 64.8248)
 fov = 74.5786
 
-[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
-script = ExtResource("4_a84me")
-
-[node name="PhantomCamera3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.5994, 0, 64.8248)
-script = ExtResource("5_ys583")
-priority_override = false
-priority = 0
-follow_mode = 0
-look_at_mode = 0
-tween_parameters = null
-tween_on_load = true
-inactive_update_mode = 0
-camera_3D_resource = null
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="PhantomCamera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0223694, -0.497341, 119.443)
-
 [node name="StartMenu" parent="." instance=ExtResource("6_jp10s")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35968, 102.126)

@@ -1,0 +1,144 @@
+[gd_scene load_steps=16 format=3 uid="uid://bi7lvvqh5ljqv"]
+
+[ext_resource type="Script" path="res://Scripts/Camera_phantom_new.gd" id="1_2ds56"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_8b7er"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_kwa3r"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="4_7cxvr"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_fkqth"]
+[ext_resource type="PackedScene" uid="uid://sg7ef7wsp04y" path="res://Scenes/UI/PauseMenu.tscn" id="7_l4beg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s61dn"]
+radius = 0.4
+height = 0.8
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_47f0o"]
+radius = 0.4
+height = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mv4do"]
+albedo_color = Color(0.921569, 0.576471, 0.137255, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_wg1x3"]
+size = Vector3(0.5, 0.5, 0.3)
+
+[sub_resource type="Resource" id="Resource_84yex"]
+script = ExtResource("3_kwa3r")
+duration = 0.3
+transition = 3
+ease = 1
+
+[sub_resource type="Resource" id="Resource_bhlgk"]
+script = ExtResource("4_7cxvr")
+cull_mask = 1048575
+h_offset = 0.0
+v_offset = 0.0
+fov = 75.0
+
+[sub_resource type="Resource" id="Resource_otvji"]
+script = ExtResource("3_kwa3r")
+duration = 0.4
+transition = 2
+ease = 1
+
+[sub_resource type="Resource" id="Resource_ptejn"]
+script = ExtResource("4_7cxvr")
+cull_mask = 1048575
+h_offset = 1.0
+v_offset = 0.0
+fov = 75.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vds5g"]
+height = 0.798162
+radius = 0.513441
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, -1.42721e-10, 0, 1.35419e-10, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="PlayerCharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.999903, 0.0139622, 0, -0.0139622, 0.999903, 0, 0, 0, 1, -0.0194088, 0.506884, -0.0163251)
+collision_layer = 2
+script = ExtResource("1_2ds56")
+
+[node name="PlayerArea3D" type="Area3D" parent="PlayerCharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCharacterBody3D/PlayerArea3D"]
+shape = SubResource("CapsuleShape3D_s61dn")
+
+[node name="PlayerCollisionShape3D" type="CollisionShape3D" parent="PlayerCharacterBody3D"]
+shape = SubResource("CapsuleShape3D_s61dn")
+
+[node name="PlayerVisual" type="Node3D" parent="PlayerCharacterBody3D"]
+unique_name_in_owner = true
+
+[node name="PlayerMeshInstance3D" type="MeshInstance3D" parent="PlayerCharacterBody3D/PlayerVisual"]
+transform = Transform3D(1, 0, 0, 0, 1, 4.65661e-10, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_47f0o")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_mv4do")
+
+[node name="PlayerDirection" type="MeshInstance3D" parent="PlayerCharacterBody3D/PlayerVisual"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, -4.37114e-08, -4.37114e-08, 1.91069e-15, -1, 0, 1, 1.91069e-15, -0.0156226, 1.08631, 0)
+mesh = SubResource("PrismMesh_wg1x3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_mv4do")
+
+[node name="MainCamera3D" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.999903, 0.0120916, 0.0069811, -0.0139622, 0.865941, 0.499952, 0, -0.5, 0.866023, 0.00502505, 2.25672, 3.01476)
+current = true
+
+[node name="PhantomCameraHost" type="Node" parent="MainCamera3D"]
+script = ExtResource("5_fkqth")
+
+[node name="PlayerPhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
+unique_name_in_owner = true
+transform = Transform3D(0.999903, 0.0120916, 0.0069811, -0.0139622, 0.865941, 0.499952, 0, -0.5, 0.866023, 0.00502505, 2.25672, 3.01476)
+script = ExtResource("2_8b7er")
+priority = 10
+follow_mode = 6
+follow_target = NodePath("../PlayerCharacterBody3D/PlayerVisual")
+tween_resource = SubResource("Resource_84yex")
+tween_on_load = false
+camera_3d_resource = SubResource("Resource_bhlgk")
+follow_damping = true
+follow_distance = 3.5
+spring_length = 3.5
+
+[node name="PlayerAimPhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
+unique_name_in_owner = true
+transform = Transform3D(0.953623, 0.00346111, 0.30098, -0.013316, 0.999742, 0.0307002, -0.300706, -0.0332842, 0.953135, 0.432061, 1.35293, 1.41338)
+script = ExtResource("2_8b7er")
+follow_mode = 6
+follow_target = NodePath("../PlayerCharacterBody3D/PlayerVisual")
+tween_resource = SubResource("Resource_otvji")
+camera_3d_resource = SubResource("Resource_ptejn")
+follow_offset = Vector3(0, 0.8, 0)
+follow_damping = true
+follow_distance = 1.5
+spring_length = 1.5
+
+[node name="DashCooldownTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="SenseCooldownTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="ActiveSenseTime" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("7_l4beg")]
+visible = false
+
+[node name="AttackRange" type="Area3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, -1.42721e-10, 0, 1.35419e-10, 1, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="PlayerCollisionShape3D" type="CollisionShape3D" parent="AttackRange"]
+transform = Transform3D(1, -1.42721e-10, -9.33736e-19, 1.35419e-10, 1, 4.65661e-10, 0, 0, 1, 0.00509038, -0.0738079, 0.0190381)
+shape = SubResource("CylinderShape3D_vds5g")

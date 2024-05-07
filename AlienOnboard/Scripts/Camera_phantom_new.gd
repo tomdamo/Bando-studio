@@ -1,4 +1,4 @@
-extends "player_controller.gd"
+extends "res://Scripts/new_player_controller_third_person.gd"
 
 @onready var _player_pcam: PhantomCamera3D
 @onready var _aim_pcam: PhantomCamera3D
@@ -20,8 +20,7 @@ func _ready() -> void:
 	
 	_player_pcam = owner.get_node("%PlayerPhantomCamera3D")
 	_aim_pcam = owner.get_node("%PlayerAimPhantomCamera3D")
-	_ceiling_pcam = owner.get_node("%CeilingPhantomCamera3D")
-	
+
 	if _player_pcam.get_follow_mode() == _player_pcam.FollowMode.THIRD_PERSON:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -45,13 +44,6 @@ func _unhandled_input(event: InputEvent) -> void:
 				_toggle_aim_pcam(event)
 			else:
 				_toggle_aim_pcam(event)
-
-		if event is InputEventKey and event.pressed:
-			if event.keycode == KEY_SPACE:
-				if _ceiling_pcam.get_priority() < 30 and _player_pcam.is_active():
-					_ceiling_pcam.set_priority(30)
-				else:
-					_ceiling_pcam.set_priority(1)
 
 
 func _set_pcam_rotation(pcam: PhantomCamera3D, event: InputEvent) -> void:

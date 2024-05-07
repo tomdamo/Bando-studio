@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cawrfqo5b07wa"]
 
-[ext_resource type="Script" path="res://UI/MainMenu.gd" id="1_kixtv"]
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_kixtv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sm0pk"]
 font_size = 54

@@ -5,35 +5,35 @@
 [ext_resource type="Texture2D" uid="uid://c6t5uouul4cf7" path="res://Textures/Crosshair/Crosshair 2.png" id="2_t01fh"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_5feqe"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3D_resource.gd" id="4_kk8js"]
-[ext_resource type="Script" path="res://Scripts/player_controller_third_person.gd" id="5_y8pq1"]
+[ext_resource type="Script" path="res://Scripts/Camera_phantom_new.gd" id="5_y8pq1"]
 [ext_resource type="Texture2D" uid="uid://dbe1rrtc6aowd" path="res://Textures/PNG/Orange/texture_03.png" id="7_skg8d"]
 [ext_resource type="PackedScene" uid="uid://sg7ef7wsp04y" path="res://Scenes/UI/PauseMenu.tscn" id="8_p1cf0"]
 
-[sub_resource type="Resource" id="Resource_0yw0t"]
+[sub_resource type="Resource" id="Resource_rfifd"]
 script = ExtResource("3_5feqe")
-duration = 0.3
-transition = 1
+duration = 1.0
+transition = 0
 ease = 2
 
-[sub_resource type="Resource" id="Resource_bai5y"]
+[sub_resource type="Resource" id="Resource_s4kwc"]
 script = ExtResource("4_kk8js")
 cull_mask = 1048575
 h_offset = 0.0
 v_offset = 0.0
 fov = 75.0
 
-[sub_resource type="Resource" id="Resource_xvcjx"]
+[sub_resource type="Resource" id="Resource_28lsy"]
 script = ExtResource("3_5feqe")
-duration = 0.25
-transition = 1
+duration = 1.0
+transition = 0
 ease = 2
 
-[sub_resource type="Resource" id="Resource_yf1op"]
+[sub_resource type="Resource" id="Resource_an4qv"]
 script = ExtResource("4_kk8js")
 cull_mask = 1048575
-h_offset = 1.0
+h_offset = 0.0
 v_offset = 0.0
-fov = 50.0
+fov = 75.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jhlf1"]
 size = Vector3(0.486572, 0.547485, 0.628143)
@@ -68,19 +68,29 @@ script = ExtResource("2_32qfk")
 priority_override = false
 priority = 10
 follow_mode = 6
-follow_target = NodePath("../PlayerCharacterBody3D")
-follow_parameters/spring_arm/spring_length = 3.5
-follow_parameters/spring_arm/collision_mask = 1
-follow_parameters/spring_arm/shape = null
-follow_parameters/spring_arm/margin = 0.2
-follow_parameters/target_offset = Vector3(0, 0, 0)
-follow_parameters/damping = true
-follow_parameters/damping_value = 30.867
 look_at_mode = 0
-tween_parameters = SubResource("Resource_0yw0t")
+tween_resource = SubResource("Resource_rfifd")
 tween_on_load = false
 inactive_update_mode = 0
-camera_3D_resource = SubResource("Resource_bai5y")
+camera_3d_resource = SubResource("Resource_s4kwc")
+follow_offset = Vector3(0, 0, 0)
+follow_damping = false
+follow_damping_value = Vector3(0.1, 0.1, 0.1)
+follow_distance = 1.0
+auto_follow_distance = false
+auto_follow_distance_min = 1.0
+auto_follow_distance_max = 5.0
+auto_follow_distance_divisor = 10.0
+dead_zone_width = 0.0
+dead_zone_height = 0.0
+show_viewfinder_in_play = false
+spring_length = 1.0
+collision_mask = 1
+shape = null
+margin = 0.01
+look_at_offset = Vector3(0, 0, 0)
+look_at_damping = false
+look_at_damping_value = 0.25
 
 [node name="PlayerAimPhantomCamera3D" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -89,18 +99,29 @@ script = ExtResource("2_32qfk")
 priority_override = false
 priority = 0
 follow_mode = 6
-follow_target = NodePath("../PlayerCharacterBody3D")
-follow_parameters/spring_arm/spring_length = 1.5
-follow_parameters/spring_arm/collision_mask = 1
-follow_parameters/spring_arm/shape = null
-follow_parameters/spring_arm/margin = 0.5
-follow_parameters/target_offset = Vector3(0, 0.795, 0)
-follow_parameters/damping = false
 look_at_mode = 0
-tween_parameters = SubResource("Resource_xvcjx")
+tween_resource = SubResource("Resource_28lsy")
 tween_on_load = false
 inactive_update_mode = 0
-camera_3D_resource = SubResource("Resource_yf1op")
+camera_3d_resource = SubResource("Resource_an4qv")
+follow_offset = Vector3(0, 0, 0)
+follow_damping = false
+follow_damping_value = Vector3(0.1, 0.1, 0.1)
+follow_distance = 1.0
+auto_follow_distance = false
+auto_follow_distance_min = 1.0
+auto_follow_distance_max = 5.0
+auto_follow_distance_divisor = 10.0
+dead_zone_width = 0.0
+dead_zone_height = 0.0
+show_viewfinder_in_play = false
+spring_length = 1.0
+collision_mask = 1
+shape = null
+margin = 0.01
+look_at_offset = Vector3(0, 0, 0)
+look_at_damping = false
+look_at_damping_value = 0.25
 
 [node name="PlayerCharacterBody3D" type="CharacterBody3D" parent="."]
 unique_name_in_owner = true
