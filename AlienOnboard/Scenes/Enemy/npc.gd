@@ -28,7 +28,7 @@ func take_damage(damage):
 func die():
 	print("im ded")
 	self.rotation_degrees.x = 90
-	self.position.y = 0 
+	self.position.y -=1
 	pass
 
 

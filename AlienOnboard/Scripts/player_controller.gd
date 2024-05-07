@@ -18,7 +18,6 @@ var paused = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = 9.8
 
-@onready var playerCollider = %PlayerCharacterBody3D
 
 #Health and damage
 @export var health = 6
@@ -89,10 +88,10 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir: Vector2 = Input.get_vector(
-		"move_left",
-		"move_right",
-		"move_forward",
-		"move_back"
+		INPUT_MOVE_LEFT_STRINGNAME,
+		INPUT_MOVE_RIGHT_STRINGNAME,
+		INPUT_MOVE_UP_STRINGNAME,
+		INPUT_MOVE_DOWM_STRINGNAME
 	)
 	#Quit with f1
 	if Input.is_action_just_pressed("quit"):
@@ -203,8 +202,4 @@ func attack():
 		# Check if the body is an enemy
 		if body.is_in_group("enemies"):
 			# Apply damage to the enemy
-			var enemy_position = body.global_transform.origin
-			var direction_to_enemy = (enemy_position - self.global_transform.origin).normalized()
-			direction_to_enemy.y = 0
-			# self.look_at(enemy_position, Vector3.UP)
 			body.take_damage(damage)
