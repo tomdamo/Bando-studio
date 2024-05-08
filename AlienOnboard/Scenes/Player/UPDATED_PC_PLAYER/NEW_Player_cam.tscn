@@ -22,6 +22,10 @@ albedo_color = Color(0.921569, 0.576471, 0.137255, 1)
 [sub_resource type="PrismMesh" id="PrismMesh_wg1x3"]
 size = Vector3(0.5, 0.5, 0.3)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vds5g"]
+height = 1.00984
+radius = 0.8339
+
 [sub_resource type="Resource" id="Resource_84yex"]
 script = ExtResource("3_kwa3r")
 duration = 0.3
@@ -48,23 +52,13 @@ h_offset = 1.0
 v_offset = 0.0
 fov = 75.0
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_vds5g"]
-height = 0.798162
-radius = 0.513441
-
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, -1.42721e-10, 0, 1.35419e-10, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="PlayerCharacterBody3D" type="CharacterBody3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(0.999903, 0.0139622, 0, -0.0139622, 0.999903, 0, 0, 0, 1, -0.0194088, 0.506884, -0.0163251)
-collision_layer = 2
 script = ExtResource("1_2ds56")
-
-[node name="PlayerArea3D" type="Area3D" parent="PlayerCharacterBody3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCharacterBody3D/PlayerArea3D"]
-shape = SubResource("CapsuleShape3D_s61dn")
 
 [node name="PlayerCollisionShape3D" type="CollisionShape3D" parent="PlayerCharacterBody3D"]
 shape = SubResource("CapsuleShape3D_s61dn")
@@ -84,6 +78,22 @@ transform = Transform3D(1, 0, -4.37114e-08, -4.37114e-08, 1.91069e-15, -1, 0, 1,
 mesh = SubResource("PrismMesh_wg1x3")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_mv4do")
+
+[node name="PlayerArea3D" type="Area3D" parent="PlayerCharacterBody3D"]
+transform = Transform3D(1, -1.42721e-10, 0, 1.35419e-10, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCharacterBody3D/PlayerArea3D"]
+shape = SubResource("CapsuleShape3D_s61dn")
+
+[node name="AttackRange" type="Area3D" parent="PlayerCharacterBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+collision_layer = 2
+collision_mask = 2
+
+[node name="PlayerCollisionShape3D" type="CollisionShape3D" parent="PlayerCharacterBody3D/AttackRange"]
+transform = Transform3D(1, -1.42721e-10, -9.33736e-19, 1.35419e-10, 1, 4.65661e-10, 0, 0, 1, 0.00509038, -0.0738079, 0.0190381)
+shape = SubResource("CylinderShape3D_vds5g")
 
 [node name="MainCamera3D" type="Camera3D" parent="."]
 unique_name_in_owner = true
@@ -133,16 +143,6 @@ one_shot = true
 unique_name_in_owner = true
 wait_time = 6.0
 one_shot = true
-
-[node name="AttackRange" type="Area3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, -1.42721e-10, 0, 1.35419e-10, 1, 0, 0, 0, 1, 0, 0, 0)
-collision_layer = 2
-collision_mask = 2
-
-[node name="PlayerCollisionShape3D" type="CollisionShape3D" parent="AttackRange"]
-transform = Transform3D(1, -1.42721e-10, -9.33736e-19, 1.35419e-10, 1, 4.65661e-10, 0, 0, 1, 0.00509038, -0.0738079, 0.0190381)
-shape = SubResource("CylinderShape3D_vds5g")
 
 [node name="PauseMenu" parent="." instance=ExtResource("7_l4beg")]
 unique_name_in_owner = true

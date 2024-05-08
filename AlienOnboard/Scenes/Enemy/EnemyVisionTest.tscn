@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://brnsoicyapugk"]
+[gd_scene load_steps=9 format=3 uid="uid://bhn4tb14vk0n2"]
 
-[ext_resource type="PackedScene" uid="uid://4i5csj0s34nb" path="res://Scenes/Player/PlayerPhantom_Cam.tscn" id="2_f6oft"]
+[ext_resource type="PackedScene" uid="uid://4i5csj0s34nb" path="res://Scenes/Player/OLD_PlayerPhantom_Cam.tscn" id="2_f6oft"]
 [ext_resource type="PackedScene" uid="uid://cqtejkqmnfxg5" path="res://Scenes/Enemy/NPCwVision.tscn" id="2_l765j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h1ehm"]

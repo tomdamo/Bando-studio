@@ -38,9 +38,7 @@ var enemyVisibleMaterial = load("res://Textures/EnemyVisible.tres")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = 9.8
-
 var movement_enabled: bool = true
-
 var _physics_body_trans_last: Transform3D
 var _physics_body_trans_current: Transform3D
 
@@ -80,6 +78,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("SenseAbility") and not senseActive and sense_cooldown_timer.is_stopped():
 		print("if for senseability passed")
 		_activateSenseAbility()
+	
+	if Input.is_action_just_pressed("Attack"):
+		attack()
 
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -168,7 +169,13 @@ func _pauseMenu():
 		pause_menu.show()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().paused = true
-
-
 	paused = !paused
+
+#Attack
+func attack():
+	var bodies = attack_range.get_overlapping_bodies()
+	print(bodies)
+	for body in bodies:
+		if body.has_method("take_damage"):
+			body.take_damage(damage)
 

@@ -5,9 +5,13 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 var health = 9
+var death = false
 @onready var blood = %BloodEffect
 @onready var bloodTimer = %BloodTimer
 
+@onready var VisionArea = %VisionArea
+@onready var VisionRaycast = %VisionRaycast
+@onready var VisionTimer = %VisionTimer
 func _ready():
 	pass
 
@@ -29,8 +33,43 @@ func die():
 	print("im ded")
 	self.rotation_degrees.x = 90
 	self.position.y = 0 
+	death = true
+
 	pass
 
 
 func _on_blood_timer_timeout():
 	blood.hide()
+
+
+func _on_vision_timer_timeout():
+	if !death:
+		var overlaps = %VisionArea.get_overlapping_bodies()
+		if overlaps.size() > 0:
+			for overlap in overlaps:
+				if "Player" in overlap.name:
+					var playerPosition = overlap.global_transform.origin
+					var directionToPlayer = (playerPosition - global_transform.origin).normalized()
+					var forwardDirection = -transform.basis.z
+				
+
+					var angle = acos(forwardDirection.dot(directionToPlayer))
+
+					if angle < PI / 2:
+						playerPosition.y -= 0.5
+						$VisionRaycast.look_at(playerPosition, Vector3.UP)
+						$VisionRaycast.force_raycast_update()
+
+						if $VisionRaycast.is_colliding():
+							var collider = $VisionRaycast.get_collider()
+
+							if "Player" in collider.name:
+								$VisionRaycast.debug_shape_custom_color = Color(174,8,0)
+								print("I see you")
+							else:
+								$VisionRaycast.debug_shape_custom_color = Color(0,255,0)
+								print(collider.name)
+
+
+func _on_vision_area_body_entered(body):
+	pass # Replace with function body.

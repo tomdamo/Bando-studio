@@ -31,6 +31,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.342339, -0.211782)
 mesh = SubResource("SphereMesh_1l85s")
 
 [node name="VisionArea" type="Area3D" parent="."]
+unique_name_in_owner = true
 collision_layer = 2
 
 [node name="CollisionShapeCone" type="CollisionShape3D" parent="VisionArea"]
@@ -38,10 +39,12 @@ transform = Transform3D(10, 0, 0, 0, -4.37114e-07, -10, 0, 10, -4.37114e-07, 0, 
 shape = SubResource("BoxShape3D_wow2y")
 
 [node name="VisionTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 0.25
 autostart = true
 
 [node name="VisionRaycast" type="RayCast3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258051, -0.469334)
 target_position = Vector3(2.08165e-12, 5, -100)
 collide_with_areas = true

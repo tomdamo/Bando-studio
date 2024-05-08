@@ -24,7 +24,7 @@
 [ext_resource type="Script" path="res://Scripts/Enemy/AI/CheckEnemyInFOVRange.gd" id="20_s4tp4"]
 [ext_resource type="Script" path="res://Scripts/Enemy/AI/TaskGotoTarget.gd" id="21_o6mjf"]
 [ext_resource type="Script" path="res://Scripts/Enemy/PatrolScript.gd" id="22_o5jhq"]
-[ext_resource type="PackedScene" uid="uid://bi7lvvqh5ljqv" path="res://Scenes/Player/NEW_Player_cam.tscn" id="25_wji3v"]
+[ext_resource type="PackedScene" uid="uid://bi7lvvqh5ljqv" path="res://Scenes/Player/UPDATED_PC_PLAYER/NEW_Player_cam.tscn" id="25_wji3v"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_pwsl1"]
 material = ExtResource("2_tn1mc")
@@ -1861,7 +1861,7 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="BeehaveTree" type="Node" parent="enemies/Enemy1" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("15_nvitn")
-blackboard = NodePath("@Node@31394")
+blackboard = NodePath("@Node@17489")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="enemies/Enemy1/BeehaveTree"]
@@ -1924,7 +1924,7 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="BeehaveTree1" type="Node" parent="enemies/Guard2" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("15_nvitn")
-blackboard = NodePath("@Node@31395")
+blackboard = NodePath("@Node@17490")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="enemies/Guard2/BeehaveTree1"]

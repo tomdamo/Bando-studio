@@ -1,6 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://b3uqd8ldc25d7"]
+[gd_scene load_steps=19 format=3 uid="uid://b3uqd8ldc25d7"]
 
-[ext_resource type="Script" path="res://Scenes/Enemy/npc.gd" id="1_w6csw"]
+[ext_resource type="Script" path="res://Scenes/Enemy/npc.gd" id="1_wewvq"]
 [ext_resource type="PackedScene" uid="uid://da26scurnqbcq" path="res://character.fbx" id="2_8rv7u"]
 [ext_resource type="Shader" uid="uid://b1wdkryuh65mm" path="res://Textures/Shaders/blood_spot.tres" id="2_c7o0g"]
 [ext_resource type="Shader" uid="uid://g73rnhf5c3b4" path="res://Textures/Shaders/blood.tres" id="3_lwqc1"]
@@ -65,11 +65,14 @@ sub_emitter_amount_at_collision = 1
 [sub_resource type="QuadMesh" id="QuadMesh_40qxx"]
 size = Vector2(0.5, 0.5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ouck"]
+size = Vector3(2, 1.867, 0.584)
+
 [node name="NPC" type="CharacterBody3D"]
-collision_layer = 2
-script = ExtResource("1_w6csw")
+script = ExtResource("1_wewvq")
 
 [node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Root Scene" parent="Pivot" instance=ExtResource("2_8rv7u")]
 
@@ -107,4 +110,31 @@ sub_emitter = NodePath("../BloodSpot")
 process_material = SubResource("ParticleProcessMaterial_f06s2")
 draw_pass_1 = SubResource("QuadMesh_40qxx")
 
+[node name="VisionTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.25
+autostart = true
+
+[node name="VisionRaycast" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.5, 2.08165e-12)
+target_position = Vector3(2.08165e-12, 5, -100)
+collide_with_areas = true
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="VisionArea" type="Area3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.20283)
+collision_layer = 2
+
+[node name="CollisionShapeCone" type="CollisionShape3D" parent="VisionArea"]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, -10, 0, 10, -4.37114e-07, 0, 2.07901, -8.26065)
+shape = SubResource("BoxShape3D_0ouck")
+
+[node name="ShotRayCast" type="RayCast3D" parent="."]
+
+[node name="ShotTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="BloodTimer" to="." method="_on_blood_timer_timeout"]
+[connection signal="timeout" from="VisionTimer" to="." method="_on_vision_timer_timeout"]
+[connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
