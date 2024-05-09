@@ -21,9 +21,10 @@ var paused = false
 @onready var pause_menu = %PauseMenu 
 
 #Health and damage
-@export var health = 6
+@export var health = 9
 @export var damage = 3
 @onready var attack_range = %AttackRange
+@export var player_died = false
 
 #Sense ability
 var senseActive = false
@@ -81,6 +82,9 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("Attack"):
 		attack()
+		
+	if player_died:
+		die()
 
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -178,4 +182,16 @@ func attack():
 	for body in bodies:
 		if body.has_method("take_damage"):
 			body.take_damage(damage)
-
+			
+func take_damage(damageAmount):
+	print("Damage taken")
+	print(health)	
+	#bloodTimer.start()
+	#blood.show() 
+	health -= damage
+	if health <= 0:
+		player_died = true
+	
+func die():
+	print("Player died")
+	movement_enabled = false

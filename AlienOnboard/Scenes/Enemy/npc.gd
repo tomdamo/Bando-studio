@@ -12,6 +12,10 @@ var death = false
 @onready var VisionArea = %VisionArea
 @onready var VisionRaycast = %VisionRaycast
 @onready var VisionTimer = %VisionTimer
+
+@onready var ShotTimer = %ShotTimer
+var Bullet = preload("res://Scenes/Bullet/Bullet.tscn")
+var player_position = Vector3.ZERO
 func _ready():
 	pass
 
@@ -66,6 +70,9 @@ func _on_vision_timer_timeout():
 							if "Player" in collider.name:
 								$VisionRaycast.debug_shape_custom_color = Color(174,8,0)
 								print("I see you")
+								player_position = playerPosition
+								# ShotTimer.start()
+								shootAtTarget()
 							else:
 								$VisionRaycast.debug_shape_custom_color = Color(0,255,0)
 								print(collider.name)
@@ -73,3 +80,43 @@ func _on_vision_timer_timeout():
 
 func _on_vision_area_body_entered(body):
 	pass # Replace with function body.
+
+
+
+#commented out this way of shooting for now
+func _on_shot_timer_timeout():
+	if !death:
+		$VisionRaycast.force_raycast_update()
+
+		if $VisionRaycast.is_colliding():
+			var collider = $VisionRaycast.get_collider()
+
+			if "Player" in collider.name:
+				print("player hit")
+		# 		$ShotRaycast.force_raycast_update()
+		# 		$ShotRaycast.look_at(collider.global_transform.origin, Vector3.UP)
+
+		# 		if $ShotRaycast.is_colliding():
+		# 			var hitCollider = $ShotRaycast.get_collider()
+		# 			if "Player" in hitCollider.name:
+		# 				hitCollider.take_damage(1)
+		# 				print("Shot")
+		# 			else:
+		# 				print(hitCollider.name)
+		# 	else:
+		# 		print(collider.name)
+		# else:
+		# 	print("No collision")
+	
+func shootAtTarget():
+	if !death:
+		var bullet = Bullet.instantiate()
+		bullet.global_transform.origin = self.global_transform.origin
+		
+		var target_position = player_position
+		target_position.y += 0.5
+		var direction = (target_position - self.global_transform.origin).normalized()
+
+		bullet.direction = direction
+
+		get_parent().add_child(bullet)
