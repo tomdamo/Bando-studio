@@ -121,10 +121,8 @@ func shootAtTarget():
 		print(distance_to_player)
 		if distance_to_player < 3:
 			target_position.y -= 0.52
-		elif distance_to_player <= 17:
-			target_position.y -= 0.3
 		else:
-			target_position.y -= 0.35
+			target_position.y -= 0.3
 		var direction = (target_position - self.global_transform.origin).normalized()
 		#take the direction of the raycast -> does not work
 		#var direction = $VisionRaycast.to_global($VisionRaycast.cast_to).normalized()
