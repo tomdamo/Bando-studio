@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cpnl0gq73vhcy"]
 
 [ext_resource type="MeshLibrary" uid="uid://diykdocl2rpcg" path="res://MeshLibraryBlockout.tres" id="1_bj8nq"]
-[ext_resource type="PackedScene" uid="uid://cqtejkqmnfxg5" path="res://Scenes/Enemy/NPCwVision.tscn" id="3_c6hd5"]
-[ext_resource type="PackedScene" uid="uid://4i5csj0s34nb" path="res://Scenes/Player/PlayerPhantom_Cam.tscn" id="3_x4wan"]
+[ext_resource type="PackedScene" uid="uid://cqtejkqmnfxg5" path="res://Scenes/Enemy/Old_npc_vision/NPCwVision.tscn" id="3_c6hd5"]
+[ext_resource type="PackedScene" uid="uid://4i5csj0s34nb" path="res://Scenes/Player/OLD_PlayerPhantom_Cam.tscn" id="3_x4wan"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sad2w"]
 font_size = 42

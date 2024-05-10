@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://b3uqd8ldc25d7"]
 
-[ext_resource type="Script" path="res://Scenes/Enemy/npc.gd" id="1_wewvq"]
+[ext_resource type="Script" path="res://Scenes/Enemy/Guard/npc.gd" id="1_wewvq"]
 [ext_resource type="PackedScene" uid="uid://da26scurnqbcq" path="res://character.fbx" id="2_8rv7u"]
 [ext_resource type="Shader" uid="uid://b1wdkryuh65mm" path="res://Textures/Shaders/blood_spot.tres" id="2_c7o0g"]
 [ext_resource type="Shader" uid="uid://g73rnhf5c3b4" path="res://Textures/Shaders/blood.tres" id="3_lwqc1"]
@@ -68,7 +68,7 @@ size = Vector2(0.5, 0.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ouck"]
 size = Vector3(2, 1.867, 0.584)
 
-[node name="NPC" type="CharacterBody3D"]
+[node name="NPCGuard" type="CharacterBody3D"]
 script = ExtResource("1_wewvq")
 
 [node name="Pivot" type="Node3D" parent="."]

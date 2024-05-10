@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cqtejkqmnfxg5"]
 
-[ext_resource type="Script" path="res://Scenes/Enemy/NPCwVision.gd" id="1_pkwn5"]
+[ext_resource type="Script" path="res://Scenes/Enemy/Old_npc_vision/NPCwVision.gd" id="1_pkwn5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qk7q3"]
 

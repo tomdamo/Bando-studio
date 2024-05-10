@@ -111,12 +111,22 @@ func _on_shot_timer_timeout():
 func shootAtTarget():
 	if !death:
 		var bullet = Bullet.instantiate()
-		bullet.global_transform.origin = self.global_transform.origin
+		get_parent().add_child(bullet)
+		var npc_position = self.global_transform.origin
+		npc_position.y += 1
+		bullet.global_transform.origin = npc_position
 		
 		var target_position = player_position
-		target_position.y += 0.5
+		var distance_to_player = npc_position.distance_to(target_position)
+		print(distance_to_player)
+		if distance_to_player < 3:
+			target_position.y -= 0.52
+		elif distance_to_player <= 17:
+			target_position.y -= 0.3
+		else:
+			target_position.y -= 0.35
 		var direction = (target_position - self.global_transform.origin).normalized()
-
+		#take the direction of the raycast -> does not work
+		#var direction = $VisionRaycast.to_global($VisionRaycast.cast_to).normalized()
 		bullet.direction = direction
 
-		get_parent().add_child(bullet)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://byp8u1kyr3xpn"]
+[gd_scene load_steps=9 format=3 uid="uid://byp8u1kyr3xpn"]
 
 [ext_resource type="PackedScene" uid="uid://bi7lvvqh5ljqv" path="res://Scenes/Player/UPDATED_PC_PLAYER/NEW_Player_cam.tscn" id="2_8dxr6"]
-[ext_resource type="PackedScene" uid="uid://b3uqd8ldc25d7" path="res://Scenes/Enemy/npc.tscn" id="3_wjogp"]
+[ext_resource type="PackedScene" uid="uid://drddbr21tbue4" path="res://Waypoint/waypoint circular.tscn" id="3_k3dac"]
+[ext_resource type="PackedScene" uid="uid://b3uqd8ldc25d7" path="res://Scenes/Enemy/Guard/npc.tscn" id="3_wjogp"]
 
 [sub_resource type="Environment" id="Environment_334f7"]
 
@@ -51,3 +52,6 @@ collision_mask = 4
 
 [node name="Player" parent="." instance=ExtResource("2_8dxr6")]
 transform = Transform3D(1, -1.42721e-10, 0, 1.35419e-10, 1, 0, 0, 0, 1, -0.539713, 0.61093, 3.98701)
+
+[node name="Node3D" parent="." instance=ExtResource("3_k3dac")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.153599, -0.435586, -8.94719)

@@ -1,7 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://bi7lvvqh5ljqv"]
+[gd_scene load_steps=18 format=3 uid="uid://bi7lvvqh5ljqv"]
 
 [ext_resource type="Script" path="res://Scripts/Camera_phantom_new.gd" id="1_2ds56"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_8b7er"]
+[ext_resource type="Material" uid="uid://wgsw5d8j58xl" path="res://Scenes/Player/UPDATED_PC_PLAYER/damaged_player_material.tres" id="2_k1c74"]
+[ext_resource type="Material" uid="uid://bua1liet3lybh" path="res://Scenes/Player/UPDATED_PC_PLAYER/normal_player_material.tres" id="2_n0gms"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_kwa3r"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="4_7cxvr"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_fkqth"]
@@ -15,9 +17,6 @@ height = 0.8
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_47f0o"]
 radius = 0.4
 height = 0.8
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mv4do"]
-albedo_color = Color(0.921569, 0.576471, 0.137255, 1)
 
 [sub_resource type="PrismMesh" id="PrismMesh_wg1x3"]
 size = Vector3(0.5, 0.5, 0.3)
@@ -67,18 +66,19 @@ shape = SubResource("CapsuleShape3D_s61dn")
 unique_name_in_owner = true
 
 [node name="PlayerMeshInstance3D" type="MeshInstance3D" parent="PlayerCharacterBody3D/PlayerVisual"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 4.65661e-10, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_47f0o")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_mv4do")
+surface_material_override/0 = ExtResource("2_n0gms")
 
 [node name="PlayerDirection" type="MeshInstance3D" parent="PlayerCharacterBody3D/PlayerVisual"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, -4.37114e-08, -4.37114e-08, 1.91069e-15, -1, 0, 1, 1.91069e-15, -0.0156226, 1.08631, 0)
-visible = false
+layers = 0
 mesh = SubResource("PrismMesh_wg1x3")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_mv4do")
+surface_material_override/0 = ExtResource("2_k1c74")
 
 [node name="PlayerArea3D" type="Area3D" parent="PlayerCharacterBody3D"]
 transform = Transform3D(1, -1.42721e-10, 0, 1.35419e-10, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -114,7 +114,7 @@ follow_target = NodePath("../PlayerCharacterBody3D/PlayerVisual")
 tween_resource = SubResource("Resource_84yex")
 tween_on_load = false
 camera_3d_resource = SubResource("Resource_bhlgk")
-follow_damping = true
+follow_damping_value = Vector3(2.08165e-12, 0.1, 2.08165e-12)
 follow_distance = 3.5
 spring_length = 3.5
 
@@ -152,3 +152,9 @@ visible = false
 [node name="GameverMenu" parent="." instance=ExtResource("7_0kgvt")]
 unique_name_in_owner = true
 visible = false
+
+[node name="DamageTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.75
+
+[connection signal="timeout" from="DamageTimer" to="PlayerCharacterBody3D" method="_on_damage_timer_timeout"]

@@ -25,6 +25,11 @@ var paused = false
 @export var damage = 3
 @onready var attack_range = %AttackRange
 @export var player_died = false
+const GAME_OVER_2 = preload("res://Scenes/UI/GameOver2.tscn")
+var playerNormalMaterial = load("res://Scenes/Player/UPDATED_PC_PLAYER/normal_player_material.tres")
+var playerDamageMaterial = load("res://Scenes/Player/UPDATED_PC_PLAYER/damaged_player_material.tres")
+@onready var damage_timer = %DamageTimer
+@onready var player_mesh_instance_3d = %PlayerMeshInstance3D
 
 #Sense ability
 var senseActive = false
@@ -83,9 +88,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Attack"):
 		attack()
 		
-	if player_died:
-		die()
-
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		
@@ -185,13 +187,18 @@ func attack():
 			
 func take_damage(damageAmount):
 	print("Damage taken")
-	print(health)	
+	print(health)
 	#bloodTimer.start()
 	#blood.show() 
 	health -= damage
+	damage_timer.start()
+	player_mesh_instance_3d.material_override = playerDamageMaterial
 	if health <= 0:
-		player_died = true
+		die()
 	
 func die():
 	print("Player died")
-	movement_enabled = false
+	print(health)
+
+func _on_damage_timer_timeout():
+	player_mesh_instance_3d.material_override = playerNormalMaterial
