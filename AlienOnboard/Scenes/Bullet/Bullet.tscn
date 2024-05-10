@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://rt3g3qyepaqv"]
+[gd_scene load_steps=9 format=3 uid="uid://rt3g3qyepaqv"]
 
 [ext_resource type="Script" path="res://Scenes/Bullet/Bullet.gd" id="1_k52cw"]
 [ext_resource type="Script" path="res://Scenes/Bullet/traileffect.gd" id="2_kpbgb"]
+[ext_resource type="AudioStream" uid="uid://bq7bxya1onlvo" path="res://Scenes/Bullet/pew1.mp3" id="3_htjgl"]
 
 [sub_resource type="Shader" id="Shader_mbuul"]
 code = "shader_type spatial;
@@ -129,7 +130,7 @@ render_priority = 0
 shader = SubResource("Shader_mbuul")
 shader_parameter/_shield_color = Color(1, 0, 0, 1)
 shader_parameter/_shield_color_brightness = 20.0
-shader_parameter/_shield_intensity = 0.4
+shader_parameter/_shield_intensity = 0.25
 shader_parameter/_rotation = Vector3(0.1, 0, 0)
 shader_parameter/_shield_size = 0.0
 shader_parameter/_shield_pulse_frequency = 1.0
@@ -137,7 +138,7 @@ shader_parameter/_shield_pulse_density = 1.0
 shader_parameter/_shield_pulse_amplitude = 1.0
 shader_parameter/_shield_pulse_blend = 1.0
 shader_parameter/_shield_pulse_radius = 1.0
-shader_parameter/_impact_origin = Vector3(1, 0, 0)
+shader_parameter/_impact_origin = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 shader_parameter/_impact_frequency = 5.0
 shader_parameter/_impact_density = 5.0
 shader_parameter/_impact_amplitude = 6.0
@@ -189,13 +190,17 @@ visible = false
 unique_name_in_owner = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea"]
-transform = Transform3D(1, 0, -1.5246e-23, -1.5246e-23, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(0.794221, -0.601373, 0.0869661, 0.538575, 0.630449, -0.558991, 0.281334, 0.4908, 0.8246, 0, 0, 0)
 shape = SubResource("BoxShape3D_7uv1g")
 
 [node name="BulletLifeTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_htjgl")
+autoplay = true
 
 [connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
 [connection signal="timeout" from="BulletLifeTimer" to="." method="_on_bullet_life_timer_timeout"]

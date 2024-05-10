@@ -56,7 +56,6 @@ func _on_vision_timer_timeout():
 					var directionToPlayer = (playerPosition - global_transform.origin).normalized()
 					var forwardDirection = -transform.basis.z
 				
-
 					var angle = acos(forwardDirection.dot(directionToPlayer))
 
 					if angle < PI / 2:
@@ -76,11 +75,6 @@ func _on_vision_timer_timeout():
 							else:
 								$VisionRaycast.debug_shape_custom_color = Color(0,255,0)
 								print(collider.name)
-
-
-func _on_vision_area_body_entered(body):
-	pass # Replace with function body.
-
 
 
 #commented out this way of shooting for now
@@ -121,6 +115,8 @@ func shootAtTarget():
 		print(distance_to_player)
 		if distance_to_player < 3:
 			target_position.y -= 0.52
+		elif distance_to_player < 5:
+			target_position.y -= 0.4
 		else:
 			target_position.y -= 0.3
 		var direction = (target_position - self.global_transform.origin).normalized()
