@@ -44,6 +44,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_sj0b3")
 text = "Start"
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer"]
+visible = false
 clip_contents = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_mm6hj")

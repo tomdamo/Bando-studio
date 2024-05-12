@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bivoftug4vmos"]
+
+[ext_resource type="Shader" uid="uid://dchrvt3ekbght" path="res://Shaders/VisualShaders/Dissolve.tres" id="1_jdeu4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1n70u"]
+render_priority = 0
+shader = ExtResource("1_jdeu4")
+shader_parameter/baseColor = Color(1, 1, 1, 1)
+shader_parameter/DissolveHeight = null
+
+[sub_resource type="SphereMesh" id="SphereMesh_lmsj7"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.145385, 0)
+material_override = SubResource("ShaderMaterial_1n70u")
+mesh = SubResource("SphereMesh_lmsj7")

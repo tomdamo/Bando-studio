@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://2toie0yp5l68"
 path.s3tc="res://.godot/imported/TCom_Scifi_Panel_4K_height.png-127415928297bf1404013df2ce12b344.s3tc.ctex"
+path.etc2="res://.godot/imported/TCom_Scifi_Panel_4K_height.png-127415928297bf1404013df2ce12b344.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Textures/Scifi/panel/TCom_Scifi_Panel_4K_height.png"
-dest_files=["res://.godot/imported/TCom_Scifi_Panel_4K_height.png-127415928297bf1404013df2ce12b344.s3tc.ctex"]
+dest_files=["res://.godot/imported/TCom_Scifi_Panel_4K_height.png-127415928297bf1404013df2ce12b344.s3tc.ctex", "res://.godot/imported/TCom_Scifi_Panel_4K_height.png-127415928297bf1404013df2ce12b344.etc2.ctex"]
 
 [params]
 

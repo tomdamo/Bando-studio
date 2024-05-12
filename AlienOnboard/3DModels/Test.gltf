@@ -1,0 +1,306 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v3.1.95221606)"
+    },
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 3513,
+            "type": "VEC3",
+            "max": [
+                9.30000114440918,
+                5.000000476837158,
+                0.5000001788139343
+            ],
+            "min": [
+                -9.30000114440918,
+                -4.137500762939453,
+                -0.5000001788139343
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 3513,
+            "type": "VEC3",
+            "max": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "min": [
+                -1.0,
+                -1.0,
+                -1.0
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 3513,
+            "type": "VEC4",
+            "max": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "min": [
+                -1.0,
+                -1.0,
+                -1.0,
+                -1.0
+            ]
+        },
+        {
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 3513,
+            "type": "VEC2",
+            "max": [
+                0.9987004995346069,
+                0.7334306836128235
+            ],
+            "min": [
+                0.0012995004653930665,
+                0.24344408512115479
+            ]
+        },
+        {
+            "bufferView": 4,
+            "byteOffset": 0,
+            "componentType": 5123,
+            "count": 14328,
+            "type": "SCALAR",
+            "max": [
+                3512.0
+            ],
+            "min": [
+                0.0
+            ]
+        },
+        {
+            "bufferView": 5,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 696,
+            "type": "VEC3",
+            "max": [
+                7.851000785827637,
+                3.8500003814697267,
+                0.02449999749660492
+            ],
+            "min": [
+                -7.851000785827637,
+                -4.137500762939453,
+                -0.02449999749660492
+            ]
+        },
+        {
+            "bufferView": 6,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 696,
+            "type": "VEC3",
+            "max": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "min": [
+                -1.0,
+                -1.0,
+                -1.0
+            ]
+        },
+        {
+            "bufferView": 7,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 696,
+            "type": "VEC4",
+            "max": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "min": [
+                -1.0,
+                -1.0,
+                -1.0,
+                -1.0
+            ]
+        },
+        {
+            "bufferView": 8,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 696,
+            "type": "VEC2",
+            "max": [
+                0.0,
+                1.0
+            ],
+            "min": [
+                0.0,
+                1.0
+            ]
+        },
+        {
+            "bufferView": 9,
+            "byteOffset": 0,
+            "componentType": 5123,
+            "count": 2484,
+            "type": "SCALAR",
+            "max": [
+                695.0
+            ],
+            "min": [
+                0.0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 235656,
+            "uri": "Test.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 42156,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 42156,
+            "byteLength": 42156,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 84312,
+            "byteLength": 56208,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 140520,
+            "byteLength": 28104,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 168624,
+            "byteLength": 28656,
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 197280,
+            "byteLength": 8352,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 205632,
+            "byteLength": 8352,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 213984,
+            "byteLength": 11136,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 225120,
+            "byteLength": 5568,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 230688,
+            "byteLength": 4968,
+            "target": 34963
+        }
+    ],
+    "materials": [
+        {
+            "name": "Material",
+            "doubleSided": true
+        },
+        {
+            "name": "DefaultMaterial"
+        }
+    ],
+    "meshes": [
+        {
+            "name": "Plane.001",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 1,
+                    "indices": 4,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1,
+                        "TANGENT": 2,
+                        "TEXCOORD_0": 3
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Plane.015",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 9,
+                    "attributes": {
+                        "POSITION": 5,
+                        "NORMAL": 6,
+                        "TANGENT": 7,
+                        "TEXCOORD_0": 8
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "ROOT",
+            "children": [
+                1,
+                2
+            ]
+        },
+        {
+            "name": "Plane.003",
+            "mesh": 0
+        },
+        {
+            "name": "Plane.004",
+            "mesh": 1
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0
+}

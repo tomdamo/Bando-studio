@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dxhpoq7cyjp1m"]
+
+[ext_resource type="Shader" path="res://Textures/Materials/Glass.gdshader" id="1_o5n24"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_o5n24")
+shader_parameter/tint_color = Color(1, 1, 1, 0.0823529)
+shader_parameter/backlight_color = Color(1, 1, 1, 0)
+shader_parameter/noise_strenght = 0.0
+shader_parameter/roughness = 1.0
+shader_parameter/normal_strenght = 0.0

@@ -1,0 +1,135 @@
+[gd_resource type="VisualShader" load_steps=12 format=3 uid="uid://dchrvt3ekbght"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_lhbpq"]
+parameter_name = "baseColor"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_xn6ww"]
+constant = 0.5
+
+[sub_resource type="VisualShaderNodeVaryingGetter" id="VisualShaderNodeVaryingGetter_kvvdj"]
+expanded_output_ports = [0]
+varying_name = "WorldPos"
+varying_type = 4
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_mg1k5"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_nny7h"]
+parameter_name = "DissolveHeight"
+
+[sub_resource type="VisualShaderNodeStep" id="VisualShaderNodeStep_b6o0q"]
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_i7f5n"]
+function = 31
+
+[sub_resource type="VisualShaderNodeVaryingSetter" id="VisualShaderNodeVaryingSetter_wr0mu"]
+varying_name = "WorldPos"
+varying_type = 4
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_mqdlx"]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_5f8ch"]
+input_name = "model_matrix"
+
+[sub_resource type="VisualShaderNodeTransformVecMult" id="VisualShaderNodeTransformVecMult_o0wag"]
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx;
+
+
+// Varyings
+varying vec3 WorldPos;
+
+uniform vec4 baseColor : source_color = vec4(1.000000, 1.000000, 1.000000, 1.000000);
+uniform float DissolveHeight;
+
+
+
+void vertex() {
+// Input:4
+	mat4 n_out4p0 = MODEL_MATRIX;
+
+
+// Input:3
+	vec3 n_out3p0 = VERTEX;
+
+
+// TransformVectorMult:5
+	vec3 n_out5p0 = (n_out4p0 * vec4(n_out3p0, 1.0)).xyz;
+
+
+// VaryingSetter:2
+	WorldPos = n_out5p0;
+
+
+}
+
+void fragment() {
+// ColorParameter:2
+	vec4 n_out2p0 = baseColor;
+
+
+// FloatParameter:6
+	float n_out6p0 = DissolveHeight;
+
+
+// VaryingGetter:4
+	vec3 n_out4p0 = WorldPos;
+
+
+// VectorDecompose:5
+	float n_out5p0 = n_out4p0.x;
+	float n_out5p1 = n_out4p0.y;
+	float n_out5p2 = n_out4p0.z;
+
+
+// Step:7
+	float n_out7p0 = step(n_out6p0, n_out5p1);
+
+
+// FloatFunc:8
+	float n_out8p0 = 1.0 - n_out7p0;
+
+
+// FloatConstant:3
+	float n_out3p0 = 0.500000;
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+	ALPHA = n_out8p0;
+	ALPHA_SCISSOR_THRESHOLD = n_out3p0;
+
+
+}
+"
+modes/cull = 2
+varyings/WorldPos = "0,4"
+nodes/vertex/0/position = Vector2(860, 160)
+nodes/vertex/2/node = SubResource("VisualShaderNodeVaryingSetter_wr0mu")
+nodes/vertex/2/position = Vector2(400, 380)
+nodes/vertex/3/node = SubResource("VisualShaderNodeInput_mqdlx")
+nodes/vertex/3/position = Vector2(-800, 480)
+nodes/vertex/4/node = SubResource("VisualShaderNodeInput_5f8ch")
+nodes/vertex/4/position = Vector2(-800, 280)
+nodes/vertex/5/node = SubResource("VisualShaderNodeTransformVecMult_o0wag")
+nodes/vertex/5/position = Vector2(-100, 340)
+nodes/vertex/connections = PackedInt32Array(3, 0, 5, 1, 4, 0, 5, 0, 5, 0, 2, 0)
+nodes/fragment/0/position = Vector2(1600, 400)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_lhbpq")
+nodes/fragment/2/position = Vector2(-580, 20)
+nodes/fragment/3/node = SubResource("VisualShaderNodeFloatConstant_xn6ww")
+nodes/fragment/3/position = Vector2(300, 1420)
+nodes/fragment/4/node = SubResource("VisualShaderNodeVaryingGetter_kvvdj")
+nodes/fragment/4/position = Vector2(-600, 1060)
+nodes/fragment/5/node = SubResource("VisualShaderNodeVectorDecompose_mg1k5")
+nodes/fragment/5/position = Vector2(-80, 1240)
+nodes/fragment/6/node = SubResource("VisualShaderNodeFloatParameter_nny7h")
+nodes/fragment/6/position = Vector2(-600, 700)
+nodes/fragment/7/node = SubResource("VisualShaderNodeStep_b6o0q")
+nodes/fragment/7/position = Vector2(400, 820)
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatFunc_i7f5n")
+nodes/fragment/8/position = Vector2(880, 820)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 0, 0, 19, 4, 0, 5, 0, 6, 0, 7, 0, 5, 1, 7, 1, 7, 0, 8, 0, 8, 0, 0, 1)
