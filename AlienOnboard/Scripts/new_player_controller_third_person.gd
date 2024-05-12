@@ -15,6 +15,7 @@ var dashing = false
 var dash_direction = Vector3.ZERO
 var dash_timer = 0.0
 @onready var dash_cooldown_timer = %DashCooldownTimer
+@onready var dash_sound = %DashSound
 
 #Pause
 var paused = false
@@ -30,6 +31,8 @@ var playerNormalMaterial = load("res://Scenes/Player/UPDATED_PC_PLAYER/normal_pl
 var playerDamageMaterial = load("res://Scenes/Player/UPDATED_PC_PLAYER/damaged_player_material.tres")
 @onready var damage_timer = %DamageTimer
 @onready var player_mesh_instance_3d = %PlayerMeshInstance3D
+@onready var hit_sound = %HitSound
+
 
 #Sense ability
 var senseActive = false
@@ -99,6 +102,7 @@ func _physics_process(delta: float) -> void:
 		dash_direction = cam_dir
 		dash_timer = DASH_TIME
 		dash_cooldown_timer.start()
+		dash_sound.play()
 	
 	
 	if dashing:
@@ -193,6 +197,7 @@ func take_damage(damageAmount):
 	health -= damage
 	damage_timer.start()
 	player_mesh_instance_3d.material_override = playerDamageMaterial
+	hit_sound.play()
 	if health <= 0:
 		die()
 	

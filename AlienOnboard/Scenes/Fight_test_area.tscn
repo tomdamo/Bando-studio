@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://byp8u1kyr3xpn"]
+[gd_scene load_steps=10 format=3 uid="uid://byp8u1kyr3xpn"]
 
 [ext_resource type="PackedScene" uid="uid://bi7lvvqh5ljqv" path="res://Scenes/Player/UPDATED_PC_PLAYER/NEW_Player_cam.tscn" id="2_8dxr6"]
-[ext_resource type="PackedScene" uid="uid://drddbr21tbue4" path="res://Waypoint/waypoint circular.tscn" id="3_k3dac"]
-[ext_resource type="PackedScene" uid="uid://b3uqd8ldc25d7" path="res://Scenes/Enemy/Guard/npc.tscn" id="3_wjogp"]
+[ext_resource type="PackedScene" uid="uid://drddbr21tbue4" path="res://Scenes/LevelDesign/Waypoint/waypoint circular.tscn" id="3_k3dac"]
+[ext_resource type="PackedScene" uid="uid://b3uqd8ldc25d7" path="res://Scenes/Enemy/Guard/GuardNPC.tscn" id="3_wjogp"]
+[ext_resource type="PackedScene" uid="uid://csl1s1mu8cokc" path="res://Scenes/Enemy/LabNPC/LabNPC.tscn" id="4_5d6e0"]
 
 [sub_resource type="Environment" id="Environment_334f7"]
 
@@ -55,3 +56,6 @@ transform = Transform3D(1, -1.42721e-10, 0, 1.35419e-10, 1, 0, 0, 0, 1, -0.53971
 
 [node name="Node3D" parent="." instance=ExtResource("3_k3dac")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.153599, -0.435586, -8.94719)
+
+[node name="NPCGuard" parent="." instance=ExtResource("4_5d6e0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.56482, -0.5, 1.19198)

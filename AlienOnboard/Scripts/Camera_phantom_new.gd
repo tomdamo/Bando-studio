@@ -18,7 +18,6 @@ func _ready() -> void:
 	
 	_player_pcam = owner.get_node("%PlayerPhantomCamera3D")
 	_aim_pcam = owner.get_node("%PlayerAimPhantomCamera3D")
-
 	if _player_pcam.get_follow_mode() == _player_pcam.FollowMode.THIRD_PERSON:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
