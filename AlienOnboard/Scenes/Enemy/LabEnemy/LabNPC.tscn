@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://b21o4n87fk5sy"]
+
+[ext_resource type="PackedScene" uid="uid://diw5d37oyhhqa" path="res://3DModels/labperson.fbx" id="1_pjjkh"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_q01i7"]
+height = 1.69916
+radius = 0.353016
+
+[node name="LabNpc" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.87803, 0)
+shape = SubResource("CylinderShape3D_q01i7")
+
+[node name="Root Scene" parent="CharacterBody3D" instance=ExtResource("1_pjjkh")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.436189, 0.899855, 0, -0.899855, 0.436189, 0, 0, 0, 1, 0, 61.9284, 0)
+light_energy = 0.133
+sky_mode = 1

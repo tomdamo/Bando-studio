@@ -1542,73 +1542,31 @@ mesh = SubResource("QuadMesh_tfe22")
 script = ExtResource("6_y68pn")
 origin_point = NodePath("../../PlayerCharacterBody3D/PlayerVisual/PlayerMeshInstance3D")
 
-[node name="PlayerPhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target", "follow_targets", "look_at_targets")]
+[node name="PlayerPhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
 unique_name_in_owner = true
 transform = Transform3D(0.999903, 0.0120916, 0.0069811, -0.0139622, 0.865941, 0.499952, 0, -0.5, 0.866023, 0.00502505, 2.25672, 3.01476)
 script = ExtResource("2_8b7er")
-priority_override = false
 priority = 10
 follow_mode = 6
 follow_target = NodePath("../PlayerCharacterBody3D/PlayerVisual")
-follow_targets = []
-look_at_mode = 0
-look_at_targets = []
 tween_resource = SubResource("Resource_84yex")
 tween_on_load = false
-inactive_update_mode = 0
 camera_3d_resource = SubResource("Resource_bhlgk")
-follow_offset = Vector3(0, 0, 0)
-follow_damping = false
 follow_damping_value = Vector3(2.08165e-12, 0.1, 2.08165e-12)
 follow_distance = 3.5
-auto_follow_distance = false
-auto_follow_distance_min = 1.0
-auto_follow_distance_max = 5.0
-auto_follow_distance_divisor = 10.0
-dead_zone_width = 0.0
-dead_zone_height = 0.0
-show_viewfinder_in_play = false
 spring_length = 3.5
-collision_mask = 1
-shape = null
-margin = 0.01
-look_at_offset = Vector3(0, 0, 0)
-look_at_damping = false
-look_at_damping_value = 0.25
 
-[node name="PlayerAimPhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target", "follow_targets", "look_at_targets")]
+[node name="PlayerAimPhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
 unique_name_in_owner = true
 transform = Transform3D(0.953623, 0.00346111, 0.30098, -0.013316, 0.999742, 0.0307002, -0.300706, -0.0332842, 0.953135, 0.432061, 1.35293, 1.41338)
 script = ExtResource("2_8b7er")
-priority_override = false
-priority = 0
 follow_mode = 6
 follow_target = NodePath("../PlayerCharacterBody3D/PlayerVisual")
-follow_targets = []
-look_at_mode = 0
-look_at_targets = []
 tween_resource = SubResource("Resource_otvji")
-tween_on_load = true
-inactive_update_mode = 0
 camera_3d_resource = SubResource("Resource_ptejn")
 follow_offset = Vector3(0, 0.8, 0)
-follow_damping = false
-follow_damping_value = Vector3(0.1, 0.1, 0.1)
 follow_distance = 1.5
-auto_follow_distance = false
-auto_follow_distance_min = 1.0
-auto_follow_distance_max = 5.0
-auto_follow_distance_divisor = 10.0
-dead_zone_width = 0.0
-dead_zone_height = 0.0
-show_viewfinder_in_play = false
 spring_length = 1.5
-collision_mask = 1
-shape = null
-margin = 0.01
-look_at_offset = Vector3(0, 0, 0)
-look_at_damping = false
-look_at_damping_value = 0.25
 
 [node name="DashCooldownTimer" type="Timer" parent="."]
 unique_name_in_owner = true

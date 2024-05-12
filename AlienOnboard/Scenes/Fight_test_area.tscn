@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bi7lvvqh5ljqv" path="res://Scenes/Player/UPDATED_PC_PLAYER/NEW_Player_cam.tscn" id="2_8dxr6"]
 [ext_resource type="PackedScene" uid="uid://drddbr21tbue4" path="res://Scenes/LevelDesign/Waypoint/waypoint circular.tscn" id="3_k3dac"]
 [ext_resource type="PackedScene" uid="uid://b3uqd8ldc25d7" path="res://Scenes/Enemy/Guard/GuardNPC.tscn" id="3_wjogp"]
-[ext_resource type="PackedScene" uid="uid://csl1s1mu8cokc" path="res://Scenes/Enemy/LabNPC/LabNPC.tscn" id="4_5d6e0"]
+[ext_resource type="PackedScene" uid="uid://b21o4n87fk5sy" path="res://Scenes/Enemy/LabEnemy/LabNPC.tscn" id="4_5d6e0"]
 
 [sub_resource type="Environment" id="Environment_334f7"]
 

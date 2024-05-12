@@ -204,6 +204,7 @@ func take_damage(damageAmount):
 func die():
 	print("Player died")
 	print(health)
+	
 
 func _on_damage_timer_timeout():
 	player_mesh_instance_3d.material_override = playerNormalMaterial

@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://co0vnc0sfqsiq"]
-
-[ext_resource type="PackedScene" uid="uid://da26scurnqbcq" path="res://character.fbx" id="1_tg27n"]
-
-[node name="Root Scene" instance=ExtResource("1_tg27n")]
-
-[node name="MeshInstance3D" parent="RootNode/Skeleton3D" index="0"]
-unique_name_in_owner = true
