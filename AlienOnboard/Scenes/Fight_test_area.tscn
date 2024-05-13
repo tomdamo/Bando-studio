@@ -57,5 +57,5 @@ transform = Transform3D(1, -1.42721e-10, 0, 1.35419e-10, 1, 0, 0, 0, 1, -0.53971
 [node name="Node3D" parent="." instance=ExtResource("3_k3dac")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.153599, -0.435586, -8.94719)
 
-[node name="NPCGuard" parent="." instance=ExtResource("4_5d6e0")]
+[node name="NPCLab" parent="." groups=["enemies"] instance=ExtResource("4_5d6e0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.56482, -0.5, 1.19198)

@@ -1,22 +1,133 @@
-[gd_scene load_steps=3 format=3 uid="uid://b21o4n87fk5sy"]
+[gd_scene load_steps=19 format=3 uid="uid://b21o4n87fk5sy"]
 
 [ext_resource type="PackedScene" uid="uid://diw5d37oyhhqa" path="res://3DModels/labperson.fbx" id="1_pjjkh"]
+[ext_resource type="Script" path="res://Scenes/Enemy/LabEnemy/LabNPC.gd" id="1_ywpna"]
+[ext_resource type="Shader" uid="uid://b1wdkryuh65mm" path="res://Textures/Shaders/blood_spot.tres" id="3_00ieu"]
+[ext_resource type="Shader" uid="uid://g73rnhf5c3b4" path="res://Textures/Shaders/blood.tres" id="4_3md6u"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_q01i7"]
 height = 1.69916
 radius = 0.353016
 
-[node name="LabNpc" type="Node3D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ioh8a"]
+render_priority = 0
+shader = ExtResource("3_00ieu")
+shader_parameter/ColorParameter = Color(1, 0, 0.071664, 1)
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[sub_resource type="Curve" id="Curve_n54lt"]
+max_value = 200.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[sub_resource type="CurveTexture" id="CurveTexture_0j4ft"]
+curve = SubResource("Curve_n54lt")
+
+[sub_resource type="Curve" id="Curve_mhrlb"]
+_data = [Vector2(0, 0.712), 0.0, 0.0, 0, 0, Vector2(0.147482, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3r1cp"]
+curve = SubResource("Curve_mhrlb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ojomh"]
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_3r1cp")
+anim_speed_curve = SubResource("CurveTexture_0j4ft")
+
+[sub_resource type="QuadMesh" id="QuadMesh_q4qfb"]
+size = Vector2(0.8, 0.8)
+orientation = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d3m87"]
+render_priority = 0
+shader = ExtResource("4_3md6u")
+shader_parameter/ColorParameter = Color(1, 0, 0.071664, 1)
+
+[sub_resource type="Curve" id="Curve_7dyoj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.452), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nfkoh"]
+curve = SubResource("Curve_7dyoj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dj3kn"]
+angular_velocity_min = 4.0
+angular_velocity_max = 6.0
+linear_accel_min = 4.0
+linear_accel_max = 4.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_nfkoh")
+collision_mode = 2
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_l8d3u"]
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_148h7"]
+size = Vector3(2, 1.867, 0.584)
+
+[node name="LabNPC" type="CharacterBody3D"]
+collision_layer = 3
+script = ExtResource("1_ywpna")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.87803, 0)
 shape = SubResource("CylinderShape3D_q01i7")
 
-[node name="Root Scene" parent="CharacterBody3D" instance=ExtResource("1_pjjkh")]
+[node name="Root Scene" parent="." instance=ExtResource("1_pjjkh")]
+transform = Transform3D(-1, 3.48787e-16, 8.74228e-08, 3.48787e-16, 1, -3.48787e-16, -8.74228e-08, -3.48787e-16, -1, 0, 0, 0)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.436189, 0.899855, 0, -0.899855, 0.436189, 0, 0, 0, 1, 0, 61.9284, 0)
-light_energy = 0.133
-sky_mode = 1
+[node name="BloodEffect" type="Node3D" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="BloodFloor" type="GPUParticlesCollisionBox3D" parent="BloodEffect"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0785181, -0.20796, -0.0249611)
+size = Vector3(20, 0.863037, 20)
+
+[node name="BloodSpot" type="GPUParticles3D" parent="BloodEffect"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0790829, 1.06545, -0.0249611)
+material_override = SubResource("ShaderMaterial_ioh8a")
+cast_shadow = 0
+amount = 50
+visibility_aabb = AABB(-0.977377, -1.00478, -0.748155, 1.95475, 2.00956, 1.49631)
+process_material = SubResource("ParticleProcessMaterial_ojomh")
+draw_pass_1 = SubResource("QuadMesh_q4qfb")
+
+[node name="BloodParticle" type="GPUParticles3D" parent="BloodEffect"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0529525, 1.53007, -0.0249611)
+material_override = SubResource("ShaderMaterial_d3m87")
+amount = 50
+sub_emitter = NodePath("../BloodSpot")
+process_material = SubResource("ParticleProcessMaterial_dj3kn")
+draw_pass_1 = SubResource("QuadMesh_l8d3u")
+
+[node name="VisionTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+autostart = true
+
+[node name="VisionRaycast" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.5, 2.08165e-12)
+target_position = Vector3(2.08165e-12, 5, -100)
+collide_with_areas = true
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="VisionArea" type="Area3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.20283)
+
+[node name="CollisionShapeCone" type="CollisionShape3D" parent="VisionArea"]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, -10, 0, 10, -4.37114e-07, 0, 2.07901, -8.26065)
+shape = SubResource("BoxShape3D_148h7")
+
+[node name="BloodTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="VisionTimer" to="." method="_on_vision_timer_timeout"]
+[connection signal="timeout" from="BloodTimer" to="." method="_on_blood_timer_timeout"]

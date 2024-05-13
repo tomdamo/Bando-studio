@@ -19,21 +19,21 @@ max_value = 200.0
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_jc5vp"]
+[sub_resource type="CurveTexture" id="CurveTexture_rpbg7"]
 curve = SubResource("Curve_ffsxo")
 
 [sub_resource type="Curve" id="Curve_bmw7p"]
 _data = [Vector2(0, 0.712), 0.0, 0.0, 0, 0, Vector2(0.147482, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_a64y2"]
+[sub_resource type="CurveTexture" id="CurveTexture_g3ld2"]
 curve = SubResource("Curve_bmw7p")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_soy8s"]
 gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 scale_max = 4.0
-scale_curve = SubResource("CurveTexture_a64y2")
-anim_speed_curve = SubResource("CurveTexture_jc5vp")
+scale_curve = SubResource("CurveTexture_g3ld2")
+anim_speed_curve = SubResource("CurveTexture_rpbg7")
 
 [sub_resource type="QuadMesh" id="QuadMesh_o41gc"]
 size = Vector2(0.8, 0.8)
@@ -48,7 +48,7 @@ shader_parameter/ColorParameter = Color(1, 0, 0.071664, 1)
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.452), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_avbyp"]
+[sub_resource type="CurveTexture" id="CurveTexture_txd20"]
 curve = SubResource("Curve_hnrq6")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f06s2"]
@@ -57,7 +57,7 @@ angular_velocity_max = 6.0
 linear_accel_min = 4.0
 linear_accel_max = 4.0
 scale_max = 3.0
-scale_curve = SubResource("CurveTexture_avbyp")
+scale_curve = SubResource("CurveTexture_txd20")
 collision_mode = 2
 sub_emitter_mode = 3
 sub_emitter_amount_at_collision = 1

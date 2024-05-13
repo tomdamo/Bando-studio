@@ -982,7 +982,7 @@ height = 0.8
 size = Vector3(1.1709, 1, 1.43256)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vds5g"]
-height = 1.00984
+height = 1.32608
 radius = 0.8339
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8vxk6"]
