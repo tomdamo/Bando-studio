@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const GRAVITY = -9.8
 
 var health = 9
 var death = false
@@ -22,7 +22,6 @@ func _ready():
 
 
 func _physics_process(delta):
-	#TODO make the npc runaway if they see you?
 	moveAwayFromPlayer(delta)
 
 func take_damage(damage):
@@ -111,4 +110,14 @@ func moveAwayFromPlayer(delta):
 		if distance_to_player < 2:
 			var move_direction = (npc_position - target_position).normalized()
 			move_direction.y = 0 #don't move up or down
-			self.global_transform.origin += move_direction * SPEED * delta 
+			# self.global_transform.origin += move_direction * SPEED * delta 
+			velocity.x = move_direction.x * SPEED
+			velocity.z = move_direction.z * SPEED
+		else:
+			velocity.x = 0
+			velocity.z = 0
+		# Apply gravity
+		velocity.y += GRAVITY * delta
+
+		# Move and slide
+		move_and_slide()

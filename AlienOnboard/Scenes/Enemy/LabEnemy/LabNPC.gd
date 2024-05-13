@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 
 const SPEED = 5.0
+const GRAVITY = -9.8
 var health = 6
 var death = false
 @onready var blood = %BloodEffect
@@ -17,7 +18,7 @@ func _ready():
 	pass
 
 
-func _process(delta):
+func _physics_process(delta):
 	moveAwayFromPlayer(delta)
 
 
@@ -79,4 +80,14 @@ func moveAwayFromPlayer(delta):
 		if distance_to_player < 6:
 			var move_direction = (npc_position - target_position).normalized()
 			move_direction.y = 0 #don't move up or down
-			self.global_transform.origin += move_direction * SPEED * delta 
+			# self.global_transform.origin += move_direction * SPEED * delta 
+			velocity.x = move_direction.x * SPEED
+			velocity.z = move_direction.z * SPEED
+		else:
+			velocity.x = 0
+			velocity.z = 0
+		# Apply gravity
+		velocity.y += GRAVITY * delta
+
+		# Move and slide
+		move_and_slide()
