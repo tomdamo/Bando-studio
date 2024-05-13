@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://crcoooefy5nof"
-path="res://.godot/imported/Main_char_six_legsV1.fbx-b479b4815912e313fb2532b8bd407619.scn"
+uid="uid://djl0o1v5hfenl"
+path="res://.godot/imported/Main_char_six_legs222.glb-184da8250ee9241cd5310608336ec95c.scn"
 
 [deps]
 
-source_file="res://Scenes/Player/Main_char_six_legsV1.fbx"
-dest_files=["res://.godot/imported/Main_char_six_legsV1.fbx-b479b4815912e313fb2532b8bd407619.scn"]
+source_file="res://Scenes/Player/UPDATED_PC_PLAYER/Main_char_six_legs222.glb"
+dest_files=["res://.godot/imported/Main_char_six_legs222.glb-184da8250ee9241cd5310608336ec95c.scn"]
 
 [params]
 
