@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://b21o4n87fk5sy"]
+[gd_scene load_steps=20 format=3 uid="uid://b21o4n87fk5sy"]
 
 [ext_resource type="PackedScene" uid="uid://diw5d37oyhhqa" path="res://3DModels/labperson.fbx" id="1_pjjkh"]
 [ext_resource type="Script" path="res://Scenes/Enemy/LabEnemy/LabNPC.gd" id="1_ywpna"]
+[ext_resource type="FontFile" uid="uid://dlvhjyl50fcs4" path="res://Textures/Font/batmfa__.ttf" id="2_iy7rc"]
 [ext_resource type="Shader" uid="uid://b1wdkryuh65mm" path="res://Textures/Shaders/blood_spot.tres" id="3_00ieu"]
 [ext_resource type="Shader" uid="uid://g73rnhf5c3b4" path="res://Textures/Shaders/blood.tres" id="4_3md6u"]
 
@@ -71,6 +72,14 @@ size = Vector3(2, 1.867, 0.584)
 [node name="LabNPC" type="CharacterBody3D"]
 collision_layer = 3
 script = ExtResource("1_ywpna")
+
+[node name="SpottedLabel" type="Label3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.0589424, 1.95151, 0)
+visible = false
+billboard = 2
+text = "!?"
+font = ExtResource("2_iy7rc")
+font_size = 88
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.87803, 0)

@@ -9,12 +9,12 @@
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_yipas"]
 panorama = ExtResource("5_utfdq")
 
-[sub_resource type="Sky" id="Sky_jl18b"]
+[sub_resource type="Sky" id="Sky_2m6ns"]
 sky_material = SubResource("PanoramaSkyMaterial_yipas")
 
 [sub_resource type="Environment" id="Environment_cb4o4"]
 background_mode = 2
-sky = SubResource("Sky_jl18b")
+sky = SubResource("Sky_2m6ns")
 
 [sub_resource type="BoxMesh" id="BoxMesh_5u3tg"]
 size = Vector3(40, 1, 40)

@@ -44,7 +44,8 @@ var sense_timer = 0.0
 # Enemy material for the sense ability.
 var enemyNormalMaterial = load("res://Textures/EnemyNormal.tres")
 var enemyVisibleMaterial = load("res://Textures/EnemyVisible.tres")
-
+var NPC_SPOTTED_MATERIAL = load("res://Scenes/Enemy/Guard/NPCSpottedMaterial.tres")
+var NPC_NORMAL_MATERIAL = load("res://Scenes/Enemy/Guard/NPCNormalMaterial.tres")
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = 9.8
 var movement_enabled: bool = true
@@ -148,9 +149,12 @@ func _activateSenseAbility():
 				#meshInstance.material_override = enemyVisibleMaterial
 	#
 	for enemy in get_tree().get_nodes_in_group("enemies"):
+		print(enemy)
 		if enemy.has_node("MeshInstance3D"):
 			var meshInstance = enemy.get_node("MeshInstance3D")
-			meshInstance.material_override = enemyVisibleMaterial
+			print(meshInstance)
+			#meshInstance.material_override = enemyVisibleMaterial
+			meshInstance.set_surface_override_material(0, NPC_SPOTTED_MATERIAL)
 
 func _deactivateSenseAbility():
 	senseActive = false
@@ -159,7 +163,8 @@ func _deactivateSenseAbility():
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		if enemy.has_node("MeshInstance3D"):
 			var meshInstance = enemy.get_node("MeshInstance3D")
-			meshInstance.material_override = enemyNormalMaterial
+			#meshInstance.material_override = enemyNormalMaterial
+			meshInstance.set_surface_override_material(0, NPC_NORMAL_MATERIAL)
 
 
 func _process(_delta: float) -> void:
@@ -196,15 +201,16 @@ func take_damage(damageAmount):
 	#blood.show() 
 	health -= damage
 	damage_timer.start()
-	player_mesh_instance_3d.material_override = playerDamageMaterial
 	hit_sound.play()
+
 	if health <= 0:
 		die()
 	
 func die():
 	print("Player died")
 	print(health)
-	
+	#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	#get_tree().change_scene_to_file("res://Scenes/UI/GameOver2.tscn")
 
 func _on_damage_timer_timeout():
 	player_mesh_instance_3d.material_override = playerNormalMaterial

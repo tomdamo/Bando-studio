@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_fkqth"]
 [ext_resource type="Shader" path="res://Scenes/Player/UPDATED_PC_PLAYER/PulseScanner.gdshader" id="5_jppjh"]
 [ext_resource type="Script" path="res://Scenes/Player/UPDATED_PC_PLAYER/PulseEffect.gd" id="6_y68pn"]
-[ext_resource type="PackedScene" uid="uid://mnv6ia805ptm" path="res://Scenes/UI/GameOver.tscn" id="7_0kgvt"]
+[ext_resource type="PackedScene" uid="uid://br3x1p8e76i6m" path="res://Scenes/UI/GameOver2.tscn" id="7_0kgvt"]
 [ext_resource type="PackedScene" uid="uid://sg7ef7wsp04y" path="res://Scenes/UI/PauseMenu.tscn" id="7_l4beg"]
 [ext_resource type="AudioStream" uid="uid://b18ktpa60vstt" path="res://Scenes/Player/UPDATED_PC_PLAYER/hitsound1.mp3" id="12_60mq5"]
 [ext_resource type="AudioStream" uid="uid://br0dx23nelga8" path="res://Scenes/Player/UPDATED_PC_PLAYER/DashSound.mp3" id="13_8mwm8"]
@@ -1007,7 +1007,7 @@ size = Vector3(1.1709, 1, 1.43256)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vds5g"]
 height = 1.32608
-radius = 0.8339
+radius = 1.08191
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8vxk6"]
 render_priority = 0
@@ -1073,7 +1073,6 @@ surface_material_override/0 = ExtResource("2_n0gms")
 
 [node name="StartPoint" type="MeshInstance3D" parent="PlayerCharacterBody3D/PlayerVisual"]
 transform = Transform3D(0.999902, -0.0139622, 0, 0.0139622, 0.999902, 0, 0, 0, 1, 0.0291476, -0.501417, 0.0179597)
-visible = false
 mesh = SubResource("PointMesh_mt7kw")
 skeleton = NodePath("../../..")
 
@@ -1571,9 +1570,11 @@ current = true
 script = ExtResource("5_fkqth")
 
 [node name="PulseEffect" type="MeshInstance3D" parent="MainCamera3D"]
+unique_name_in_owner = true
 visible = false
 mesh = SubResource("QuadMesh_tfe22")
 script = ExtResource("6_y68pn")
+speed = 10.0
 origin_point = NodePath("../../PlayerCharacterBody3D/PlayerVisual/PlayerMeshInstance3D")
 
 [node name="PlayerPhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]

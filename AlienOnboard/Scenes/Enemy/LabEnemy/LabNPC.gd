@@ -11,10 +11,12 @@ var death = false
 @onready var VisionArea = %VisionArea
 @onready var VisionRaycast = %VisionRaycast
 @onready var VisionTimer = %VisionTimer
+@onready var spotted_label = $SpottedLabel
 
 var player_position = Vector3.ZERO
 
 func _ready():
+	spotted_label.hide()									
 	pass
 
 
@@ -65,10 +67,13 @@ func _on_vision_timer_timeout():
 							if "Player" in collider.name:
 								$VisionRaycast.debug_shape_custom_color = Color(174,8,0)
 								print("I see you")
+								spotted_label.show()
 								player_position = playerPosition
+								look_at(player_position, Vector3.UP)																
 							else:
 								$VisionRaycast.debug_shape_custom_color = Color(0,255,0)
 								print(collider.name)
+								spotted_label.hide()								
 
 
 func moveAwayFromPlayer(delta):
@@ -77,12 +82,13 @@ func moveAwayFromPlayer(delta):
 		var target_position = player_position
 		var distance_to_player = npc_position.distance_to(target_position)
 		
-		if distance_to_player < 6:
+		if distance_to_player < 8:
 			var move_direction = (npc_position - target_position).normalized()
 			move_direction.y = 0 #don't move up or down
 			# self.global_transform.origin += move_direction * SPEED * delta 
 			velocity.x = move_direction.x * SPEED
 			velocity.z = move_direction.z * SPEED
+			look_at(target_position, Vector3.UP)
 		else:
 			velocity.x = 0
 			velocity.z = 0
@@ -91,3 +97,4 @@ func moveAwayFromPlayer(delta):
 
 		# Move and slide
 		move_and_slide()
+

@@ -3,7 +3,7 @@ extends CharacterBody3D
 const SPEED = 5.0
 const GRAVITY = -9.8
 
-var health = 9
+var health = 6
 var death = false
 @onready var blood = %BloodEffect
 @onready var bloodTimer = %BloodTimer
@@ -13,9 +13,13 @@ var death = false
 @onready var VisionTimer = %VisionTimer
 
 @onready var shot_timer = %ShotTimer
+@onready var spotted_label = $SpottedLabel
 
 var Bullet = preload("res://Scenes/Bullet/Bullet.tscn")
-var player_position = Vector3.ZERO
+var player_position = Vector3.ZERO # target
+
+@onready var navigation_agent = $NavigationAgent3D
+
 
 func _ready():
 	pass
@@ -23,6 +27,7 @@ func _ready():
 
 func _physics_process(delta):
 	moveAwayFromPlayer(delta)
+	moveCloser(delta)
 
 func take_damage(damage):
 	print("Damage taken")
@@ -66,12 +71,15 @@ func _on_vision_timer_timeout():
 							if "Player" in collider.name:
 								$VisionRaycast.debug_shape_custom_color = Color(174,8,0)
 								print("I see you")
+								spotted_label.show()
 								player_position = playerPosition
+								look_at(player_position, Vector3.UP)																
 								if(shot_timer.is_stopped()):
 									shot_timer.start()
 							else:
 								$VisionRaycast.debug_shape_custom_color = Color(0,255,0)
 								print(collider.name)
+								spotted_label.hide()								
 
 
 #commented out this way of shooting for now
@@ -110,14 +118,36 @@ func moveAwayFromPlayer(delta):
 		if distance_to_player < 2:
 			var move_direction = (npc_position - target_position).normalized()
 			move_direction.y = 0 #don't move up or down
-			# self.global_transform.origin += move_direction * SPEED * delta 
 			velocity.x = move_direction.x * SPEED
 			velocity.z = move_direction.z * SPEED
+			look_at(target_position, Vector3.UP)
+
 		else:
 			velocity.x = 0
 			velocity.z = 0
 		# Apply gravity
 		velocity.y += GRAVITY * delta
-
 		# Move and slide
 		move_and_slide()
+
+func moveCloser(delta):
+	if !death:
+		var npc_position = self.global_transform.origin
+		var target_position = player_position
+		var distance_to_player = npc_position.distance_to(target_position)
+		
+		if distance_to_player >10:
+			var move_direction = (target_position - npc_position).normalized()
+			move_direction.y = 0 #don't move up or down
+			velocity.x = move_direction.x * SPEED
+			velocity.z = move_direction.z * SPEED
+			look_at(target_position, Vector3.UP)
+
+		else:
+			velocity.x = 0
+			velocity.z = 0
+			
+		velocity.y += GRAVITY * delta
+		
+		move_and_slide()
+		

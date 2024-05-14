@@ -13,13 +13,17 @@ var is_running := false
 
 # Don't forget to assign the start point node to this variable.
 @export_node_path("Node3D") var origin_point
+@onready var pulse_effect = %PulseEffect
+@onready var sense_cooldown_timer = %SenseCooldownTimer
+@onready var active_sense_time = %ActiveSenseTime
+
 
 
 func _ready():
 	# Set the start point of the effect in the shader to the world position of
 	# of the origin_point.
 	SHADER.set_shader_parameter("start_point", get_node(origin_point).get_global_transform())
-
+	pulse_effect.hide()
 
 func _process(delta):
 	if is_running:
@@ -30,6 +34,14 @@ func _process(delta):
 			distance = 0.0
 		SHADER.set_shader_parameter("radius", distance)
 	
-	if Input.is_action_just_pressed("SenseAbility"):
+	if Input.is_action_just_pressed("SenseAbility") and sense_cooldown_timer.is_stopped():
+		pulse_effect.show()
+		active_sense_time.start()
+		SHADER.set_shader_parameter("start_point", get_node(origin_point).get_global_transform())		
 		is_running = true
 		distance = 0.0
+	
+	if active_sense_time.is_stopped():
+		pulse_effect.hide()
+		sense_cooldown_timer.start()
+		

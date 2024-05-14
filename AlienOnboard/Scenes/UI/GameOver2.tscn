@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://br3x1p8e76i6m"]
+[gd_scene load_steps=7 format=3 uid="uid://br3x1p8e76i6m"]
 
 [ext_resource type="Script" path="res://Scenes/UI/GameOver2.gd" id="1_e55wx"]
 [ext_resource type="FontFile" uid="uid://dlvhjyl50fcs4" path="res://Textures/Font/batmfa__.ttf" id="1_ic5x0"]
@@ -10,8 +10,6 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_tsglt"]
 font = ExtResource("1_ic5x0")
 font_size = 100
-
-[sub_resource type="FontVariation" id="FontVariation_4sk44"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ax5bl"]
 font = ExtResource("1_ic5x0")
@@ -58,13 +56,14 @@ size_flags_vertical = 6
 [node name="StartOver" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/font = SubResource("FontVariation_4sk44")
+theme_override_fonts/font = ExtResource("1_ic5x0")
 theme_override_font_sizes/font_size = 50
-text = "StartOver"
+text = "Start over"
 
 [node name="Quit" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_ic5x0")
 theme_override_font_sizes/font_size = 50
 text = "Quit
 "
