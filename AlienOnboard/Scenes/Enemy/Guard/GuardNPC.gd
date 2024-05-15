@@ -82,7 +82,6 @@ func _on_vision_timer_timeout():
 								spotted_label.hide()								
 
 
-#commented out this way of shooting for now
 func _on_shot_timer_timeout():
 	shootAtTarget()
 	
@@ -136,7 +135,7 @@ func moveCloser(delta):
 		var target_position = player_position
 		var distance_to_player = npc_position.distance_to(target_position)
 		
-		if distance_to_player >10:
+		if distance_to_player > 10:
 			var move_direction = (target_position - npc_position).normalized()
 			move_direction.y = 0 #don't move up or down
 			velocity.x = move_direction.x * SPEED
