@@ -16,18 +16,28 @@ var death = false
 @onready var spotted_label = $SpottedLabel
 
 var Bullet = preload("res://Scenes/Bullet/Bullet.tscn")
-var player_position = Vector3.ZERO # target
+
+var player_position = Vector3.ZERO # global target
 
 @onready var navigation_agent = $NavigationAgent3D
-
+var playerSpotted = false
+var patrol_target1 = Vector3(0,0,0)
+var patrol_target2 = Vector3(10,0,0)
+@onready var patrol_targets = [patrol_target1, patrol_target2]
+var current_patrol_target = 0
+@onready var patrol_timer = $PatrolTimer
 
 func _ready():
 	pass
 
 
 func _physics_process(delta):
-	moveAwayFromPlayer(delta)
-	moveCloser(delta)
+	patrol(delta)
+	
+	
+	#if(playerSpotted):
+		#moveAwayFromPlayer(delta)
+		#moveCloser(delta)
 
 func take_damage(damage):
 	print("Damage taken")
@@ -73,13 +83,18 @@ func _on_vision_timer_timeout():
 								print("I see you")
 								spotted_label.show()
 								player_position = playerPosition
-								look_at(player_position, Vector3.UP)																
+								look_at(player_position, Vector3.UP)
+								playerSpotted = true
 								if(shot_timer.is_stopped()):
 									shot_timer.start()
 							else:
 								$VisionRaycast.debug_shape_custom_color = Color(0,255,0)
 								print(collider.name)
-								spotted_label.hide()								
+								#if(player_position != null):
+									#lookForPlayer()
+								#else:	
+								spotted_label.hide()
+								playerSpotted = false								
 
 
 func _on_shot_timer_timeout():
@@ -135,7 +150,7 @@ func moveCloser(delta):
 		var target_position = player_position
 		var distance_to_player = npc_position.distance_to(target_position)
 		
-		if distance_to_player > 10:
+		if distance_to_player > 8:
 			var move_direction = (target_position - npc_position).normalized()
 			move_direction.y = 0 #don't move up or down
 			velocity.x = move_direction.x * SPEED
@@ -150,3 +165,35 @@ func moveCloser(delta):
 		
 		move_and_slide()
 		
+func patrol(delta):
+	if !death and !playerSpotted:
+		var npc_position = self.global_transform.origin
+		navigation_agent.target_position = patrol_targets[current_patrol_target].global_transform.origin
+		var next_path_position = navigation_agent.get_next_path_position()
+		var direction = (next_path_position - npc_position).normalized()
+		direction.y = 0 #don't move up or down
+		
+		
+		var distance_to_target = npc_position.distance_to(next_path_position)
+		var target_speed = SPEED * clamp(distance_to_target / 5.0, 0, 1) # Slow down when within 5 units of the target
+		var target_velocity = direction * target_speed
+		
+		velocity = velocity.lerp(target_velocity, 0.1) # Interpolate towards the target velocity
+
+		if global_transform.origin.distance_to(patrol_targets[current_patrol_target].global_transform.origin) < 5: 
+			print("reached target" + str(current_patrol_target)) 
+			patrol_timer.start()
+			velocity.x = 0
+			velocity.z = 0
+
+	move_and_slide()
+
+func lookForPlayer():
+	if !death:
+		look_at(player_position)
+		navigation_agent.target_position = player_position
+
+
+func _on_patrol_timer_timeout():
+	current_patrol_target = randi() % patrol_targets.size()
+
