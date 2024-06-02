@@ -21,9 +21,7 @@ var player_position = Vector3.ZERO # global target
 
 @onready var navigation_agent = $NavigationAgent3D
 var playerSpotted = false
-var patrol_target1 = Vector3(0,0,0)
-var patrol_target2 = Vector3(10,0,0)
-@onready var patrol_targets = [patrol_target1, patrol_target2]
+@onready var patrol_targets: Array[Vector3]
 var current_patrol_target = 0
 @onready var patrol_timer = $PatrolTimer
 
@@ -167,26 +165,28 @@ func moveCloser(delta):
 		
 func patrol(delta):
 	if !death and !playerSpotted:
-		var npc_position = self.global_transform.origin
-		navigation_agent.target_position = patrol_targets[current_patrol_target].global_transform.origin
-		var next_path_position = navigation_agent.get_next_path_position()
-		var direction = (next_path_position - npc_position).normalized()
-		direction.y = 0 #don't move up or down
+		if patrol_targets.size() > 0:
+			var npc_position = self.global_transform.origin
+			navigation_agent.target_position = patrol_targets[current_patrol_target]
+			var next_path_position = navigation_agent.get_next_path_position()
+			var direction = (next_path_position - npc_position).normalized()
+			direction.y = 0 #don't move up or down
 		
+			var distance_to_target = npc_position.distance_to(next_path_position)
+			var target_speed = SPEED * clamp(distance_to_target / 5.0, 0, 1) # Slow down when within 5 units of the target
+			var target_velocity = direction * target_speed
 		
-		var distance_to_target = npc_position.distance_to(next_path_position)
-		var target_speed = SPEED * clamp(distance_to_target / 5.0, 0, 1) # Slow down when within 5 units of the target
-		var target_velocity = direction * target_speed
-		
-		velocity = velocity.lerp(target_velocity, 0.1) # Interpolate towards the target velocity
+			velocity = velocity.lerp(target_velocity, 0.1) # Interpolate towards the target velocity
 
-		if global_transform.origin.distance_to(patrol_targets[current_patrol_target].global_transform.origin) < 5: 
-			print("reached target" + str(current_patrol_target)) 
-			patrol_timer.start()
-			velocity.x = 0
-			velocity.z = 0
+			move_and_slide()
 
-	move_and_slide()
+			if distance_to_target < 2:
+				print("reached target" + str(current_patrol_target)) 
+				patrol_timer.start()
+				velocity.z = 0
+				velocity.x = 0
+
+	#move_and_slide()
 
 func lookForPlayer():
 	if !death:
