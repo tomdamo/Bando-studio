@@ -178,9 +178,6 @@ func moveCloser(delta):
 	else:
 		velocity.x = 0
 		velocity.z = 0
-			
-	#velocity.y += GRAVITY * delta
-		
 	move_and_slide()
 		
 func patrol(delta):
@@ -197,21 +194,16 @@ func patrol(delta):
 		var target_velocity = direction * target_speed
 		
 		velocity = velocity.lerp(target_velocity, 0.1) # Interpolate towards the target velocity
-
 		move_and_slide()
-
 		if distance_to_target < 0.5 and !reached_target:
 			print("reached target" + str(current_patrol_target)) 
 			patrol_timer.start()
 			reached_target = true
 			velocity.z = 0
 			velocity.x = 0
-
-	#move_and_slide()
-
+			
 func lookForPlayer(delta):
 	print("looking for player")
-	
 		
 	npc_position = self.global_transform.origin
 	navigation_agent.target_position = player_last_seen_position
@@ -227,19 +219,17 @@ func lookForPlayer(delta):
 	if distance_to_player < 0.5:
 		if (search_timer.is_stopped()):
 			search_timer.start()
+	#look around the area for the player
+	look_around()
 		
-	
 func _on_patrol_timer_timeout():
 	patrol_timer.stop()
 	current_patrol_target = (current_patrol_target + 1) % patrol_targets.size()
 	reached_target = false
 
-#
-#func chase():
-	#look_at(player_position)
-	#navigation_agent.target_position = player_position
-
-
 func _on_search_timer_timeout():
 	playerSpotted = false
 	player_last_seen = false
+
+func look_around():
+	pass

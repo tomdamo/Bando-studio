@@ -52,6 +52,7 @@ var movement_enabled: bool = true
 var _physics_body_trans_last: Transform3D
 var _physics_body_trans_current: Transform3D
 
+@onready var color_rect = $"../CanvasLayer/ColorRect"
 
 
 func _ready() -> void:
@@ -180,10 +181,12 @@ func _pauseMenu():
 		pause_menu.hide()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		get_tree().paused = false
+		color_rect.show()
 	else:
 		pause_menu.show()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().paused = true
+		color_rect.hide()
 	paused = !paused
 
 #Attack
