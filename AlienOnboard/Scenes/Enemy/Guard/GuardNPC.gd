@@ -33,18 +33,32 @@ var player_last_seen = false
 var player_last_seen_position: Vector3
 @onready var searching_label = $SearchingLabel
 
+
+#moving away and close
+var npc_position 
+var target_position
+var distance_to_player 
+var min_distance = 3
+var max_distance = 8
+
 func _ready():
 	pass
 
 
 func _physics_process(delta):
 	if !death:
+		npc_position = self.global_transform.origin
+		target_position = player_position
+		distance_to_player = npc_position.distance_to(target_position)
+
 		if !playerSpotted and !player_last_seen:
 			patrol(delta)
 		if playerSpotted:
-			moveAwayFromPlayer(delta)
-			moveCloser(delta)
-		if player_last_seen:
+			if distance_to_player < min_distance:
+				moveAwayFromPlayer(delta)
+			if distance_to_player > max_distance:
+				moveCloser(delta)
+		if !playerSpotted and player_last_seen:
 			lookForPlayer(delta)
 	
 
@@ -99,11 +113,9 @@ func _on_vision_timer_timeout():
 						else:
 							$VisionRaycast.debug_shape_custom_color = Color(0,255,0)
 							print(collider.name)
-							spotted_label.hide()														
-							# if(playerSpotted):
-							# 	player_last_seen = true
-							# 	searching_label.show()
-								#Not sure if another if statements needs to be added.
+							spotted_label.hide()
+							playerSpotted = false
+							
 
 
 func _on_shot_timer_timeout():
@@ -112,12 +124,12 @@ func _on_shot_timer_timeout():
 func shootAtTarget():
 	var bullet = Bullet.instantiate()
 	get_parent().add_child(bullet)
-	var npc_position = self.global_transform.origin
+	npc_position = self.global_transform.origin
 	npc_position.y += 1
 	bullet.global_transform.origin = npc_position
 		
-	var target_position = player_position
-	var distance_to_player = npc_position.distance_to(target_position)
+	target_position = player_position
+	distance_to_player = npc_position.distance_to(target_position)
 	print(distance_to_player)
 
 	if distance_to_player < 3:
@@ -130,11 +142,11 @@ func shootAtTarget():
 		#take the direction of the raycast -> does not work
 		#var direction = $VisionRaycast.to_global($VisionRaycast.cast_to).normalized()
 	bullet.direction = direction
+	player_last_seen = true
+	player_last_seen_position = player_position
 
 func moveAwayFromPlayer(delta):
-	var npc_position = self.global_transform.origin
-	var target_position = player_position
-	var distance_to_player = npc_position.distance_to(target_position)
+	print("moving away")
 	navigation_agent.target_position = target_position
 	
 	if distance_to_player < 3:
@@ -153,9 +165,7 @@ func moveAwayFromPlayer(delta):
 	move_and_slide()
 
 func moveCloser(delta):
-	var npc_position = self.global_transform.origin
-	var target_position = player_position
-	var distance_to_player = npc_position.distance_to(target_position)
+	print("moving closer")
 	navigation_agent.target_position = target_position
 	
 	if distance_to_player > 8:
@@ -174,8 +184,9 @@ func moveCloser(delta):
 	move_and_slide()
 		
 func patrol(delta):
+	print("patrolling")
 	if patrol_targets.size() > 0:
-		var npc_position = self.global_transform.origin
+		npc_position = self.global_transform.origin
 		navigation_agent.target_position = patrol_targets[current_patrol_target]
 		var next_path_position = navigation_agent.get_next_path_position()
 		var direction = (next_path_position - npc_position).normalized()
@@ -199,19 +210,25 @@ func patrol(delta):
 	#move_and_slide()
 
 func lookForPlayer(delta):
-	search_timer.start()
-	var npc_position = self.global_transform.origin
-	look_at(player_position)
-	navigation_agent.target_position = player_position
-	var direction = (player_position - npc_position).normalized()
+	print("looking for player")
+	
+		
+	npc_position = self.global_transform.origin
+	navigation_agent.target_position = player_last_seen_position
+	navigation_agent.get_next_path_position()
+	var direction = (player_last_seen_position - npc_position).normalized()
+	look_at(player_last_seen_position)
+
 	var target_speed = SPEED 
 	var target_velocity = direction * target_speed
-	velocity = velocity.lerp(target_velocity, 0.1) # Interpolate towards the target velocity
-	
 	move_and_slide()
+	distance_to_player = npc_position.distance_to(player_last_seen_position)
+	#start timer if npc is at last seen location
+	if distance_to_player < 0.5:
+		if (search_timer.is_stopped()):
+			search_timer.start()
+		
 	
-
-
 func _on_patrol_timer_timeout():
 	patrol_timer.stop()
 	current_patrol_target = (current_patrol_target + 1) % patrol_targets.size()
