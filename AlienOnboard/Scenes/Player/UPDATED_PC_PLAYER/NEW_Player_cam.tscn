@@ -1054,7 +1054,6 @@ fov = 75.0
 transform = Transform3D(1, -1.42721e-10, 0, 1.35419e-10, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="PlayerCharacterBody3D" type="CharacterBody3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0194088, 0.506884, -0.0163251)
 script = ExtResource("1_2ds56")
 
@@ -1623,7 +1622,6 @@ one_shot = true
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_l4beg")]
 unique_name_in_owner = true
-visible = false
 
 [node name="GameverMenu" parent="CanvasLayer" instance=ExtResource("7_0kgvt")]
 unique_name_in_owner = true

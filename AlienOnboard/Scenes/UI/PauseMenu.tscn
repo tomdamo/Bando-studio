@@ -1,18 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://sg7ef7wsp04y"]
+[gd_scene load_steps=7 format=3 uid="uid://sg7ef7wsp04y"]
 
 [ext_resource type="Script" path="res://Scenes/UI/PauseMenu.gd" id="1_5wh1r"]
 [ext_resource type="FontFile" uid="uid://dlvhjyl50fcs4" path="res://Textures/Font/batmfa__.ttf" id="1_jq6l8"]
 [ext_resource type="Texture2D" uid="uid://c7r5072nr5o1" path="res://Scenes/UI/ALIEN_ON_BOARD_PICTOGRAM-removebg-preview.png" id="2_7ni5h"]
+[ext_resource type="PackedScene" uid="uid://dpxd2agykq3ia" path="res://UI/OptionsMenu.tscn" id="4_i5nwq"]
+
+[sub_resource type="Theme" id="Theme_asf55"]
+default_font = ExtResource("1_jq6l8")
 
 [sub_resource type="LabelSettings" id="LabelSettings_cl6r0"]
 font = ExtResource("1_jq6l8")
 font_size = 100
 
-[sub_resource type="Theme" id="Theme_asf55"]
-default_font = ExtResource("1_jq6l8")
-
 [node name="PauseMenu" type="Control"]
 process_mode = 2
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5wh1r")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Control" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,7 +31,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Panel"]
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,63 +48,67 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="Panel"]
-layout_mode = 2
-offset_left = 710.0
-offset_top = 372.0
-offset_right = 1214.0
-offset_bottom = 472.0
-text = "PAUSEd"
-label_settings = SubResource("LabelSettings_cl6r0")
-
-[node name="TextureRect" type="TextureRect" parent="Panel"]
+[node name="TextureRect" type="TextureRect" parent="Control/Panel"]
 layout_mode = 1
-anchors_preset = 3
+anchors_preset = 6
 anchor_left = 1.0
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 offset_left = -500.0
-offset_top = -500.0
+offset_top = -250.0
+offset_bottom = 250.0
 grow_horizontal = 0
-grow_vertical = 0
+grow_vertical = 2
 texture = ExtResource("2_7ni5h")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="OptionsMenu" parent="Control" instance=ExtResource("4_i5nwq")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="PauseMarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -47.0
-offset_right = 244.0
-offset_bottom = 453.0
+offset_left = -252.0
+offset_top = -143.0
+offset_right = 252.0
+offset_bottom = 143.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = SubResource("Theme_asf55")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PauseMarginContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("Quit")
 focus_neighbor_bottom = NodePath("Resume")
 
-[node name="Resume" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/PauseMarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "PAUSEd"
+label_settings = SubResource("LabelSettings_cl6r0")
+
+[node name="Resume" type="Button" parent="Control/PauseMarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Resume"
 
-[node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Options" type="Button" parent="Control/PauseMarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Options"
 
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="Control/PauseMarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Quit"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Control/PauseMarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Control/PauseMarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Control/PauseMarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

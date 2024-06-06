@@ -6,6 +6,14 @@ extends Control
 @onready var master_volume_slider = $PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer2/VBoxContainer/MasterVolumeSlider
 @onready var sfx_volume_slider = $PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer2/VBoxContainer2/SFXVolumeSlider
 
+@onready var options_menu = %OptionsMenu
+@onready var input_settings = $PanelContainer/InputSettings
+
+@onready var margin_container = $PanelContainer/MarginContainer
+@onready var pause_margin_container = $"../PauseMarginContainer"
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var videoSettings = ConfigFileHandler.load_video_settings()
@@ -22,7 +30,7 @@ func _process(delta):
 
 
 func _on_button_pressed():
-	get_tree().change_scene_to_file("res://MainMenu.tscn")
+	_back_to_pause()
 
 
 func _on_full_screen_check_toggled(toggled_on):
@@ -37,12 +45,21 @@ func _on_master_volume_drag_ended(value_changed):
 	if value_changed:
 		ConfigFileHandler.save_audio_settings("master_volume",master_volume_slider.value / 100)
 
-
 func _on_sfx_volume_drag_ended(value_changed):
 	if value_changed:
 		ConfigFileHandler.save_audio_settings("sfx_volume", sfx_volume_slider.value / 100)
 
 func _on_config_keybinds_pressed():
-		get_tree().change_scene_to_file("res://UI/InputSettings/InputSettings.tscn");
+	margin_container.hide()
+	input_settings.show()
+
+func _on_vertical_camera_check_toggled(toggled_on):
+	pass # Replace with function body.
 
 
+func _on_horiz_camera_check_toggled(toggled_on):
+	pass # Replace with function body.
+
+func _back_to_pause():
+	options_menu.hide()
+	pause_margin_container.show()

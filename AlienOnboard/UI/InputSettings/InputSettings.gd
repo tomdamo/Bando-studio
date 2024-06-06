@@ -2,6 +2,8 @@ extends Control
 
 @onready var input_button_scene = preload("res://UI/InputSettings/input_button.tscn")
 @onready var action_list = $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList
+@onready var input_settings = $"."
+@onready var margin_container = $"../MarginContainer"
 
 var is_remapping = false
 var action_to_remap = null
@@ -95,4 +97,5 @@ func _on_reset_button_pressed():
 
 
 func _on_config_keybinds_button_down():
-		get_tree().change_scene_to_file("res://UI/OptionsMenu.tscn");
+	input_settings.hide()
+	margin_container.show()
