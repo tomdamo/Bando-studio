@@ -15,7 +15,7 @@ func _process(delta):
 func _on_hit_area_body_entered(body):
 	print(body.name)
 	if "Player" in body.name:
-		body.take_damage(1)  
+		body.take_damage(10)  
 		queue_free() 
 	# destroy bullet if it hits walls
 	if "Body" in body.name:

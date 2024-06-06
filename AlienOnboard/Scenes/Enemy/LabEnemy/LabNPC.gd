@@ -15,6 +15,8 @@ var death = false
 
 var player_position = Vector3.ZERO
 
+var damage_number = preload("res://Scenes/damagenumbers/damagenumbers.tscn")
+
 func _ready():
 	spotted_label.hide()									
 	pass
@@ -25,7 +27,10 @@ func _physics_process(delta):
 
 
 func take_damage(damage):
-	print("Damage taken" + str(damage))
+	var damageNumber = damage_number.instantiate()
+	get_parent().add_child(damageNumber)
+	damageNumber.global_transform.origin = self.global_transform.origin
+	damageNumber.set_damage(damage)
 	bloodTimer.start()
 	blood.show()
 	health -= damage

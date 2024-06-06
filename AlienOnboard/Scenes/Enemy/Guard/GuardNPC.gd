@@ -3,7 +3,7 @@ extends CharacterBody3D
 const SPEED = 3.0
 const GRAVITY = -9.8
 
-var health = 6
+var health = 100
 var death = false
 var damage_number = preload("res://Scenes/damagenumbers/damagenumbers.tscn")
 
@@ -135,7 +135,7 @@ func shootAtTarget():
 		
 	target_position = player_position
 	distance_to_player = npc_position.distance_to(target_position)
-	print(distance_to_player)
+	#print(distance_to_player)
 
 	if distance_to_player < 3:
 		target_position.y -= 0.52
