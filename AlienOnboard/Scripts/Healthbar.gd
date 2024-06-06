@@ -1,7 +1,8 @@
 extends ProgressBar
 
 @onready var timer = $Timer
-@onready var damage_bar = $DamageBar
+@onready var damage_bar = %DamageBar
+@onready var player = $"../../PlayerCharacterBody3D"
 
 var health = 0 : set = _set_health
 
@@ -16,17 +17,21 @@ func _set_health(new_health):
 	if health < prev_health:
 		timer.start()
 	else: 
-		damage_bar.value = health
+		if damage_bar != null:
+			damage_bar.value = health
 
 func init_health(_health):
 	health = _health
 	max_value = health
 	value = health
-	damage_bar.max_value = health
-	damage_bar.value = health
+	if damage_bar != null:
+		damage_bar.max_value = health
+		damage_bar.value = health
+	
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	damage_bar = %DamageBar
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

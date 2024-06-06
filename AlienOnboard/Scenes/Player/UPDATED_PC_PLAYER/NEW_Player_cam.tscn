@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=3 uid="uid://bi7lvvqh5ljqv"]
+[gd_scene load_steps=113 format=3 uid="uid://bi7lvvqh5ljqv"]
 
 [ext_resource type="Script" path="res://Scripts/Camera_phantom_new.gd" id="1_2ds56"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_8b7er"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scenes/Player/UPDATED_PC_PLAYER/PulseEffect.gd" id="6_y68pn"]
 [ext_resource type="PackedScene" uid="uid://br3x1p8e76i6m" path="res://Scenes/UI/GameOver2.tscn" id="7_0kgvt"]
 [ext_resource type="PackedScene" uid="uid://sg7ef7wsp04y" path="res://Scenes/UI/PauseMenu.tscn" id="7_l4beg"]
+[ext_resource type="PackedScene" uid="uid://c6ec716pc0530" path="res://Scenes/Player/Healthbar.tscn" id="9_84ty3"]
 [ext_resource type="PackedScene" uid="uid://y7ebep2q5e8f" path="res://Scenes/Minimap/Minimap.tscn" id="11_0fuok"]
 [ext_resource type="AudioStream" uid="uid://b18ktpa60vstt" path="res://Scenes/Player/UPDATED_PC_PLAYER/hitsound1.mp3" id="12_60mq5"]
 [ext_resource type="AudioStream" uid="uid://br0dx23nelga8" path="res://Scenes/Player/UPDATED_PC_PLAYER/DashSound.mp3" id="13_8mwm8"]
@@ -1619,6 +1620,9 @@ wait_time = 6.0
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Healthbar" parent="CanvasLayer" instance=ExtResource("9_84ty3")]
+unique_name_in_owner = true
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_l4beg")]
 unique_name_in_owner = true

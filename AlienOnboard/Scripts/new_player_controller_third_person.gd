@@ -22,8 +22,8 @@ var paused = false
 @onready var pause_menu = %PauseMenu 
 
 #Health and damage
-@export var health = 9
-@export var damage = 3
+var health: float
+@export var damage = 15
 @onready var attack_range = %AttackRange
 @export var player_died = false
 const GAME_OVER_2 = preload("res://Scenes/UI/GameOver2.tscn")
@@ -32,6 +32,7 @@ var playerDamageMaterial = load("res://Scenes/Player/UPDATED_PC_PLAYER/damaged_p
 @onready var damage_timer = %DamageTimer
 @onready var player_mesh_instance_3d = %PlayerMeshInstance3D
 @onready var hit_sound = %HitSound
+@onready var healthbar = %Healthbar
 
 
 #Sense ability
@@ -55,7 +56,9 @@ var _physics_body_trans_current: Transform3D
 @onready var color_rect = $"../CanvasLayer/ColorRect"
 
 
-func _ready() -> void:
+func _ready():
+	health = 100
+	healthbar.init_health(health)
 	_camera = owner.get_node("%MainCamera3D")
 	_player_visual.top_level = true
 
@@ -205,7 +208,7 @@ func take_damage(damageAmount):
 	health -= damage
 	damage_timer.start()
 	hit_sound.play()
-
+	healthbar.health = health
 	if health <= 0:
 		die()
 	
