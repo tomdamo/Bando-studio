@@ -1636,7 +1636,7 @@ target = NodePath("../../PlayerCharacterBody3D")
 
 [node name="DamageTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 0.75
+wait_time = 3.0
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

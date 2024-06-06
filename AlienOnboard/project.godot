@@ -26,6 +26,7 @@ StateMachine="*res://Scripts/AlarmSystem/StateMachine/StateMachine.gd"
 BeehaveGlobalMetrics="*res://addons/beehave/metrics/beehave_global_metrics.gd"
 BeehaveGlobalDebugger="*res://addons/beehave/debug/global_debugger.gd"
 EnemyManager="*res://Scripts/Enemy/EnemyManager.gd"
+Damagenumbers="*res://Scenes/damagenumbers/damagenumbers.gd"
 
 [display]
 

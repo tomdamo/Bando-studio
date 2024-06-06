@@ -5,6 +5,8 @@ const GRAVITY = -9.8
 
 var health = 6
 var death = false
+var damage_number = preload("res://Scenes/damagenumbers/damagenumbers.tscn")
+
 @onready var blood = %BloodEffect
 @onready var bloodTimer = %BloodTimer
 
@@ -63,8 +65,10 @@ func _physics_process(delta):
 	
 
 func take_damage(damage):
-	print("Damage taken")
-	print(damage)	
+	var damageNumber = damage_number.instantiate()
+	get_parent().add_child(damageNumber)
+	damageNumber.global_transform.origin = self.global_transform.origin
+	damageNumber.set_damage(damage)
 	bloodTimer.start()
 	blood.show() 
 	health -= damage
@@ -76,6 +80,7 @@ func die():
 	self.rotation_degrees.x = 90
 	self.position.y = 0 
 	death = true
+	queue_free()
 
 func _on_blood_timer_timeout():
 	blood.hide()
@@ -146,7 +151,7 @@ func shootAtTarget():
 	player_last_seen_position = player_position
 
 func moveAwayFromPlayer(delta):
-	print("moving away")
+	#print("moving away")
 	navigation_agent.target_position = target_position
 	
 	if distance_to_player < 3:
@@ -165,7 +170,7 @@ func moveAwayFromPlayer(delta):
 	move_and_slide()
 
 func moveCloser(delta):
-	print("moving closer")
+	#print("moving closer")
 	navigation_agent.target_position = target_position
 	
 	if distance_to_player > 8:
@@ -181,7 +186,7 @@ func moveCloser(delta):
 	move_and_slide()
 		
 func patrol(delta):
-	print("patrolling")
+	#print("patrolling")
 	if patrol_targets.size() > 0:
 		npc_position = self.global_transform.origin
 		navigation_agent.target_position = patrol_targets[current_patrol_target]
@@ -203,8 +208,7 @@ func patrol(delta):
 			velocity.x = 0
 			
 func lookForPlayer(delta):
-	print("looking for player")
-		
+	#print("looking for player")
 	npc_position = self.global_transform.origin
 	navigation_agent.target_position = player_last_seen_position
 	navigation_agent.get_next_path_position()

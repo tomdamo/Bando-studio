@@ -23,16 +23,17 @@ var paused = false
 
 #Health and damage
 var health: float
-@export var damage = 15
+@export var damage = 5
 @onready var attack_range = %AttackRange
 @export var player_died = false
 const GAME_OVER_2 = preload("res://Scenes/UI/GameOver2.tscn")
-var playerNormalMaterial = load("res://Scenes/Player/UPDATED_PC_PLAYER/normal_player_material.tres")
-var playerDamageMaterial = load("res://Scenes/Player/UPDATED_PC_PLAYER/damaged_player_material.tres")
 @onready var damage_timer = %DamageTimer
 @onready var player_mesh_instance_3d = %PlayerMeshInstance3D
 @onready var hit_sound = %HitSound
 @onready var healthbar = %Healthbar
+
+var damage_number = preload("res://Scenes/damagenumbers/damagenumbers.tscn")
+
 
 
 #Sense ability
@@ -201,22 +202,23 @@ func attack():
 			body.take_damage(damage)
 			
 func take_damage(damageAmount):
-	print("Damage taken")
-	print(health)
-	#bloodTimer.start()
-	#blood.show() 
-	health -= damage
+	var damageNumber = damage_number.instantiate()
+	get_parent().add_child(damageNumber)
+	damageNumber.global_transform.origin = self.global_transform.origin
+	damageNumber.set_damage(damageAmount)
 	damage_timer.start()
+
+	
+	health -= damage
 	hit_sound.play()
-	healthbar.health = health
+	healthbar.health = health 
 	if health <= 0:
 		die()
 	
 func die():
 	print("Player died")
 	print(health)
-	#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	#get_tree().change_scene_to_file("res://Scenes/UI/GameOver2.tscn")
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	get_tree().change_scene_to_file("res://Scenes/UI/GameOver2.tscn")
 
-func _on_damage_timer_timeout():
-	player_mesh_instance_3d.material_override = playerNormalMaterial
+	
