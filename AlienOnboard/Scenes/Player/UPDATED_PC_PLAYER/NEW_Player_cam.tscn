@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=3 uid="uid://bi7lvvqh5ljqv"]
+[gd_scene load_steps=116 format=3 uid="uid://bi7lvvqh5ljqv"]
 
 [ext_resource type="Script" path="res://Scripts/Camera_phantom_new.gd" id="1_2ds56"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_8b7er"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://y7ebep2q5e8f" path="res://Scenes/Minimap/Minimap.tscn" id="11_0fuok"]
 [ext_resource type="AudioStream" uid="uid://b18ktpa60vstt" path="res://Scenes/Player/UPDATED_PC_PLAYER/hitsound1.mp3" id="12_60mq5"]
 [ext_resource type="AudioStream" uid="uid://br0dx23nelga8" path="res://Scenes/Player/UPDATED_PC_PLAYER/DashSound.mp3" id="13_8mwm8"]
+[ext_resource type="Shader" path="res://Scenes/Player/UPDATED_PC_PLAYER/ability.gdshader" id="13_eg2pn"]
+[ext_resource type="Texture2D" uid="uid://cdce0nf60r6i1" path="res://Scenes/UI-Iconis/dash-icon.png" id="13_pufit"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s61dn"]
 radius = 0.695227
@@ -1051,6 +1053,12 @@ h_offset = 1.0
 v_offset = 0.0
 fov = 75.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pt25m"]
+shader = ExtResource("13_eg2pn")
+shader_parameter/cooldown_progress = 1.0
+shader_parameter/use_transparency = false
+shader_parameter/transparency_alpha = 1.0
+
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, -1.42721e-10, 0, 1.35419e-10, 1, 0, 0, 0, 1, 0, 0, 0)
 
@@ -1634,6 +1642,22 @@ visible = false
 [node name="ColorRect" parent="CanvasLayer" instance=ExtResource("11_0fuok")]
 target = NodePath("../../PlayerCharacterBody3D")
 
+[node name="Dash_icon" type="TextureRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_pt25m")
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1913.0
+offset_top = -1080.0
+offset_right = -833.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("13_pufit")
+
 [node name="DamageTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 3.0
@@ -1655,4 +1679,5 @@ unique_name_in_owner = true
 [node name="AttackSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 
+[connection signal="timeout" from="DashCooldownTimer" to="PlayerCharacterBody3D" method="_on_dash_cooldown_timer_timeout"]
 [connection signal="timeout" from="DamageTimer" to="PlayerCharacterBody3D" method="_on_damage_timer_timeout"]

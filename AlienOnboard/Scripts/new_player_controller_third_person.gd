@@ -16,7 +16,9 @@ var dash_direction = Vector3.ZERO
 var dash_timer = 0.0
 @onready var dash_cooldown_timer = %DashCooldownTimer
 @onready var dash_sound = %DashSound
-
+@onready var dash_icon = %Dash_icon
+@onready var dash_material : ShaderMaterial
+var dash_cd_value
 #Pause
 var paused = false
 @onready var pause_menu = %PauseMenu 
@@ -62,12 +64,24 @@ func _ready():
 	healthbar.init_health(health)
 	_camera = owner.get_node("%MainCamera3D")
 	_player_visual.top_level = true
+	dash_material = dash_icon.get_material()
+	print(dash_material)
+	dash_cd_value = dash_material.get_shader_parameter("cooldown_progress")
+	print(dash_cd_value)
 
 
 func _physics_process(delta: float) -> void:
 	_physics_body_trans_last = _physics_body_trans_current
 	_physics_body_trans_current = global_transform
 
+	if !dash_cooldown_timer.is_stopped():
+		var time_left = dash_cooldown_timer.get_time_left()
+		var total_wait_time = dash_cooldown_timer.get_wait_time()
+	
+		var cooldown_progress = 1 - (time_left / total_wait_time)
+		dash_material.set_shader_parameter("cooldown_progress", cooldown_progress)
+
+	
 	# Add the gravity.
 	if enable_gravity and not is_on_floor():
 		velocity.y -= gravity * delta
@@ -109,14 +123,16 @@ func _physics_process(delta: float) -> void:
 		dash_timer = DASH_TIME
 		dash_cooldown_timer.start()
 		dash_sound.play()
-	
+		dash_material.set_shader_parameter("cooldown_progress", 0)  # Dash just used, so cooldown is 0
 	
 	if dashing:
 		velocity += dash_direction * DASH_SPEED
 		dash_timer -= delta
+		# Update cooldown progress
 		#check if dash time is over
 		if dash_timer <= 0:
 			dashing = false
+
 			# Reset velocity to zero to prevent continued movement after dash
 			velocity = Vector3.ZERO
 	else:
@@ -139,6 +155,9 @@ func _physics_process(delta: float) -> void:
 		sense_timer -= delta
 		if sense_timer <= 0:
 			_deactivateSenseAbility()
+
+func _on_dash_cooldown_timer_timeout():
+	dash_material.set_shader_parameter("cooldown_progress", 1)  # Dash ready, so cooldown is 1
 	
 func _activateSenseAbility():
 	senseActive = true
