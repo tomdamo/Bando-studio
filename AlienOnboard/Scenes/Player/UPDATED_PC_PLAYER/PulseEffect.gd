@@ -17,6 +17,7 @@ var is_running := false
 @onready var sense_cooldown_timer = %SenseCooldownTimer
 @onready var active_sense_time = %ActiveSenseTime
 
+@onready var player = $"../../PlayerCharacterBody3D"
 
 
 func _ready():
@@ -34,14 +35,13 @@ func _process(delta):
 			distance = 0.0
 		SHADER.set_shader_parameter("radius", distance)
 	
-	if Input.is_action_just_pressed("SenseAbility") and sense_cooldown_timer.is_stopped():
+	if player.senseActive:
 		pulse_effect.show()
 		active_sense_time.start()
 		SHADER.set_shader_parameter("start_point", get_node(origin_point).get_global_transform())		
 		is_running = true
 		distance = 0.0
 	
-	if active_sense_time.is_stopped():
+	if !player.senseActive:
 		pulse_effect.hide()
-		sense_cooldown_timer.start()
 		

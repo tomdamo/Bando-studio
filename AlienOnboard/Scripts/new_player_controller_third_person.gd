@@ -18,7 +18,7 @@ var dash_timer = 0.0
 @onready var dash_sound = %DashSound
 @onready var dash_icon = %Dash_icon
 @onready var dash_material : ShaderMaterial
-var dash_cd_value
+#var dash_cd_value
 #Pause
 var paused = false
 @onready var pause_menu = %PauseMenu 
@@ -40,11 +40,13 @@ var damage_number = preload("res://Scenes/damagenumbers/damagenumbers.tscn")
 
 #Sense ability
 var senseActive = false
-const Sense_duration = 10.0
-const Sense_Cooldown = 20.0
-var sense_timer = 0.0
-@onready var sense_cooldown_timer = %SenseCooldownTimer
-@onready var active_sense_timer = %ActiveSenseTime
+@onready var Sense_Cooldown = %SenseCooldownTimer
+@onready var active_sense_time = %ActiveSenseTime
+@onready var sense_icon = %Sense_icon
+@onready var sense_material : ShaderMaterial
+@onready var sense_overlay = %Sense_overlay
+ 
+
 # Enemy material for the sense ability.
 var enemyNormalMaterial = load("res://Textures/EnemyNormal.tres")
 var enemyVisibleMaterial = load("res://Textures/EnemyVisible.tres")
@@ -65,22 +67,30 @@ func _ready():
 	_camera = owner.get_node("%MainCamera3D")
 	_player_visual.top_level = true
 	dash_material = dash_icon.get_material()
-	print(dash_material)
-	dash_cd_value = dash_material.get_shader_parameter("cooldown_progress")
-	print(dash_cd_value)
+	sense_material = sense_icon.get_material()
+	sense_overlay.mouse_filter = true
+	#dash_cd_value = dash_material.get_shader_parameter("cooldown_progress")
+	#print(dash_cd_value)
 
 
 func _physics_process(delta: float) -> void:
 	_physics_body_trans_last = _physics_body_trans_current
 	_physics_body_trans_current = global_transform
-
+	print(Sense_Cooldown.is_stopped())
+	#icon UI stuff
 	if !dash_cooldown_timer.is_stopped():
 		var time_left = dash_cooldown_timer.get_time_left()
 		var total_wait_time = dash_cooldown_timer.get_wait_time()
 	
 		var cooldown_progress = 1 - (time_left / total_wait_time)
 		dash_material.set_shader_parameter("cooldown_progress", cooldown_progress)
-
+		
+	if !Sense_Cooldown.is_stopped():
+		var sense_time_left = Sense_Cooldown.get_time_left()
+		var sense_total_wait = Sense_Cooldown.get_wait_time()
+		
+		var sense_progress = 1 - (sense_time_left / sense_total_wait)
+		sense_material.set_shader_parameter("cooldown_progress", sense_progress)
 	
 	# Add the gravity.
 	if enable_gravity and not is_on_floor():
@@ -103,10 +113,12 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 	
-	#See enemies layer through the walls
-	if Input.is_action_just_pressed("SenseAbility") and not senseActive and sense_cooldown_timer.is_stopped():
-		print("if for senseability passed")
+	#See enemies layer through the walls  and not senseActive and sense_cooldown_timer.is_stopped()
+	if Input.is_action_just_pressed("SenseAbility") and !senseActive and Sense_Cooldown.is_stopped():
+		senseActive = true		
+		print("Sense if passed")		
 		_activateSenseAbility()
+		sense_material.set_shader_parameter("cooldown_progress", 0)		
 	
 	if Input.is_action_just_pressed("Attack"):
 		attack()
@@ -150,20 +162,13 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-	#sense Timer
-	if senseActive:
-		sense_timer -= delta
-		if sense_timer <= 0:
-			_deactivateSenseAbility()
-
 func _on_dash_cooldown_timer_timeout():
 	dash_material.set_shader_parameter("cooldown_progress", 1)  # Dash ready, so cooldown is 1
 	
 func _activateSenseAbility():
-	senseActive = true
-	sense_timer = Sense_duration
-	active_sense_timer.start()
+	active_sense_time.start()
 	print("Sense activated")
+	sense_overlay.show()
 	#TODO Get all enemies within the SenseRange collision shape
 	#if senseRange:
 		#var bodies = senseRange.get_overlapping_areas()
@@ -182,13 +187,20 @@ func _activateSenseAbility():
 
 func _deactivateSenseAbility():
 	senseActive = false
-	sense_cooldown_timer.start()
+	sense_overlay.hide()
+	Sense_Cooldown.start()
 # Revert the material of enemies
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		if enemy.has_node("MeshInstance3D"):
 			var meshInstance = enemy.get_node("MeshInstance3D")
 			#meshInstance.material_override = enemyNormalMaterial
 			meshInstance.set_surface_override_material(0, NPC_NORMAL_MATERIAL)
+			
+func _on_sense_cooldown_timer_timeout():
+	sense_material.set_shader_parameter("cooldown_progress", 1)
+
+func _on_active_sense_time_timeout():
+	_deactivateSenseAbility()
 
 
 func _process(_delta: float) -> void:
