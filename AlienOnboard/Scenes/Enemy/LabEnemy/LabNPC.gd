@@ -7,6 +7,7 @@ var health = 6
 var death = false
 @onready var blood = %BloodEffect
 @onready var bloodTimer = %BloodTimer
+@onready var hit_effect_3 = %HitEffect3
 
 @onready var VisionArea = %VisionArea
 @onready var VisionRaycast = %VisionRaycast
@@ -27,12 +28,13 @@ func _physics_process(delta):
 
 
 func take_damage(damage):
+	hit_effect_3.set_emitting(true)
 	var damageNumber = damage_number.instantiate()
 	get_parent().add_child(damageNumber)
 	damageNumber.global_transform.origin = self.global_transform.origin
 	damageNumber.set_damage(damage)
-	bloodTimer.start()
-	blood.show()
+	#bloodTimer.start()
+	#blood.show()
 	health -= damage
 	if health <= 0:
 		die()

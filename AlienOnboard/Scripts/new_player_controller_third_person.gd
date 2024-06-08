@@ -37,7 +37,7 @@ const GAME_OVER_2 = preload("res://Scenes/UI/GameOver2.tscn")
 var damage_number = preload("res://Scenes/damagenumbers/damagenumbers.tscn")
 
 
-
+var tween : Tween
 #Sense ability
 var senseActive = false
 @onready var Sense_Cooldown = %SenseCooldownTimer
@@ -59,6 +59,8 @@ var _physics_body_trans_last: Transform3D
 var _physics_body_trans_current: Transform3D
 
 @onready var color_rect = $"../CanvasLayer/ColorRect"
+@onready var hit_effect = %HitEffect
+
 
 
 func _ready():
@@ -76,7 +78,6 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	_physics_body_trans_last = _physics_body_trans_current
 	_physics_body_trans_current = global_transform
-	print(Sense_Cooldown.is_stopped())
 	#icon UI stuff
 	if !dash_cooldown_timer.is_stopped():
 		var time_left = dash_cooldown_timer.get_time_left()
@@ -167,7 +168,6 @@ func _on_dash_cooldown_timer_timeout():
 	
 func _activateSenseAbility():
 	active_sense_time.start()
-	print("Sense activated")
 	sense_overlay.show()
 	#TODO Get all enemies within the SenseRange collision shape
 	#if senseRange:
@@ -202,6 +202,8 @@ func _on_sense_cooldown_timer_timeout():
 func _on_active_sense_time_timeout():
 	_deactivateSenseAbility()
 
+func _transition_to_overlay():
+	pass
 
 func _process(_delta: float) -> void:
 	_player_visual.global_transform = _physics_body_trans_last.interpolate_with(
@@ -233,6 +235,7 @@ func attack():
 			body.take_damage(damage)
 			
 func take_damage(damageAmount):
+	hit_effect.set_emitting(true)
 	var damageNumber = damage_number.instantiate()
 	get_parent().add_child(damageNumber)
 	damageNumber.global_transform.origin = self.global_transform.origin

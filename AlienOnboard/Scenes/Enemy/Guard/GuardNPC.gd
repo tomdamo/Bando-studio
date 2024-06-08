@@ -9,6 +9,7 @@ var damage_number = preload("res://Scenes/damagenumbers/damagenumbers.tscn")
 
 @onready var blood = %BloodEffect
 @onready var bloodTimer = %BloodTimer
+@onready var hit_effect_2 = %HitEffect2
 
 @onready var VisionArea = %VisionArea
 @onready var VisionRaycast = %VisionRaycast
@@ -65,12 +66,13 @@ func _physics_process(delta):
 	
 
 func take_damage(damage):
+	hit_effect_2.set_emitting(true)
 	var damageNumber = damage_number.instantiate()
 	get_parent().add_child(damageNumber)
 	damageNumber.global_transform.origin = self.global_transform.origin
 	damageNumber.set_damage(damage)
-	bloodTimer.start()
-	blood.show() 
+	#bloodTimer.start()
+	#blood.show() 
 	health -= damage
 	if health <= 0:
 		die()
@@ -209,6 +211,8 @@ func patrol(delta):
 			
 func lookForPlayer(delta):
 	#print("looking for player")
+	if (search_timer.is_stopped()):
+			search_timer.start()
 	npc_position = self.global_transform.origin
 	navigation_agent.target_position = player_last_seen_position
 	navigation_agent.get_next_path_position()
@@ -220,11 +224,8 @@ func lookForPlayer(delta):
 	move_and_slide()
 	distance_to_player = npc_position.distance_to(player_last_seen_position)
 	#start timer if npc is at last seen location
-	if distance_to_player < 0.5:
-		if (search_timer.is_stopped()):
-			search_timer.start()
-	#look around the area for the player
-	look_around()
+	if distance_to_player < 1:
+		look_around()
 		
 func _on_patrol_timer_timeout():
 	patrol_timer.stop()
@@ -237,3 +238,4 @@ func _on_search_timer_timeout():
 
 func look_around():
 	pass
+	#Walk circle or do a 360 basically haha

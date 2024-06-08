@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=3 uid="uid://bi7lvvqh5ljqv"]
+[gd_scene load_steps=117 format=3 uid="uid://bi7lvvqh5ljqv"]
 
 [ext_resource type="Script" path="res://Scripts/Camera_phantom_new.gd" id="1_2ds56"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_8b7er"]
@@ -15,6 +15,20 @@
 [ext_resource type="Shader" path="res://Scenes/Player/UPDATED_PC_PLAYER/ability.gdshader" id="13_eg2pn"]
 [ext_resource type="Texture2D" uid="uid://cdce0nf60r6i1" path="res://Scenes/UI-Iconis/dash-icon.png" id="13_pufit"]
 [ext_resource type="Texture2D" uid="uid://c3p4t848brjs0" path="res://Scenes/UI-Iconis/one-eeeeeeye.png" id="15_gdred"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0w8at"]
+inherit_velocity_ratio = 1.0
+spread = 180.0
+initial_velocity_min = 5.1
+initial_velocity_max = 5.1
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qoaq4"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_2s31l"]
+material = SubResource("ShaderMaterial_qoaq4")
+radius = 0.1
+height = 0.2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s61dn"]
 radius = 0.695227
@@ -1056,6 +1070,17 @@ transform = Transform3D(1, -1.42721e-10, 0, 1.35419e-10, 1, 0, 0, 0, 1, 0, 0, 0)
 [node name="PlayerCharacterBody3D" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0194088, 0.506884, -0.0163251)
 script = ExtResource("1_2ds56")
+
+[node name="HitEffect" type="GPUParticles3D" parent="PlayerCharacterBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0194088, 0.10401, 0.0163251)
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_0w8at")
+draw_pass_1 = SubResource("SphereMesh_2s31l")
 
 [node name="PlayerCollisionShape3D" type="CollisionShape3D" parent="PlayerCharacterBody3D"]
 shape = SubResource("CapsuleShape3D_s61dn")
