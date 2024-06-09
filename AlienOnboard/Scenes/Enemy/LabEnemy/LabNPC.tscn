@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b21o4n87fk5sy"]
+[gd_scene load_steps=23 format=3 uid="uid://b21o4n87fk5sy"]
 
 [ext_resource type="PackedScene" uid="uid://diw5d37oyhhqa" path="res://3DModels/labperson.fbx" id="1_pjjkh"]
 [ext_resource type="Script" path="res://Scenes/Enemy/LabEnemy/LabNPC.gd" id="1_ywpna"]
@@ -69,6 +69,21 @@ size = Vector2(0.5, 0.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_148h7"]
 size = Vector3(2, 1.867, 0.584)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uumlh"]
+inherit_velocity_ratio = 1.0
+spread = 180.0
+initial_velocity_min = 5.1
+initial_velocity_max = 5.1
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p2ya3"]
+albedo_color = Color(1, 1, 1, 0.498039)
+
+[sub_resource type="SphereMesh" id="SphereMesh_hquc3"]
+material = SubResource("StandardMaterial3D_p2ya3")
+radius = 0.1
+height = 0.2
+
 [node name="LabNPC" type="CharacterBody3D"]
 collision_layer = 3
 script = ExtResource("1_ywpna")
@@ -138,6 +153,17 @@ shape = SubResource("BoxShape3D_148h7")
 unique_name_in_owner = true
 wait_time = 3.0
 one_shot = true
+
+[node name="HitEffect3" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0194088, 1.19117, 0.0163251)
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_uumlh")
+draw_pass_1 = SubResource("SphereMesh_hquc3")
 
 [connection signal="timeout" from="VisionTimer" to="." method="_on_vision_timer_timeout"]
 [connection signal="timeout" from="BloodTimer" to="." method="_on_blood_timer_timeout"]

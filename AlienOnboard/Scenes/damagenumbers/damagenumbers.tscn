@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfpyw4q6qe73v"]
+
+[ext_resource type="FontFile" uid="uid://dlvhjyl50fcs4" path="res://Textures/Font/batmfa__.ttf" id="1_3sfig"]
+[ext_resource type="Script" path="res://Scenes/damagenumbers/DamageNumberas.gd" id="1_vlpji"]
+
+[node name="Damagenumbers" type="Node3D"]
+script = ExtResource("1_vlpji")
+
+[node name="damageLabel" type="Label3D" parent="."]
+unique_name_in_owner = true
+billboard = 1
+font = ExtResource("1_3sfig")
+font_size = 150
+
+[node name="damagetextTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="damagetextTimer" to="." method="_on_damagetext_timer_timeout"]

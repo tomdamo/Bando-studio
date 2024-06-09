@@ -3,10 +3,13 @@ extends CharacterBody3D
 const SPEED = 3.0
 const GRAVITY = -9.8
 
-var health = 6
+var health = 100
 var death = false
+var damage_number = preload("res://Scenes/damagenumbers/damagenumbers.tscn")
+
 @onready var blood = %BloodEffect
 @onready var bloodTimer = %BloodTimer
+@onready var hit_effect_2 = %HitEffect2
 
 @onready var VisionArea = %VisionArea
 @onready var VisionRaycast = %VisionRaycast
@@ -63,10 +66,13 @@ func _physics_process(delta):
 	
 
 func take_damage(damage):
-	print("Damage taken")
-	print(damage)	
-	bloodTimer.start()
-	blood.show() 
+	hit_effect_2.set_emitting(true)
+	var damageNumber = damage_number.instantiate()
+	get_parent().add_child(damageNumber)
+	damageNumber.global_transform.origin = self.global_transform.origin
+	damageNumber.set_damage(damage)
+	#bloodTimer.start()
+	#blood.show() 
 	health -= damage
 	if health <= 0:
 		die()
@@ -76,6 +82,7 @@ func die():
 	self.rotation_degrees.x = 90
 	self.position.y = 0 
 	death = true
+	queue_free()
 
 func _on_blood_timer_timeout():
 	blood.hide()
@@ -130,7 +137,7 @@ func shootAtTarget():
 		
 	target_position = player_position
 	distance_to_player = npc_position.distance_to(target_position)
-	print(distance_to_player)
+	#print(distance_to_player)
 
 	if distance_to_player < 3:
 		target_position.y -= 0.52
@@ -146,7 +153,7 @@ func shootAtTarget():
 	player_last_seen_position = player_position
 
 func moveAwayFromPlayer(delta):
-	print("moving away")
+	#print("moving away")
 	navigation_agent.target_position = target_position
 	
 	if distance_to_player < 3:
@@ -165,7 +172,7 @@ func moveAwayFromPlayer(delta):
 	move_and_slide()
 
 func moveCloser(delta):
-	print("moving closer")
+	#print("moving closer")
 	navigation_agent.target_position = target_position
 	
 	if distance_to_player > 8:
@@ -181,7 +188,7 @@ func moveCloser(delta):
 	move_and_slide()
 		
 func patrol(delta):
-	print("patrolling")
+	#print("patrolling")
 	if patrol_targets.size() > 0:
 		npc_position = self.global_transform.origin
 		navigation_agent.target_position = patrol_targets[current_patrol_target]
@@ -203,8 +210,9 @@ func patrol(delta):
 			velocity.x = 0
 			
 func lookForPlayer(delta):
-	print("looking for player")
-		
+	#print("looking for player")
+	if (search_timer.is_stopped()):
+			search_timer.start()
 	npc_position = self.global_transform.origin
 	navigation_agent.target_position = player_last_seen_position
 	navigation_agent.get_next_path_position()
@@ -216,11 +224,8 @@ func lookForPlayer(delta):
 	move_and_slide()
 	distance_to_player = npc_position.distance_to(player_last_seen_position)
 	#start timer if npc is at last seen location
-	if distance_to_player < 0.5:
-		if (search_timer.is_stopped()):
-			search_timer.start()
-	#look around the area for the player
-	look_around()
+	if distance_to_player < 1:
+		look_around()
 		
 func _on_patrol_timer_timeout():
 	patrol_timer.stop()
@@ -233,3 +238,4 @@ func _on_search_timer_timeout():
 
 func look_around():
 	pass
+	#Walk circle or do a 360 basically haha

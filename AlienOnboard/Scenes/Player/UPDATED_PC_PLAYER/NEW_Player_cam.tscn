@@ -1,18 +1,33 @@
-[gd_scene load_steps=112 format=3 uid="uid://bi7lvvqh5ljqv"]
+[gd_scene load_steps=117 format=3 uid="uid://bi7lvvqh5ljqv"]
 
 [ext_resource type="Script" path="res://Scripts/Camera_phantom_new.gd" id="1_2ds56"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_8b7er"]
+[ext_resource type="Material" uid="uid://ctjy3h3vax8m5" path="res://Scenes/Bullet/hitEffect.tres" id="2_ithiu"]
 [ext_resource type="Material" uid="uid://bua1liet3lybh" path="res://Scenes/Player/UPDATED_PC_PLAYER/normal_player_material.tres" id="2_n0gms"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_kwa3r"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="4_7cxvr"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_fkqth"]
-[ext_resource type="Shader" path="res://Scenes/Player/UPDATED_PC_PLAYER/PulseScanner.gdshader" id="5_jppjh"]
-[ext_resource type="Script" path="res://Scenes/Player/UPDATED_PC_PLAYER/PulseEffect.gd" id="6_y68pn"]
 [ext_resource type="PackedScene" uid="uid://br3x1p8e76i6m" path="res://Scenes/UI/GameOver2.tscn" id="7_0kgvt"]
 [ext_resource type="PackedScene" uid="uid://sg7ef7wsp04y" path="res://Scenes/UI/PauseMenu.tscn" id="7_l4beg"]
+[ext_resource type="PackedScene" uid="uid://c6ec716pc0530" path="res://Scenes/Player/Healthbar.tscn" id="9_84ty3"]
 [ext_resource type="PackedScene" uid="uid://y7ebep2q5e8f" path="res://Scenes/Minimap/Minimap.tscn" id="11_0fuok"]
 [ext_resource type="AudioStream" uid="uid://b18ktpa60vstt" path="res://Scenes/Player/UPDATED_PC_PLAYER/hitsound1.mp3" id="12_60mq5"]
 [ext_resource type="AudioStream" uid="uid://br0dx23nelga8" path="res://Scenes/Player/UPDATED_PC_PLAYER/DashSound.mp3" id="13_8mwm8"]
+[ext_resource type="Shader" path="res://Scenes/Player/UPDATED_PC_PLAYER/ability.gdshader" id="13_eg2pn"]
+[ext_resource type="Texture2D" uid="uid://cdce0nf60r6i1" path="res://Scenes/UI-Iconis/dash-icon.png" id="13_pufit"]
+[ext_resource type="Texture2D" uid="uid://c3p4t848brjs0" path="res://Scenes/UI-Iconis/one-eeeeeeye.png" id="15_gdred"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0w8at"]
+inherit_velocity_ratio = 1.0
+spread = 180.0
+initial_velocity_min = 5.1
+initial_velocity_max = 5.1
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[sub_resource type="SphereMesh" id="SphereMesh_2s31l"]
+material = ExtResource("2_ithiu")
+radius = 0.05
+height = 0.1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s61dn"]
 radius = 0.695227
@@ -986,20 +1001,6 @@ size = Vector3(1.1709, 1, 1.43256)
 height = 1.00984
 radius = 0.8339
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8vxk6"]
-render_priority = 0
-shader = ExtResource("5_jppjh")
-shader_parameter/start_point = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
-shader_parameter/pulse_width = 2.0
-shader_parameter/color = Color(1, 0, 0, 1)
-shader_parameter/radius = 5.0
-
-[sub_resource type="QuadMesh" id="QuadMesh_tfe22"]
-lightmap_size_hint = Vector2i(12, 12)
-material = SubResource("ShaderMaterial_8vxk6")
-flip_faces = true
-size = Vector2(2, 2)
-
 [sub_resource type="Resource" id="Resource_84yex"]
 script = ExtResource("3_kwa3r")
 duration = 0.3
@@ -1026,12 +1027,36 @@ h_offset = 1.0
 v_offset = 0.0
 fov = 75.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pt25m"]
+shader = ExtResource("13_eg2pn")
+shader_parameter/cooldown_progress = 1.0
+shader_parameter/use_transparency = false
+shader_parameter/transparency_alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_esue3"]
+shader = ExtResource("13_eg2pn")
+shader_parameter/cooldown_progress = 1.0
+shader_parameter/use_transparency = false
+shader_parameter/transparency_alpha = 1.0
+
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, -1.42721e-10, 0, 1.35419e-10, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="PlayerCharacterBody3D" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0194088, 0.506884, -0.0163251)
 script = ExtResource("1_2ds56")
+
+[node name="HitEffect" type="GPUParticles3D" parent="PlayerCharacterBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0194088, 0.10401, 0.0163251)
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_0w8at")
+draw_pass_1 = SubResource("SphereMesh_2s31l")
 
 [node name="PlayerCollisionShape3D" type="CollisionShape3D" parent="PlayerCharacterBody3D"]
 shape = SubResource("CapsuleShape3D_s61dn")
@@ -1536,13 +1561,7 @@ current = true
 [node name="PhantomCameraHost" type="Node" parent="MainCamera3D"]
 script = ExtResource("5_fkqth")
 
-[node name="PulseEffect" type="MeshInstance3D" parent="MainCamera3D"]
-visible = false
-mesh = SubResource("QuadMesh_tfe22")
-script = ExtResource("6_y68pn")
-origin_point = NodePath("../../PlayerCharacterBody3D/PlayerVisual/PlayerMeshInstance3D")
-
-[node name="PlayerPhantomCamera3D" type="Node3D" parent="."]
+[node name="PlayerPhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
 unique_name_in_owner = true
 transform = Transform3D(0.999903, 0.0120916, 0.0069811, -0.0139622, 0.865941, 0.499952, 0, -0.5, 0.866023, 0.00502505, 2.25672, 3.01476)
 script = ExtResource("2_8b7er")
@@ -1585,6 +1604,19 @@ one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="Sense_overlay" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.505882)
+
+[node name="Healthbar" parent="CanvasLayer" instance=ExtResource("9_84ty3")]
+unique_name_in_owner = true
+
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_l4beg")]
 unique_name_in_owner = true
 
@@ -1595,9 +1627,41 @@ visible = false
 [node name="ColorRect" parent="CanvasLayer" instance=ExtResource("11_0fuok")]
 target = NodePath("../../PlayerCharacterBody3D")
 
+[node name="Dash_icon" type="TextureRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_pt25m")
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1913.0
+offset_top = -1080.0
+offset_right = -833.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("13_pufit")
+
+[node name="Sense_icon" type="TextureRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_esue3")
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1750.0
+offset_top = -1080.0
+offset_right = -670.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("15_gdred")
+
 [node name="DamageTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 0.75
+wait_time = 3.0
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
@@ -1616,4 +1680,7 @@ unique_name_in_owner = true
 [node name="AttackSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 
+[connection signal="timeout" from="DashCooldownTimer" to="PlayerCharacterBody3D" method="_on_dash_cooldown_timer_timeout"]
+[connection signal="timeout" from="SenseCooldownTimer" to="PlayerCharacterBody3D" method="_on_sense_cooldown_timer_timeout"]
+[connection signal="timeout" from="ActiveSenseTime" to="PlayerCharacterBody3D" method="_on_active_sense_time_timeout"]
 [connection signal="timeout" from="DamageTimer" to="PlayerCharacterBody3D" method="_on_damage_timer_timeout"]
