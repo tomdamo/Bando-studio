@@ -1,0 +1,66 @@
+[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://3p6tuggo5wmg"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_7uw8u"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_w6o3g"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_26vel"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ag50y"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ahmft"]
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform sampler2D tex_frg_2;
+uniform sampler2D tex_frg_5;
+uniform sampler2D tex_frg_3;
+uniform sampler2D tex_frg_6;
+uniform sampler2D tex_frg_7;
+
+
+
+void fragment() {
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+
+
+// Texture2D:5
+	vec4 n_out5p0 = texture(tex_frg_5, UV);
+
+
+// Texture2D:3
+	vec4 n_out3p0 = texture(tex_frg_3, UV);
+
+
+// Texture2D:6
+	vec4 n_out6p0 = texture(tex_frg_6, UV);
+
+
+// Texture2D:7
+	vec4 n_out7p0 = texture(tex_frg_7, UV);
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+	METALLIC = n_out5p0.x;
+	ROUGHNESS = n_out3p0.x;
+	SPECULAR = n_out6p0.x;
+	NORMAL_MAP = vec3(n_out7p0.xyz);
+
+
+}
+"
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_7uw8u")
+nodes/fragment/2/position = Vector2(-600, -60)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_w6o3g")
+nodes/fragment/3/position = Vector2(-880, 640)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_26vel")
+nodes/fragment/5/position = Vector2(-1440, 680)
+nodes/fragment/6/node = SubResource("VisualShaderNodeTexture_ag50y")
+nodes/fragment/6/position = Vector2(-560, 640)
+nodes/fragment/7/node = SubResource("VisualShaderNodeTexture_ahmft")
+nodes/fragment/7/position = Vector2(-300, 800)
+nodes/fragment/connections = PackedInt32Array(3, 0, 0, 3, 5, 0, 0, 2, 6, 0, 0, 4, 7, 0, 0, 9, 2, 0, 0, 0)

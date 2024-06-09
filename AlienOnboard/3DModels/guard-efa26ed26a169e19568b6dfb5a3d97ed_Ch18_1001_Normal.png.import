@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bs3844nrxwpvu"
 path.s3tc="res://.godot/imported/guard-efa26ed26a169e19568b6dfb5a3d97ed_Ch18_1001_Normal.png-f7b4d6f0595c377b068f7ab6e55291c9.s3tc.ctex"
+path.etc2="res://.godot/imported/guard-efa26ed26a169e19568b6dfb5a3d97ed_Ch18_1001_Normal.png-f7b4d6f0595c377b068f7ab6e55291c9.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -13,7 +14,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://3DModels/guard-efa26ed26a169e19568b6dfb5a3d97ed_Ch18_1001_Normal.png"
-dest_files=["res://.godot/imported/guard-efa26ed26a169e19568b6dfb5a3d97ed_Ch18_1001_Normal.png-f7b4d6f0595c377b068f7ab6e55291c9.s3tc.ctex"]
+dest_files=["res://.godot/imported/guard-efa26ed26a169e19568b6dfb5a3d97ed_Ch18_1001_Normal.png-f7b4d6f0595c377b068f7ab6e55291c9.s3tc.ctex", "res://.godot/imported/guard-efa26ed26a169e19568b6dfb5a3d97ed_Ch18_1001_Normal.png-f7b4d6f0595c377b068f7ab6e55291c9.etc2.ctex"]
 
 [params]
 

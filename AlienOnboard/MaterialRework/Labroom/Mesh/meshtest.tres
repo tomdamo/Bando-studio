@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://cand4ue22x3vy"]
+
+[ext_resource type="Texture2D" uid="uid://bwt4a0mmt2g6e" path="res://MaterialRework/Labroom/Mesh/m_T_Lattice2_basecolor-T_Lattice2_Opacity.png" id="1_huw2l"]
+[ext_resource type="Texture2D" uid="uid://udpo7r3khqrv" path="res://MaterialRework/Labroom/Mesh/m_T_Lattice2_roughness.png" id="2_b01nw"]
+[ext_resource type="Texture2D" uid="uid://bl7j76e67rumy" path="res://MaterialRework/Labroom/Mesh/m_T_Lattice2_normal.jpg" id="3_w86bl"]
+
+[resource]
+resource_name = "Metal Mesh Strips"
+cull_mode = 2
+albedo_texture = ExtResource("1_huw2l")
+metallic_texture = ExtResource("2_b01nw")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_b01nw")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_w86bl")
+uv1_scale = Vector3(10, 10, 10)
+uv1_offset = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)

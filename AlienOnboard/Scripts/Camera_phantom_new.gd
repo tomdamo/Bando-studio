@@ -15,7 +15,7 @@ extends "res://Scripts/new_player_controller_third_person.gd"
 
 func _ready() -> void:
 	super()
-	
+
 	_player_pcam = owner.get_node("%PlayerPhantomCamera3D")
 	_aim_pcam = owner.get_node("%PlayerAimPhantomCamera3D")
 	if _player_pcam.get_follow_mode() == _player_pcam.FollowMode.THIRD_PERSON:

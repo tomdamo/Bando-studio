@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://matjsn1cx31q"
 path.s3tc="res://.godot/imported/labperson-7d985c4182fe7c7dee888143218c4c67_Ch11_1001_Diffuse.png-d530452de9c6c49b88c6dbac7c8cd498.s3tc.ctex"
+path.etc2="res://.godot/imported/labperson-7d985c4182fe7c7dee888143218c4c67_Ch11_1001_Diffuse.png-d530452de9c6c49b88c6dbac7c8cd498.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -13,7 +14,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://3DModels/labperson-7d985c4182fe7c7dee888143218c4c67_Ch11_1001_Diffuse.png"
-dest_files=["res://.godot/imported/labperson-7d985c4182fe7c7dee888143218c4c67_Ch11_1001_Diffuse.png-d530452de9c6c49b88c6dbac7c8cd498.s3tc.ctex"]
+dest_files=["res://.godot/imported/labperson-7d985c4182fe7c7dee888143218c4c67_Ch11_1001_Diffuse.png-d530452de9c6c49b88c6dbac7c8cd498.s3tc.ctex", "res://.godot/imported/labperson-7d985c4182fe7c7dee888143218c4c67_Ch11_1001_Diffuse.png-d530452de9c6c49b88c6dbac7c8cd498.etc2.ctex"]
 
 [params]
 

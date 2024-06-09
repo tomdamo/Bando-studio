@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://brmu1mvwty1bu"]
 
-[ext_resource type="MeshLibrary" uid="uid://d1j7c8ylgge4f" path="res://MeshLibraryTutorial.tres" id="1_um2cc"]
+[ext_resource type="MeshLibrary" uid="uid://d1j7c8ylgge4f" path="res://Scenes/MeshLibraryTutorial.tres" id="1_um2cc"]
 [ext_resource type="PackedScene" uid="uid://c762h5q0c3y16" path="res://3DModels/pillar.glb" id="2_evuqq"]
 
 [node name="Tutorial2Test" type="Node3D"]

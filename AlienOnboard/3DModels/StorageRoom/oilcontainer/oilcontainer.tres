@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://blwndqux6um32"]
+
+[ext_resource type="Texture2D" uid="uid://c2eo38xm8mu1k" path="res://3DModels/StorageRoom/oilcontainer/oilcontainer_Kratzer.jpg" id="1_wb81g"]
+[ext_resource type="Texture2D" uid="uid://dls83fcfyiccv" path="res://3DModels/StorageRoom/oilcontainer/oilcontainer_Kratzer rough.png" id="2_cksu0"]
+
+[resource]
+resource_name = "Plastic with scratches"
+cull_mode = 2
+metallic_texture = ExtResource("2_cksu0")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_cksu0")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = ExtResource("1_wb81g")
+uv1_scale = Vector3(3, 3, 1)
+uv1_offset = Vector3(0, -2, 0)
