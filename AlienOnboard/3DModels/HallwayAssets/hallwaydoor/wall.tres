@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://mganc0vxree8"]
+
+[ext_resource type="Texture2D" uid="uid://c1bbx5batb3rq" path="res://MaterialRework/Labroom/Labroom_SciFiPanels16_a2.png" id="1_yd6q7"]
+[ext_resource type="Texture2D" uid="uid://cg3rbdn87au52" path="res://MaterialRework/Labroom/Labroom_SciFiPanels16_h 2.png" id="2_abkop"]
+
+[resource]
+resource_name = "Material.014"
+cull_mode = 2
+albedo_texture = ExtResource("1_yd6q7")
+metallic = 0.2
+roughness = 0.722727
+normal_enabled = true
+normal_scale = -1.54
+normal_texture = ExtResource("2_abkop")
+uv1_triplanar_sharpness = 0.659753
+uv1_world_triplanar = true

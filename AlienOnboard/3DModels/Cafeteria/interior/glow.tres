@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c07bymby84gtu"]
+
+[ext_resource type="Texture2D" uid="uid://b0m5bxf7a1ka" path="res://3DModels/Cafeteria/roommodel/untitled_Substance_graph_Emissive.png" id="1_kkyqb"]
+
+[resource]
+resource_name = "Material.008"
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+emission_enabled = true
+emission = Color(1, 0.145098, 0.145098, 1)
+emission_texture = ExtResource("1_kkyqb")

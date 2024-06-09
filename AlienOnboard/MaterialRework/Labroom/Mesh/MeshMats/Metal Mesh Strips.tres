@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://s4w3y700hg0n"]
+
+[ext_resource type="Texture2D" uid="uid://bkm5topl4yu7h" path="res://MaterialRework/Labroom/Mesh/MeshMats/Cube.004_Bake1_PBR_Diffuse.png" id="1_j2uom"]
+[ext_resource type="Texture2D" uid="uid://e50ksxbab4lx" path="res://MaterialRework/Labroom/Mesh/MeshMats/Cube.004_Bake1_PBR_Metalness.png" id="2_tu7ti"]
+[ext_resource type="Texture2D" uid="uid://baoe6t157tdv8" path="res://MaterialRework/Labroom/Mesh/MeshMats/Cube.004_Bake1_PBR_Normal.png" id="3_ii8wo"]
+[ext_resource type="Texture2D" uid="uid://5b8x2p0fgqco" path="res://MaterialRework/Labroom/Mesh/MeshMats/Cube.004_Bake1_PBR_Roughness.png" id="4_1g2ik"]
+
+[resource]
+resource_name = "Metal Mesh Strips"
+cull_mode = 2
+diffuse_mode = 1
+albedo_texture = ExtResource("1_j2uom")
+metallic_texture = ExtResource("2_tu7ti")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("4_1g2ik")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_ii8wo")
+heightmap_scale = 16.0

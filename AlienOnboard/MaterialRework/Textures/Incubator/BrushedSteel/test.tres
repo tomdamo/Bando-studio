@@ -1,0 +1,29 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://1bm45ri3o3gy"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ystpu"]
+load_path = "res://.godot/imported/Circle.003_Bake1_PBR_Diffuse.png-f44c0ed367c9705121ff67351deff452.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mitvc"]
+load_path = "res://.godot/imported/Circle.001_Bake1_PBR_Bump.png-05e49983058c38722427c7ddfe93e770.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b6qgx"]
+load_path = "res://.godot/imported/Circle.003_Bake1_PBR_Metalness.png-a2e6d824d0aab852506876f5e052d708.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cks8f"]
+load_path = "res://.godot/imported/Circle.003_Bake1_PBR_Normal.png-ab5502eef9b92fc8cdc20a75b687378c.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8lgfu"]
+load_path = "res://.godot/imported/Circle.003_Bake1_PBR_Roughness.png-e198e7c1ae0358f31d3a4e8ddc80293d.s3tc.ctex"
+
+[resource]
+albedo_texture = SubResource("CompressedTexture2D_ystpu")
+metallic = 1.0
+metallic_texture = SubResource("CompressedTexture2D_b6qgx")
+roughness_texture = SubResource("CompressedTexture2D_8lgfu")
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_cks8f")
+heightmap_enabled = true
+heightmap_scale = 1.211
+heightmap_texture = SubResource("CompressedTexture2D_mitvc")
+uv1_scale = Vector3(233, 1, 1)
+uv1_offset = Vector3(50, 200, 2.08165e-12)

@@ -1,0 +1,23 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://bguqj65w1st0l"]
+
+[ext_resource type="Texture2D" uid="uid://bkuf75ovxr0c3" path="res://3DModels/HallwayAssets/hallwaydoor/scanner/Cube.003_Bake1_PBR_Diffuse.png" id="1_vu45c"]
+[ext_resource type="Texture2D" uid="uid://d0oc54k673bb2" path="res://3DModels/HallwayAssets/hallwaydoor/scanner/Cube.003_Bake1_PBR_Bump.png" id="2_gpfls"]
+[ext_resource type="Texture2D" uid="uid://d4frghvrhwpa6" path="res://3DModels/HallwayAssets/hallwaydoor/scanner/Cube.003_Bake1_PBR_Metalness.png" id="3_u3b1o"]
+[ext_resource type="Texture2D" uid="uid://b4t575utidhpt" path="res://3DModels/HallwayAssets/hallwaydoor/scanner/Cube.003_Bake1_PBR_Normal.png" id="4_un5gu"]
+[ext_resource type="Texture2D" uid="uid://dfn1sey3rbi4y" path="res://3DModels/HallwayAssets/hallwaydoor/scanner/Cube.003_Bake1_PBR_Roughness.png" id="5_vhugi"]
+
+[resource]
+resource_name = "Material"
+cull_mode = 2
+albedo_texture = ExtResource("1_vu45c")
+metallic = 1.0
+metallic_texture = ExtResource("3_u3b1o")
+roughness_texture = ExtResource("5_vhugi")
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = ExtResource("4_un5gu")
+clearcoat_enabled = true
+clearcoat = 0.2
+clearcoat_roughness = 1.0
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_gpfls")

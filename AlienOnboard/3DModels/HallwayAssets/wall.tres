@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://crcskkgwoihsh"]
+
+[ext_resource type="Texture2D" uid="uid://1dt5ljhsnu7m" path="res://3DModels/HallwayAssets/hallwaydoor/HallwayDoor_SciFiPanels16_a2.png" id="1_6pmr7"]
+[ext_resource type="Texture2D" uid="uid://cv5luewnfnrm4" path="res://3DModels/HallwayAssets/hallwaydoor/HallwayDoor_SciFiPanels16_h 2.png" id="2_f52en"]
+
+[resource]
+resource_name = "Material"
+cull_mode = 2
+albedo_texture = ExtResource("1_6pmr7")
+roughness = 0.5
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = ExtResource("2_f52en")
