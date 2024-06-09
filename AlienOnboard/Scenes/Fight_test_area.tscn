@@ -47,7 +47,7 @@ environment = SubResource("Environment_334f7")
 transform = Transform3D(1, 0, 0, 0, -0.0123915, 0.999923, 0, -0.999923, -0.0123915, 0, 9.52861, 0)
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_8dxr6")]
-transform = Transform3D(1, -1.42721e-10, 0, 1.35419e-10, 1, 0, 0, 0, 1, -8.82131, 5.1854, 10.8921)
+transform = Transform3D(1, -1.42721e-10, 0, 1.35419e-10, 1, 0, 0, 0, 1, 1.13618, 5.1854, -4.10025)
 
 [node name="Node3D" parent="." instance=ExtResource("3_k3dac")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.153599, -0.435586, -8.94719)

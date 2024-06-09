@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Camera_phantom_new.gd" id="1_2ds56"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_8b7er"]
+[ext_resource type="Material" uid="uid://ctjy3h3vax8m5" path="res://Scenes/Bullet/hitEffect.tres" id="2_ithiu"]
 [ext_resource type="Material" uid="uid://bua1liet3lybh" path="res://Scenes/Player/UPDATED_PC_PLAYER/normal_player_material.tres" id="2_n0gms"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_kwa3r"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="4_7cxvr"]
@@ -23,12 +24,10 @@ initial_velocity_min = 5.1
 initial_velocity_max = 5.1
 gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qoaq4"]
-
 [sub_resource type="SphereMesh" id="SphereMesh_2s31l"]
-material = SubResource("ShaderMaterial_qoaq4")
-radius = 0.1
-height = 0.2
+material = ExtResource("2_ithiu")
+radius = 0.05
+height = 0.1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s61dn"]
 radius = 0.695227
@@ -1075,6 +1074,7 @@ script = ExtResource("1_2ds56")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0194088, 0.10401, 0.0163251)
 emitting = false
+amount = 20
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
