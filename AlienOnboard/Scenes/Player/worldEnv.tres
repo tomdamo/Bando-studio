@@ -11,19 +11,18 @@ radiance_size = 1
 
 [resource]
 background_mode = 2
-background_energy_multiplier = 2.13
+background_energy_multiplier = 6.03
 sky = SubResource("Sky_jl18b")
-sky_rotation = Vector3(3.48787e-16, 4.04218, 3.48787e-16)
 ambient_light_source = 3
-ambient_light_color = Color(0.517647, 0.517647, 0.517647, 1)
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.0
 tonemap_exposure = 0.47
 tonemap_white = 3.6
 ssr_max_steps = 1
 ssr_depth_tolerance = 0.01
-ssao_enabled = true
 ssil_enabled = true
 glow_enabled = true
+glow_intensity = 3.6
 volumetric_fog_density = 0.0
 adjustment_enabled = true
-adjustment_brightness = 1.37
 adjustment_saturation = 1.25
