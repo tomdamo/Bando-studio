@@ -812,7 +812,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="Player" parent="." instance=ExtResource("4_f5q52")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9675, -0.420058, 18.4431)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9675, -0.420058, 16.1147)
 
 [connection signal="body_entered" from="WAYPOINT1/Waypoint1" to="." method="_on_waypoint_1_body_entered"]
 [connection signal="body_entered" from="WAYPOINT2/Waypoint2" to="." method="_on_waypoint_2_body_entered"]

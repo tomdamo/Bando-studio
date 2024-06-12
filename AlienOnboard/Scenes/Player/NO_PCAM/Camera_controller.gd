@@ -21,7 +21,7 @@ var position_offset_target : Vector3 = Vector3(0, 1.3, 0)
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	spring_arm.add_excluded_object(player.get_rid())
+	#spring_arm.add_excluded_object(player.get_rid())
 	top_level = true
 
 
