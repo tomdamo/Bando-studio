@@ -2,7 +2,7 @@ extends ProgressBar
 
 @onready var timer = $Timer
 @onready var damage_bar = %DamageBar
-@onready var player = $"../../PlayerCharacterBody3D"
+@onready var player = $"../../PlayerChar"
 
 var health = 0 : set = _set_health
 

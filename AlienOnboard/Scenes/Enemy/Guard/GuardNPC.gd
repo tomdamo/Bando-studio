@@ -3,7 +3,7 @@ extends CharacterBody3D
 const SPEED = 3.0
 const GRAVITY = -9.8
 
-var health = 100
+var health = 20
 var death = false
 var damage_number = preload("res://Scenes/damagenumbers/damagenumbers.tscn")
 
@@ -35,7 +35,7 @@ var reached_target = false
 var player_last_seen = false
 var player_last_seen_position: Vector3
 @onready var searching_label = $SearchingLabel
-
+@onready var player = %PlayerChar
 
 #moving away and close
 var npc_position 
@@ -43,17 +43,20 @@ var target_position
 var distance_to_player 
 var min_distance = 3
 var max_distance = 8
+var target_rotation_degrees_y = 0.0
 
 func _ready():
-	pass
-
+	target_rotation_degrees_y = rotation_degrees.y
+	
 
 func _physics_process(delta):
 	if !death:
 		npc_position = self.global_transform.origin
 		target_position = player_position
 		distance_to_player = npc_position.distance_to(target_position)
-
+		target_rotation_degrees_y = rotation_degrees.y
+		
+		
 		if !playerSpotted and !player_last_seen:
 			patrol(delta)
 		if playerSpotted:
@@ -66,62 +69,66 @@ func _physics_process(delta):
 	
 
 func take_damage(damage):
-	hit_effect_2.set_emitting(true)
-	var damageNumber = damage_number.instantiate()
-	get_parent().add_child(damageNumber)
-	damageNumber.global_transform.origin = self.global_transform.origin
-	damageNumber.set_damage(damage)
+	if !death:
+		hit_effect_2.set_emitting(true)
+		var damageNumber = damage_number.instantiate()
+		get_parent().add_child(damageNumber)
+		damageNumber.global_transform.origin = self.global_transform.origin
+		damageNumber.set_damage(damage)
 	#bloodTimer.start()
 	#blood.show() 
-	health -= damage
-	if health <= 0:
-		die()
+		health -= damage
+		if !playerSpotted:
+			self.rotation_degrees.y += 180
+		if health <= 0:
+			die()
 
 func die():
 	print("im ded")
 	self.rotation_degrees.x = 90
-	self.position.y = 0 
+	self.position.y = -1 
 	death = true
-	queue_free()
-
+	player.player_kills += 1
+	
 func _on_blood_timer_timeout():
 	blood.hide()
 
 
 func _on_vision_timer_timeout():
-	var overlaps = %VisionArea.get_overlapping_bodies()
-	if overlaps.size() > 0:
-		for overlap in overlaps:
-			if "Player" in overlap.name:
-				var playerPosition = overlap.global_transform.origin
-				var directionToPlayer = (playerPosition - global_transform.origin).normalized()
-				var forwardDirection = -transform.basis.z
-				
-				var angle = acos(forwardDirection.dot(directionToPlayer))
+	if !death:
+		var overlaps = %VisionArea.get_overlapping_bodies()
+		if overlaps.size() > 0:
+			for overlap in overlaps:
+				if "Player" in overlap.name:
+					player = overlap
+					var playerPosition = overlap.global_transform.origin
+					var directionToPlayer = (playerPosition - global_transform.origin).normalized()
+					var forwardDirection = -transform.basis.z
+					var angle = acos(forwardDirection.dot(directionToPlayer))
 
-				if angle < PI / 2:
-					playerPosition.y -= 0.5
-					$VisionRaycast.look_at(playerPosition, Vector3.UP)
-					$VisionRaycast.force_raycast_update()
+					if angle < PI / 2:
+						playerPosition.y -= 0.5
+						$VisionRaycast.look_at(playerPosition, Vector3.UP)
+						$VisionRaycast.force_raycast_update()
 
-					if $VisionRaycast.is_colliding():
-						var collider = $VisionRaycast.get_collider()
+						if $VisionRaycast.is_colliding():
+							var collider = $VisionRaycast.get_collider()
 
-						if "Player" in collider.name:
-							$VisionRaycast.debug_shape_custom_color = Color(174,8,0)
-							print("I see you")
-							spotted_label.show()
-							player_position = playerPosition
-							player_last_seen_position = player_position
-							look_at(player_position, Vector3.UP)
-							playerSpotted = true
-							if(shot_timer.is_stopped()):
-								shot_timer.start()
-						else:
-							$VisionRaycast.debug_shape_custom_color = Color(0,255,0)
-							print(collider.name)
-							spotted_label.hide()
-							playerSpotted = false
+							if "Player" in collider.name:
+								$VisionRaycast.debug_shape_custom_color = Color(174,8,0)
+								print("I see you")
+								spotted_label.show()
+								player_position = playerPosition
+								player_last_seen_position = player_position
+								look_at(player_position, Vector3.UP)
+								playerSpotted = true
+								if(shot_timer.is_stopped()):
+									shot_timer.start()
+							else:
+								$VisionRaycast.debug_shape_custom_color = Color(0,255,0)
+								print(collider.name)
+								spotted_label.hide()
+								playerSpotted = false
 							
 
 

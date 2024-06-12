@@ -54,9 +54,17 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, 2.08165e-12, 43)
 visible = false
 text = "In the year 3170, the journey to unlock the mysteries of the
-exoplanet TRAPPIST-1f began in full force. The Spectator,
- a state-of-the-art deep space exploration ship with cutting-edge technology, 
+exoplanet TRAPPIST-1f began in full force. 
+The Spectator; a deep space exploration ship 
 was ready to embark on its first mission: \"Biosignature Discovery\". "
+font = ExtResource("1_34w3w")
+
+[node name="Text4" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, 2.08165e-12, 43)
+visible = false
+text = "a new species was found. 
+"
 font = ExtResource("1_34w3w")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
