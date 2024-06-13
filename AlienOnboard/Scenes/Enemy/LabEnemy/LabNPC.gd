@@ -21,18 +21,23 @@ var damage_number = preload("res://Scenes/damagenumbers/damagenumbers.tscn")
 var enemyVisibleMaterial: Material = load("res://Textures/EnemyVisible.tres")
 @onready var player = %PlayerCharacterBody3D
 
+var can_be_eaten = false
+@onready var eat_label = $EatLabel
+
 var target_rotation_degrees_y = 0.0
 
 func _ready():
-	spotted_label.hide()									
+	spotted_label.hide()
+	eat_label.hide()									
 	target_rotation_degrees_y = rotation_degrees.y
 	
 
 
 func _physics_process(delta):
 	moveAwayFromPlayer(delta)
-	
-
+	if can_be_eaten:
+		showEatable()
+		
 func take_damage(damage):
 	if !death:
 		hit_effect_3.set_emitting(true)
@@ -54,9 +59,14 @@ func die():
 	self.position.y = -1
 	death = true
 	player.player_kills += 1
+	can_be_eaten = true
 
-
-
+func showEatable():
+	eat_label.show()
+	
+func dissapear():
+	queue_free()
+	
 func _on_blood_timer_timeout():
 	blood.hide()
 

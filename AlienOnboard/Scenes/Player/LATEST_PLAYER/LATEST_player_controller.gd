@@ -44,7 +44,7 @@ const GAME_OVER_2 = preload("res://Scenes/UI/GameOver2.tscn")
 @onready var healthbar = %Healthbar
 @export var player_kills = 0
 var damage_number = preload("res://Scenes/damagenumbers/damagenumbers.tscn")
-@onready var eat_timer = $EatTimer
+@onready var eat_timer = %EatTimer
 var eating = false
 #Sense ability
 var senseActive = false
@@ -65,14 +65,13 @@ func _ready() -> void:
 	_camera = owner.get_node("%MainCamera3D")
 	_player_visual.top_level = true
 
-	health = 100
+	health = 30
 	healthbar.init_health(health)
 	_camera = owner.get_node("%MainCamera3D")
 	_player_visual.top_level = true
 	dash_material = dash_icon.get_material()
 	sense_material = sense_icon.get_material()
 	sense_overlay.mouse_filter = true
-
 
 func _physics_process(delta: float) -> void:
 	_physics_body_trans_last = _physics_body_trans_current
@@ -82,7 +81,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= gravity * delta
 
 	if not movement_enabled: return
-
+	if eating:
+		movement_enabled = false;
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir: Vector2 = Input.get_vector(
@@ -98,8 +98,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 	
-	if eating:
-		pass
 	#See enemies layer through the walls  and not senseActive and sense_cooldown_timer.is_stopped()
 	if Input.is_action_just_pressed("SenseAbility") and !senseActive and Sense_Cooldown.is_stopped():
 		senseActive = true		
@@ -107,17 +105,18 @@ func _physics_process(delta: float) -> void:
 		_activateSenseAbility()
 		sense_material.set_shader_parameter("cooldown_progress", 0)		
 	
-	if Input.is_action_just_pressed("Attack"):
+	if Input.is_action_just_pressed("Attack") and !eating:
 		attack()
-		
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
+	if Input.is_action_just_pressed("Interact") and !eating:
+		eat()
+	if Input.is_action_just_pressed("Jump") and is_on_floor() and !eating:
 		velocity.y = JUMP_VELOCITY
 		
 	#dash and movement
 	var cam_dir: Vector3 = -_camera.global_transform.basis.z
 	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if Input.is_action_just_pressed("dash") and !dashing and dash_cooldown_timer.is_stopped():
+	if Input.is_action_just_pressed("dash") and !dashing and dash_cooldown_timer.is_stopped() and !eating:
 		dashing = true
 		dash_direction = cam_dir
 		dash_timer = DASH_TIME
@@ -242,6 +241,19 @@ func attack():
 			body.take_damage(damage)
 		#if body.health <= 0:
 			#eat()
+func eat():
+	var bodies = attack_range.get_overlapping_bodies()
+	for body in bodies:
+		if body.has_method("take_damage"):
+			if body.can_be_eaten:
+				var damageNumber = damage_number.instantiate()
+				get_parent().add_child(damageNumber)
+				damageNumber.global_transform.origin = self.global_transform.origin
+				damageNumber.set_damage("nom nom nom")
+				eat_timer.start()
+				eating = true
+	
+	
 func take_damage(damageAmount):
 	hit_effect.set_emitting(true)
 	var damageNumber = damage_number.instantiate()
@@ -264,19 +276,19 @@ func die():
 	get_tree().change_scene_to_file("res://Scenes/UI/GameOver2.tscn")
 
 
-#func eat():
-	#hit_effect.set_emitting(true)
-	#var damageNumber = damage_number.instantiate()
-	#get_parent().add_child(damageNumber)
-	#damageNumber.global_transform.origin = self.global_transform.origin
-	#damageNumber.set_damage("nom nom nom")
-	#eat_timer.start()
-	#eating = true
-	#
-#func _on_eat_timer_timeout():
-	#eating = false;
-	#hit_effect.set_emitting(true)
-	#var damageNumber = damage_number.instantiate()
-	#get_parent().add_child(damageNumber)
-	#damageNumber.global_transform.origin = self.global_transform.origin
-	#damageNumber.set_damage("delicious!")
+func _on_eat_timer_timeout():
+	eating = false;
+	movement_enabled = true
+	var damageNumber = damage_number.instantiate()
+	get_parent().add_child(damageNumber)
+	damageNumber.global_transform.origin = self.global_transform.origin
+	damageNumber.set_damage("delicious!")
+	var bodies = attack_range.get_overlapping_bodies()
+	for body in bodies:
+		if body.has_method("take_damage"):
+			if body.can_be_eaten:
+				body.dissapear()
+	damageNumber.global_transform.origin = self.global_transform.origin
+	damageNumber.set_damage("HP +5!")
+	health + 5
+	healthbar.health = health 

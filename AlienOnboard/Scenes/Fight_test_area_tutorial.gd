@@ -9,6 +9,7 @@ extends Node3D
 @onready var control = $Control
 @onready var quest_2 = $Control/Quest2
 @onready var finish_timer = $FinishTimer
+@onready var kill_amount = $Control/KillAmount
 
 func _ready():
 	player = get_node("Player/PlayerCharacterBody3D")
@@ -20,7 +21,7 @@ func _process(delta):
 		quest_2.show()
 		if !finish_timer.is_stopped():
 			finish_timer.start()
-		
+	
 		
 func _on_waypoint_1_body_entered(body):
 	if "Player" in body.name:
@@ -30,6 +31,8 @@ func _on_waypoint_1_body_entered(body):
 func _on_waypoint_2_body_entered(body):
 	waypoint_2.hide()
 
+func update_kills():
+	kill_amount.set_text(str(kill_amount))
 
 func _on_waypoint_3_body_entered(body):
 	waypoint_3.hide()

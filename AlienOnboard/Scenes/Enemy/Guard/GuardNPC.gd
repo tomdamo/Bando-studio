@@ -11,6 +11,9 @@ var damage_number = preload("res://Scenes/damagenumbers/damagenumbers.tscn")
 @onready var bloodTimer = %BloodTimer
 @onready var hit_effect_2 = %HitEffect2
 
+var can_be_eaten = false
+@onready var eat_label = $EatLabel
+
 @onready var VisionArea = %VisionArea
 @onready var VisionRaycast = %VisionRaycast
 @onready var VisionTimer = %VisionTimer
@@ -37,6 +40,7 @@ var player_last_seen_position: Vector3
 @onready var searching_label = $SearchingLabel
 @onready var player = %PlayerChar
 
+
 #moving away and close
 var npc_position 
 var target_position
@@ -47,7 +51,7 @@ var target_rotation_degrees_y = 0.0
 
 func _ready():
 	target_rotation_degrees_y = rotation_degrees.y
-	
+	eat_label.hide()									
 
 func _physics_process(delta):
 	if !death:
@@ -89,6 +93,13 @@ func die():
 	self.position.y = -1 
 	death = true
 	player.player_kills += 1
+	can_be_eaten = true
+	
+func showEatable():
+	eat_label.show()
+	
+func dissapear():
+	queue_free()
 	
 func _on_blood_timer_timeout():
 	blood.hide()

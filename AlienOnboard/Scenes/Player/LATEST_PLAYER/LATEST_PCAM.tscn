@@ -91,12 +91,13 @@ shader_parameter/transparency_alpha = 1.0
 
 [node name="PlayerPhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
 unique_name_in_owner = true
-transform = Transform3D(0.999903, 0.0120916, 0.0069811, -0.0139622, 0.865941, 0.499952, 0, -0.5, 0.866023, 0.0244338, 1.74587, 3.03108)
+transform = Transform3D(0.999903, 0.0120916, 0.0069811, -0.0139622, 0.865941, 0.499952, 0, -0.5, 0.866023, 0.0244339, 1.74587, 3.03108)
 script = ExtResource("12_3vla2")
 priority = 10
 follow_mode = 6
 follow_target = NodePath("../PlayerCharacterBody3D/PlayerVisual/PlayerDirection")
 tween_resource = SubResource("Resource_v4pu1")
+tween_on_load = false
 camera_3d_resource = SubResource("Resource_egnfd")
 follow_damping = true
 follow_distance = 3.5
@@ -118,7 +119,7 @@ spring_length = 1.5
 
 [node name="MainCamera3D" type="Camera3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.999903, 0.0120916, 0.0069811, -0.0139622, 0.865941, 0.499952, 0, -0.5, 0.866023, 0.0244338, 1.74587, 3.03108)
+transform = Transform3D(0.999903, 0.0120916, 0.0069811, -0.0139622, 0.865941, 0.499952, 0, -0.5, 0.866023, 0.0244339, 1.74587, 3.03108)
 current = true
 
 [node name="PhantomCameraHost" type="Node" parent="MainCamera3D"]
@@ -264,6 +265,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="EatTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 3.0
 one_shot = true
 
