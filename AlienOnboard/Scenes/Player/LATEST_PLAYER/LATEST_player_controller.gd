@@ -46,6 +46,8 @@ const GAME_OVER_2 = preload("res://Scenes/UI/GameOver2.tscn")
 var damage_number = preload("res://Scenes/damagenumbers/damagenumbers.tscn")
 @onready var eat_timer = %EatTimer
 var eating = false
+@onready var blood_vignette = %blood_vignette
+
 #Sense ability
 var senseActive = false
 @onready var Sense_Cooldown = %SenseCooldownTimer
@@ -260,9 +262,9 @@ func take_damage(damageAmount):
 	get_parent().add_child(damageNumber)
 	damageNumber.global_transform.origin = self.global_transform.origin
 	damageNumber.set_damage(damageAmount)
-	damage_timer.start()
-
-	
+	blood_vignette.show()
+	if damage_timer.is_stopped():
+		damage_timer.start()
 	health -= damage
 	hit_sound.play()
 	healthbar.health = health 
@@ -292,3 +294,9 @@ func _on_eat_timer_timeout():
 	damageNumber.set_damage("HP +5!")
 	health + 5
 	healthbar.health = health 
+
+func _on_damage_timer_timeout():
+	if health > 10:
+		blood_vignette.hide()
+	else:
+		blood_vignette.show()
