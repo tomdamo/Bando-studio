@@ -19,7 +19,7 @@ font_color = Color(1, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_dntea"]
 font = ExtResource("1_lyqim")
 font_size = 52
-font_color = Color(0, 0.403922, 0, 1)
+font_color = Color(0, 0, 1, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -36,6 +36,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 2
+offset_left = 1564.0
+offset_top = 1015.0
+offset_right = 1916.0
+offset_bottom = 1050.0
+text = "P To exit"
+label_settings = ExtResource("2_yu8ur")
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 2
+offset_left = 596.0
+offset_top = 808.0
+offset_right = 1405.0
+offset_bottom = 843.0
+text = "Hover over upgrades for details."
+label_settings = ExtResource("2_yu8ur")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -80,7 +98,7 @@ alignment = 1
 
 [node name="LabelLabDNA" type="Label" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "lab:"
+text = "lab: "
 label_settings = SubResource("LabelSettings_4cu88")
 
 [node name="LabelLabDNAAmount" type="Label" parent="VBoxContainer/HBoxContainer2"]
