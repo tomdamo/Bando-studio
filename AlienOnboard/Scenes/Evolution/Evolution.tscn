@@ -1,0 +1,334 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdhdvgny855x1"]
+
+[ext_resource type="FontFile" uid="uid://dlvhjyl50fcs4" path="res://Textures/Font/batmfa__.ttf" id="1_lyqim"]
+[ext_resource type="LabelSettings" uid="uid://c7q4l45ml1ihd" path="res://evolution menu font.tres" id="2_yu8ur"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a4p6n"]
+font = ExtResource("1_lyqim")
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_4cu88"]
+font = ExtResource("1_lyqim")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_yaflv"]
+font = ExtResource("1_lyqim")
+font_size = 52
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dntea"]
+font = ExtResource("1_lyqim")
+font_size = 52
+font_color = Color(0, 0.403922, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -437.0
+offset_right = 437.0
+offset_bottom = 80.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Evolution menu"
+label_settings = SubResource("LabelSettings_a4p6n")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "dna points"
+label_settings = SubResource("LabelSettings_4cu88")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LabelGuardDNA" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "guard: "
+label_settings = SubResource("LabelSettings_4cu88")
+
+[node name="LabelGuardDNAAmount" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_4cu88")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LabelLabDNA" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "lab:"
+label_settings = SubResource("LabelSettings_4cu88")
+
+[node name="LabelLabDNAAmount" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_4cu88")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(1440, 512)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -901.0
+offset_top = -300.0
+offset_right = 902.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainerGUARD" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainerGUARD"]
+layout_mode = 2
+text = "Guard upgrades"
+label_settings = SubResource("LabelSettings_yaflv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainerGUARD"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Upgrade"
+label_settings = ExtResource("2_yu8ur")
+
+[node name="UpgradeGuard1" type="CheckBox" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Increase melee damage by 10%."
+theme_override_fonts/font = ExtResource("1_lyqim")
+theme_override_font_sizes/font_size = 26
+text = "Claw Sharpening "
+
+[node name="UpgradeGuard2" type="CheckBox" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Reduced noise from attacks. "
+theme_override_fonts/font = ExtResource("1_lyqim")
+theme_override_font_sizes/font_size = 26
+text = "Silent Predator"
+
+[node name="UpgradeGuard3" type="CheckBox" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Further increase melee damage by 20%."
+theme_override_fonts/font = ExtResource("1_lyqim")
+theme_override_font_sizes/font_size = 26
+text = "Enhanced Claws"
+
+[node name="UpgradeGuard4" type="CheckBox" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Attacks have a chance to ignore armor. "
+theme_override_fonts/font = ExtResource("1_lyqim")
+theme_override_font_sizes/font_size = 26
+text = "Piercing Strike"
+
+[node name="UpgradeGuard5" type="CheckBox" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Additional 30% increase in melee damage."
+theme_override_fonts/font = ExtResource("1_lyqim")
+theme_override_font_sizes/font_size = 26
+text = "Razor Fangs"
+
+[node name="UpgradeGuard6" type="CheckBox" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Guaranteed critical hits on unaware targets."
+theme_override_fonts/font = ExtResource("1_lyqim")
+theme_override_font_sizes/font_size = 26
+text = "Lethal Precision"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Cost of upgrade:"
+label_settings = ExtResource("2_yu8ur")
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "1 guard DNA"
+label_settings = ExtResource("2_yu8ur")
+
+[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "1 guard DNA"
+label_settings = ExtResource("2_yu8ur")
+
+[node name="Label4" type="Label" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "3 guard DNA"
+label_settings = ExtResource("2_yu8ur")
+
+[node name="Label5" type="Label" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "3 guard DNA"
+label_settings = ExtResource("2_yu8ur")
+
+[node name="Label6" type="Label" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "5 guard DNA"
+label_settings = ExtResource("2_yu8ur")
+
+[node name="Label7" type="Label" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "5 guard DNA"
+label_settings = ExtResource("2_yu8ur")
+
+[node name="VBoxContainer3SPACING" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer3SPACING"]
+layout_mode = 2
+text = "                                  "
+
+[node name="VBoxContainer2LAB" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer2LAB"]
+layout_mode = 2
+text = "Lab upgrades"
+label_settings = SubResource("LabelSettings_dntea")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2LAB"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Upgrade"
+label_settings = ExtResource("2_yu8ur")
+
+[node name="UpgradeLab1" type="CheckBox" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Increase maximum health by 15%."
+theme_override_fonts/font = ExtResource("1_lyqim")
+theme_override_font_sizes/font_size = 26
+text = "Resilient Exoskeleton "
+
+[node name="UpgradeLab2" type="CheckBox" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Reduce dash cooldown by 10%. "
+theme_override_fonts/font = ExtResource("1_lyqim")
+theme_override_font_sizes/font_size = 26
+text = "Quick Reflexes"
+
+[node name="UpgradeLab3" type="CheckBox" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Further increase maximum health by 25%."
+theme_override_fonts/font = ExtResource("1_lyqim")
+theme_override_font_sizes/font_size = 26
+text = "Reinforced Exoskeleton"
+
+[node name="UpgradeLab4" type="CheckBox" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Reduce dash cooldown by 20%."
+theme_override_fonts/font = ExtResource("1_lyqim")
+theme_override_font_sizes/font_size = 26
+text = "Accelerated Metabolism"
+
+[node name="UpgradeLab5" type="CheckBox" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Reduce vision ability cooldown by 10%."
+theme_override_fonts/font = ExtResource("1_lyqim")
+theme_override_font_sizes/font_size = 26
+text = "Eagle Vision"
+
+[node name="UpgradeLab6" type="CheckBox" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Additional 35% increase in maximum health."
+theme_override_fonts/font = ExtResource("1_lyqim")
+theme_override_font_sizes/font_size = 26
+text = "Fortified Exoskeleton"
+
+[node name="UpgradeLab7" type="CheckBox" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Reduce dash cooldown by 30%."
+theme_override_fonts/font = ExtResource("1_lyqim")
+theme_override_font_sizes/font_size = 26
+text = "Flash Dash"
+
+[node name="UpgradeLab8" type="CheckBox" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Reduce vision ability cooldown by 20%."
+theme_override_fonts/font = ExtResource("1_lyqim")
+theme_override_font_sizes/font_size = 26
+text = "Supreme vision"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+text = "Cost of upgrade"
+label_settings = ExtResource("2_yu8ur")
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+text = "2 Lab DNA"
+label_settings = ExtResource("2_yu8ur")
+
+[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+text = "2 Lab DNA"
+label_settings = ExtResource("2_yu8ur")
+
+[node name="Label4" type="Label" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+text = "4 Lab DNA"
+label_settings = ExtResource("2_yu8ur")
+
+[node name="Label5" type="Label" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+text = "4	 Lab DNA"
+label_settings = ExtResource("2_yu8ur")
+
+[node name="Label6" type="Label" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+text = "4 Lab DNA"
+label_settings = ExtResource("2_yu8ur")
+
+[node name="Label7" type="Label" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+text = "6 Lab DNA"
+label_settings = ExtResource("2_yu8ur")
+
+[node name="Label8" type="Label" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+text = "6 Lab DNA"
+label_settings = ExtResource("2_yu8ur")
+
+[node name="Label9" type="Label" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+text = "6 Lab DNA"
+label_settings = ExtResource("2_yu8ur")

@@ -149,11 +149,11 @@ shader_parameter/transparency_alpha = 1.0
 
 [node name="PlayerPhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
 unique_name_in_owner = true
-transform = Transform3D(0.999903, 0.0120916, 0.0069811, -0.0139622, 0.865941, 0.499952, 0, -0.5, 0.866023, 0.0244339, 1.74587, 3.03108)
+transform = Transform3D(0.999903, 0.0120916, 0.0069811, -0.0139622, 0.865941, 0.499952, 0, -0.5, 0.866023, 0.0244339, 1.42088, 3.03108)
 script = ExtResource("12_3vla2")
 priority = 10
 follow_mode = 6
-follow_target = NodePath("../PlayerCharacterBody3D/PlayerVisual/PlayerDirection")
+follow_target = NodePath("../PlayerCharacterBody3D/PlayerVisual")
 tween_resource = SubResource("Resource_v4pu1")
 tween_on_load = false
 camera_3d_resource = SubResource("Resource_egnfd")
@@ -164,10 +164,10 @@ collision_mask = 3
 
 [node name="PlayerAimPhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
 unique_name_in_owner = true
-transform = Transform3D(0.953623, 0.00346069, 0.30098, -0.013316, 0.999512, 0.0307002, -0.300706, -0.0332842, 0.953135, 0.45147, 0.842093, 1.4297)
+transform = Transform3D(0.953623, 0.00346069, 0.30098, -0.013316, 0.999512, 0.0307002, -0.300706, -0.0332842, 0.953135, 0.45147, 0.517098, 1.4297)
 script = ExtResource("12_3vla2")
 follow_mode = 6
-follow_target = NodePath("../PlayerCharacterBody3D/PlayerVisual/PlayerDirection")
+follow_target = NodePath("../PlayerCharacterBody3D/PlayerVisual")
 tween_resource = SubResource("Resource_x0dpg")
 camera_3d_resource = SubResource("Resource_5q5a6")
 follow_offset = Vector3(0, 0.8, 0)
@@ -177,7 +177,7 @@ spring_length = 1.5
 
 [node name="MainCamera3D" type="Camera3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.999903, 0.0120916, 0.0069811, -0.0139622, 0.865941, 0.499952, 0, -0.5, 0.866023, 0.0244339, 1.74587, 3.03108)
+transform = Transform3D(0.999903, 0.0120916, 0.0069811, -0.0139622, 0.865941, 0.499952, 0, -0.5, 0.866023, 0.0244339, 1.42088, 3.03108)
 current = true
 
 [node name="PhantomCameraHost" type="Node" parent="MainCamera3D"]
@@ -223,7 +223,6 @@ draw_pass_1 = SubResource("SphereMesh_qljkp")
 [node name="AttackRange" type="Area3D" parent="PlayerCharacterBody3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
-visible = false
 collision_layer = 2
 collision_mask = 2
 
@@ -244,6 +243,20 @@ one_shot = true
 [node name="ActiveSenseTime" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 6.0
+one_shot = true
+
+[node name="DamageTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+
+[node name="EatTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -321,10 +334,6 @@ offset_bottom = 1942.0
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("12_lp5my")
 
-[node name="DamageTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 3.0
-
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("13_r5s6r")
@@ -342,12 +351,8 @@ unique_name_in_owner = true
 [node name="AttackSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 
-[node name="EatTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 3.0
-one_shot = true
-
 [connection signal="timeout" from="DashCooldownTimer" to="PlayerCharacterBody3D" method="_on_dash_cooldown_timer_timeout"]
 [connection signal="timeout" from="ActiveSenseTime" to="PlayerCharacterBody3D" method="_on_active_sense_time_timeout"]
 [connection signal="timeout" from="DamageTimer" to="PlayerCharacterBody3D" method="_on_damage_timer_timeout"]
 [connection signal="timeout" from="EatTimer" to="PlayerCharacterBody3D" method="_on_eat_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="PlayerCharacterBody3D" method="_on_attack_timer_timeout"]

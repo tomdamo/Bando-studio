@@ -47,6 +47,7 @@ var damage_number = preload("res://Scenes/damagenumbers/damagenumbers.tscn")
 @onready var eat_timer = %EatTimer
 var eating = false
 @onready var blood_vignette = %blood_vignette
+@onready var attack_timer = %AttackTimer
 
 #Sense ability
 var senseActive = false
@@ -107,10 +108,13 @@ func _physics_process(delta: float) -> void:
 		_activateSenseAbility()
 		sense_material.set_shader_parameter("cooldown_progress", 0)		
 	
-	if Input.is_action_just_pressed("Attack") and !eating:
+	if Input.is_action_just_pressed("Attack") and !eating and attack_timer.is_stopped():
 		attack()
+		attack_timer.start()
+		
 	if Input.is_action_just_pressed("Interact") and !eating:
 		eat()
+		
 	if Input.is_action_just_pressed("Jump") and is_on_floor() and !eating:
 		velocity.y = JUMP_VELOCITY
 		
@@ -300,3 +304,4 @@ func _on_damage_timer_timeout():
 		blood_vignette.hide()
 	else:
 		blood_vignette.show()
+

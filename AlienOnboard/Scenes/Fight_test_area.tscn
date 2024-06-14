@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://byp8u1kyr3xpn"]
+[gd_scene load_steps=60 format=3 uid="uid://byp8u1kyr3xpn"]
 
 [ext_resource type="Script" path="res://Scenes/Fight_test_area_tutorial.gd" id="1_nt32u"]
 [ext_resource type="PackedScene" uid="uid://drddbr21tbue4" path="res://Scenes/LevelDesign/Waypoint/waypoint circular.tscn" id="3_k3dac"]
@@ -7,7 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://b3uqd8ldc25d7" path="res://Scenes/Enemy/Guard/GuardNPC.tscn" id="4_tugob"]
 [ext_resource type="FontFile" uid="uid://dlvhjyl50fcs4" path="res://Textures/Font/batmfa__.ttf" id="4_vdolg"]
 [ext_resource type="Material" uid="uid://hxnqm61umpru" path="res://Scenes/grid_material_surface_override.tres" id="6_kqcdw"]
+[ext_resource type="Shader" path="res://Scenes/grid.gdshader" id="7_lsx75"]
 [ext_resource type="Texture2D" uid="uid://cmvtaheydjy5" path="res://3DModels/Vents/VentCorner_DefaultMaterial_BaseColor.jpg" id="7_rsdk4"]
+[ext_resource type="Shader" path="res://Scenes/glass.gdshader" id="8_0bgk6"]
 [ext_resource type="Texture2D" uid="uid://b31wcp6a6luc0" path="res://3DModels/Vents/VentCorner_green_metal_rust_rough_2k.png" id="8_n012s"]
 [ext_resource type="Texture2D" uid="uid://dinqj8m4wj6pi" path="res://3DModels/Vents/VentCorner_green_metal_rust_nor_gl_2k.jpg" id="9_yaejo"]
 [ext_resource type="Texture2D" uid="uid://dwnp3387tfw5x" path="res://Textures/Skybox/SpacePanoramas/panorama6.jpg" id="11_qln41"]
@@ -22,7 +24,7 @@ size = Vector3(2, 1, 2)
 size = Vector3(2, 1, 2)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0785a"]
-vertices = PackedVector3Array(-18.8633, -0.0282001, -14.6279, -18.3633, -0.0282001, -14.6279, -18.1133, -0.0282001, -15.3779, -18.8633, -0.0282001, -19.1279, -18.1133, -0.0282001, -15.3779, 12.3867, -0.0282001, -15.3779, 12.6367, -0.0282001, -19.1279, -18.8633, -0.0282001, -19.1279, 12.6367, -0.0282001, -19.1279, 12.3867, -0.0282001, -15.3779, 14.1367, -0.0282001, -15.1279, 18.8867, -0.0282001, -19.1279, 14.1367, -0.0282001, -15.1279, 14.1367, -0.0282001, 18.8721, 18.8867, -0.0282001, 18.8721, 18.8867, -0.0282001, -19.1279, 11.8867, -0.0282001, -10.1279, 12.1367, -0.0282001, -9.1279, 12.3867, -0.0282001, -9.1279, 12.3867, -0.0282001, -13.6279, -18.1133, -0.0282001, -13.6279, -18.3633, -0.0282001, -14.6279, -18.8633, -0.0282001, -14.6279, -18.8633, -0.0282001, -10.1279, -18.1133, -0.0282001, -13.6279, -18.8633, -0.0282001, -10.1279, 11.8867, -0.0282001, -10.1279, 12.3867, -0.0282001, -13.6279, 12.3867, -0.0282001, -9.1279, 12.1367, -0.0282001, -9.1279, 11.8867, -0.0282001, -8.3779, 12.3867, -0.0282001, 10.6221, 0.8867, -0.0282001, -8.3779, 0.8867, -0.0282001, -2.8779, 3.1367, -0.0282001, -2.6279, 11.8867, -0.0282001, -8.3779, 3.1367, -0.0282001, 10.1221, 2.6367, -0.0282001, 10.3721, 12.3867, -0.0282001, 10.6221, 3.1367, -0.0282001, -2.6279, 3.1367, -0.0282001, 10.1221, 12.3867, -0.0282001, 10.6221, 11.8867, -0.0282001, -8.3779, -10.1133, -0.0282001, -2.6279, -7.8633, -0.0282001, -2.8779, -7.8633, -0.0282001, -8.3779, -18.8633, -0.0282001, -8.3779, -18.8633, -0.0282001, 10.6221, -9.6133, -0.0282001, 10.3721, -10.1133, -0.0282001, 10.1221, -18.8633, -0.0282001, 10.6221, -10.1133, -0.0282001, 10.1221, -10.1133, -0.0282001, -2.6279, -18.8633, -0.0282001, -8.3779, -7.8633, -0.0282001, -2.8779, 0.8867, -0.0282001, -2.8779, 0.8867, -0.0282001, -8.3779, -7.8633, -0.0282001, -8.3779, -9.1133, 5.4718, -1.8779, -9.1133, 5.4718, 9.3721, 2.1367, 5.4718, 9.3721, 2.1367, 5.4718, -1.8779, -8.8633, -0.0282001, -1.6279, -8.8633, -0.0282001, 9.1221, 1.8867, -0.0282001, 9.1221, 1.8867, -0.0282001, -1.6279, -7.8633, -0.0282001, 18.8721, -7.8633, -0.0282001, 10.3721, -9.6133, -0.0282001, 10.3721, -18.8633, -0.0282001, 10.6221, -18.8633, -0.0282001, 18.8721, -7.8633, -0.0282001, 18.8721, 0.8867, -0.0282001, 18.8721, 0.8867, -0.0282001, 10.3721, -7.8633, -0.0282001, 10.3721, 2.6367, -0.0282001, 10.3721, 0.8867, -0.0282001, 10.3721, 0.8867, -0.0282001, 18.8721, 12.3867, -0.0282001, 18.8721, 12.3867, -0.0282001, 10.6221)
+vertices = PackedVector3Array(-18.8633, -0.171879, -14.6279, -18.3633, -0.171879, -14.6279, -18.1133, -0.171879, -15.3779, -18.8633, -0.171879, -19.1279, -18.1133, -0.171879, -15.3779, 12.3867, -0.171879, -15.3779, 12.6367, -0.171879, -19.1279, -18.8633, -0.171879, -19.1279, 12.6367, -0.171879, -19.1279, 12.3867, -0.171879, -15.3779, 14.1367, -0.171879, -15.1279, 18.8867, -0.171879, -19.1279, 14.1367, -0.171879, -15.1279, 14.1367, -0.171879, 18.8721, 18.8867, -0.171879, 18.8721, 18.8867, -0.171879, -19.1279, 11.8867, -0.171879, -10.1279, 12.1367, -0.171879, -9.1279, 12.3867, -0.171879, -9.1279, 12.3867, -0.171879, -13.6279, -18.1133, -0.171879, -13.6279, -18.3633, -0.171879, -14.6279, -18.8633, -0.171879, -14.6279, -18.8633, -0.171879, -10.1279, -18.1133, -0.171879, -13.6279, -18.8633, -0.171879, -10.1279, 11.8867, -0.171879, -10.1279, 12.3867, -0.171879, -13.6279, 12.3867, -0.171879, -9.1279, 12.1367, -0.171879, -9.1279, 11.8867, -0.171879, -8.3779, 12.3867, -0.171879, 10.6221, 0.8867, -0.171879, -8.3779, 0.8867, -0.171879, -2.8779, 3.1367, -0.171879, -2.6279, 11.8867, -0.171879, -8.3779, 3.1367, -0.171879, 10.1221, 2.6367, -0.171879, 10.3721, 12.3867, -0.171879, 10.6221, 3.1367, -0.171879, -2.6279, 3.1367, -0.171879, 10.1221, 12.3867, -0.171879, 10.6221, 11.8867, -0.171879, -8.3779, -10.1133, -0.171879, -2.6279, -7.8633, -0.171879, -2.8779, -7.8633, -0.171879, -8.3779, -18.8633, -0.171879, -8.3779, -18.8633, -0.171879, 10.6221, -9.6133, -0.171879, 10.3721, -10.1133, -0.171879, 10.1221, -18.8633, -0.171879, 10.6221, -10.1133, -0.171879, 10.1221, -10.1133, -0.171879, -2.6279, -18.8633, -0.171879, -8.3779, -7.8633, -0.171879, -2.8779, 0.8867, -0.171879, -2.8779, 0.8867, -0.171879, -8.3779, -7.8633, -0.171879, -8.3779, -9.1133, 2.32812, -1.8779, -9.1133, 2.32812, 9.3721, 2.1367, 2.32812, 9.3721, 2.1367, 2.32812, -1.8779, -8.8633, -0.171879, -1.6279, -8.8633, -0.171879, 9.1221, 1.8867, -0.171879, 9.1221, 1.8867, -0.171879, -1.6279, -7.8633, -0.171879, 18.8721, -7.8633, -0.171879, 10.3721, -9.6133, -0.171879, 10.3721, -18.8633, -0.171879, 10.6221, -18.8633, -0.171879, 18.8721, -7.8633, -0.171879, 18.8721, 0.8867, -0.171879, 18.8721, 0.8867, -0.171879, 10.3721, -7.8633, -0.171879, 10.3721, 2.6367, -0.171879, 10.3721, 0.8867, -0.171879, 10.3721, 0.8867, -0.171879, 18.8721, 12.3867, -0.171879, 18.8721, 12.3867, -0.171879, 10.6221)
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 23), PackedInt32Array(27, 26, 24), PackedInt32Array(24, 26, 25), PackedInt32Array(29, 28, 30), PackedInt32Array(30, 28, 31), PackedInt32Array(33, 32, 34), PackedInt32Array(34, 32, 35), PackedInt32Array(38, 37, 36), PackedInt32Array(40, 39, 41), PackedInt32Array(41, 39, 42), PackedInt32Array(44, 43, 45), PackedInt32Array(45, 43, 46), PackedInt32Array(49, 48, 47), PackedInt32Array(51, 50, 52), PackedInt32Array(52, 50, 53), PackedInt32Array(57, 56, 54), PackedInt32Array(54, 56, 55), PackedInt32Array(61, 60, 58), PackedInt32Array(58, 60, 59), PackedInt32Array(65, 64, 62), PackedInt32Array(62, 64, 63), PackedInt32Array(67, 66, 68), PackedInt32Array(68, 66, 69), PackedInt32Array(69, 66, 70), PackedInt32Array(74, 73, 71), PackedInt32Array(71, 73, 72), PackedInt32Array(76, 75, 77), PackedInt32Array(77, 75, 79), PackedInt32Array(77, 79, 78)]
 
 [sub_resource type="BoxMesh" id="BoxMesh_c77bu"]
@@ -34,14 +36,64 @@ data = PackedVector3Array(-6, 3, 6, 6, 3, 6, -6, -3, 6, 6, 3, 6, 6, -3, 6, -6, -
 [sub_resource type="BoxMesh" id="BoxMesh_5u3tg"]
 size = Vector3(40, 1, 40)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r3noc"]
+render_priority = 0
+shader = ExtResource("7_lsx75")
+shader_parameter/grid_size = 512.0
+shader_parameter/cell_size = 1.0
+shader_parameter/gutter_size = 0.04
+shader_parameter/cell_color = Color(0, 0, 0, 1)
+shader_parameter/gutter_color = Color(0, 0.376471, 0, 1)
+shader_parameter/cell_roundedness = 0.0
+shader_parameter/cell_manipulator_radius = 0.0
+shader_parameter/cell_manipulator_uv_pos = Vector2(0.5, 0.5)
+shader_parameter/manipulated_cell_size = 0.5
+shader_parameter/manipulator_gutter_color = Color(1, 1, 1, 1)
+shader_parameter/cell_manipulation_anim_speed = 1.0
+shader_parameter/gutter_noise_color = Color(1, 1, 1, 1)
+shader_parameter/gutter_noise_speed = 0.1
+shader_parameter/fresnel_color = Color(0.675, 0.192, 0, 1)
+shader_parameter/fresnel_intensity = 0.2
+shader_parameter/fresnel_amount = 15.0
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_7knmn"]
 size = Vector3(40, 1, 40)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ua2am"]
 size = Vector3(40, 8, 0.5)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2rdda"]
+render_priority = 0
+shader = ExtResource("8_0bgk6")
+shader_parameter/albedo = Color(1, 1, 1, 0)
+shader_parameter/specular = null
+shader_parameter/offset = 0.0
+shader_parameter/opacity = 0.9
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_ovibq"]
 size = Vector3(40, 2, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qsdca"]
+render_priority = 0
+shader = ExtResource("8_0bgk6")
+shader_parameter/albedo = Color(1, 1, 1, 0)
+shader_parameter/specular = null
+shader_parameter/offset = 0.0
+shader_parameter/opacity = 0.9
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bb8rt"]
+render_priority = 0
+shader = ExtResource("8_0bgk6")
+shader_parameter/albedo = Color(1, 1, 1, 0)
+shader_parameter/specular = 0.0
+shader_parameter/offset = 0.0
+shader_parameter/opacity = 0.9
+
+[sub_resource type="BoxMesh" id="BoxMesh_627e3"]
+size = Vector3(35, 8, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_x1kov"]
+points = PackedVector3Array(17.5, 4, 0.25, 17.5, 4, -0.25, -17.5, 4, 0.25, 17.5, -4, 0.25, 17.5, -4, -0.25, -17.5, 4, -0.25, -17.5, -4, 0.25, -17.5, -4, -0.25)
 
 [sub_resource type="BoxMesh" id="BoxMesh_avqnh"]
 size = Vector3(20, 8, 0.5)
@@ -52,8 +104,59 @@ size = Vector3(20, 8, 0.5)
 [sub_resource type="BoxMesh" id="BoxMesh_mpevp"]
 size = Vector3(2, 3, 0.5)
 
+[sub_resource type="Gradient" id="Gradient_wrsn3"]
+offsets = PackedFloat32Array(0, 0.885274, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.777397, 0.777397, 0.777397, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nwlls"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s05df"]
+color_ramp = SubResource("Gradient_wrsn3")
+noise = SubResource("FastNoiseLite_nwlls")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_chhfy"]
+render_priority = 0
+shader = ExtResource("7_lsx75")
+shader_parameter/grid_size = 64.0
+shader_parameter/cell_size = 5.0
+shader_parameter/gutter_size = 0.09
+shader_parameter/cell_color = Color(0.078, 0.024, 0, 1)
+shader_parameter/gutter_color = Color(0.580392, 0.580392, 0.580392, 1)
+shader_parameter/cell_roundedness = 0.142
+shader_parameter/cell_manipulator_radius = 5.0
+shader_parameter/cell_manipulator_uv_pos = Vector2(0.5, 0.5)
+shader_parameter/manipulated_cell_size = 0.5
+shader_parameter/manipulator_gutter_color = Color(1, 1, 1, 1)
+shader_parameter/cell_manipulation_anim_speed = 1.0
+shader_parameter/gutter_noise_color = Color(1, 1, 1, 1)
+shader_parameter/gutter_noise_speed = 0.1
+shader_parameter/gutter_noise = SubResource("NoiseTexture2D_s05df")
+shader_parameter/fresnel_color = Color(0.0352941, 0.654902, 1, 1)
+shader_parameter/fresnel_intensity = 0.2
+shader_parameter/fresnel_amount = 15.0
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_2yjhh"]
 size = Vector3(2, 3, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tytjt"]
+render_priority = 0
+shader = ExtResource("7_lsx75")
+shader_parameter/grid_size = 16.0
+shader_parameter/cell_size = 1.0
+shader_parameter/gutter_size = 0.04
+shader_parameter/cell_color = Color(0, 0, 0, 1)
+shader_parameter/gutter_color = Color(1, 1, 1, 1)
+shader_parameter/cell_roundedness = 0.0
+shader_parameter/cell_manipulator_radius = 0.0
+shader_parameter/cell_manipulator_uv_pos = Vector2(0.5, 0.5)
+shader_parameter/manipulated_cell_size = 0.5
+shader_parameter/manipulator_gutter_color = Color(1, 1, 1, 1)
+shader_parameter/cell_manipulation_anim_speed = 1.0
+shader_parameter/gutter_noise_color = Color(1, 1, 1, 1)
+shader_parameter/gutter_noise_speed = 0.1
+shader_parameter/fresnel_color = Color(0.675, 0.192, 0, 1)
+shader_parameter/fresnel_intensity = 0.2
+shader_parameter/fresnel_amount = 15.0
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_210d4"]
 data = PackedVector3Array(-20, 1, 0.25, 20, 1, 0.25, -20, -1, 0.25, 20, 1, 0.25, 20, -1, 0.25, -20, -1, 0.25, 20, 1, -0.25, -20, 1, -0.25, 20, -1, -0.25, -20, 1, -0.25, -20, -1, -0.25, 20, -1, -0.25, 20, 1, 0.25, 20, 1, -0.25, 20, -1, 0.25, 20, 1, -0.25, 20, -1, -0.25, 20, -1, 0.25, -20, 1, -0.25, -20, 1, 0.25, -20, -1, -0.25, -20, 1, 0.25, -20, -1, 0.25, -20, -1, -0.25, 20, 1, 0.25, -20, 1, 0.25, 20, 1, -0.25, -20, 1, 0.25, -20, 1, -0.25, 20, 1, -0.25, -20, -1, 0.25, 20, -1, 0.25, -20, -1, -0.25, 20, -1, 0.25, 20, -1, -0.25, -20, -1, -0.25)
@@ -436,7 +539,11 @@ transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, 10.381
 health = 10
 
 [node name="NPCLab2" parent="." instance=ExtResource("4_5d6e0")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -3.9267, -1.52613, -10.4847)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 2.5961, -1.52613, -2.8921)
+health = 10
+
+[node name="NPCLab6" parent="." instance=ExtResource("4_5d6e0")]
+transform = Transform3D(0.638687, -0.000933426, -0.769466, 0.00261385, 0.999996, 0.000956532, 0.769462, -0.00262219, 0.638687, -15.4475, -1.52613, 16.1108)
 health = 10
 
 [node name="NPCLab3" parent="." instance=ExtResource("4_5d6e0")]
@@ -455,7 +562,7 @@ transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 7.29526,
 patrol_targets = Array[Vector3]([Vector3(6.26033, -0.440889, -4.24206), Vector3(-16.1444, -0.440889, -4.24206), Vector3(-16.1444, -0.440889, 15.0469), Vector3(7.29526, -1.4688, 17.3228)])
 
 [node name="GuardNPC2" parent="." instance=ExtResource("4_tugob")]
-transform = Transform3D(-0.997703, 0, -0.0677366, 0, 1, 0, 0.0677366, 0, -0.997703, 15.8167, -1.4688, 8.34134)
+transform = Transform3D(-0.997703, 0, -0.0677366, 0, 1, 0, 0.0677366, 0, -0.997703, -17.6368, -1.4688, -6.27769)
 patrol_targets = Array[Vector3]([Vector3(16, -0.47, -16.7), Vector3(-16, -0.4, -16.7), Vector3(-16, -0.4, 17.2), Vector3(-0.7, 0.47, -3)])
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
@@ -463,7 +570,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.237523, -1.0132, 1.25804)
 navigation_mesh = SubResource("NavigationMesh_0785a")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -3.48114, 2.21524, 3.62506)
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -3.48114, -1.17188, 3.62506)
 mesh = SubResource("BoxMesh_c77bu")
 skeleton = NodePath("../../GuardNPC")
 surface_material_override/0 = ExtResource("6_kqcdw")
@@ -478,7 +585,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 layers = 3
 mesh = SubResource("BoxMesh_5u3tg")
 skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("6_kqcdw")
+surface_material_override/0 = SubResource("ShaderMaterial_r3noc")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
 disable_mode = 1
@@ -490,7 +597,7 @@ shape = SubResource("BoxShape3D_7knmn")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51029, 19.7363)
 mesh = SubResource("BoxMesh_ua2am")
-surface_material_override/0 = ExtResource("6_kqcdw")
+surface_material_override/0 = SubResource("ShaderMaterial_2rdda")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D/MeshInstance3D2"]
 collision_layer = 3
@@ -501,7 +608,7 @@ shape = SubResource("BoxShape3D_ovibq")
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4718, -20.1279)
 mesh = SubResource("BoxMesh_ua2am")
-surface_material_override/0 = ExtResource("6_kqcdw")
+surface_material_override/0 = SubResource("ShaderMaterial_qsdca")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D/MeshInstance3D3"]
 collision_layer = 3
@@ -512,7 +619,7 @@ shape = SubResource("BoxShape3D_ovibq")
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="NavigationRegion3D/MeshInstance3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.7532, 1.52318, -0.247839)
 mesh = SubResource("BoxMesh_ua2am")
-surface_material_override/0 = ExtResource("6_kqcdw")
+surface_material_override/0 = SubResource("ShaderMaterial_bb8rt")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D/MeshInstance3D4"]
 collision_layer = 3
@@ -520,27 +627,16 @@ collision_layer = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/MeshInstance3D4/StaticBody3D"]
 shape = SubResource("BoxShape3D_ovibq")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="NavigationRegion3D/MeshInstance3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.3225, 1.52318, 9.59458)
-mesh = SubResource("BoxMesh_avqnh")
-surface_material_override/0 = ExtResource("6_kqcdw")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D/MeshInstance3D5"]
-collision_layer = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/MeshInstance3D5/StaticBody3D"]
-shape = SubResource("BoxShape3D_h8w0r")
-
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="NavigationRegion3D/MeshInstance3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.3225, 1.52318, -4.62033)
-mesh = SubResource("BoxMesh_avqnh")
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.3225, 1.52318, 2.64338)
+mesh = SubResource("BoxMesh_627e3")
 surface_material_override/0 = ExtResource("6_kqcdw")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D/MeshInstance3D6"]
 collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/MeshInstance3D6/StaticBody3D"]
-shape = SubResource("BoxShape3D_h8w0r")
+shape = SubResource("ConvexPolygonShape3D_x1kov")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="NavigationRegion3D/MeshInstance3D"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 3.55393, 1.52318, -14.4138)
@@ -565,9 +661,9 @@ collision_layer = 3
 shape = SubResource("BoxShape3D_h8w0r")
 
 [node name="MeshInstance3D10" type="MeshInstance3D" parent="NavigationRegion3D/MeshInstance3D"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18.7508, 3.91795, -14.4138)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18.8076, 3.91795, -14.4138)
 mesh = SubResource("BoxMesh_mpevp")
-surface_material_override/0 = ExtResource("6_kqcdw")
+surface_material_override/0 = SubResource("ShaderMaterial_chhfy")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D/MeshInstance3D10"]
 collision_layer = 3
@@ -578,6 +674,7 @@ shape = SubResource("BoxShape3D_2yjhh")
 [node name="MeshInstance3D12" type="MeshInstance3D" parent="NavigationRegion3D/MeshInstance3D"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 12.099, 3.91795, -9.20419)
 mesh = SubResource("BoxMesh_mpevp")
+surface_material_override/0 = SubResource("ShaderMaterial_tytjt")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D/MeshInstance3D12"]
 collision_layer = 3
@@ -610,7 +707,7 @@ shape = SubResource("BoxShape3D_h8w0r")
 [node name="MeshInstance3D20" type="MeshInstance3D" parent="NavigationRegion3D/MeshInstance3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -19.8633, 1.54899, -0.247839)
 mesh = SubResource("BoxMesh_ua2am")
-surface_material_override/0 = ExtResource("6_kqcdw")
+surface_material_override/0 = SubResource("ShaderMaterial_qsdca")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D/MeshInstance3D20"]
 collision_layer = 3

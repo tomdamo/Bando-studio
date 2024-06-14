@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c7q4l45ml1ihd"]
+
+[ext_resource type="FontFile" uid="uid://dlvhjyl50fcs4" path="res://Textures/Font/batmfa__.ttf" id="1_1f86q"]
+
+[resource]
+font = ExtResource("1_1f86q")
+font_size = 34
