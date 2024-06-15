@@ -38,7 +38,7 @@ var reached_target = false
 var player_last_seen = false
 var player_last_seen_position: Vector3
 @onready var searching_label = $SearchingLabel
-@onready var player = %PlayerChar
+@onready var player = $"../../PlayerCharacterBody3D"
 
 
 #moving away and close
@@ -92,7 +92,7 @@ func die():
 	self.rotation_degrees.x = 90
 	self.position.y = -1 
 	death = true
-	player.player_kills += 1
+	#player.guard_kills += 1
 	can_be_eaten = true
 	
 func showEatable():
@@ -137,7 +137,6 @@ func _on_vision_timer_timeout():
 									shot_timer.start()
 							else:
 								$VisionRaycast.debug_shape_custom_color = Color(0,255,0)
-								print(collider.name)
 								spotted_label.hide()
 								playerSpotted = false
 							

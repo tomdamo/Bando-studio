@@ -5,14 +5,11 @@ extends CharacterBody3D
 @export var enable_gravity = true
 
 @onready var _camera: Camera3D
-
 @onready var _player_visual: Node3D = %PlayerVisual
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = 9.8
-
 var movement_enabled: bool = true
-
 var _physics_body_trans_last: Transform3D
 var _physics_body_trans_current: Transform3D
 
@@ -28,12 +25,12 @@ var dash_timer = 0.0
 @onready var dash_icon = %Dash_icon
 @onready var dash_material : ShaderMaterial
 
-#var dash_cd_value
+
 #Pause
 var paused = false
 @onready var pause_menu = %PauseMenu 
 
-#Health and damage
+#Health, damage etc.
 var health: float
 @export var damage = 5
 @onready var attack_range = %AttackRange
@@ -42,13 +39,20 @@ const GAME_OVER_2 = preload("res://Scenes/UI/GameOver2.tscn")
 @onready var damage_timer = %DamageTimer
 @onready var hit_sound = %HitSound
 @onready var healthbar = %Healthbar
-@export var player_kills = 0
 var damage_number = preload("res://Scenes/damagenumbers/damagenumbers.tscn")
 @onready var eat_timer = %EatTimer
 var eating = false
 @onready var blood_vignette = %blood_vignette
 @onready var attack_timer = %AttackTimer
+@onready var hit_effect = %HitEffect
 
+#Evolution 
+@export var lab_kills = 0
+@export var guard_kills = 0
+@export var lab_points = 0
+@export var guard_points = 0
+@onready var evolution_menu = %EvolutionMenu
+var evol_open = false
 #Sense ability
 var senseActive = false
 @onready var Sense_Cooldown = %SenseCooldownTimer
@@ -56,9 +60,7 @@ var senseActive = false
 @onready var sense_icon = %Sense_icon
 @onready var sense_material : ShaderMaterial
 @onready var sense_overlay = %Sense_overlay
-
 @onready var color_rect = $"../CanvasLayer/ColorRect"
-@onready var hit_effect = %HitEffect
 var enemyNormalMaterial: Material = load("res://Textures/EnemyNormal.tres")
 var enemyVisibleMaterial: Material = load("res://Textures/EnemyVisible.tres")
 var enemyNormalMaterialGuard: Material = load("res://Scenes/Enemy/Guard/NPCNormalMaterial.tres")
@@ -95,12 +97,14 @@ func _physics_process(delta: float) -> void:
 		"move_back"
 	)
 	
-	if Input.is_action_just_pressed("pause"):
+	if Input.is_action_just_pressed("pause") and !evol_open:
 		_pauseMenu()
-
+	
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 	
+	if Input.is_action_just_pressed("evolution_menu"):
+		_evolutionMenu()
 	#See enemies layer through the walls  and not senseActive and sense_cooldown_timer.is_stopped()
 	if Input.is_action_just_pressed("SenseAbility") and !senseActive and Sense_Cooldown.is_stopped():
 		senseActive = true		
@@ -110,7 +114,7 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("Attack") and !eating and attack_timer.is_stopped():
 		attack()
-		attack_timer.start()
+		#attack_timer.start()
 		
 	if Input.is_action_just_pressed("Interact") and !eating:
 		eat()
@@ -238,6 +242,17 @@ func _pauseMenu():
 		color_rect.hide()
 	paused = !paused
 
+#Evolution
+func _evolutionMenu():
+	if evol_open:
+		evolution_menu.hide()
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		get_tree().paused = false
+	else:
+		evolution_menu.show()
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().paused = true
+	evol_open = !evol_open
 #Attack
 func attack():
 	var bodies = attack_range.get_overlapping_bodies()
@@ -258,7 +273,6 @@ func eat():
 				damageNumber.set_damage("nom nom nom")
 				eat_timer.start()
 				eating = true
-	
 	
 func take_damage(damageAmount):
 	hit_effect.set_emitting(true)
@@ -281,8 +295,8 @@ func die():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().change_scene_to_file("res://Scenes/UI/GameOver2.tscn")
 
-
 func _on_eat_timer_timeout():
+	print("Eating started. Current kills: ", guard_kills, ", ", lab_kills)
 	eating = false;
 	movement_enabled = true
 	var damageNumber = damage_number.instantiate()
@@ -290,15 +304,26 @@ func _on_eat_timer_timeout():
 	damageNumber.global_transform.origin = self.global_transform.origin
 	damageNumber.set_damage("delicious!")
 	var bodies = attack_range.get_overlapping_bodies()
+	print("Bodies detected: ", bodies.size())
 	for body in bodies:
 		if body.has_method("take_damage"):
-			if body.can_be_eaten:
+			if body.can_be_eaten and body.is_in_group("lab"):
+				damageNumber.global_transform.origin = self.global_transform.origin
+				damageNumber.set_damage("Lab DNA +1")
+				lab_kills += 1
+				lab_points += 1
+				print(str(lab_kills))
 				body.dissapear()
-	damageNumber.global_transform.origin = self.global_transform.origin
-	damageNumber.set_damage("HP +5!")
-	health + 5
-	healthbar.health = health 
+			if body.can_be_eaten and body.is_in_group("guard"):
+				damageNumber.global_transform.origin = self.global_transform.origin
+				damageNumber.set_damage("Guard DNA +1")
+				guard_kills += 1
+				guard_points += 1
+				print(str(guard_kills))
+				body.dissapear()
+	print("Eating ended. Final kills: ", guard_kills,", ", lab_kills)	
 
+	
 func _on_damage_timer_timeout():
 	if health > 10:
 		blood_vignette.hide()

@@ -1,33 +1,58 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdhdvgny855x1"]
+[gd_scene load_steps=12 format=3 uid="uid://cdhdvgny855x1"]
 
 [ext_resource type="FontFile" uid="uid://dlvhjyl50fcs4" path="res://Textures/Font/batmfa__.ttf" id="1_lyqim"]
+[ext_resource type="Script" path="res://Scenes/Evolution/Evolution.gd" id="1_mdi3s"]
 [ext_resource type="LabelSettings" uid="uid://c7q4l45ml1ihd" path="res://evolution menu font.tres" id="2_yu8ur"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g33bs"]
+bg_color = Color(0, 0, 0, 0.282353)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n3ysc"]
+bg_color = Color(0.262745, 0.262745, 0.262745, 0.431373)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wp5wd"]
+font = ExtResource("1_lyqim")
+font_size = 34
+font_color = Color(1, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_a4p6n"]
 font = ExtResource("1_lyqim")
 font_size = 80
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4cu88"]
 font = ExtResource("1_lyqim")
 font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_yaflv"]
 font = ExtResource("1_lyqim")
 font_size = 52
 font_color = Color(1, 0, 0, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k23p1"]
+bg_color = Color(0, 0.690196, 0.145098, 0.65098)
 
 [sub_resource type="LabelSettings" id="LabelSettings_dntea"]
 font = ExtResource("1_lyqim")
 font_size = 52
 font_color = Color(0, 0, 1, 1)
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Control" type="Control"]
+process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_mdi3s")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -36,23 +61,76 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g33bs")
 
-[node name="Label3" type="Label" parent="."]
-layout_mode = 2
-offset_left = 1564.0
-offset_top = 1015.0
-offset_right = 1916.0
-offset_bottom = 1050.0
-text = "P To exit"
-label_settings = ExtResource("2_yu8ur")
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 212.0
+offset_right = 40.0
+offset_bottom = 212.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.451849, 0.486582)
+theme_override_styles/panel = SubResource("StyleBoxFlat_n3ysc")
+
+[node name="Panel3" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 958.0
+offset_top = 212.0
+offset_right = 929.0
+offset_bottom = 239.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.484284, 0.475875)
+theme_override_styles/panel = SubResource("StyleBoxFlat_n3ysc")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1582.0
+offset_top = 974.0
+offset_right = 1893.0
+offset_bottom = 1060.0
+theme_override_fonts/font = ExtResource("1_lyqim")
+theme_override_font_sizes/font_size = 30
+text = "Click to exit"
 
 [node name="Label4" type="Label" parent="."]
+process_mode = 2
+layout_mode = 2
+offset_left = 560.0
+offset_top = 768.0
+offset_right = 1369.0
+offset_bottom = 803.0
+text = "upgrade details:"
+label_settings = ExtResource("2_yu8ur")
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="."]
+visible = false
+layout_mode = 2
+offset_left = 592.0
+offset_top = 1006.0
+offset_right = 1401.0
+offset_bottom = 1041.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "NOT ENOUGH DNA points!"
+label_settings = SubResource("LabelSettings_wp5wd")
+horizontal_alignment = 1
+
+[node name="Upgrade_info" type="Label" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
 offset_left = 596.0
-offset_top = 808.0
+offset_top = 858.0
 offset_right = 1405.0
-offset_bottom = 843.0
-text = "Hover over upgrades for details."
+offset_bottom = 893.0
 label_settings = ExtResource("2_yu8ur")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -127,7 +205,7 @@ layout_mode = 2
 
 [node name="Label2" type="Label" parent="HBoxContainer/VBoxContainerGUARD"]
 layout_mode = 2
-text = "Guard upgrades"
+text = "Guard DNA upgrades"
 label_settings = SubResource("LabelSettings_yaflv")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainerGUARD"]
@@ -144,15 +222,23 @@ label_settings = ExtResource("2_yu8ur")
 [node name="UpgradeGuard1" type="CheckBox" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "Increase melee damage by 10%."
+focus_neighbor_top = NodePath("../UpgradeGuard6")
+focus_neighbor_right = NodePath("../../../../VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab1")
+focus_neighbor_bottom = NodePath("../UpgradeGuard2")
 theme_override_fonts/font = ExtResource("1_lyqim")
 theme_override_font_sizes/font_size = 26
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k23p1")
+disabled = true
 text = "Claw Sharpening "
 
 [node name="UpgradeGuard2" type="CheckBox" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "Reduced noise from attacks. "
+focus_neighbor_bottom = NodePath("../UpgradeGuard3")
 theme_override_fonts/font = ExtResource("1_lyqim")
 theme_override_font_sizes/font_size = 26
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k23p1")
+disabled = true
 text = "Silent Predator"
 
 [node name="UpgradeGuard3" type="CheckBox" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer"]
@@ -160,27 +246,38 @@ layout_mode = 2
 tooltip_text = "Further increase melee damage by 20%."
 theme_override_fonts/font = ExtResource("1_lyqim")
 theme_override_font_sizes/font_size = 26
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k23p1")
+disabled = true
 text = "Enhanced Claws"
 
 [node name="UpgradeGuard4" type="CheckBox" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "Attacks have a chance to ignore armor. "
+focus_neighbor_bottom = NodePath("../UpgradeGuard5")
 theme_override_fonts/font = ExtResource("1_lyqim")
 theme_override_font_sizes/font_size = 26
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k23p1")
+disabled = true
 text = "Piercing Strike"
 
 [node name="UpgradeGuard5" type="CheckBox" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "Additional 30% increase in melee damage."
+focus_neighbor_bottom = NodePath("../UpgradeGuard6")
 theme_override_fonts/font = ExtResource("1_lyqim")
 theme_override_font_sizes/font_size = 26
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k23p1")
+disabled = true
 text = "Razor Fangs"
 
 [node name="UpgradeGuard6" type="CheckBox" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "Guaranteed critical hits on unaware targets."
+focus_neighbor_bottom = NodePath("../UpgradeGuard1")
 theme_override_fonts/font = ExtResource("1_lyqim")
 theme_override_font_sizes/font_size = 26
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k23p1")
+disabled = true
 text = "Lethal Precision"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer"]
@@ -233,7 +330,7 @@ layout_mode = 2
 
 [node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer2LAB"]
 layout_mode = 2
-text = "Lab upgrades"
+text = "Lab DNA upgrades"
 label_settings = SubResource("LabelSettings_dntea")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2LAB"]
@@ -250,8 +347,12 @@ label_settings = ExtResource("2_yu8ur")
 [node name="UpgradeLab1" type="CheckBox" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "Increase maximum health by 15%."
+focus_neighbor_left = NodePath("../../../../VBoxContainerGUARD/HBoxContainer/VBoxContainer/UpgradeGuard1")
+focus_neighbor_top = NodePath("../UpgradeLab8")
 theme_override_fonts/font = ExtResource("1_lyqim")
 theme_override_font_sizes/font_size = 26
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k23p1")
+disabled = true
 text = "Resilient Exoskeleton "
 
 [node name="UpgradeLab2" type="CheckBox" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer"]
@@ -259,6 +360,8 @@ layout_mode = 2
 tooltip_text = "Reduce dash cooldown by 10%. "
 theme_override_fonts/font = ExtResource("1_lyqim")
 theme_override_font_sizes/font_size = 26
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k23p1")
+disabled = true
 text = "Quick Reflexes"
 
 [node name="UpgradeLab3" type="CheckBox" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer"]
@@ -266,6 +369,8 @@ layout_mode = 2
 tooltip_text = "Further increase maximum health by 25%."
 theme_override_fonts/font = ExtResource("1_lyqim")
 theme_override_font_sizes/font_size = 26
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k23p1")
+disabled = true
 text = "Reinforced Exoskeleton"
 
 [node name="UpgradeLab4" type="CheckBox" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer"]
@@ -273,6 +378,8 @@ layout_mode = 2
 tooltip_text = "Reduce dash cooldown by 20%."
 theme_override_fonts/font = ExtResource("1_lyqim")
 theme_override_font_sizes/font_size = 26
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k23p1")
+disabled = true
 text = "Accelerated Metabolism"
 
 [node name="UpgradeLab5" type="CheckBox" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer"]
@@ -280,6 +387,8 @@ layout_mode = 2
 tooltip_text = "Reduce vision ability cooldown by 10%."
 theme_override_fonts/font = ExtResource("1_lyqim")
 theme_override_font_sizes/font_size = 26
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k23p1")
+disabled = true
 text = "Eagle Vision"
 
 [node name="UpgradeLab6" type="CheckBox" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer"]
@@ -287,6 +396,8 @@ layout_mode = 2
 tooltip_text = "Additional 35% increase in maximum health."
 theme_override_fonts/font = ExtResource("1_lyqim")
 theme_override_font_sizes/font_size = 26
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k23p1")
+disabled = true
 text = "Fortified Exoskeleton"
 
 [node name="UpgradeLab7" type="CheckBox" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer"]
@@ -294,13 +405,18 @@ layout_mode = 2
 tooltip_text = "Reduce dash cooldown by 30%."
 theme_override_fonts/font = ExtResource("1_lyqim")
 theme_override_font_sizes/font_size = 26
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k23p1")
+disabled = true
 text = "Flash Dash"
 
 [node name="UpgradeLab8" type="CheckBox" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "Reduce vision ability cooldown by 20%."
+focus_neighbor_bottom = NodePath("../UpgradeLab1")
 theme_override_fonts/font = ExtResource("1_lyqim")
 theme_override_font_sizes/font_size = 26
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k23p1")
+disabled = true
 text = "Supreme vision"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/VBoxContainer2LAB/HBoxContainer2"]
@@ -350,3 +466,34 @@ label_settings = ExtResource("2_yu8ur")
 layout_mode = 2
 text = "6 Lab DNA"
 label_settings = ExtResource("2_yu8ur")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer/UpgradeGuard1" to="." method="_on_upgrade_guard_1_focus_entered"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer/UpgradeGuard1" to="." method="_on_upgrade_guard_1_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer/UpgradeGuard2" to="." method="_on_upgrade_guard_2_focus_entered"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer/UpgradeGuard2" to="." method="_on_upgrade_guard_2_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer/UpgradeGuard3" to="." method="_on_upgrade_guard_3_focus_entered"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer/UpgradeGuard3" to="." method="_on_upgrade_guard_3_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer/UpgradeGuard4" to="." method="_on_upgrade_guard_4_focus_entered"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer/UpgradeGuard4" to="." method="_on_upgrade_guard_4_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer/UpgradeGuard5" to="." method="_on_upgrade_guard_5_focus_entered"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer/UpgradeGuard5" to="." method="_on_upgrade_guard_5_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer/UpgradeGuard6" to="." method="_on_upgrade_guard_6_focus_entered"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer/UpgradeGuard6" to="." method="_on_upgrade_guard_6_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab1" to="." method="_on_upgrade_lab_1_focus_entered"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab1" to="." method="_on_upgrade_lab_1_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab2" to="." method="_on_upgrade_lab_2_focus_entered"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab2" to="." method="_on_upgrade_lab_2_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab3" to="." method="_on_upgrade_lab_3_focus_entered"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab3" to="." method="_on_upgrade_lab_3_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab4" to="." method="_on_upgrade_lab_4_focus_entered"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab4" to="." method="_on_upgrade_lab_4_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab5" to="." method="_on_upgrade_lab_5_focus_entered"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab5" to="." method="_on_upgrade_lab_5_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab6" to="." method="_on_upgrade_lab_6_focus_entered"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab6" to="." method="_on_upgrade_lab_6_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab7" to="." method="_on_upgrade_lab_7_focus_entered"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab7" to="." method="_on_upgrade_lab_7_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab8" to="." method="_on_upgrade_lab_8_focus_entered"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab8" to="." method="_on_upgrade_lab_8_pressed"]

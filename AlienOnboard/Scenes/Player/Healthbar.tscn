@@ -33,7 +33,6 @@ size_flags_vertical = 8
 theme_override_styles/background = SubResource("StyleBoxEmpty_2vt2s")
 theme_override_styles/fill = SubResource("StyleBoxFlat_mxkpj")
 value = 60.0
-show_percentage = false
 script = ExtResource("1_7mhfe")
 
 [node name="DamageBar" type="ProgressBar" parent="."]

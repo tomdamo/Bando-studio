@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://ddhw0010gg8m6"]
+[gd_scene load_steps=34 format=3 uid="uid://ddhw0010gg8m6"]
 
 [ext_resource type="Script" path="res://Scenes/Player/LATEST_PLAYER/LATEST_player_controller_third_person.gd" id="4_87qsm"]
 [ext_resource type="Material" uid="uid://ctjy3h3vax8m5" path="res://Scenes/Bullet/hitEffect.tres" id="5_b5qlx"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://br3x1p8e76i6m" path="res://Scenes/UI/GameOver2.tscn" id="8_2bro4"]
 [ext_resource type="PackedScene" uid="uid://y7ebep2q5e8f" path="res://Scenes/Minimap/Minimap.tscn" id="9_pc4jh"]
 [ext_resource type="Shader" path="res://Scenes/Player/UPDATED_PC_PLAYER/ability.gdshader" id="10_13530"]
+[ext_resource type="PackedScene" uid="uid://cdhdvgny855x1" path="res://Scenes/Evolution/Evolution.tscn" id="10_gm8cf"]
 [ext_resource type="Texture2D" uid="uid://cdce0nf60r6i1" path="res://Scenes/UI-Iconis/dash-icon.png" id="11_rd833"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="12_3vla2"]
 [ext_resource type="Texture2D" uid="uid://c3p4t848brjs0" path="res://Scenes/UI-Iconis/one-eeeeeeye.png" id="12_lp5my"]
@@ -305,13 +306,6 @@ offset_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 0
 
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_e70mo")]
-unique_name_in_owner = true
-
-[node name="GameverMenu" parent="CanvasLayer" instance=ExtResource("8_2bro4")]
-unique_name_in_owner = true
-visible = false
-
 [node name="ColorRect" parent="CanvasLayer" instance=ExtResource("9_pc4jh")]
 target = NodePath("../../PlayerCharacterBody3D")
 
@@ -333,6 +327,17 @@ offset_right = 1233.0
 offset_bottom = 1942.0
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("12_lp5my")
+
+[node name="GameverMenu" parent="CanvasLayer" instance=ExtResource("8_2bro4")]
+unique_name_in_owner = true
+visible = false
+
+[node name="EvolutionMenu" parent="CanvasLayer" instance=ExtResource("10_gm8cf")]
+unique_name_in_owner = true
+visible = false
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_e70mo")]
+unique_name_in_owner = true
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

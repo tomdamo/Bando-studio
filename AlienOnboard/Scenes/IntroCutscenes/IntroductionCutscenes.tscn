@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjt8kpcywfbcy"]
+[gd_scene load_steps=13 format=3 uid="uid://cjt8kpcywfbcy"]
 
 [ext_resource type="FontFile" uid="uid://dlvhjyl50fcs4" path="res://Textures/Font/batmfa__.ttf" id="1_34w3w"]
 [ext_resource type="Script" path="res://Scenes/IntroCutscenes/IntroductionCutscenes.gd" id="1_w5vrt"]
 [ext_resource type="Texture2D" uid="uid://dwnp3387tfw5x" path="res://Textures/Skybox/SpacePanoramas/panorama6.jpg" id="1_xf21t"]
 [ext_resource type="Shader" path="res://Textures/Shaders/PlanetShader.gdshader" id="2_ppr7o"]
+[ext_resource type="Shader" path="res://Scenes/IntroCutscenes/planet.gdshader" id="5_adk1m"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qr7lk"]
 panorama = ExtResource("1_xf21t")
@@ -22,6 +23,19 @@ shader = ExtResource("2_ppr7o")
 [sub_resource type="SphereMesh" id="SphereMesh_rogk0"]
 material = SubResource("ShaderMaterial_ecujf")
 
+[sub_resource type="SphereMesh" id="SphereMesh_l8u1o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fr3jw"]
+render_priority = 0
+shader = ExtResource("5_adk1m")
+shader_parameter/Glow_Power = 3.909
+shader_parameter/Lightness_Difference = 0.778
+shader_parameter/Sun_Color = Color(0.176471, 0.364706, 1, 1)
+shader_parameter/waveSpeed = 0.1
+shader_parameter/fresnel = 1.395
+shader_parameter/scale = 0.0
+shader_parameter/blendSharpness = 0.0
+
 [node name="IntroductionCutscenes" type="Node3D"]
 script = ExtResource("1_w5vrt")
 
@@ -32,39 +46,42 @@ fov = 74.5786
 [node name="Text1" type="Label3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 43)
-text = "\"The year is 3141.
- Humanity has expanded far beyond the confines of its home planet.
-Earth, the birthplace of all humanity, has made a new discovery: 
-exoplanet TRAPPiST-1-f. "
+visible = false
+text = "The year is 3141. Humanity has expanded far 
+beyond the confines of its home planet."
 font = ExtResource("1_34w3w")
 
 [node name="Text2" type="Label3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 43)
 visible = false
-text = "Located in the dark galaxy Nube, far away from its dimly lit star. 
-Scientists were quick to write it off as another inhospitable planet. 
-However, TRAPPIST-1-f revealed its secrets through 
-the meticulous work of transit spectroscopy, defying the initial
- expectations and sparking a new era of exploration."
+text = "Earth, the birthplace of all humanity, has made 
+a new discovery: exoplanet TRAPPIST-1-f."
 font = ExtResource("1_34w3w")
 
 [node name="Text3" type="Label3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, 2.08165e-12, 43)
 visible = false
-text = "In the year 3170, the journey to unlock the mysteries of the
-exoplanet TRAPPIST-1f began in full force. 
-The Spectator; a deep space exploration ship 
-was ready to embark on its first mission: \"Biosignature Discovery\". "
+text = "In the year 3170, the journey to unlock the 
+mysteries of TRAPPIST-1-f began in full force."
 font = ExtResource("1_34w3w")
 
 [node name="Text4" type="Label3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, 2.08165e-12, 43)
 visible = false
-text = "a new species was found. 
-"
+text = "The Spectator, a state-of-the-art deep space exploration ship,
+ was ready to embark on its first mission: \"Biosignature Discovery\"."
+font = ExtResource("1_34w3w")
+
+[node name="Text5" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, 2.08165e-12, 43)
+visible = false
+text = "In the year 3170, humanity’s finest embarked on a journey aboard the Spectator,
+ a ship designed to explore the far reaches of space.
+ Their mission: to uncover the secrets of the distant exoplanet TRAPPIST-1-f."
 font = ExtResource("1_34w3w")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -77,3 +94,9 @@ transform = Transform3D(1, 0, 0, 0, -0.0214658, 0.99977, 0, -0.99977, -0.0214658
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 5.57967, -16.8716, -106.493)
 mesh = SubResource("SphereMesh_rogk0")
 skeleton = NodePath("../WorldEnvironment")
+
+[node name="Planet2" type="MeshInstance3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 304.796, -16.8716, 194.892)
+mesh = SubResource("SphereMesh_l8u1o")
+skeleton = NodePath("../WorldEnvironment")
+surface_material_override/0 = SubResource("ShaderMaterial_fr3jw")

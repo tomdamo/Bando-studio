@@ -19,7 +19,7 @@ var player_position = Vector3.ZERO
 
 var damage_number = preload("res://Scenes/damagenumbers/damagenumbers.tscn")
 var enemyVisibleMaterial: Material = load("res://Textures/EnemyVisible.tres")
-@onready var player = %PlayerCharacterBody3D
+@onready var player = $"../../PlayerCharacterBody3D"
 
 var can_be_eaten = false
 @onready var eat_label = $EatLabel
@@ -58,7 +58,7 @@ func die():
 	self.rotation_degrees.x = 90
 	self.position.y = -1
 	death = true
-	player.player_kills += 1
+	#player.lab_kills += 1
 	can_be_eaten = true
 
 func showEatable():
@@ -101,7 +101,6 @@ func _on_vision_timer_timeout():
 							else:
 								$VisionRaycast.debug_shape_custom_color = Color(0,255,0)
 								playerSpotted = false																
-								print(collider.name)
 								spotted_label.hide()								
 
 
