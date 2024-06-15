@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var text_nodes = [%Text1, %Text2, %Text3]
+@onready var text_nodes = [%Text1, %Text2, %Text3, %Text4, %Text5, %Text6]
 var current_dialogue = 0
 
 func _process(delta):
@@ -19,4 +19,6 @@ func _process(delta):
 			var loadingScreen = load("res://Scenes/UI/loading.tscn")
 			get_tree().change_scene_to_packed(loadingScreen)
 			
-		
+func _ready():
+	current_dialogue = 1
+	text_nodes[current_dialogue].show()

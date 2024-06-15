@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cdhdvgny855x1"]
+[gd_scene load_steps=14 format=3 uid="uid://cdhdvgny855x1"]
 
 [ext_resource type="FontFile" uid="uid://dlvhjyl50fcs4" path="res://Textures/Font/batmfa__.ttf" id="1_lyqim"]
 [ext_resource type="Script" path="res://Scenes/Evolution/Evolution.gd" id="1_mdi3s"]
@@ -24,6 +24,20 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_4cu88"]
 font = ExtResource("1_lyqim")
 font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_66h1f"]
+font = ExtResource("1_lyqim")
+font_size = 32
+font_color = Color(1, 0, 0, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7wu1k"]
+font = ExtResource("1_lyqim")
+font_size = 32
+font_color = Color(0, 0, 1, 1)
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
@@ -152,7 +166,7 @@ horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "dna points"
+text = "current dna points"
 label_settings = SubResource("LabelSettings_4cu88")
 horizontal_alignment = 1
 
@@ -162,8 +176,8 @@ alignment = 1
 
 [node name="LabelGuardDNA" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "guard: "
-label_settings = SubResource("LabelSettings_4cu88")
+text = "guard dna: "
+label_settings = SubResource("LabelSettings_66h1f")
 
 [node name="LabelGuardDNAAmount" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -176,8 +190,8 @@ alignment = 1
 
 [node name="LabelLabDNA" type="Label" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "lab: "
-label_settings = SubResource("LabelSettings_4cu88")
+text = "lab dna: "
+label_settings = SubResource("LabelSettings_7wu1k")
 
 [node name="LabelLabDNAAmount" type="Label" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -252,13 +266,13 @@ text = "Enhanced Claws"
 
 [node name="UpgradeGuard4" type="CheckBox" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-tooltip_text = "Attacks have a chance to ignore armor. "
+tooltip_text = "Attack range increased by 20%"
 focus_neighbor_bottom = NodePath("../UpgradeGuard5")
 theme_override_fonts/font = ExtResource("1_lyqim")
 theme_override_font_sizes/font_size = 26
 theme_override_styles/pressed = SubResource("StyleBoxFlat_k23p1")
 disabled = true
-text = "Piercing Strike"
+text = "Enhanced Range"
 
 [node name="UpgradeGuard5" type="CheckBox" parent="HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer"]
 layout_mode = 2

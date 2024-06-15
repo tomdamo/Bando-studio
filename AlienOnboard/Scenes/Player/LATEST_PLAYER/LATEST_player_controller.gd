@@ -32,7 +32,7 @@ var paused = false
 
 #Health, damage etc.
 var health: float
-@export var damage = 5
+@export var player_damage = 5
 @onready var attack_range = %AttackRange
 @export var player_died = false
 const GAME_OVER_2 = preload("res://Scenes/UI/GameOver2.tscn")
@@ -45,7 +45,8 @@ var eating = false
 @onready var blood_vignette = %blood_vignette
 @onready var attack_timer = %AttackTimer
 @onready var hit_effect = %HitEffect
-
+@onready var health_amount = %Health_number
+var max_health = 100
 #Evolution 
 @export var lab_kills = 0
 @export var guard_kills = 0
@@ -53,6 +54,8 @@ var eating = false
 @export var guard_points = 0
 @onready var evolution_menu = %EvolutionMenu
 var evol_open = false
+var evo_pressed_tip = false
+var crit_on_unaware = false
 #Sense ability
 var senseActive = false
 @onready var Sense_Cooldown = %SenseCooldownTimer
@@ -64,14 +67,16 @@ var senseActive = false
 var enemyNormalMaterial: Material = load("res://Textures/EnemyNormal.tres")
 var enemyVisibleMaterial: Material = load("res://Textures/EnemyVisible.tres")
 var enemyNormalMaterialGuard: Material = load("res://Scenes/Enemy/Guard/NPCNormalMaterial.tres")
+@onready var fight_test_area = $"../FightTestArea"
 
 
 func _ready() -> void:
 	_camera = owner.get_node("%MainCamera3D")
 	_player_visual.top_level = true
 
-	health = 30
+	health = 50
 	healthbar.init_health(health)
+	health_amount.set_text(str(health))
 	_camera = owner.get_node("%MainCamera3D")
 	_player_visual.top_level = true
 	dash_material = dash_icon.get_material()
@@ -104,6 +109,7 @@ func _physics_process(delta: float) -> void:
 		get_tree().quit()
 	
 	if Input.is_action_just_pressed("evolution_menu"):
+		evo_pressed_tip = true
 		_evolutionMenu()
 	#See enemies layer through the walls  and not senseActive and sense_cooldown_timer.is_stopped()
 	if Input.is_action_just_pressed("SenseAbility") and !senseActive and Sense_Cooldown.is_stopped():
@@ -259,7 +265,7 @@ func attack():
 	print(bodies)
 	for body in bodies:
 		if body.has_method("take_damage"):
-			body.take_damage(damage)
+			body.take_damage(player_damage)
 		#if body.health <= 0:
 			#eat()
 func eat():
@@ -283,9 +289,10 @@ func take_damage(damageAmount):
 	blood_vignette.show()
 	if damage_timer.is_stopped():
 		damage_timer.start()
-	health -= damage
+	health -= damageAmount
 	hit_sound.play()
 	healthbar.health = health 
+	health_amount.set_text(str(health))					
 	if health <= 0:
 		die()
 	
@@ -313,14 +320,26 @@ func _on_eat_timer_timeout():
 				lab_kills += 1
 				lab_points += 1
 				print(str(lab_kills))
+				if health < max_health:
+					health += 5
+				healthbar.health = health
+				health_amount.set_text(str(health))				
 				body.dissapear()
+				if fight_test_area != null:
+					fight_test_area.update_kill_count()
 			if body.can_be_eaten and body.is_in_group("guard"):
 				damageNumber.global_transform.origin = self.global_transform.origin
 				damageNumber.set_damage("Guard DNA +1")
 				guard_kills += 1
 				guard_points += 1
 				print(str(guard_kills))
+				if health < max_health:
+					health += 10
+				healthbar.health = health	
+				health_amount.set_text(str(health))											
 				body.dissapear()
+				if fight_test_area != null:
+					fight_test_area.update_kill_count()
 	print("Eating ended. Final kills: ", guard_kills,", ", lab_kills)	
 
 	

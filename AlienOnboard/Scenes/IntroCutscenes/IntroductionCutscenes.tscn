@@ -79,9 +79,23 @@ font = ExtResource("1_34w3w")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, 2.08165e-12, 43)
 visible = false
-text = "In the year 3170, humanity’s finest embarked on a journey aboard the Spectator,
- a ship designed to explore the far reaches of space.
- Their mission: to uncover the secrets of the distant exoplanet TRAPPIST-1-f."
+text = "In the year 3170, humanity’s finest embarked on a journey 
+aboard the Spectator, a ship designed to explore 
+the far reaches of space."
+font = ExtResource("1_34w3w")
+
+[node name="Text6" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, 2.08165e-12, 43)
+visible = false
+text = " Their mission: to uncover the secrets 
+of the distant exoplanet TRAPPIST-1-f."
+font = ExtResource("1_34w3w")
+
+[node name="Text7" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -2.30007, 43)
+text = "press < space > to continue"
 font = ExtResource("1_34w3w")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

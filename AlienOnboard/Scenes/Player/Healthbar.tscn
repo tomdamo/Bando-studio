@@ -7,8 +7,8 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxkpj"]
 bg_color = Color(0.94902, 0.235294, 0.298039, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28p8n"]
-bg_color = Color(0.215686, 0.215686, 0.215686, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aeetd"]
+bg_color = Color(0.109804, 0.109804, 0.109804, 1)
 expand_margin_left = 1.0
 expand_margin_top = 1.0
 expand_margin_right = 1.0
@@ -33,6 +33,7 @@ size_flags_vertical = 8
 theme_override_styles/background = SubResource("StyleBoxEmpty_2vt2s")
 theme_override_styles/fill = SubResource("StyleBoxFlat_mxkpj")
 value = 60.0
+show_percentage = false
 script = ExtResource("1_7mhfe")
 
 [node name="DamageBar" type="ProgressBar" parent="."]
@@ -44,7 +45,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_28p8n")
+theme_override_styles/background = SubResource("StyleBoxFlat_aeetd")
 theme_override_styles/fill = SubResource("StyleBoxFlat_havfx")
 value = 80.0
 show_percentage = false
