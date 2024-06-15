@@ -471,7 +471,25 @@ offset_right = 1662.0
 offset_bottom = 117.0
 theme_override_fonts/font = ExtResource("2_lx36c")
 theme_override_font_sizes/font_size = 30
-text = "learn alien basics"
+text = "devour everyone."
+
+[node name="INTRO" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 920.0
+offset_top = 852.0
+offset_right = 1917.0
+offset_bottom = 1079.0
+theme_override_fonts/font = ExtResource("2_lx36c")
+theme_override_font_sizes/font_size = 42
+text = "\"Welcome, nascent one. 
+You are not yet born, 
+but your time is coming. 
+Learn to move, to hide, to strike. 
+Your survival depends on it.\""
+horizontal_alignment = 1
+
+[node name="IntroTextTimer" type="Timer" parent="Control"]
+wait_time = 6.0
 
 [node name="HowToWalk" type="Label3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 17.0813, -0.223657, 14.9482)
@@ -568,7 +586,7 @@ health = 10
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1444, -0.440889, 15.0469)
 
 [node name="GuardNPC" parent="." groups=["guard"] instance=ExtResource("5_36rfq")]
-transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 7.29526, -1.4688, 17.3228)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.84564, -1.4688, 17.9983)
 patrol_targets = Array[Vector3]([Vector3(6.26033, -0.440889, -4.24206), Vector3(-16.1444, -0.440889, -4.24206), Vector3(-16.1444, -0.440889, 15.0469), Vector3(7.29526, -1.4688, 17.3228)])
 
 [node name="GuardNPC2" parent="." groups=["guard"] instance=ExtResource("5_36rfq")]
@@ -922,6 +940,7 @@ one_shot = true
 [node name="Player" parent="." instance=ExtResource("13_ya836")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9675, -0.420058, 16.1147)
 
+[connection signal="timeout" from="Control/IntroTextTimer" to="." method="_on_intro_text_timer_timeout"]
 [connection signal="body_entered" from="WAYPOINT1/Waypoint1" to="." method="_on_waypoint_1_body_entered"]
 [connection signal="body_entered" from="WAYPOINT2/Waypoint2" to="." method="_on_waypoint_2_body_entered"]
 [connection signal="body_entered" from="WAYPOINT3/Waypoint3" to="." method="_on_waypoint_3_body_entered"]

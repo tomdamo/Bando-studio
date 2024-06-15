@@ -135,6 +135,7 @@ func _on_vision_timer_timeout():
 								playerSpotted = true
 								if(shot_timer.is_stopped()):
 									shot_timer.start()
+									$AudioStreamPlayer_Charge_gun.play()
 							else:
 								$VisionRaycast.debug_shape_custom_color = Color(0,255,0)
 								spotted_label.hide()
@@ -148,6 +149,7 @@ func _on_shot_timer_timeout():
 func shootAtTarget():
 	var bullet = Bullet.instantiate()
 	get_parent().add_child(bullet)
+	$AudioStreamPlayer_pew.play()
 	npc_position = self.global_transform.origin
 	npc_position.y += 1
 	bullet.global_transform.origin = npc_position

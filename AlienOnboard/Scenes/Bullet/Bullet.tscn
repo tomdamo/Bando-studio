@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://rt3g3qyepaqv"]
+[gd_scene load_steps=8 format=3 uid="uid://rt3g3qyepaqv"]
 
 [ext_resource type="Script" path="res://Scenes/Bullet/Bullet.gd" id="1_k52cw"]
 [ext_resource type="Script" path="res://Scenes/Bullet/traileffect.gd" id="2_kpbgb"]
-[ext_resource type="AudioStream" uid="uid://bq7bxya1onlvo" path="res://Scenes/Bullet/pew1.mp3" id="3_htjgl"]
 
 [sub_resource type="Shader" id="Shader_mbuul"]
 code = "shader_type spatial;
@@ -192,10 +191,6 @@ shape = SubResource("BoxShape3D_7uv1g")
 wait_time = 0.5
 one_shot = true
 autostart = true
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_htjgl")
-autoplay = true
 
 [connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
 [connection signal="timeout" from="BulletLifeTimer" to="." method="_on_bullet_life_timer_timeout"]

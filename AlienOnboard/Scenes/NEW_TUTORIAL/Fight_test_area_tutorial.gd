@@ -11,13 +11,15 @@ extends Node3D
 @onready var player = $Player/PlayerCharacterBody3D
 const POST_TUTORIAL_DIALOGUE = preload("res://Scenes/NEW_TUTORIAL/PostTutorialDialogue.tscn")
 
+@onready var intro = $Control/INTRO
+
 var tiphasbeenshown = false
 var player_total_kills
 var tutorial_done_kills = 8
 
 func _ready():
 	control.mouse_filter = true
-	
+	$Control/IntroTextTimer.start()
 func _process(delta):
 	if player.lab_kills >= 1 and !tiphasbeenshown:
 		tip.show()
@@ -50,3 +52,8 @@ func _on_waypoint_3_body_entered(body):
 
 func _on_finish_timer_timeout():
 	get_tree().change_scene_to_packed(POST_TUTORIAL_DIALOGUE)
+
+
+func _on_intro_text_timer_timeout():
+	intro.hide()
+
