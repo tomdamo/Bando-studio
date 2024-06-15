@@ -190,6 +190,8 @@ script = ExtResource("15_p53cv")
 [node name="PlayerCharacterBody3D" type="CharacterBody3D" parent="." groups=["Player"]]
 unique_name_in_owner = true
 transform = Transform3D(0.999903, 0.0139622, 0, -0.0139622, 0.999903, 0, 0, 0, 1, 0, 0, 0)
+floor_stop_on_slope = false
+floor_max_angle = 3.14159
 script = ExtResource("4_87qsm")
 
 [node name="PlayerArea3D" type="Area3D" parent="PlayerCharacterBody3D"]
