@@ -20,6 +20,7 @@ var tutorial_done_kills = 8
 func _ready():
 	control.mouse_filter = true
 	$Control/IntroTextTimer.start()
+	player.set_floor_max_angle(0.785398)
 func _process(delta):
 	if player.lab_kills >= 1 and !tiphasbeenshown:
 		tip.show()
@@ -40,19 +41,21 @@ func update_kill_count():
 func _on_waypoint_1_body_entered(body):
 	if "Player" in body.name:
 		waypoint_1.hide()
-
-
+		#Set respawn point/checkpoint
+		player.respawn_point = waypoint_1.get_position()
+#WAPOINT1.poisition
 func _on_waypoint_2_body_entered(body):
 	waypoint_2.hide()
-
+	player.respawn_point = waypoint_2.get_position()	
 
 func _on_waypoint_3_body_entered(body):
 	waypoint_3.hide()
-
+	player.respawn_point = waypoint_3.get_position()
+	
 
 func _on_finish_timer_timeout():
 	get_tree().change_scene_to_packed(POST_TUTORIAL_DIALOGUE)
-
+	
 
 func _on_intro_text_timer_timeout():
 	intro.hide()

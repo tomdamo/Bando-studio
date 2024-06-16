@@ -47,6 +47,7 @@ var eating = false
 @onready var hit_effect = %HitEffect
 @onready var health_amount = %Health_number
 var max_health = 100
+
 #Evolution 
 @export var lab_kills = 0
 @export var guard_kills = 0
@@ -56,6 +57,7 @@ var max_health = 100
 var evol_open = false
 var evo_pressed_tip = false
 var crit_on_unaware = false
+
 #Sense ability
 var senseActive = false
 @onready var Sense_Cooldown = %SenseCooldownTimer
@@ -69,16 +71,19 @@ var enemyVisibleMaterial: Material = load("res://Textures/EnemyVisible.tres")
 var enemyNormalMaterialGuard: Material = load("res://Scenes/Enemy/Guard/NPCNormalMaterial.tres")
 @onready var fight_test_area = $"../FightTestArea"
 
+#Checkpoint system
+#TODO: upon dying, respawn to the latest checkpoint.
+var respawn_point : Vector3
+@onready var respawn_timer = %RespawnTimer
+
 
 func _ready() -> void:
 	_camera = owner.get_node("%MainCamera3D")
 	_player_visual.top_level = true
 
-	health = 50
+	health = max_health
 	healthbar.init_health(health)
 	health_amount.set_text(str(health))
-	_camera = owner.get_node("%MainCamera3D")
-	_player_visual.top_level = true
 	dash_material = dash_icon.get_material()
 	sense_material = sense_icon.get_material()
 	sense_overlay.mouse_filter = true
@@ -121,7 +126,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Attack") and !eating and attack_timer.is_stopped():
 		attack()
 		#attack_timer.start()
-		
+	
 	if Input.is_action_just_pressed("Interact") and !eating:
 		eat()
 		
@@ -181,7 +186,8 @@ func _physics_process(delta: float) -> void:
 		
 		var sense_progress = 1 - (sense_time_left / sense_total_wait)
 		sense_material.set_shader_parameter("cooldown_progress", sense_progress)
-	
+		
+		
 
 
 func _process(_delta: float) -> void:
@@ -300,8 +306,29 @@ func die():
 	print("Player died")
 	print(health)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	get_tree().change_scene_to_file("res://Scenes/UI/GameOver2.tscn")
+	#get_tree().change_scene_to_file("res://Scenes/UI/GameOver2.tscn")
+	if respawn_timer.is_stopped():
+		respawn_timer.start()
+		%Respawn_Label.show()
+	if respawn_point == null:
+		if get_tree():
+			get_tree().reload_current_scene()
+	else:
+		respawn()
 
+func _on_respawn_timer_timeout():
+	%Respawn_Label.hide()
+		
+
+func respawn():
+	health = max_health
+	healthbar.init_health(health)
+	health_amount.set_text(str(health))
+	global_transform.origin = respawn_point
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#var newhealthbar = healthbar.instantiate()
+	#get_parent().add_child(newhealthbar)
+	
 func _on_eat_timer_timeout():
 	print("Eating started. Current kills: ", guard_kills, ", ", lab_kills)
 	eating = false;
