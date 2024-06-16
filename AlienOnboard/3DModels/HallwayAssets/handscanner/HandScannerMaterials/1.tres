@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dckmerlcwednm"]
+
+[ext_resource type="Texture2D" uid="uid://dmpyepjq4ouqj" path="res://3DModels/HallwayAssets/handscanner/handscanner-38daadc65af920f99e2caa9e3d66046d_handscanner-950fd1077dfdb1e328ad5bc8a72422e9_Substance_graph_basecolor copy.png" id="1_db7rs"]
+[ext_resource type="Texture2D" uid="uid://b8eehmrgck3ia" path="res://3DModels/HallwayAssets/handscanner/handscanner-38daadc65af920f99e2caa9e3d66046d_handscanner-950fd1077dfdb1e328ad5bc8a72422e9_Substance_graph_normal.png" id="2_4m7yy"]
+
+[resource]
+resource_name = "Material.013"
+albedo_color = Color(1, 1, 1, 1)
+albedo_texture = ExtResource("1_db7rs")
+metallic = 0.4
+roughness = 0.448513
+normal_enabled = true
+normal_texture = ExtResource("2_4m7yy")

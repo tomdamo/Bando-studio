@@ -3,6 +3,8 @@ extends CharacterBody3D
 @export var SPEED: float = 5.0
 @export var JUMP_VELOCITY: float = 4.5
 @export var enable_gravity = true
+@onready var animation_tree = $PlayerVisual/PlayerDirection/AnimationPlayer/AnimationTree
+@onready var anim_state: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 
 @onready var _camera: Camera3D
 @onready var _player_visual: Node3D = %PlayerVisual
@@ -28,7 +30,7 @@ var dash_timer = 0.0
 
 #Pause
 var paused = false
-@onready var pause_menu = %PauseMenu 
+@onready var pause_menu = %PauseMenu
 
 #Health, damage etc.
 var health: float
@@ -48,7 +50,7 @@ var eating = false
 @onready var health_amount = %Health_number
 var max_health = 100
 
-#Evolution 
+#Evolution
 @export var lab_kills = 0
 @export var guard_kills = 0
 @export var lab_points = 0
@@ -106,37 +108,42 @@ func _physics_process(delta: float) -> void:
 		"move_forward",
 		"move_back"
 	)
-	
+
 	if Input.is_action_just_pressed("pause") and !evol_open:
 		_pauseMenu()
-	
+
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
-	
+
 	if Input.is_action_just_pressed("evolution_menu"):
 		evo_pressed_tip = true
 		_evolutionMenu()
 	#See enemies layer through the walls  and not senseActive and sense_cooldown_timer.is_stopped()
 	if Input.is_action_just_pressed("SenseAbility") and !senseActive and Sense_Cooldown.is_stopped():
-		senseActive = true		
-		print("Sense if passed")		
+		senseActive = true
+		print("Sense if passed")
 		_activateSenseAbility()
-		sense_material.set_shader_parameter("cooldown_progress", 0)		
-	
+		sense_material.set_shader_parameter("cooldown_progress", 0)
+
 	if Input.is_action_just_pressed("Attack") and !eating and attack_timer.is_stopped():
 		attack()
+		animation_tree.set("parameters/CanAttack", true)
+		play_animation("Attack")
 		#attack_timer.start()
-	
+
 	if Input.is_action_just_pressed("Interact") and !eating:
 		eat()
-		
-	if Input.is_action_just_pressed("Jump") and is_on_floor() and !eating:
-		velocity.y = JUMP_VELOCITY
-		
+
+	if Input.is_action_just_pressed("jump") and is_on_floor() and !eating:
+			velocity.y = JUMP_VELOCITY
+			animation_tree.set("parameters/CanJump", true)
+			play_animation("Jump")
+
+
 	#dash and movement
 	var cam_dir: Vector3 = -_camera.global_transform.basis.z
 	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
+
 	if Input.is_action_just_pressed("dash") and !dashing and dash_cooldown_timer.is_stopped() and !eating:
 		dashing = true
 		dash_direction = cam_dir
@@ -144,7 +151,9 @@ func _physics_process(delta: float) -> void:
 		dash_cooldown_timer.start()
 		dash_sound.play()
 		dash_material.set_shader_parameter("cooldown_progress", 0)  # Dash just used, so cooldown is 0
-	
+		animation_tree.set("parameters/CanDash", true)
+		play_animation("dash")
+
 	if dashing:
 		velocity += dash_direction * DASH_SPEED
 		dash_timer -= delta
@@ -167,6 +176,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
+			play_animation("Idle")
 
 	move_and_slide()
 
@@ -176,18 +186,18 @@ func _physics_process(delta: float) -> void:
 	if !dash_cooldown_timer.is_stopped():
 		var time_left = dash_cooldown_timer.get_time_left()
 		var total_wait_time = dash_cooldown_timer.get_wait_time()
-	
+
 		var cooldown_progress = 1 - (time_left / total_wait_time)
 		dash_material.set_shader_parameter("cooldown_progress", cooldown_progress)
-		
+
 	if !Sense_Cooldown.is_stopped():
 		var sense_time_left = Sense_Cooldown.get_time_left()
 		var sense_total_wait = Sense_Cooldown.get_wait_time()
-		
+
 		var sense_progress = 1 - (sense_time_left / sense_total_wait)
 		sense_material.set_shader_parameter("cooldown_progress", sense_progress)
-		
-		
+
+
 
 
 func _process(_delta: float) -> void:
@@ -199,7 +209,7 @@ func _process(_delta: float) -> void:
 
 func _on_dash_cooldown_timer_timeout():
 	dash_material.set_shader_parameter("cooldown_progress", 1)  # Dash ready, so cooldown is 1
-	
+
 func _activateSenseAbility():
 	active_sense_time.start()
 	sense_overlay.show()
@@ -213,13 +223,13 @@ func _activateSenseAbility():
 	#
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		print(enemy)
-		if enemy.has_node("MeshInstance3D"): 
+		if enemy.has_node("MeshInstance3D"):
 			var meshInstance : MeshInstance3D = enemy.get_node("MeshInstance3D")
 			meshInstance.set_surface_override_material(1, enemyVisibleMaterial)
 		if enemy.has_node("MeshInstance3DG"):
-			var meshInstanceGuard : MeshInstance3D = enemy.get_node("MeshInstance3DG")						
-			meshInstanceGuard.set_surface_override_material(0, enemyVisibleMaterial)			
-			
+			var meshInstanceGuard : MeshInstance3D = enemy.get_node("MeshInstance3DG")
+			meshInstanceGuard.set_surface_override_material(0, enemyVisibleMaterial)
+
 
 func _deactivateSenseAbility():
 	senseActive = false
@@ -231,9 +241,9 @@ func _deactivateSenseAbility():
 			var meshInstance = enemy.get_node("MeshInstance3D")
 			meshInstance.set_surface_override_material(1, enemyNormalMaterial)
 		if enemy.has_node("MeshInstance3DG"):
-			var meshInstanceGuard = enemy.get_node("MeshInstance3DG")			
-			meshInstanceGuard.set_surface_override_material(0, enemyNormalMaterialGuard)			
-			
+			var meshInstanceGuard = enemy.get_node("MeshInstance3DG")
+			meshInstanceGuard.set_surface_override_material(0, enemyNormalMaterialGuard)
+
 func _on_sense_cooldown_timer_timeout():
 	sense_material.set_shader_parameter("cooldown_progress", 1)
 
@@ -267,6 +277,7 @@ func _evolutionMenu():
 	evol_open = !evol_open
 #Attack
 func attack():
+	play_animation("AttackTail")
 	var bodies = attack_range.get_overlapping_bodies()
 	print(bodies)
 	for body in bodies:
@@ -285,7 +296,9 @@ func eat():
 				damageNumber.set_damage("nom nom nom")
 				eat_timer.start()
 				eating = true
-	
+				animation_tree.set("parameters/CanEat", true)
+				play_animation("eat")
+
 func take_damage(damageAmount):
 	hit_effect.set_emitting(true)
 	var damageNumber = damage_number.instantiate()
@@ -297,14 +310,15 @@ func take_damage(damageAmount):
 		damage_timer.start()
 	health -= damageAmount
 	hit_sound.play()
-	healthbar.health = health 
-	health_amount.set_text(str(health))					
+	healthbar.health = health
+	health_amount.set_text(str(health))
 	if health <= 0:
 		die()
-	
+
 func die():
 	print("Player died")
 	print(health)
+	play_animation("deathanim")
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	#get_tree().change_scene_to_file("res://Scenes/UI/GameOver2.tscn")
 	if respawn_timer.is_stopped():
@@ -318,7 +332,7 @@ func die():
 
 func _on_respawn_timer_timeout():
 	%Respawn_Label.hide()
-		
+
 
 func respawn():
 	health = max_health
@@ -328,7 +342,7 @@ func respawn():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	#var newhealthbar = healthbar.instantiate()
 	#get_parent().add_child(newhealthbar)
-	
+
 func _on_eat_timer_timeout():
 	print("Eating started. Current kills: ", guard_kills, ", ", lab_kills)
 	eating = false;
@@ -350,7 +364,7 @@ func _on_eat_timer_timeout():
 				if health < max_health:
 					health += 5
 				healthbar.health = health
-				health_amount.set_text(str(health))				
+				health_amount.set_text(str(health))
 				body.dissapear()
 				if fight_test_area != null:
 					fight_test_area.update_kill_count()
@@ -362,17 +376,24 @@ func _on_eat_timer_timeout():
 				print(str(guard_kills))
 				if health < max_health:
 					health += 10
-				healthbar.health = health	
-				health_amount.set_text(str(health))											
+				healthbar.health = health
+				health_amount.set_text(str(health))
 				body.dissapear()
 				if fight_test_area != null:
 					fight_test_area.update_kill_count()
-	print("Eating ended. Final kills: ", guard_kills,", ", lab_kills)	
+	print("Eating ended. Final kills: ", guard_kills,", ", lab_kills)
 
-	
+
 func _on_damage_timer_timeout():
 	if health > 10:
 		blood_vignette.hide()
 	else:
 		blood_vignette.show()
+
+func play_animation(state_name: String):
+	if anim_state.is_playing():
+		anim_state.stop()
+		anim_state.start(state_name)
+
+
 

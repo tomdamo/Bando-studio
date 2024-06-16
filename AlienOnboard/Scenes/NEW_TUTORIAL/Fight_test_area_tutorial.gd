@@ -21,25 +21,25 @@ func _ready():
 	control.mouse_filter = true
 	$Control/IntroTextTimer.start()
 	player.set_floor_max_angle(0.785398)
-	
+
 func _process(delta):
 	if player.lab_kills >= 1 and !tiphasbeenshown:
 		tip.show()
 		tip_dna.show()
 		tiphasbeenshown = true
-	if player.lab_kills > 1 or player.evo_pressed_tip: 
+	if player.lab_kills > 1 or player.evo_pressed_tip:
 		tip.hide()
 		tip_dna.hide()
 	if player.guard_kills == 2:
 		print("tutorial finished")
 		if finish_timer.is_stopped():
 			finish_timer.start()
-		
+
 func update_kill_count():
 	print("kill count updated")
 	player.lab_kills += player_total_kills
 	player.guard_kills += player_total_kills
-	
+
 func _on_waypoint_1_body_entered(body):
 	if "Player" in body.name:
 		waypoint_1.hide()
@@ -48,16 +48,16 @@ func _on_waypoint_1_body_entered(body):
 #WAPOINT1.poisition
 func _on_waypoint_2_body_entered(body):
 	waypoint_2.hide()
-	player.respawn_point = waypoint_2.get_position()	
+	player.respawn_point = waypoint_2.get_position()
 
 func _on_waypoint_3_body_entered(body):
 	waypoint_3.hide()
 	player.respawn_point = waypoint_3.get_position()
-	
+
 
 func _on_finish_timer_timeout():
 	get_tree().change_scene_to_packed(POST_TUTORIAL_DIALOGUE)
-	
+
 
 func _on_intro_text_timer_timeout():
 	intro.hide()

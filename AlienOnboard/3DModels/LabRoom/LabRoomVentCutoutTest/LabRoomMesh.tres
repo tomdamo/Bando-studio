@@ -1,6 +1,6 @@
 [gd_resource type="ArrayMesh" load_steps=5 format=3 uid="uid://clpmey4wh6wfm"]
 
-[ext_resource type="Texture2D" uid="uid://cnxuhkowya3w6" path="res://3DModels/LabRoom/LabRoomVentCutoutTest/LabRoomWithCutouts-54dc6e918b31ad81422a33fedfbdcce9_SciFiPanels16_a2.png" id="1_5prrc"]
+[ext_resource type="Texture2D" uid="uid://di3sj5lp6tf4y" path="res://3DModels/LabRoom/LabRoomVentCutoutTest/LabRoomWithCutouts-54dc6e918b31ad81422a33fedfbdcce9_SciFiPanels16_a2.png" id="1_5prrc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lt14b"]
 resource_name = "Material.001"

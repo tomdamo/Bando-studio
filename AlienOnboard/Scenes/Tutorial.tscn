@@ -1157,7 +1157,6 @@ one_shot = true
 
 [node name="PauseMenu" parent="TutorialTriggers/Control" instance=ExtResource("14_0ep6x")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 
 [node name="QuestTrigger" type="Area3D" parent="TutorialTriggers"]
@@ -1857,7 +1856,7 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="BeehaveTree" type="Node" parent="enemies/Enemy1" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("15_nvitn")
-blackboard = NodePath("@Node@17485")
+blackboard = NodePath("@Node@17612")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="enemies/Enemy1/BeehaveTree"]
@@ -1922,10 +1921,10 @@ transform = Transform3D(-0.00581184, 0, 1.49999, 0, 1.5, 0, -1.49999, 0, -0.0058
 [node name="LabNPC3" parent="." instance=ExtResource("26_xxpd1")]
 transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, -8.95972, 2.30735, 3.17882)
 
-[node name="LabNPC2" parent="." groups=["enemies"] instance=ExtResource("26_xxpd1")]
+[node name="LabNPC2" parent="." instance=ExtResource("26_xxpd1")]
 transform = Transform3D(1.32931, -2.21257e-16, 0.694944, 5.2318e-16, 1.5, -5.2318e-16, -0.694944, 7.06032e-16, 1.32931, 11.3271, 2.10312, 9.8306)
 
-[node name="GuardNPC" parent="." groups=["enemies"] instance=ExtResource("27_vpyec")]
+[node name="GuardNPC" parent="." instance=ExtResource("27_vpyec")]
 transform = Transform3D(-1.5, 0, 1.31134e-07, 0, 1.5, 0, -1.31134e-07, 0, -1.5, -24.5207, 2, -27.9585)
 
 [connection signal="area_entered" from="TutorialTriggers/QuestTrigger" to="TutorialTriggers" method="_on_quest_trigger_area_entered"]

@@ -14,7 +14,7 @@ extends Node3D
 @onready var quest_3 = $Control/Quest3
 @onready var quest_4 = $Control/Quest4
 @onready var quest_5 = $Control/Quest5
-@onready var quest_6 = $Control/Quest6 
+@onready var quest_6 = $Control/Quest6
 
 @onready var player = $Player/PlayerCharacterBody3D
 
@@ -34,7 +34,7 @@ func _process(delta):
 		security_door.queue_free()
 		door_closed_lab.queue_free()
 		security_door_open = true
-		
+
 func _on_waypoint_1_body_entered(body):
 	if "Player" in body.name:
 		waypoint_1.hide()
