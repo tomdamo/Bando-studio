@@ -4,6 +4,7 @@
 # Godot-specific ignores
 .import/
 export.cfg
+ShipFinal.tscn
 export_presets.cfg
 
 # Imported translations (automatically generated from CSV files)
