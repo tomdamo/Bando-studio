@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ugd75701em2q"
 path.s3tc="res://.godot/imported/HologramLines.png-8d1ce749d4b168e15f898d7fe376e316.s3tc.ctex"
-path.etc2="res://.godot/imported/HologramLines.png-8d1ce749d4b168e15f898d7fe376e316.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Textures/Shaders/HologramLines.png"
-dest_files=["res://.godot/imported/HologramLines.png-8d1ce749d4b168e15f898d7fe376e316.s3tc.ctex", "res://.godot/imported/HologramLines.png-8d1ce749d4b168e15f898d7fe376e316.etc2.ctex"]
+dest_files=["res://.godot/imported/HologramLines.png-8d1ce749d4b168e15f898d7fe376e316.s3tc.ctex"]
 
 [params]
 

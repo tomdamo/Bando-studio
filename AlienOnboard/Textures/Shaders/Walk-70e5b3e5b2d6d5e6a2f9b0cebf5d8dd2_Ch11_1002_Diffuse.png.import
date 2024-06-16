@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://boo4l070buyan"
 path.s3tc="res://.godot/imported/Walk-70e5b3e5b2d6d5e6a2f9b0cebf5d8dd2_Ch11_1002_Diffuse.png-c5a80d449f7d05f221c3516f85f4e908.s3tc.ctex"
-path.etc2="res://.godot/imported/Walk-70e5b3e5b2d6d5e6a2f9b0cebf5d8dd2_Ch11_1002_Diffuse.png-c5a80d449f7d05f221c3516f85f4e908.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -14,7 +13,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://Textures/Shaders/Walk-70e5b3e5b2d6d5e6a2f9b0cebf5d8dd2_Ch11_1002_Diffuse.png"
-dest_files=["res://.godot/imported/Walk-70e5b3e5b2d6d5e6a2f9b0cebf5d8dd2_Ch11_1002_Diffuse.png-c5a80d449f7d05f221c3516f85f4e908.s3tc.ctex", "res://.godot/imported/Walk-70e5b3e5b2d6d5e6a2f9b0cebf5d8dd2_Ch11_1002_Diffuse.png-c5a80d449f7d05f221c3516f85f4e908.etc2.ctex"]
+dest_files=["res://.godot/imported/Walk-70e5b3e5b2d6d5e6a2f9b0cebf5d8dd2_Ch11_1002_Diffuse.png-c5a80d449f7d05f221c3516f85f4e908.s3tc.ctex"]
 
 [params]
 

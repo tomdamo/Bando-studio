@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dvsp6pibvud5q"
 path.s3tc="res://.godot/imported/guard-efa26ed26a169e19568b6dfb5a3d97ed_ao_met_rough_Ch18_1001_Glossiness.png-70bd5be31bfb5d61603db46b23561720.s3tc.ctex"
-path.etc2="res://.godot/imported/guard-efa26ed26a169e19568b6dfb5a3d97ed_ao_met_rough_Ch18_1001_Glossiness.png-70bd5be31bfb5d61603db46b23561720.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -14,7 +13,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://3DModels/guard-efa26ed26a169e19568b6dfb5a3d97ed_ao_met_rough_Ch18_1001_Glossiness.png"
-dest_files=["res://.godot/imported/guard-efa26ed26a169e19568b6dfb5a3d97ed_ao_met_rough_Ch18_1001_Glossiness.png-70bd5be31bfb5d61603db46b23561720.s3tc.ctex", "res://.godot/imported/guard-efa26ed26a169e19568b6dfb5a3d97ed_ao_met_rough_Ch18_1001_Glossiness.png-70bd5be31bfb5d61603db46b23561720.etc2.ctex"]
+dest_files=["res://.godot/imported/guard-efa26ed26a169e19568b6dfb5a3d97ed_ao_met_rough_Ch18_1001_Glossiness.png-70bd5be31bfb5d61603db46b23561720.s3tc.ctex"]
 
 [params]
 

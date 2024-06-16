@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dy6rxywo7sqg3"
 path.s3tc="res://.godot/imported/labperson-7d985c4182fe7c7dee888143218c4c67_ao_met_rough_Ch11_1002_Glossiness.png-65545b76df25cf85f5522acc966802b5.s3tc.ctex"
-path.etc2="res://.godot/imported/labperson-7d985c4182fe7c7dee888143218c4c67_ao_met_rough_Ch11_1002_Glossiness.png-65545b76df25cf85f5522acc966802b5.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -14,7 +13,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://3DModels/labperson-7d985c4182fe7c7dee888143218c4c67_ao_met_rough_Ch11_1002_Glossiness.png"
-dest_files=["res://.godot/imported/labperson-7d985c4182fe7c7dee888143218c4c67_ao_met_rough_Ch11_1002_Glossiness.png-65545b76df25cf85f5522acc966802b5.s3tc.ctex", "res://.godot/imported/labperson-7d985c4182fe7c7dee888143218c4c67_ao_met_rough_Ch11_1002_Glossiness.png-65545b76df25cf85f5522acc966802b5.etc2.ctex"]
+dest_files=["res://.godot/imported/labperson-7d985c4182fe7c7dee888143218c4c67_ao_met_rough_Ch11_1002_Glossiness.png-65545b76df25cf85f5522acc966802b5.s3tc.ctex"]
 
 [params]
 

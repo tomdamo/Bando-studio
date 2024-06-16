@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dwnp3387tfw5x"
 path.bptc="res://.godot/imported/panorama6.jpg-fb33b317330358e47b31b709b38b7588.bptc.ctex"
-path.astc="res://.godot/imported/panorama6.jpg-fb33b317330358e47b31b709b38b7588.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Textures/Skybox/SpacePanoramas/panorama6.jpg"
-dest_files=["res://.godot/imported/panorama6.jpg-fb33b317330358e47b31b709b38b7588.bptc.ctex", "res://.godot/imported/panorama6.jpg-fb33b317330358e47b31b709b38b7588.astc.ctex"]
+dest_files=["res://.godot/imported/panorama6.jpg-fb33b317330358e47b31b709b38b7588.bptc.ctex"]
 
 [params]
 

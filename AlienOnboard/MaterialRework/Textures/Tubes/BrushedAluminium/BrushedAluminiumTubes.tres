@@ -1,18 +1,14 @@
 [gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://6cflf5nccm7d"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3swy5"]
-load_path = "res://.godot/imported/cable.001_Bake1_PBR_Diffuse.png-faf6a9f36bf4aa8ca5c5c653ae249162.s3tc.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l04v0"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oq8t4"]
-load_path = "res://.godot/imported/cable.001_Bake1_PBR_Metalness.png-c07e24db0df6f6540d24d9c0fff26477.s3tc.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ws6i2"]
-load_path = "res://.godot/imported/cable.001_Bake1_PBR_Normal.png-7f0a70fa3dc0a9251faa31d7cc26127a.s3tc.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r8oqb"]
-load_path = "res://.godot/imported/cable.001_Bake1_PBR_Roughness.png-2bc77551bc2899c1dfc8e065035f6b78.s3tc.ctex"
 
 [resource]
 albedo_texture = SubResource("CompressedTexture2D_3swy5")
