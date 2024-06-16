@@ -58,6 +58,8 @@ far = 4000.0
 height = 1.28795
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s13ag"]
+margin = 0.03
+radius = 0.4
 
 [sub_resource type="SphereMesh" id="SphereMesh_usucq"]
 
