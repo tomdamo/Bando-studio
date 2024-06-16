@@ -21,6 +21,7 @@ func _ready():
 	control.mouse_filter = true
 	$Control/IntroTextTimer.start()
 	player.set_floor_max_angle(0.785398)
+	
 func _process(delta):
 	if player.lab_kills >= 1 and !tiphasbeenshown:
 		tip.show()
@@ -29,9 +30,10 @@ func _process(delta):
 	if player.lab_kills > 1 or player.evo_pressed_tip: 
 		tip.hide()
 		tip_dna.hide()
-	if player_total_kills == tutorial_done_kills and finish_timer.is_stopped():
+	if player.guard_kills == 2:
 		print("tutorial finished")
-		finish_timer.start()
+		if finish_timer.is_stopped():
+			finish_timer.start()
 		
 func update_kill_count():
 	print("kill count updated")
