@@ -18,10 +18,11 @@ extends Node3D
 
 @onready var player = $Player/PlayerCharacterBody3D
 
+@onready var door_closed_lab = $Rooms/Labroom/RootNode/DoorClosedLab
 
 @onready var security_door = $Rooms/sleep/RootNode/SECURITY_DOOR
 var security_door_open = false
-
+var gaurd_kills_goal = 4
 
 func _ready():
 	gas_timer.start()
@@ -29,15 +30,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-
-
-func open_security():
-	#if alle guards dood zijn
-	security_door.queue_free()
-	pass
-	
-	
+	if player.guard_kills == gaurd_kills_goal and !security_door_open:
+		security_door.queue_free()
+		door_closed_lab.queue_free()
+		security_door_open = true
+		
 func _on_waypoint_1_body_entered(body):
 	if "Player" in body.name:
 		waypoint_1.hide()
@@ -54,6 +51,7 @@ func _on_waypoint_2_body_entered(body):
 		quest_4.hide()
 		quest_5.show()
 
+#UIT DE GASSSSSSSS
 func _on_waypoint_first_body_entered(body):
 	if "Player" in body.name:
 		waypoint_3.hide()
@@ -61,7 +59,7 @@ func _on_waypoint_first_body_entered(body):
 		player.respawn_point = waypoint_3.get_position()
 		$Control/Quest1.hide()
 		$Control/Quest2.show()
-		
+		$VentCutscene/AnimationPlayer.play("VentCutscene")
 func _on_gas_timer_timeout():
 	var overlaps = gas_area_3d.get_overlapping_bodies()
 	for body in overlaps:
