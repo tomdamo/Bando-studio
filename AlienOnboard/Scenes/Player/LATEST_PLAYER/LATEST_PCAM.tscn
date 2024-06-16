@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ddhw0010gg8m6"]
+[gd_scene load_steps=36 format=3 uid="uid://ddhw0010gg8m6"]
 
 [ext_resource type="Script" path="res://Scenes/Player/LATEST_PLAYER/LATEST_player_controller_third_person.gd" id="4_87qsm"]
 [ext_resource type="Material" uid="uid://ctjy3h3vax8m5" path="res://Scenes/Bullet/hitEffect.tres" id="5_b5qlx"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://b18ktpa60vstt" path="res://Scenes/Player/UPDATED_PC_PLAYER/hitsound1.mp3" id="13_r5s6r"]
 [ext_resource type="AudioStream" uid="uid://br0dx23nelga8" path="res://Scenes/Player/UPDATED_PC_PLAYER/DashSound.mp3" id="14_gqyee"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="14_r1wwr"]
+[ext_resource type="LabelSettings" uid="uid://c7q4l45ml1ihd" path="res://evolution menu font.tres" id="15_mo4qp"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="15_p53cv"]
 
 [sub_resource type="Resource" id="Resource_v4pu1"]
@@ -191,6 +192,7 @@ script = ExtResource("15_p53cv")
 unique_name_in_owner = true
 transform = Transform3D(0.999903, 0.0139622, 0, -0.0139622, 0.999903, 0, 0, 0, 1, 0, 0, 0)
 floor_stop_on_slope = false
+floor_block_on_wall = false
 floor_max_angle = 3.14159
 script = ExtResource("4_87qsm")
 
@@ -263,6 +265,11 @@ one_shot = true
 [node name="AttackTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 0.5
+one_shot = true
+
+[node name="RespawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 2.0
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -353,6 +360,18 @@ offset_bottom = 1084.0
 text = "30"
 label_settings = SubResource("LabelSettings_mwkpe")
 
+[node name="Respawn_Label" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+offset_left = 708.0
+offset_top = 425.0
+offset_right = 1283.0
+offset_bottom = 538.0
+text = "you failed your mission.
+respawn to latest checkpoint."
+label_settings = ExtResource("15_mo4qp")
+horizontal_alignment = 1
+
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("13_r5s6r")
@@ -375,3 +394,4 @@ unique_name_in_owner = true
 [connection signal="timeout" from="DamageTimer" to="PlayerCharacterBody3D" method="_on_damage_timer_timeout"]
 [connection signal="timeout" from="EatTimer" to="PlayerCharacterBody3D" method="_on_eat_timer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="PlayerCharacterBody3D" method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="RespawnTimer" to="PlayerCharacterBody3D" method="_on_respawn_timer_timeout"]
