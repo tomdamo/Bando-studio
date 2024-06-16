@@ -128,16 +128,17 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Attack") and !eating and attack_timer.is_stopped():
 		attack()
 		animation_tree.set("parameters/CanAttack", true)
+		animation_tree.set("parameters/TimeScale/scale", 5.0)
 		play_animation("Attack")
 		#attack_timer.start()
 
 	if Input.is_action_just_pressed("Interact") and !eating:
 		eat()
 
-	if Input.is_action_just_pressed("jump") and is_on_floor() and !eating:
-			velocity.y = JUMP_VELOCITY
-			animation_tree.set("parameters/CanJump", true)
-			play_animation("Jump")
+	if Input.is_action_just_pressed("Jump") and is_on_floor() and !eating:
+		velocity.y = JUMP_VELOCITY
+		animation_tree.set("parameters/CanJump", true)
+		play_animation("jump")
 
 
 	#dash and movement
@@ -173,6 +174,7 @@ func _physics_process(delta: float) -> void:
 			move_dir = move_dir.rotated(Vector3.UP, _camera.rotation.y).normalized()
 			velocity.x = move_dir.x * SPEED
 			velocity.z = move_dir.z * SPEED
+
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
@@ -318,7 +320,8 @@ func take_damage(damageAmount):
 func die():
 	print("Player died")
 	print(health)
-	play_animation("deathanim")
+	animation_tree.set("parameters/IsDead", true)
+	play_animation("dash")
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	#get_tree().change_scene_to_file("res://Scenes/UI/GameOver2.tscn")
 	if respawn_timer.is_stopped():
