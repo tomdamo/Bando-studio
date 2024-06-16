@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cfd1rayu41mn2"]
+
+[ext_resource type="Shader" path="res://Shaders/Gas.gdshader" id="1_wm2yf"]
+
+[resource]
+shader = ExtResource("1_wm2yf")
+shader_parameter/base_density = 1.0
+shader_parameter/base_color = Color(0, 0.713726, 0, 1)
+shader_parameter/fade_out_height = 2.0
+shader_parameter/fade_out_distance = 1.0
+shader_parameter/noise_amounts = Vector3(0.4, 0.35, 0.25)
+shader_parameter/noise_scales = Vector3(1, 2, 4)
+shader_parameter/noise_velocity1 = Vector3(0.5, 0, 0)
+shader_parameter/noise_velocity2 = Vector3(1, 21.35, -1)
+shader_parameter/noise_velocity3 = Vector3(0, 0.6, 0.3)

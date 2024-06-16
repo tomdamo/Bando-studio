@@ -3,7 +3,7 @@
 [ext_resource type="Shader" path="res://Scenes/LevelDesign/Waypoint/waypoint circular.gdshader" id="1_jgl6k"]
 [ext_resource type="Script" path="res://Scenes/LevelDesign/Waypoint/waypoint.gd" id="2_e710f"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_p887g"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vsfd2"]
 render_priority = 0
 shader = ExtResource("1_jgl6k")
 shader_parameter/color = Color(0, 0.780392, 0.694118, 1)
@@ -11,11 +11,11 @@ shader_parameter/density = 0.56
 shader_parameter/radial_res = 10.0
 shader_parameter/angular_res = 3.0
 shader_parameter/line_space = 0.48
-shader_parameter/revolutions = 0.657997
+shader_parameter/revolutions = 84.1036
 shader_parameter/emission = 4.6
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4gp0o"]
-material = SubResource("ShaderMaterial_p887g")
+material = SubResource("ShaderMaterial_vsfd2")
 
 [node name="Waypoint" type="Node3D"]
 
