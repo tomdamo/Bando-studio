@@ -11,7 +11,7 @@ radiance_size = 1
 
 [resource]
 background_mode = 2
-background_energy_multiplier = 6.03
+background_energy_multiplier = 12.76
 sky = SubResource("Sky_jl18b")
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
