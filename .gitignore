@@ -6,7 +6,7 @@
 export.cfg
 ShipFinal.tscn
 export_presets.cfg
-
+AlienOnboard/Scenes/ShipFinal.tscn
 # Imported translations (automatically generated from CSV files)
 *.translation
 
