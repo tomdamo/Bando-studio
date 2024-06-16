@@ -7,10 +7,10 @@
 resource_name = "Material.014"
 cull_mode = 2
 albedo_texture = ExtResource("1_yd6q7")
-metallic = 0.2
-roughness = 0.722727
+metallic_specular = 0.39
 normal_enabled = true
-normal_scale = -1.54
+normal_scale = 0.1
 normal_texture = ExtResource("2_abkop")
 uv1_triplanar_sharpness = 0.659753
 uv1_world_triplanar = true
+uv2_offset = Vector3(-0.97, 2.08165e-12, 2.08165e-12)
