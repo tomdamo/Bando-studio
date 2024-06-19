@@ -30,10 +30,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if player.guard_kills == gaurd_kills_goal and !security_door_open:
-		security_door.queue_free()
-		door_closed_lab.queue_free()
-		security_door_open = true
+	#if player.guard_kills == gaurd_kills_goal and !security_door_open:
+		#security_door.queue_free()
+		#door_closed_lab.queue_free()
+		#security_door_open = true
+	#security_door.queue_free()
+	#door_closed_lab.queue_free()
+	security_door_open = true
 
 func _on_waypoint_1_body_entered(body):
 	if "Player" in body.name:

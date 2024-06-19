@@ -4,38 +4,38 @@ extends Control
 # 1 points
 #Claw Sharpening: Increase melee damage by 10%
 @onready var upgrade_guard_1 = $HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer/UpgradeGuard1
-#Silent Predator: Reduced noise from attacks. 
+#Silent Predator: Reduced noise from attacks.
 @onready var upgrade_guard_2 = $HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer/UpgradeGuard2
 # 3 points
-#Enhanced Claws: Further increase melee damage by 20%. 
+#Enhanced Claws: Further increase melee damage by 20%.
 @onready var upgrade_guard_3 = $HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer/UpgradeGuard3
-#Enhanced Range: Attack range increased by 20% 
+#Enhanced Range: Attack range increased by 20%
 @onready var upgrade_guard_4 = $HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer/UpgradeGuard4
 # 5 points
-#Razor Fangs: Additional 30% increase in melee damage. 
+#Razor Fangs: Additional 30% increase in melee damage.
 @onready var upgrade_guard_5 = $HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer/UpgradeGuard5
-#Lethal Precision: Guaranteed critical hits on unaware targets. 
+#Lethal Precision: Guaranteed critical hits on unaware targets.
 @onready var upgrade_guard_6 = $HBoxContainer/VBoxContainerGUARD/HBoxContainer/VBoxContainer/UpgradeGuard6
 
 #Lab
 # 2 points
-#Resilient Exoskeleton: Increase maximum health by 15%. 
+#Resilient Exoskeleton: Increase maximum health by 15%.
 @onready var upgrade_lab_1 = $HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab1
-#Quick Reflexes: Reduce dash cooldown by 10%. 
+#Quick Reflexes: Reduce dash cooldown by 10%.
 @onready var upgrade_lab_2 = $HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab2
 # 4 points
-#Reinforced Exoskeleton: Further increase maximum health by 25%. 
+#Reinforced Exoskeleton: Further increase maximum health by 25%.
 @onready var upgrade_lab_3 = $HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab3
-#Accelerated Metabolism: Reduce dash cooldown by 20%. 
+#Accelerated Metabolism: Reduce dash cooldown by 20%.
 @onready var upgrade_lab_4 = $HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab4
-#Eagle Vision: Reduce vision ability cooldown by 10%. 
+#Eagle Vision: Reduce vision ability cooldown by 10%.
 @onready var upgrade_lab_5 = $HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab5
 # 6 points
-#Fortified Exoskeleton: Additional 35% increase in maximum health. 
+#Fortified Exoskeleton: Additional 35% increase in maximum health.
 @onready var upgrade_lab_6 = $HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab6
-#Flash Dash: Reduce dash cooldown by 30%. 
+#Flash Dash: Reduce dash cooldown by 30%.
 @onready var upgrade_lab_7 = $HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab7
-#Supreme Vision: Reduce vision ability cooldown by 20%. 
+#Supreme Vision: Reduce vision ability cooldown by 20%.
 @onready var upgrade_lab_8 = $HBoxContainer/VBoxContainer2LAB/HBoxContainer2/VBoxContainer/UpgradeLab8
 
 #upgrade Info
@@ -88,7 +88,7 @@ func _update_upgrade_buttons():
 func _on_upgrade_guard_1_focus_entered():
 	tooltipToLabel = upgrade_guard_1.get_tooltip_text()
 	upgrade_info.set_text(tooltipToLabel)
-	
+
 
 func _on_upgrade_guard_2_focus_entered():
 	tooltipToLabel = upgrade_guard_2.get_tooltip_text()
@@ -166,7 +166,7 @@ func _on_upgrade_guard_2_pressed():
 		upgrades_applied["guard_2"] = true
 		# reduce sound
 		_update_upgrade_buttons()
-		
+
 func _on_upgrade_guard_3_pressed():
 	if player.guard_points >= 3 and "guard_3" not in upgrades_applied:
 		player.guard_points -= 3
@@ -187,7 +187,7 @@ func _on_upgrade_guard_5_pressed():
 		upgrades_applied["guard_5"] = true
 		player.damage *= 1.3 # Additional 30% increase in melee damage
 		_update_upgrade_buttons()
-		
+
 func _on_upgrade_guard_6_pressed():
 	if player.guard_points >= 5 and "guard_6" not in upgrades_applied:
 		player.guard_points -= 5
@@ -201,7 +201,7 @@ func _on_upgrade_lab_1_pressed():
 		upgrades_applied["lab_1"] = true
 		print(player.max_health)
 		player.max_health *= 1.15
-		print(player.max_health)		
+		print(player.max_health)
 		_update_upgrade_buttons()
 
 func _on_upgrade_lab_2_pressed():
