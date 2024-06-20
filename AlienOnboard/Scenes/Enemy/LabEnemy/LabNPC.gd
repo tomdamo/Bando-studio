@@ -18,13 +18,12 @@ const GRAVITY = -9.8
 var playerSpotted = false
 var player_position = Vector3.ZERO
 
-@onready var mesh_instance_3d = $Body/RootNode/Skeleton3D/MeshInstance3D
 @onready var animation_tree = $AnimationTree
 
 var damage_number = preload("res://Scenes/damagenumbers/damagenumbers.tscn")
 var enemyVisibleMaterial: Material = load("res://Textures/EnemyVisible.tres")
 
-@onready var player = $"../../PlayerCharacterBody3D"
+@onready var player = $"../Player/PlayerCharacterBody3D"
 var can_be_eaten = false
 @onready var eat_label = $EatLabel
 
@@ -57,9 +56,12 @@ func take_damage(damage):
 
 func die():
 	print("NPC died")
+	animation_tree["parameters/conditions/IsIdle"] = false
+	animation_tree["parameters/conditions/IsRunning"] = false
+	animation_tree["parameters/conditions/IsDead"] = true
 	animation_tree.get("parameters/playback").travel("Death")
-	self.rotation_degrees.x = 90
-	self.position.y = -1
+	#self.rotation_degrees.x = 90
+	#self.position.y = -1
 	death = true
 	can_be_eaten = true
 
@@ -115,36 +117,48 @@ func moveAwayFromPlayer(delta):
 			var move_direction = (npc_position - target_position).normalized()
 			move_direction.y = 0 # Don't move up or down
 
-			# Check relative position to determine 180 degree turn
-			var relative_position = target_position - npc_position
-			if relative_position.x * move_direction.x < 0 or relative_position.z * move_direction.z < 0:
-				# If relative positions along x or z axes are opposite signs, turn 180 degrees
-				var new_rotation = self.rotation_degrees.y + 180.0
-				self.rotation_degrees.y = new_rotation
-				look_at(target_position, Vector3.UP)
+			# Calculate the angle between current forward direction and move direction
+			var current_forward = -global_transform.basis.z
+			var angle_to_turn = current_forward.angle_to(move_direction)
 
-				# Trigger the turn animation
+			if angle_to_turn > PI / 2:  # If angle is greater than 90 degrees
+				# Play Turn animation
+				animation_tree["parameters/conditions/IsIdle"] = false
+				animation_tree["parameters/conditions/IsRunning"] = false
+				animation_tree["parameters/conditions/IsTurning"] = true
 				animation_tree.get("parameters/playback").travel("Turn")
-			else:
-				# Otherwise, face the player directly
-				look_at(target_position, Vector3.UP)
 
-				# Trigger the run animation
+				# Rotate towards the move direction
+				look_at(npc_position + move_direction, Vector3.UP)
+
+				# Wait for turn animation to complete (you might need to adjust this time)
+				await get_tree().create_timer(0.2).timeout
+
+				# After turning, start running
+				animation_tree["parameters/conditions/IsTurning"] = false
+				animation_tree["parameters/conditions/IsRunning"] = true
+				animation_tree.get("parameters/playback").travel("Run")
+			else:
+
+				animation_tree["parameters/conditions/IsIdle"] = false
+				animation_tree["parameters/conditions/IsRunning"] = true
 				animation_tree.get("parameters/playback").travel("Run")
 
 			# Apply movement based on direction
 			velocity.x = move_direction.x * SPEED
 			velocity.z = move_direction.z * SPEED
-
 		else:
 			# Stop moving
 			velocity.x = 0
 			velocity.z = 0
 
-			# Face the initial direction (optional, adjust as needed)
+			# Face the player
 			look_at(target_position, Vector3.UP)
 
 			# Play idle animation
+			animation_tree["parameters/conditions/IsIdle"] = true
+			animation_tree["parameters/conditions/IsRunning"] = false
+			animation_tree["parameters/conditions/IsTurning"] = false
 			animation_tree.get("parameters/playback").travel("Idle")
 
 		# Apply gravity

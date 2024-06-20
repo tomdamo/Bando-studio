@@ -69,7 +69,7 @@ var senseActive = false
 var enemyNormalMaterial: Material = load("res://Textures/EnemyNormal.tres")
 var enemyVisibleMaterial: Material = load("res://Textures/EnemyVisible.tres")
 var enemyNormalMaterialGuard: Material = load("res://Scenes/Enemy/Guard/NPCNormalMaterial.tres")
-@onready var fight_test_area = $"../*"
+@onready var fight_test_area = $"../FightTestArea"
 
 #Checkpoint system
 #TODO: upon dying, respawn to the latest checkpoint.
@@ -121,6 +121,7 @@ func _physics_process(delta: float) -> void:
 		eat()
 
 	if Input.is_action_just_pressed("Jump") and is_on_floor() and !eating:
+		animation_tree["parameters/conditions/IsDead"] = false
 		animation_tree["parameters/conditions/IsWalking"] = false
 		animation_tree["parameters/conditions/IsIdle"] = false
 		animation_tree["parameters/conditions/IsJumping"] = true
@@ -131,6 +132,7 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("dash") and !dashing and dash_cooldown_timer.is_stopped() and !eating:
 		dashing = true
+		animation_tree["parameters/conditions/IsDead"] = false
 		animation_tree["parameters/conditions/IsWalking"] = false
 		animation_tree["parameters/conditions/IsIdle"] = false
 		animation_tree["parameters/conditions/IsDashing"] = true
@@ -170,6 +172,7 @@ func _physics_process(delta: float) -> void:
 			animation_tree["parameters/conditions/IsJumping"] = false
 			animation_tree["parameters/conditions/IsEating"] = false
 			animation_tree["parameters/conditions/IsDashing"] = false
+			animation_tree["parameters/conditions/IsDead"] = false
 			animation_tree["parameters/conditions/IsWalking"] = true
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -178,6 +181,7 @@ func _physics_process(delta: float) -> void:
 			animation_tree["parameters/conditions/IsEating"] = false
 			animation_tree["parameters/conditions/IsWalking"] = false
 			animation_tree["parameters/conditions/IsDashing"] = false
+			animation_tree["parameters/conditions/IsDead"] = false
 			animation_tree["parameters/conditions/IsIdle"] = true
 
 	move_and_slide()
@@ -295,6 +299,7 @@ func eat():
 				animation_tree["parameters/conditions/IsWalking"] = false
 				animation_tree["parameters/conditions/IsIdle"] = false
 				animation_tree["parameters/conditions/IsEating"] = true
+				animation_tree["parameters/conditions/IsDead"] = false
 				animation_tree.get("parameters/playback").travel("Eat")
 				eating = true
 func take_damage(damageAmount):
@@ -316,6 +321,13 @@ func take_damage(damageAmount):
 func die():
 	print("Player died")
 	print(health)
+	animation_tree["parameters/conditions/IsWalking"] = false
+	animation_tree["parameters/conditions/IsIdle"] = false
+	animation_tree["parameters/conditions/IsEating"] = false
+	animation_tree["parameters/conditions/IsDashing"] = false
+	animation_tree["parameters/conditions/IsJumping"] = false
+	animation_tree["parameters/conditions/IsAttacking"] = false
+	animation_tree.get("parameters/playback").travel("Death")
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	#get_tree().change_scene_to_file("res://Scenes/UI/GameOver2.tscn")
 	if respawn_timer.is_stopped():

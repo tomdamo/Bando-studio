@@ -157,7 +157,7 @@ func _on_upgrade_guard_1_pressed():
 	if player.guard_points >= 1 and "guard_1" not in upgrades_applied:
 		player.guard_points -= 1
 		upgrades_applied["guard_1"] = true
-		player.damage *= 1.10
+		player.player_damage *= 1.10
 		_update_upgrade_buttons()
 
 func _on_upgrade_guard_2_pressed():
@@ -171,7 +171,7 @@ func _on_upgrade_guard_3_pressed():
 	if player.guard_points >= 3 and "guard_3" not in upgrades_applied:
 		player.guard_points -= 3
 		upgrades_applied["guard_3"] = true
-		player.damage *= 1.20
+		player.player_damage *= 1.20
 		_update_upgrade_buttons()
 
 func _on_upgrade_guard_4_pressed():
@@ -185,7 +185,7 @@ func _on_upgrade_guard_5_pressed():
 	if player.guard_points >= 5 and "guard_5" not in upgrades_applied:
 		player.guard_points -= 5
 		upgrades_applied["guard_5"] = true
-		player.damage *= 1.3 # Additional 30% increase in melee damage
+		player.player_damage *= 1.3 # Additional 30% increase in melee damage
 		_update_upgrade_buttons()
 
 func _on_upgrade_guard_6_pressed():

@@ -6,6 +6,7 @@ const GRAVITY = -9.8
 var health = 20
 var death = false
 var damage_number = preload("res://Scenes/damagenumbers/damagenumbers.tscn")
+@onready var animation_tree = $AnimationTree
 
 @onready var blood = %BloodEffect
 @onready var bloodTimer = %BloodTimer
@@ -38,7 +39,7 @@ var reached_target = false
 var player_last_seen = false
 var player_last_seen_position: Vector3
 @onready var searching_label = $SearchingLabel
-@onready var player = $"../../PlayerCharacterBody3D"
+@onready var player = $"../Player/PlayerCharacterBody3D"
 
 
 #moving away and close
@@ -52,6 +53,11 @@ var target_rotation_degrees_y = 0.0
 func _ready():
 	target_rotation_degrees_y = rotation_degrees.y
 	eat_label.hide()
+	init_navigation()
+
+func init_navigation():
+	navigation_agent.set_target_position(patrol_targets[current_patrol_target])
+
 
 func _physics_process(delta):
 	if !death:
@@ -89,8 +95,14 @@ func take_damage(damage):
 
 func die():
 	print("im ded")
-	self.rotation_degrees.x = 90
-	self.position.y = -1
+	animation_tree["parameters/conditions/IsWalking"] = false
+	animation_tree["parameters/conditions/IsIdle"] = false
+	animation_tree["parameters/conditions/IsAimMovingF"] = false
+	animation_tree["parameters/conditions/IsAimMovingB"] = false
+	animation_tree["parameters/conditions/IsDead"] = true
+	animation_tree.get("parameters/playback").travel("Death")
+	#self.rotation_degrees.x = 90
+	#self.position.y = -1
 	death = true
 	#player.guard_kills += 1
 	can_be_eaten = true
@@ -157,7 +169,12 @@ func shootAtTarget():
 	target_position = player_position
 	distance_to_player = npc_position.distance_to(target_position)
 	#print(distance_to_player)
-
+	animation_tree["parameters/conditions/IsWalking"] = false
+	animation_tree["parameters/conditions/IsIdle"] = false
+	animation_tree["parameters/conditions/IsAimMovingB"] = false
+	animation_tree["parameters/conditions/IsAimMovingF"] = false
+	animation_tree["parameters/conditions/IsAiming"] = true
+	animation_tree.get("parameters/playback").travel("Aim")
 	if distance_to_player < 3:
 		target_position.y -= 0.52
 	elif distance_to_player < 5:
@@ -181,7 +198,11 @@ func moveAwayFromPlayer(delta):
 		velocity.x = move_direction.x * SPEED
 		velocity.z = move_direction.z * SPEED
 		look_at(target_position, Vector3.UP)
-
+		animation_tree["parameters/conditions/IsAimStanding"] = false
+		animation_tree["parameters/conditions/IsWalking"] = false
+		animation_tree["parameters/conditions/IsAimMovingF"] = false
+		animation_tree["parameters/conditions/IsAimMovingB"] = true
+		animation_tree.get("parameters/playback").travel("AimMovingBackward")
 	else:
 		velocity.x = 0
 		velocity.z = 0
@@ -200,10 +221,20 @@ func moveCloser(delta):
 		velocity.x = move_direction.x * SPEED
 		velocity.z = move_direction.z * SPEED
 		look_at(target_position, Vector3.UP)
-
+		animation_tree["parameters/conditions/IsAimStanding"] = false
+		animation_tree["parameters/conditions/IsWalking"] = false
+		animation_tree["parameters/conditions/IsAimMovingB"] = false
+		animation_tree["parameters/conditions/IsAimMovingF"] = true
+		animation_tree.get("parameters/playback").travel("AimMovingForward")
 	else:
 		velocity.x = 0
 		velocity.z = 0
+		animation_tree["parameters/conditions/IsWalking"] = false
+		animation_tree["parameters/conditions/IsIdle"] = false
+		animation_tree["parameters/conditions/IsAimMovingB"] = false
+		animation_tree["parameters/conditions/IsAimMovingF"] = false
+		animation_tree["parameters/conditions/IsAiming"] = true
+		animation_tree.get("parameters/playback").travel("Aim")
 	move_and_slide()
 
 func patrol(delta):
@@ -214,7 +245,12 @@ func patrol(delta):
 		var next_path_position = navigation_agent.get_next_path_position()
 		var direction = (next_path_position - npc_position).normalized()
 		look_at(direction)
-
+		animation_tree["parameters/conditions/IsIdle"] = false
+		animation_tree["parameters/conditions/IsAiming"] = false
+		animation_tree["parameters/conditions/IsAimMovingB"] = false
+		animation_tree["parameters/conditions/IsAimMovingF"] = false
+		animation_tree["parameters/conditions/IsWalking"] = true
+		animation_tree.get("parameters/playback").travel("Walk")
 		var distance_to_target = npc_position.distance_to(next_path_position)
 		var target_speed = SPEED * clamp(distance_to_target / 2.0, 0, 5) # Slow down when within 5 units of the target
 		var target_velocity = direction * target_speed
@@ -223,6 +259,11 @@ func patrol(delta):
 		move_and_slide()
 		if distance_to_target < 0.5 and !reached_target:
 			print("reached target" + str(current_patrol_target))
+			animation_tree["parameters/conditions/IsDead"] = false
+			animation_tree["parameters/conditions/IsWalking"] = false
+			animation_tree["parameters/conditions/IsAiming"] = false
+			animation_tree["parameters/conditions/IsAiming"] = true
+			animation_tree.get("parameters/playback").travel("Walk")
 			patrol_timer.start()
 			reached_target = true
 			velocity.z = 0
@@ -237,7 +278,12 @@ func lookForPlayer(delta):
 	navigation_agent.get_next_path_position()
 	var direction = (player_last_seen_position - npc_position).normalized()
 	look_at(player_last_seen_position)
-
+	animation_tree["parameters/conditions/IsIdle"] = false
+	animation_tree["parameters/conditions/IsAiming"] = false
+	animation_tree["parameters/conditions/IsAimMovingB"] = false
+	animation_tree["parameters/conditions/IsAimMovingF"] = true
+	animation_tree["parameters/conditions/IsWalking"] = false
+	animation_tree.get("parameters/playback").travel("AimMovingForward")
 	var target_speed = SPEED
 	var target_velocity = direction * target_speed
 	move_and_slide()

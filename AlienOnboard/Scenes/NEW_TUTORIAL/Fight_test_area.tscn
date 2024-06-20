@@ -588,27 +588,27 @@ transform = Transform3D(1.9993, 0, 0.0528075, 0, 2, 0, -0.0528075, 0, 1.9993, 10
 transform = Transform3D(0.999983, -0.00129736, 0.00569055, 0.00131086, 0.999996, -0.00236952, -0.00568744, 0.00237694, 0.999981, 0, 0.581154, 0)
 shape = SubResource("BoxShape3D_g0ihe")
 
-[node name="NPCLab1" parent="." groups=["lab"] instance=ExtResource("4_f86su")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 12.3966, -1.13862, -17.7113)
+[node name="NPCLab1" parent="." instance=ExtResource("4_f86su")]
+transform = Transform3D(-0.178596, 0, 0.983922, 0, 1, 0, -0.983922, 0, -0.178596, 12.3966, -1.13862, -17.3874)
 health = 10
 
-[node name="NPCLab5" parent="." groups=["lab"] instance=ExtResource("4_f86su")]
-transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, 12.3009, -1.13862, -15.7588)
+[node name="NPCLab5" parent="." instance=ExtResource("4_f86su")]
+transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, 12.3009, -1.13862, -14.819)
 health = 10
 
-[node name="NPCLab7" parent="." groups=["lab"] instance=ExtResource("4_f86su")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -7.72674, -1.13862, -16.3883)
+[node name="NPCLab7" parent="." instance=ExtResource("4_f86su")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -7.72674, -1.13862, -14.9883)
 health = 10
 
-[node name="NPCLab8" parent="." groups=["lab"] instance=ExtResource("4_f86su")]
+[node name="NPCLab8" parent="." instance=ExtResource("4_f86su")]
 transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, -6.8746, -1.13862, -16.6348)
 health = 10
 
-[node name="NPCLab3" parent="." groups=["lab"] instance=ExtResource("4_f86su")]
+[node name="NPCLab3" parent="." instance=ExtResource("4_f86su")]
 transform = Transform3D(-0.998876, 0, -0.0474026, 0, 1, 0, 0.0474026, 0, -0.998876, -7.47753, -1.53759, -10.4847)
 health = 10
 
-[node name="NPCLab4" parent="." groups=["lab"] instance=ExtResource("4_f86su")]
+[node name="NPCLab4" parent="." instance=ExtResource("4_f86su")]
 transform = Transform3D(-1, 0, 0.00017461, 0, 1, 0, -0.00017461, 0, -1, -11.4375, -1.48149, -10.6737)
 health = 10
 
@@ -618,7 +618,7 @@ patrol_targets = Array[Vector3]([Vector3(6.26033, -0.440889, -4.24206), Vector3(
 
 [node name="GuardNPC2" parent="." groups=["guard"] instance=ExtResource("5_36rfq")]
 transform = Transform3D(-0.997703, 0, -0.0677366, 0, 1, 0, 0.0677366, 0, -0.997703, -17.6368, -1.4688, -6.27769)
-patrol_targets = Array[Vector3]([Vector3(16, -0.47, -16.7), Vector3(-16, -0.4, -16.7), Vector3(-16, -0.4, 17.2), Vector3(-0.7, 0.47, -3)])
+patrol_targets = Array[Vector3]([Vector3(-14.637, -1.472, -6.233), Vector3(-14.637, -1.472, -3767)])
 
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1444, -0.440889, 15.0469)
@@ -970,7 +970,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="Player" parent="." instance=ExtResource("13_ya836")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9675, -1.08441, 16.1147)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.22662, -1.08441, 16.1147)
 
 [node name="FadeToBlackAnimation" type="Node3D" parent="."]
 
