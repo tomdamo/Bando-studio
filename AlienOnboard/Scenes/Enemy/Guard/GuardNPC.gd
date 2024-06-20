@@ -40,6 +40,8 @@ var player_last_seen = false
 var player_last_seen_position: Vector3
 @onready var searching_label = $SearchingLabel
 @onready var player = $"../Player/PlayerCharacterBody3D"
+#VOOR VISIBLE SHIT
+@onready var mesh_instance_3dg = $Pivot/guard/Armature/Skeleton3D/MeshInstance3DG
 
 
 #moving away and close
@@ -304,3 +306,6 @@ func _on_search_timer_timeout():
 func look_around():
 	pass
 	#Walk circle or do a 360 basically haha
+	
+func get_mesh_instance():
+	return mesh_instance_3dg

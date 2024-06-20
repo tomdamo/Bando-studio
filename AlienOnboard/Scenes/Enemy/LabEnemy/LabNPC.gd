@@ -22,6 +22,8 @@ var player_position = Vector3.ZERO
 
 var damage_number = preload("res://Scenes/damagenumbers/damagenumbers.tscn")
 var enemyVisibleMaterial: Material = load("res://Textures/EnemyVisible.tres")
+#VOOR VISIBLE SHIT
+@onready var mesh_instance_3d = $Body/RootNode/Armature/Skeleton3D/MeshInstance3D
 
 @onready var player = $"../Player/PlayerCharacterBody3D"
 var can_be_eaten = false
@@ -53,7 +55,8 @@ func take_damage(damage):
 
 		if health <= 0:
 			die()
-
+			
+	
 func die():
 	print("NPC died")
 	animation_tree["parameters/conditions/IsIdle"] = false
@@ -166,3 +169,6 @@ func moveAwayFromPlayer(delta):
 
 		# Move and slide
 		move_and_slide()
+
+func get_mesh_instance():
+	return mesh_instance_3d

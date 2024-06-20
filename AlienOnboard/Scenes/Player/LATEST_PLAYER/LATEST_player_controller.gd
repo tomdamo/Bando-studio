@@ -224,15 +224,33 @@ func _activateSenseAbility():
 				#meshInstance.material_override = enemyVisibleMaterial
 	#
 	for enemy in get_tree().get_nodes_in_group("lab"):
-		print(enemy)
-		if enemy.has_node("MeshInstance3D"):
-			var meshInstance : MeshInstance3D = enemy.get_node("MeshInstance3D")
-			meshInstance.set_surface_override_material(1, enemyVisibleMaterial)
+		print("Lab enemy: ", enemy)
+		if enemy.has_method("get_mesh_instance"):
+			var meshInstance : MeshInstance3D = enemy.get_mesh_instance()
+			if meshInstance:
+				if enemyVisibleMaterial:
+					print("Changing material for lab enemy:", meshInstance)
+					meshInstance.set_surface_override_material(1, enemyVisibleMaterial)
+				else:
+					print("enemyVisibleMaterial is null.")
+			else:
+				print("MeshInstance is null for lab enemy")
+		else:
+			print("Lab enemy does not have get_mesh_instance method")
 	for enemy in get_tree().get_nodes_in_group("guard"):
-		print(enemy)
-		if enemy.has_node("MeshInstance3DG"):
-			var meshInstanceGuard : MeshInstance3D = enemy.get_node("MeshInstance3DG")
-			meshInstanceGuard.set_surface_override_material(0, enemyVisibleMaterial)
+		print("Guard enemy: ", enemy)
+		if enemy.has_method("get_mesh_instance"):
+			var meshInstanceGuard : MeshInstance3D = enemy.get_mesh_instance()
+			if meshInstanceGuard:
+				if enemyVisibleMaterial:
+					print("Changing material for guard enemy:", meshInstanceGuard)
+					meshInstanceGuard.set_surface_override_material(0, enemyVisibleMaterial)
+				else:
+					print("enemyVisibleMaterial is null.")
+			else:
+				print("MeshInstance is null for guard enemy")
+		else:
+			print("Guard enemy does not have get_mesh_instance method")
 
 
 func _deactivateSenseAbility():
