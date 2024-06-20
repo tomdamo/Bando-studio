@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d23mvskd6ht8q"]
 
-[ext_resource type="Script" path="res://Scenes/UI/loading.gd" id="1_srrms"]
+[ext_resource type="Script" path="res://Scenes/NEW_TUTORIAL/loadingSpaceship.gd" id="1_gtrbu"]
 [ext_resource type="Texture2D" uid="uid://c7r5072nr5o1" path="res://Scenes/UI/ALIEN_ON_BOARD_PICTOGRAM-removebg-preview.png" id="2_pu0ul"]
 [ext_resource type="FontFile" uid="uid://dlvhjyl50fcs4" path="res://Textures/Font/batmfa__.ttf" id="3_56oyi"]
 
@@ -15,7 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_srrms")
+script = ExtResource("1_gtrbu")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

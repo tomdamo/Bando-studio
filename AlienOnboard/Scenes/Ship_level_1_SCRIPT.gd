@@ -15,11 +15,16 @@ extends Node3D
 @onready var quest_4 = $Control/Quest4
 @onready var quest_5 = $Control/Quest5
 @onready var quest_6 = $Control/Quest6
-
 @onready var player = $Player/PlayerCharacterBody3D
 @onready var player_cam = $Player/MainCamera3D
 
 @onready var door_closed_lab = $Rooms/Labroom/RootNode/DoorClosedLab
+@onready var vent_enter = $VentCutscene/VentEnter
+@onready var area_3d_storage = $Rooms/storage/Area3D_storage
+
+@onready var labmusic = $Labmusic
+@onready var cantinemusic = $Cantinemusic
+
 
 @onready var security_door = $Rooms/sleep/RootNode/SECURITY_DOOR
 var security_door_open = false
@@ -49,22 +54,28 @@ func _on_waypoint_2_body_entered(body):
 		waypoint_2.hide()
 		#Set respawn point/checkpoint
 		player.respawn_point = waypoint_2.get_position()
+		quest_3.hide()
 		quest_4.hide()
 		quest_5.show()
+		labmusic.stop()
+		cantinemusic.play()
 
 #UIT DE GASSSSSSSS
 func _on_waypoint_first_body_entered(body):
-	if "Player" in body.name:
+	if body.is_in_group("Player"):
+		print("checkpoint on vent ding!!!!!!!!!!!!!!!!!!!!!!!")
 		waypoint_3.hide()
 		#Set respawn point/checkpoint
+		$VentCutscene/VentCutscene.show()
+		$VentCutscene/VentCutscene/AnimationPlayer.set_active(true)
 		player.respawn_point = waypoint_3.get_position()
 		$Control/Quest1.hide()
 		$Control/Quest2.show()
+		$VentCutscene/VentCutscene/Camera3D.set_current(true)
+		$VentCutscene/VentCutscene/AnimationPlayer.play("VentCutscene")
 		
-		$VentCutscene/Camera3D.set_current(true)
-		$VentCutscene/AnimationPlayer.play("VentCutscene")
 		
-		player.global_transform.origin = $Vent_enter.get_position()
+		player.global_transform.origin = vent_enter.get_position()
 		
 func _on_gas_timer_timeout():
 	var overlaps = gas_area_3d.get_overlapping_bodies()
@@ -97,5 +108,15 @@ func _on_waypoint_final_body_entered(body):
 
 
 func _on_animation_player_animation_finished(anim_name):
-		$VentCutscene/Camera3D.set_current(false)
+		$VentCutscene/VentCutscene/Camera3D.set_current(false)
 		player_cam.set_current(true)
+		$VentCutscene/VentCutscene.hide()
+		
+
+
+func _on_area_3d_storage_body_exited(body):
+	if "Lab" in body.name:
+		quest_3.hide()
+		quest_4.show()
+
+

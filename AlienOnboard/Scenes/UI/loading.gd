@@ -7,7 +7,7 @@ var sceneLoadStatus = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sceneName = "res://Scenes/NEW_TUTORIAL/ShipFinal.tscn"
+	sceneName = "res://Scenes/NEW_TUTORIAL/Fight_test_area.tscn"
 	ResourceLoader.load_threaded_request(sceneName)
 
 
