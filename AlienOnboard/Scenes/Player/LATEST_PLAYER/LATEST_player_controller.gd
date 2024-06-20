@@ -3,9 +3,6 @@ extends CharacterBody3D
 @export var SPEED: float = 5.0
 @export var JUMP_VELOCITY: float = 4.5
 @export var enable_gravity = true
-@onready var animation_tree = $PlayerVisual/PlayerDirection/AnimationPlayer/AnimationTree
-@onready var anim_state: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
-
 @onready var _camera: Camera3D
 @onready var _player_visual: Node3D = %PlayerVisual
 
@@ -15,6 +12,7 @@ var movement_enabled: bool = true
 var _physics_body_trans_last: Transform3D
 var _physics_body_trans_current: Transform3D
 
+var animation_tree = null
 
 #Dash
 @export var DASH_SPEED = 30
@@ -82,33 +80,27 @@ var respawn_point : Vector3
 func _ready() -> void:
 	_camera = owner.get_node("%MainCamera3D")
 	_player_visual.top_level = true
-
+	animation_tree = _player_visual.get_node_or_null("AnimationTree")
+	animation_tree
 	health = max_health
 	healthbar.init_health(health)
 	health_amount.set_text(str(health))
 	dash_material = dash_icon.get_material()
 	sense_material = sense_icon.get_material()
 	sense_overlay.mouse_filter = true
-
 func _physics_process(delta: float) -> void:
 	_physics_body_trans_last = _physics_body_trans_current
 	_physics_body_trans_current = global_transform
+
 	# Add the gravity.
 	if enable_gravity and not is_on_floor():
 		velocity.y -= gravity * delta
 
 	if not movement_enabled: return
 	if eating:
-		movement_enabled = false;
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir: Vector2 = Input.get_vector(
-		"move_left",
-		"move_right",
-		"move_forward",
-		"move_back"
-	)
+		movement_enabled = false
 
+	# Handle input actions.
 	if Input.is_action_just_pressed("pause") and !evol_open:
 		_pauseMenu()
 
@@ -118,85 +110,94 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("evolution_menu"):
 		evo_pressed_tip = true
 		_evolutionMenu()
-	#See enemies layer through the walls  and not senseActive and sense_cooldown_timer.is_stopped()
+
 	if Input.is_action_just_pressed("SenseAbility") and !senseActive and Sense_Cooldown.is_stopped():
 		senseActive = true
 		print("Sense if passed")
 		_activateSenseAbility()
 		sense_material.set_shader_parameter("cooldown_progress", 0)
 
-	if Input.is_action_just_pressed("Attack") and !eating and attack_timer.is_stopped():
-		attack()
-		animation_tree.set("parameters/CanAttack", true)
-		play_animation("Attack")
-		#attack_timer.start()
-
 	if Input.is_action_just_pressed("Interact") and !eating:
 		eat()
 
-	if Input.is_action_just_pressed("jump") and is_on_floor() and !eating:
-			velocity.y = JUMP_VELOCITY
-			animation_tree.set("parameters/CanJump", true)
-			play_animation("Jump")
+	if Input.is_action_just_pressed("Jump") and is_on_floor() and !eating:
+		animation_tree["parameters/conditions/IsDead"] = false
+		animation_tree["parameters/conditions/IsWalking"] = false
+		animation_tree["parameters/conditions/IsIdle"] = false
+		animation_tree["parameters/conditions/IsJumping"] = true
 
+		animation_tree.get("parameters/playback").travel("Jump")
+		velocity.y = JUMP_VELOCITY
 
-	#dash and movement
-	var cam_dir: Vector3 = -_camera.global_transform.basis.z
-	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 	if Input.is_action_just_pressed("dash") and !dashing and dash_cooldown_timer.is_stopped() and !eating:
 		dashing = true
-		dash_direction = cam_dir
+		animation_tree["parameters/conditions/IsDead"] = false
+		animation_tree["parameters/conditions/IsWalking"] = false
+		animation_tree["parameters/conditions/IsIdle"] = false
+		animation_tree["parameters/conditions/IsDashing"] = true
+
+		animation_tree.get("parameters/playback").travel("Dash")
+		dash_direction = -_camera.global_transform.basis.z
 		dash_timer = DASH_TIME
 		dash_cooldown_timer.start()
 		dash_sound.play()
 		dash_material.set_shader_parameter("cooldown_progress", 0)  # Dash just used, so cooldown is 0
-		animation_tree.set("parameters/CanDash", true)
-		play_animation("dash")
 
 	if dashing:
 		velocity += dash_direction * DASH_SPEED
 		dash_timer -= delta
-		# Update cooldown progress
-		#check if dash time is over
 		if dash_timer <= 0:
 			dashing = false
+			velocity = Vector3.ZERO  # Reset velocity to prevent continued movement after dash
 
-			# Reset velocity to zero to prevent continued movement after dash
-			velocity = Vector3.ZERO
+	# Get the input direction for movement.
+	var input_dir: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+
+	# Attack action check.
+	if Input.is_action_just_released("Attack") and !eating and attack_timer.is_stopped():
+		attack()
+		print("attack")
 	else:
+		# Handle movement and animations.
 		if direction:
 			var move_dir: Vector3 = Vector3.ZERO
 			move_dir.x = direction.x
 			move_dir.z = direction.z
-
 			move_dir = move_dir.rotated(Vector3.UP, _camera.rotation.y).normalized()
 			velocity.x = move_dir.x * SPEED
 			velocity.z = move_dir.z * SPEED
+			animation_tree["parameters/conditions/IsIdle"] = false
+			animation_tree["parameters/conditions/IsJumping"] = false
+			animation_tree["parameters/conditions/IsEating"] = false
+			animation_tree["parameters/conditions/IsDashing"] = false
+			animation_tree["parameters/conditions/IsDead"] = false
+			animation_tree["parameters/conditions/IsWalking"] = true
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
-			play_animation("Idle")
+			animation_tree["parameters/conditions/IsJumping"] = false
+			animation_tree["parameters/conditions/IsEating"] = false
+			animation_tree["parameters/conditions/IsWalking"] = false
+			animation_tree["parameters/conditions/IsDashing"] = false
+			animation_tree["parameters/conditions/IsDead"] = false
+			animation_tree["parameters/conditions/IsIdle"] = true
 
 	move_and_slide()
 
-
-
-	#icon UI stuff
-	if !dash_cooldown_timer.is_stopped():
+	# Icon UI updates.
+	if not dash_cooldown_timer.is_stopped():
 		var time_left = dash_cooldown_timer.get_time_left()
 		var total_wait_time = dash_cooldown_timer.get_wait_time()
-
 		var cooldown_progress = 1 - (time_left / total_wait_time)
 		dash_material.set_shader_parameter("cooldown_progress", cooldown_progress)
 
-	if !Sense_Cooldown.is_stopped():
+	if not Sense_Cooldown.is_stopped():
 		var sense_time_left = Sense_Cooldown.get_time_left()
 		var sense_total_wait = Sense_Cooldown.get_wait_time()
-
 		var sense_progress = 1 - (sense_time_left / sense_total_wait)
 		sense_material.set_shader_parameter("cooldown_progress", sense_progress)
-
 
 
 
@@ -277,7 +278,7 @@ func _evolutionMenu():
 	evol_open = !evol_open
 #Attack
 func attack():
-	play_animation("AttackTail")
+	animation_tree.get("parameters/playback").travel("Attack")
 	var bodies = attack_range.get_overlapping_bodies()
 	print(bodies)
 	for body in bodies:
@@ -295,10 +296,12 @@ func eat():
 				damageNumber.global_transform.origin = self.global_transform.origin
 				damageNumber.set_damage("nom nom nom")
 				eat_timer.start()
+				animation_tree["parameters/conditions/IsWalking"] = false
+				animation_tree["parameters/conditions/IsIdle"] = false
+				animation_tree["parameters/conditions/IsEating"] = true
+				animation_tree["parameters/conditions/IsDead"] = false
+				animation_tree.get("parameters/playback").travel("Eat")
 				eating = true
-				animation_tree.set("parameters/CanEat", true)
-				play_animation("eat")
-
 func take_damage(damageAmount):
 	hit_effect.set_emitting(true)
 	var damageNumber = damage_number.instantiate()
@@ -318,7 +321,13 @@ func take_damage(damageAmount):
 func die():
 	print("Player died")
 	print(health)
-	play_animation("deathanim")
+	animation_tree["parameters/conditions/IsWalking"] = false
+	animation_tree["parameters/conditions/IsIdle"] = false
+	animation_tree["parameters/conditions/IsEating"] = false
+	animation_tree["parameters/conditions/IsDashing"] = false
+	animation_tree["parameters/conditions/IsJumping"] = false
+	animation_tree["parameters/conditions/IsAttacking"] = false
+	animation_tree.get("parameters/playback").travel("Death")
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	#get_tree().change_scene_to_file("res://Scenes/UI/GameOver2.tscn")
 	if respawn_timer.is_stopped():
@@ -389,11 +398,6 @@ func _on_damage_timer_timeout():
 		blood_vignette.hide()
 	else:
 		blood_vignette.show()
-
-func play_animation(state_name: String):
-	if anim_state.is_playing():
-		anim_state.stop()
-		anim_state.start(state_name)
 
 
 

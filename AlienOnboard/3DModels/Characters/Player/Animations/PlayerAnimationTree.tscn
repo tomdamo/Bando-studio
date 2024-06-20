@@ -1,0 +1,180 @@
+[gd_scene load_steps=40 format=3 uid="uid://c12ai615dey5h"]
+
+[ext_resource type="Animation" uid="uid://c0afqglb4smt4" path="res://3DModels/Characters/Player/Animations/AttackTail.res" id="1_f5evf"]
+[ext_resource type="Animation" uid="uid://cb7hqrjy3u2es" path="res://3DModels/Characters/Player/Animations/dash.res" id="2_e8uqk"]
+[ext_resource type="Animation" uid="uid://b7p5f6m4th7d1" path="res://3DModels/Characters/Player/Animations/death.res" id="3_rlajv"]
+[ext_resource type="Animation" uid="uid://2ip3b0hyn7r7" path="res://3DModels/Characters/Player/Animations/eat.res" id="4_n67ld"]
+[ext_resource type="Animation" uid="uid://dt8rk5jpa0ws4" path="res://3DModels/Characters/Player/Animations/Idle.res" id="5_iup66"]
+[ext_resource type="Animation" uid="uid://ddygoiv7rudqr" path="res://3DModels/Characters/Player/Animations/Jump.res" id="6_4ssqq"]
+[ext_resource type="Animation" uid="uid://bhmuv7puryfwm" path="res://3DModels/Characters/Player/Animations/JumpAttack.res" id="7_wf8mm"]
+[ext_resource type="Animation" uid="uid://deec6da5gkrd5" path="res://3DModels/Characters/Player/Animations/landingjump.res" id="8_yb0oj"]
+[ext_resource type="Animation" uid="uid://bxv63u4iws3x6" path="res://3DModels/Characters/Player/Animations/Walking.res" id="9_t7p6y"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l61qj"]
+_data = {
+"AttackTail": ExtResource("1_f5evf"),
+"Idle": ExtResource("5_iup66"),
+"Jump": ExtResource("6_4ssqq"),
+"JumpAttack": ExtResource("7_wf8mm"),
+"Walking": ExtResource("9_t7p6y"),
+"dash": ExtResource("2_e8uqk"),
+"death": ExtResource("3_rlajv"),
+"eat": ExtResource("4_n67ld"),
+"landingjump": ExtResource("8_yb0oj")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_36b5q"]
+animation = &"Global/AttackTail"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ktg6j"]
+animation = &"Global/dash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ckdxa"]
+animation = &"Global/death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qj7yd"]
+animation = &"Global/eat"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4uval"]
+animation = &"Global/Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_71tki"]
+animation = &"Global/Jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fq0l5"]
+animation = &"Global/Jump"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8volk"]
+animation = &"Global/Walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1lskt"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hvo8h"]
+advance_mode = 2
+advance_condition = &"IsWalking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hrfyv"]
+advance_mode = 2
+advance_condition = &"IsEating"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1w68w"]
+advance_mode = 2
+advance_condition = &"IsIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qhuxg"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"IsAttacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1ss11"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"IsAttacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jw13i"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"IsIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0cbua"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"IsIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a30k3"]
+advance_mode = 2
+advance_condition = &"IsJumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d7aql"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"HasLanded"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lfp2k"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"IsIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_04v6o"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"IsDashing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_byd0j"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"IsIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ai48m"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"IsDashing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lawe3"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rj0yl"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"IsDead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mt6p6"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"IsDead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uvamr"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"IsDead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3fyuj"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"IsDead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m5fq1"]
+advance_mode = 2
+advance_condition = &"IsJumping"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_sveuf"]
+resource_local_to_scene = true
+resource_name = "PlayerStateMachine"
+states/Attacking/node = SubResource("AnimationNodeAnimation_36b5q")
+states/Attacking/position = Vector2(694.75, 170.745)
+states/Dash/node = SubResource("AnimationNodeAnimation_ktg6j")
+states/Dash/position = Vector2(745.85, -94.7577)
+states/Dead/node = SubResource("AnimationNodeAnimation_ckdxa")
+states/Dead/position = Vector2(539.75, 247.322)
+states/Eat/node = SubResource("AnimationNodeAnimation_qj7yd")
+states/Eat/position = Vector2(367, 213)
+states/Idle/node = SubResource("AnimationNodeAnimation_4uval")
+states/Idle/position = Vector2(330, 4)
+states/Jump/node = SubResource("AnimationNodeAnimation_71tki")
+states/Jump/position = Vector2(416.2, -158.798)
+states/Landed/node = SubResource("AnimationNodeAnimation_fq0l5")
+states/Landed/position = Vector2(150.2, -173.205)
+states/Walking/node = SubResource("AnimationNodeAnimation_8volk")
+states/Walking/position = Vector2(800, 47.1875)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_1lskt"), "Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_hvo8h"), "Idle", "Eat", SubResource("AnimationNodeStateMachineTransition_hrfyv"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_1w68w"), "Walking", "Attacking", SubResource("AnimationNodeStateMachineTransition_qhuxg"), "Idle", "Attacking", SubResource("AnimationNodeStateMachineTransition_1ss11"), "Attacking", "Idle", SubResource("AnimationNodeStateMachineTransition_jw13i"), "Eat", "Idle", SubResource("AnimationNodeStateMachineTransition_0cbua"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_a30k3"), "Jump", "Landed", SubResource("AnimationNodeStateMachineTransition_d7aql"), "Landed", "Idle", SubResource("AnimationNodeStateMachineTransition_lfp2k"), "Idle", "Dash", SubResource("AnimationNodeStateMachineTransition_04v6o"), "Dash", "Idle", SubResource("AnimationNodeStateMachineTransition_byd0j"), "Walking", "Dash", SubResource("AnimationNodeStateMachineTransition_ai48m"), "Dash", "Walking", SubResource("AnimationNodeStateMachineTransition_lawe3"), "Eat", "Dead", SubResource("AnimationNodeStateMachineTransition_rj0yl"), "Attacking", "Dead", SubResource("AnimationNodeStateMachineTransition_mt6p6"), "Walking", "Dead", SubResource("AnimationNodeStateMachineTransition_uvamr"), "Idle", "Dead", SubResource("AnimationNodeStateMachineTransition_3fyuj"), "Walking", "Jump", SubResource("AnimationNodeStateMachineTransition_m5fq1")]
+graph_offset = Vector2(73.7403, 11.9075)
+
+[node name="AnimationTree" type="AnimationTree"]
+root_node = NodePath("%PlayerDirection")
+libraries = {
+"Global": SubResource("AnimationLibrary_l61qj")
+}
+tree_root = SubResource("AnimationNodeStateMachine_sveuf")
+anim_player = NodePath("../PlayerDirection/Armature_001/AnimationPlayer")
+parameters/conditions/HasLanded = false
+parameters/conditions/IsAttacking = false
+parameters/conditions/IsDashing = false
+parameters/conditions/IsDead = false
+parameters/conditions/IsEating = false
+parameters/conditions/IsIdle = false
+parameters/conditions/IsJumping = false
+parameters/conditions/IsWalking = false

@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://c4xkh2p7p6hbl" path="res://Scenes/NEW_TUTORIAL/Groundtexture/3dex_Stylized_AlienGround_roughness.png" id="6_bsrhj"]
 
 [resource]
-albedo_color = Color(0.592448, 2.20198e-06, 4.33177e-07, 1)
 albedo_texture = ExtResource("1_q1qhu")
 metallic = 1.0
 metallic_texture = ExtResource("4_110r7")
