@@ -121,11 +121,21 @@ func _physics_process(delta: float) -> void:
 		eat()
 
 	if Input.is_action_just_pressed("Jump") and is_on_floor() and !eating:
-		velocity.y = JUMP_VELOCITY
+		animation_tree["parameters/conditions/IsWalking"] = false
+		animation_tree["parameters/conditions/IsIdle"] = false
+		animation_tree["parameters/conditions/IsJumping"] = true
+
 		animation_tree.get("parameters/playback").travel("Jump")
+		velocity.y = JUMP_VELOCITY
+
 
 	if Input.is_action_just_pressed("dash") and !dashing and dash_cooldown_timer.is_stopped() and !eating:
 		dashing = true
+		animation_tree["parameters/conditions/IsWalking"] = false
+		animation_tree["parameters/conditions/IsIdle"] = false
+		animation_tree["parameters/conditions/IsDashing"] = true
+
+		animation_tree.get("parameters/playback").travel("Dash")
 		dash_direction = -_camera.global_transform.basis.z
 		dash_timer = DASH_TIME
 		dash_cooldown_timer.start()
@@ -156,13 +166,19 @@ func _physics_process(delta: float) -> void:
 			move_dir = move_dir.rotated(Vector3.UP, _camera.rotation.y).normalized()
 			velocity.x = move_dir.x * SPEED
 			velocity.z = move_dir.z * SPEED
-			if not dashing:
-				animation_tree.get("parameters/playback").travel("Walk")
+			animation_tree["parameters/conditions/IsIdle"] = false
+			animation_tree["parameters/conditions/IsJumping"] = false
+			animation_tree["parameters/conditions/IsEating"] = false
+			animation_tree["parameters/conditions/IsDashing"] = false
+			animation_tree["parameters/conditions/IsWalking"] = true
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
-			if not dashing:
-				animation_tree.get("parameters/playback").travel("Idle")
+			animation_tree["parameters/conditions/IsJumping"] = false
+			animation_tree["parameters/conditions/IsEating"] = false
+			animation_tree["parameters/conditions/IsWalking"] = false
+			animation_tree["parameters/conditions/IsDashing"] = false
+			animation_tree["parameters/conditions/IsIdle"] = true
 
 	move_and_slide()
 
@@ -276,6 +292,9 @@ func eat():
 				damageNumber.global_transform.origin = self.global_transform.origin
 				damageNumber.set_damage("nom nom nom")
 				eat_timer.start()
+				animation_tree["parameters/conditions/IsWalking"] = false
+				animation_tree["parameters/conditions/IsIdle"] = false
+				animation_tree["parameters/conditions/IsEating"] = true
 				animation_tree.get("parameters/playback").travel("Eat")
 				eating = true
 func take_damage(damageAmount):
