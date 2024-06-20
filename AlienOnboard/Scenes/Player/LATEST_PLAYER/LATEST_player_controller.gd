@@ -212,6 +212,7 @@ func _on_dash_cooldown_timer_timeout():
 	dash_material.set_shader_parameter("cooldown_progress", 1)  # Dash ready, so cooldown is 1
 
 func _activateSenseAbility():
+	print("SENSE RUNNNN")
 	active_sense_time.start()
 	sense_overlay.show()
 	#TODO Get all enemies within the SenseRange collision shape
@@ -222,11 +223,13 @@ func _activateSenseAbility():
 				#var meshInstance = body.get_node("MeshInstance3D")
 				#meshInstance.material_override = enemyVisibleMaterial
 	#
-	for enemy in get_tree().get_nodes_in_group("enemies"):
+	for enemy in get_tree().get_nodes_in_group("lab"):
 		print(enemy)
 		if enemy.has_node("MeshInstance3D"):
 			var meshInstance : MeshInstance3D = enemy.get_node("MeshInstance3D")
 			meshInstance.set_surface_override_material(1, enemyVisibleMaterial)
+	for enemy in get_tree().get_nodes_in_group("guard"):
+		print(enemy)
 		if enemy.has_node("MeshInstance3DG"):
 			var meshInstanceGuard : MeshInstance3D = enemy.get_node("MeshInstance3DG")
 			meshInstanceGuard.set_surface_override_material(0, enemyVisibleMaterial)

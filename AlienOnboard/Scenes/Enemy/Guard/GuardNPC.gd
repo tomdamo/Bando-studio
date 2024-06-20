@@ -53,10 +53,10 @@ var target_rotation_degrees_y = 0.0
 func _ready():
 	target_rotation_degrees_y = rotation_degrees.y
 	eat_label.hide()
-	init_navigation()
+	#init_navigation()
 
-func init_navigation():
-	navigation_agent.set_target_position(patrol_targets[current_patrol_target])
+#func init_navigation():
+	#navigation_agent.set_target_position(patrol_targets[current_patrol_target])
 
 
 func _physics_process(delta):
