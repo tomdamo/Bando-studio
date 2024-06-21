@@ -323,6 +323,7 @@ func attack():
 	animation_tree.get("parameters/playback").travel("Attack")
 	var bodies = attack_range.get_overlapping_bodies()
 	print(bodies)
+	%AttackSound.play()
 	for body in bodies:
 		if body.has_method("take_damage"):
 			body.take_damage(player_damage)
