@@ -12,7 +12,8 @@ extends "res://Scenes/Player/LATEST_PLAYER/LATEST_player_controller.gd"
 @export var min_yaw: float = 0
 @export var max_yaw: float = 360
 
-
+var invertX = false
+var invertY = false
 
 func _ready() -> void:
 	super()
@@ -53,15 +54,20 @@ func _set_pcam_rotation(pcam: PhantomCamera3D, event: InputEvent) -> void:
 		# Assigns the current 3D rotation of the SpringArm3D node - so it starts off where it is in the editor
 		pcam_rotation_degrees = pcam.get_third_person_rotation_degrees()
 
-		# Change the X rotation
-		pcam_rotation_degrees.x -= event.relative.y * mouse_sensitivity
-
+		# Change the X rotation DIT OOK INVERT
+		if !invertX:
+			pcam_rotation_degrees.x -= event.relative.y * mouse_sensitivity
+		if invertX:
+			pcam_rotation_degrees.x += event.relative.y * mouse_sensitivity
+			
 		# Clamp the rotation in the X axis so it go over or under the target
 		pcam_rotation_degrees.x = clampf(pcam_rotation_degrees.x, min_pitch, max_pitch)
 
-		# Change the Y rotation value
-		pcam_rotation_degrees.y -= event.relative.x * mouse_sensitivity
-
+		# Change the Y rotation value DIT MOET KUNNEN INVERT
+		if !invertY:
+			pcam_rotation_degrees.y -= event.relative.x * mouse_sensitivity
+		if invertY:
+			pcam_rotation_degrees.y += event.relative.x * mouse_sensitivity			
 		# Sets the rotation to fully loop around its target, but witout going below or exceeding 0 and 360 degrees respectively
 		pcam_rotation_degrees.y = wrapf(pcam_rotation_degrees.y, min_yaw, max_yaw)
 

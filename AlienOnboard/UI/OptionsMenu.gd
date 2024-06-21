@@ -12,7 +12,9 @@ extends Control
 @onready var margin_container = $PanelContainer/MarginContainer
 @onready var pause_margin_container = $"../PauseMarginContainer"
 
-
+@onready var vertical_camera_check = $PanelContainer/MarginContainer/VBoxContainer2/VerticalCameraCheck
+@onready var horiz_camera_check = $PanelContainer/MarginContainer/VBoxContainer2/HorizCameraCheck
+@onready var player = $"../../../../PlayerCharacterBody3D"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -54,11 +56,11 @@ func _on_config_keybinds_pressed():
 	input_settings.show()
 
 func _on_vertical_camera_check_toggled(toggled_on):
-	pass # Replace with function body.
+	player.invertY = toggled_on
 
 
 func _on_horiz_camera_check_toggled(toggled_on):
-	pass # Replace with function body.
+	player.invertX = toggled_on
 
 func _back_to_pause():
 	options_menu.hide()
